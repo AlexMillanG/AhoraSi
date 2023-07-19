@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
-    <jsp:include page="layouts/head.jsp"/>
+    <jsp:include page="../../layouts/head.jsp"/>
 </head>
 <body>
 
@@ -112,7 +112,7 @@
 <div class="container">
 
 
-<jsp:include page="layouts/footer.jsp"/>
+<jsp:include page="../../layouts/footer.jsp"/>
 
 </body>
 </html>

@@ -20,7 +20,7 @@
                     <a class="nav-link active" aria-current="page" href="#">¿Quienes somos?</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/home.jsp">¿Que puedes hacer con nosotros?</a>
+                    <a class="nav-link" href="/view/user/home.jsp">¿Que puedes hacer con nosotros?</a>
                 </li>
                 <div class="d-line text-end" style="margin-left: 550px">
                     <li class="nav-item text-end">
@@ -52,7 +52,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="loginForm" action="home.jsp" class="needs-validation"
+                    <form id="loginForm" action="view/user/home.jsp" class="needs-validation"
                           novalidate method="post">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="username" id="username"
