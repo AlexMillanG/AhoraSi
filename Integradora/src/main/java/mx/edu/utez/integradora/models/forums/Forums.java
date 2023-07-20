@@ -1,8 +1,9 @@
 package mx.edu.utez.integradora.models.forums;
 
-import com.example.preubasinte.models.stories.Categories;
-import com.example.preubasinte.models.user.Status;
-import com.example.preubasinte.models.user.User;
+
+import mx.edu.utez.integradora.models.stories.Categories;
+import mx.edu.utez.integradora.models.user.Status;
+import mx.edu.utez.integradora.models.user.User;
 
 public class Forums {
     private  long id;

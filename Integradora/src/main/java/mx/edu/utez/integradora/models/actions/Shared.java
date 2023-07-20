@@ -1,7 +1,9 @@
 package mx.edu.utez.integradora.models.actions;
 
-import com.example.preubasinte.models.stories.Stories;
-import com.example.preubasinte.models.user.User;
+
+
+import mx.edu.utez.integradora.models.stories.Stories;
+import mx.edu.utez.integradora.models.user.User;
 
 public class Shared {
     private long id;

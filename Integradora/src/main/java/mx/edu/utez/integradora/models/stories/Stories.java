@@ -1,6 +1,6 @@
 package mx.edu.utez.integradora.models.stories;
 
-import com.example.preubasinte.models.user.Status;
+import mx.edu.utez.integradora.models.user.Status;
 
 public class Stories {
     private long id;
