@@ -24,7 +24,7 @@
                 </li>
                 <div class="d-line text-end" style="margin-left: 550px">
                     <li class="nav-item text-end">
-                        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#inicioSecion">
+                        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#inicioSesion">
                             Iniciar sesion
                         </button>
 
@@ -43,7 +43,7 @@
 <div class="container">
 
     <!-- Modal -->
-    <div class="modal fade" id="inicioSecion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="inicioSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

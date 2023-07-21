@@ -8,12 +8,44 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DaoUser implements DaoRepository<User> {
     private Connection conn;
     private PreparedStatement pstm;
     private ResultSet rs;
 
+    public User loadUserByUsernameAndPassword(String email,String pass){
+        try {
+            conn= new MySQLConnection().connect();
+            String query ="select users.*,rols.rol from users" +
+                    "inner join rols on rols.id=users.rol_id" +
+                    "where email=? and pass=? and status_id=1";
+            pstm=conn.prepareStatement(query);
+            rs=pstm.executeQuery();
+            if(rs.next()){
+                User user=new User();
+                user.setId(rs.getLong("id"));
+                user.setName(rs.getString("name"));
+                user.setLastname(rs.getString("lastname"));
+                user.setSurname(rs.getString("surname"));
+                user.setBirthday(rs.getString("birthday"));
+                user.setSex(rs.getString("sex"));
+                user.setEmail(rs.getString("email"));
+                user.setPass(rs.getString("pass"));
+                Rols role= new Rols();
+                role.setRol(rs.getString("rol"));
+                user.setRols(role);
+                return user;
+            }
+        }catch (SQLException e){
+            Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"Credential mismatch"+e.getMessage());
+        }finally {
+            close();
+        }
+        return null;
+    }
     @Override
     public List<User> fiandAll() {
         return null;
@@ -26,10 +58,10 @@ public class DaoUser implements DaoRepository<User> {
 
     @Override
     public boolean save(User object) {
-        try {
-            conn= new MySQLConnection().connect();
-            String query="";
-        }
+//        try {
+//            conn= new MySQLConnection().connect();
+//            String query="";
+//        }
         return false;
     }
 
