@@ -19,15 +19,17 @@ public class DaoUser implements DaoRepository<User> {
     public User loadUserByUsernameAndPassword(String email,String pass){
         try {
             conn= new MySQLConnection().connect();
-            String query ="select users.*,rols.rol from users" +
-                    "inner join rols on rols.id=users.rol_id" +
+            String query ="select users.*,rols.rol from users " +
+                    "inner join rols on rols.id=users.rol_id " +
                     "where email=? and pass=? and status_id=1";
             pstm=conn.prepareStatement(query);
+            pstm.setString(1,email);
+            pstm.setString(2,pass);
             rs=pstm.executeQuery();
             if(rs.next()){
                 User user=new User();
                 user.setId(rs.getLong("id"));
-                user.setName(rs.getString("name"));
+                user.setName(rs.getString("name_"));
                 user.setLastname(rs.getString("lastname"));
                 user.setSurname(rs.getString("surname"));
                 user.setBirthday(rs.getString("birthday"));
@@ -41,6 +43,7 @@ public class DaoUser implements DaoRepository<User> {
             }
         }catch (SQLException e){
             Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"Credential mismatch"+e.getMessage());
+            System.out.println(e.getMessage());
         }finally {
             close();
         }

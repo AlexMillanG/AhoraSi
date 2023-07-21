@@ -115,5 +115,22 @@
 
 <jsp:include page="../../layouts/footer.jsp"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        const agregarB = document.getElementById("agregar");
+        const form = document.getElementById("pokemon-form");
+        (function () {
+            agregarB.addEventListener("click",function (event){
+                console.log(form.checkValidity());
+
+                if(!form.checkValidity()){
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add("was-validated")
+            }, false);
+
+        })();
+    </script>
+
 </body>
 </html>

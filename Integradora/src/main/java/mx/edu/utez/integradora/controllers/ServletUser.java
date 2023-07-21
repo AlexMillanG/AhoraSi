@@ -23,6 +23,7 @@ import java.util.Objects;
         "/api/user/home",
         "/api/user/logout",
         "/api/user/all",
+        "/api/user/all-view",
         "/api/user/one",
         "/api/user/save",
         "/api/user/create",
@@ -42,8 +43,13 @@ public class ServletUser extends HttpServlet {
         action=req.getServletPath();
         switch (action){
             case "/api/auth":
-
+                System.out.println("get");
                 redirect="/index.jsp";
+                break;
+            case "/api/user/home":
+            List<Objects> users= new ArrayList<>();
+            req.setAttribute("users",users);
+            redirect="/view/user/home.jsp";
                 break;
         }
         req.getRequestDispatcher(redirect).forward(req,resp);
@@ -55,24 +61,42 @@ public class ServletUser extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html");
         action=req.getServletPath();
+        System.out.println("post");
         switch (action){
             case "/api/auth":
                 email=req.getParameter("email");
                 pass=req.getParameter("pass");
+                System.out.println(email);
+                System.out.println(pass);
                 try {
                     user=new DaoUser().loadUserByUsernameAndPassword(email,pass);
                     if (user!=null){
+                        System.out.println("diferente");
+                        System.out.println(user.getRols());
                         session=req.getSession();
                         session.setAttribute("user",user);
+                        System.out.println();
                         switch (user.getRols().getRol()){
                             case"superAdmin":
+                                redirect="/api/user/all-view";
+                                break;
+                            case"user":
+                                redirect="/api/user/home";
                                 break;
                         }
+                    }else {
+                        System.out.println("a");
+                        redirect="/index.jsp";
+                        System.out.println("b");
+                        throw new Exception("Credentials mismatch");
                     }
                 }catch (Exception e){
+                    System.out.println("c: "+e.getMessage());
                     redirect="/api/auth?result=false&message="+ URLEncoder.encode("Usuario y/o contraseña incorrecta", StandardCharsets.UTF_8);
                 }
                 break;
         }
+        System.out.println("requet" +req.getContextPath()+redirect);
+        resp.sendRedirect(req.getContextPath()+redirect);
     }
 }

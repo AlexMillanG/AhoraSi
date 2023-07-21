@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,20 +54,20 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="loginForm" action="view/user/home.jsp" class="needs-validation"
+                    <form id="loginForm" action="/api/auth" class="needs-validation"
                           novalidate method="post">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="username" id="username"
+                            <input type="text" class="form-control" name="email" id="email"
                                    placeholder="name@example.com" required>
-                            <label for="username">Correo electrónico</label>
+                            <label for="email">Correo electrónico</label>
                             <div class="invalid-feedback text-start">
                                 Campo obligatorio
                             </div>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" name="password" class="form-control" id="password"
-                                   placeholder="Password" required>
-                            <label for="password">Contraseña</label>
+                            <input type="password" name="pass" class="form-control" id="pass"
+                                   placeholder="pass" required>
+                            <label for="pass">Contraseña</label>
                             <div class="invalid-feedback text-start">
                                 Campo obligatorio
                             </div>
@@ -75,8 +77,9 @@
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <div class="form-group"></div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Iniciar sesion</button>
+                    <button type="button" onclick="prueba()" class="btn btn-primary" id="login">Iniciar sesion</button>
                     <button class="btn btn-outline-dark ms-3  " data-bs-toggle="modal"
                             data-bs-target="#registro">Registrate</button>
 
@@ -167,6 +170,29 @@
 
 
 <jsp:include page="layouts/footer.jsp"/>
+<script>
+    const agregar = document.getElementById("login");
+    const form = document.getElementById("loginForm");
+    const iniciar=document.getElementById("login");
+    (function () {
+        agregar.addEventListener("click",function (event){
+            console.log(form.checkValidity());
 
+            if(!form.checkValidity()){
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add("was-validated")
+        }, false);
+
+    })();
+    function prueba(){
+        if(form.checkValidity()) {
+            console.log("AntesSubmit");
+            form.submit();
+            console.log("DespuesSubmit");
+        }
+    }
+</script>
 </body>
 </html>
