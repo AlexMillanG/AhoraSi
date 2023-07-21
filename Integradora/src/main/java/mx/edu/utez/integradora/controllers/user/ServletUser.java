@@ -1,4 +1,4 @@
-package mx.edu.utez.integradora.controllers;
+package mx.edu.utez.integradora.controllers.user;
 
 
 import jakarta.servlet.ServletException;
