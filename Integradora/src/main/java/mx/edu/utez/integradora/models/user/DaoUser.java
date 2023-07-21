@@ -117,17 +117,18 @@ public class DaoUser implements DaoRepository<User> {
     public boolean save(User object) {
         try {
             conn= new MySQLConnection().connect();
-            String query="INSERT INTO USERS";
+            String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,?,?);z";
             pstm= conn.prepareStatement(query);
-            pstm.setLong(1,object.getId());
-            pstm.setString(2,object.getName());
-            pstm.setString(3,object.getLastname());
-            pstm.setString(4,object.getSurname());
-            pstm.setString(5,object.getBirthday());
-            pstm.setString(6,object.getSex());
-            pstm.setString(7,object.getEmail());
-            pstm.setString(8,object.getPass());
-         //   pstm.setString(5,object.getRols().getId();//tiene Error
+            pstm.setString(1,object.getName());
+            pstm.setString(2,object.getLastname());
+            pstm.setString(3,object.getSurname());
+            pstm.setString(4,object.getBirthday());
+            pstm.setString(5,object.getSex());
+            pstm.setString(6,object.getEmail());
+            pstm.setString(7,object.getPass());
+            pstm.setLong(8,object.getRols().getId());
+            pstm.setLong(9,object.getStatus().getId());
+            return pstm.executeUpdate()>0;
         }catch (SQLException e){
             Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"ERROR save"+e.getMessage());
         }finally {

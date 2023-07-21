@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.integradora.models.user.DaoUser;
+import mx.edu.utez.integradora.models.user.Rols;
+import mx.edu.utez.integradora.models.user.Status;
 import mx.edu.utez.integradora.models.user.User;
 
 import java.io.IOException;
@@ -35,7 +37,7 @@ public class ServletUser extends HttpServlet {
     String action,redirect="/api/auth";
     User user;
     HttpSession  session;
-    String id,name,lastname,surname,birthday,sex,email,pass;
+    String id,name,lastname,surname,birthday,sex,email,pass,status,rol;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -72,7 +74,7 @@ public class ServletUser extends HttpServlet {
                     user=new DaoUser().loadUserByUsernameAndPassword(email,pass);
                     if (user!=null){
                         System.out.println("diferente");
-                        System.out.println(user.getRols());
+                        System.out.println(user.getRols().getRol());
                         session=req.getSession();
                         session.setAttribute("user",user);
                         System.out.println();
@@ -80,13 +82,13 @@ public class ServletUser extends HttpServlet {
                             case"superAdmin":
                                 redirect="/api/user/all-view";
                                 break;
-                            case"user":
+                            case"User":
                                 redirect="/api/user/home";
                                 break;
                         }
                     }else {
                         System.out.println("a");
-                        redirect="/index.jsp";
+
                         System.out.println("b");
                         throw new Exception("Credentials mismatch");
                     }
@@ -94,6 +96,34 @@ public class ServletUser extends HttpServlet {
                     System.out.println("c: "+e.getMessage());
                     redirect="/api/auth?result=false&message="+ URLEncoder.encode("Usuario y/o contraseña incorrecta", StandardCharsets.UTF_8);
                 }
+                break;
+            case"/api/user/save":
+                name=req.getParameter("name");
+                lastname=req.getParameter("lastname");
+                surname=req.getParameter("surname");
+                birthday=req.getParameter("birthday");
+                sex=req.getParameter("sex");
+                email=req.getParameter("email");
+                pass=req.getParameter("pass");
+
+                Rols rols=new Rols();
+                rol="User";
+
+                Status status1=new Status();
+                status="1";
+                status1.setType_status(status);
+                rols.setRol(rol);
+                user=new User();
+                user.setId(0L);
+                user.setName(name);
+                user.setLastname(lastname);
+                user.setSurname(surname);
+                user.setBirthday(birthday);
+                user.setEmail(email);
+                user.setSex(sex);
+                user.setPass(pass);
+                user.setRols(rols);
+                user.setStatus(status1);
                 break;
         }
         System.out.println("requet" +req.getContextPath()+redirect);

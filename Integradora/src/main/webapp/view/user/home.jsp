@@ -4,49 +4,10 @@
 <head>
     <title>JSP - Hello World</title>
     <jsp:include page="../../layouts/head.jsp"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary"
-    style=" background: radial-gradient(137.13% 461.11% at 111.16% 113.45%, #8081B7 4.19%, #75BEF3 45.31%, #57F3C4 81.99%);">
-
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/index.jsp">History Utez eaa</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Foros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Perfil</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Crear
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Nueva historia</a></li>
-                        <li>
-                            <button class="btn btn-outline-dark ms-3  " data-bs-toggle="modal"
-                                    data-bs-target="#crearForo">Nuevo Foro</button></li>
-                    </ul>
-                </li>
-
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="¿Que vas a buscar hoy?" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-        </div>
-    </div>
-</nav>
-</nav>
+<jsp:include page="../../layouts/navbar.jsp"/>
 
 
 <%-- chingadera de crear foro --%>
@@ -108,13 +69,11 @@
         </div>
     </div>
 </div>
-</div>
 
-<div class="container">
+
 
 
 <jsp:include page="../../layouts/footer.jsp"/>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
         const agregarB = document.getElementById("agregar");
         const form = document.getElementById("pokemon-form");
