@@ -17,6 +17,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">¿Quienes somos?</a>
@@ -24,23 +26,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/view/user/home.jsp">¿Que puedes hacer con nosotros?</a>
                 </li>
-                <div class="d-line text-end" style="margin-left: 550px">
-                    <li class="nav-item text-end">
-                        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#inicioSesion">
-                            Iniciar sesion
-                        </button>
-
-                        <button class="btn btn-outline-dark ms-3  " data-bs-toggle="modal" data-bs-target="#registro">
-                            <li class="text-end nav-item">
-                                Registrarse
-                        </button>
-                </div>
-
-
             </ul>
+            </ul>
+
+
+
+
+            <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#inicioSesion">
+                Iniciar sesion
+            </button>
+            <button class="btn btn-outline-dark ms-3  " data-bs-toggle="modal" data-bs-target="#registro">
+                Registrarse
+            </button>
         </div>
+
     </div>
 </nav>
+
 
 <div class="container">
 
