@@ -90,7 +90,7 @@ public class DaoUser implements DaoRepository<User> {
             pstm.setLong(1,id);
             rs= pstm.executeQuery();
             User user=new User();
-            while (rs.next()){
+            if (rs.next()){
                 user.setId(rs.getLong("id"));
                 user.setName(rs.getString("name_"));
                 user.setLastname(rs.getString("lastname"));
@@ -139,6 +139,24 @@ public class DaoUser implements DaoRepository<User> {
 
     @Override
     public boolean update(User object) {
+        try {
+            conn= new MySQLConnection().connect();
+            String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,?,?);z";
+            pstm= conn.prepareStatement(query);
+            pstm.setString(1,object.getName());
+            pstm.setString(2,object.getLastname());
+            pstm.setString(3,object.getSurname());
+            pstm.setString(4,object.getBirthday());
+            pstm.setString(5,object.getSex());
+            pstm.setString(6,object.getEmail());
+            pstm.setString(7,object.getPass());
+            pstm.setLong(8,object.getRols().getId());
+            pstm.setLong(9,object.getStatus().getId());
+            return pstm.executeUpdate()>0;
+        }catch (SQLException e){
+            Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"ERROR Update"+e.getMessage());
+
+        }
         return false;
     }
 
