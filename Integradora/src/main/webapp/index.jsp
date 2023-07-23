@@ -52,7 +52,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Inicio Seción</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Inicio Sesión</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -109,8 +109,10 @@
                 <div class="row">
                     <h5 class="modal-title" id="datos">Registrarse</h5>
                 </div>
-                <form id="registrer" action="index.jsp.jsp" class="needs-validation"
+                <form id="registrer" action="index.jsp" class="needs-validation"
                       novalidate method="post">
+
+
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="correo" id="correo"
                                placeholder="name@example.com" required>
@@ -119,6 +121,8 @@
                             Campo obligatorio
                         </div>
                     </div>
+
+
                     <div class="form-floating mb-1">
                     <input type="text" name="name" class="form-control" id="name"
                                placeholder="name" required>
@@ -126,9 +130,11 @@
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
-                    <div class="form-group mb-3">
+                           <div class="form-group mb-3">
+                     </div>
                     </div>
-                    </div>
+
+
 
                     <div class="form-floating mb-1">
                         <input type="text" name="surname" class="form-control" id="surname"
@@ -141,16 +147,30 @@
                         </div>
                     </div>
 
+
+
                     <div class="form-floating mb-1">
                         <input type="text" name="lastname" class="form-control" id="lastname"
                                placeholder="lastname" required>
-                        <label for="name">Apellido</label>
+                        <label for="name">Segundo Apellido</label>
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
                         <div class="form-group mb-3">
                         </div>
                     </div>
+                    
+                    <div class="form-floating mb-1">
+                        <input type="date" min="1900-01-01" max="2005-12-31" name="birthday" class="form-control" id="birthday"
+                            placeholder="birthday" required>
+                        <label for="birthday">Fecha de nacimiento</label>
+                        <div class="invalid-feedback text-start">
+                            Campo obligatorio
+                        </div>
+                        <div class="form-group mb-3"></div>
+                    </div>
+
+
                 </form>
 
                 <!-- name
