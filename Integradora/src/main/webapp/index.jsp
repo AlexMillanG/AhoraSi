@@ -194,14 +194,14 @@
                         <p>Ingresa tu sexo</p>
                         <br>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sex" id="hombre">
+                            <input class="form-check-input" type="radio" value="hombre" name="sex" id="hombre">
                             <label class="form-check-label" for="hombre">
                                 Hombre
                             </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sex" id="mujer" mujer>
+                            <input class="form-check-input" type="radio" value="mujer" name="sex" id="mujer" mujer>
                             <label class="form-check-label" for="mujer">
                                 Mujer
                             </label>
