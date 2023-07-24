@@ -44,6 +44,9 @@
 </nav>
 
 
+
+
+
 <div class="container">
 
     <!-- Modal -->
@@ -56,6 +59,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+
                     <form id="loginForm" action="/api/auth" class="needs-validation"
                           novalidate method="post">
                         <div class="form-floating mb-3">
@@ -66,6 +70,7 @@
                                 Campo obligatorio
                             </div>
                         </div>
+
                         <div class="form-floating mb-3">
                             <input type="password" name="pass" class="form-control" id="pass"
                                    placeholder="pass" required>
@@ -74,8 +79,7 @@
                                 Campo obligatorio
                             </div>
                         </div>
-                        <div class="form-group mb-3">
-                        </div>
+
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -109,7 +113,8 @@
                 <div class="row">
                     <h5 class="modal-title" id="datos">Registrarse</h5>
                 </div>
-                <form id="registrer" action="index.jsp" class="needs-validation"
+
+                <form id="registrer" action="/api/user/save" method="post" class="needs-validation"
                       novalidate method="post">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="nombre" id="nombre"
@@ -131,9 +136,9 @@
 
 
                     <div class="form-floating mb-1">
-                    <input type="text" name="name" class="form-control" id="name"
+                    <input type="password" name="pass" class="form-control" id="pass"
                                placeholder="name" required>
-                        <label for="name">Contraseña</label>
+                        <label for="pass">Contraseña</label>
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
@@ -146,7 +151,7 @@
                     <div class="form-floating mb-1">
                         <input type="text" name="surname" class="form-control" id="surname"
                                placeholder="surname" required>
-                        <label for="name">Apellido</label>
+                        <label for="surname">Apellido</label>
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
@@ -159,7 +164,7 @@
                     <div class="form-floating mb-1">
                         <input type="text" name="lastname" class="form-control" id="lastname"
                                placeholder="lastname" required>
-                        <label for="name">Segundo Apellido</label>
+                        <label for="lastname">Segundo Apellido</label>
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
@@ -176,22 +181,22 @@
                         </div>
                         <div class="form-group mb-3"></div>
                     </div>
-
+                    <br>
                     <div class="form-floating mb-1">
+                        <p>Ingresa tu sexo</p>
                         <br>
-                        <br>
-                        <label for="hombre">Hombre</label>
-                        <br>
-                        <br>
-                        <input type="radio"  id="hombre" name="sex">
-                        <br>
-                        <br>
-                        <label for="mujer">Mujer</label>
-                        <br>
-                        <br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sex" id="hombre">
+                            <label class="form-check-label" for="hombre">
+                                Hombre
+                            </label>
+                        </div>
 
-                        <input type="radio"  id="mujer" name="sex">
-                        <div class="form-group mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sex" id="mujer" mujer>
+                            <label class="form-check-label" for="mujer">
+                                Mujer
+                            </label>
                         </div>
                     </div>
 
@@ -207,8 +212,7 @@
                  -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Iniciar sesion</button>
+                <button type="submit" class="btn btn-primary"> Registrar </button>
             </div>
         </div>
     </div>

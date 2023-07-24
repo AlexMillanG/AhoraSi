@@ -106,6 +106,14 @@ public class ServletUser extends HttpServlet {
                 email=req.getParameter("email");
                 pass=req.getParameter("pass");
 
+                System.out.println("nombre es "+name);
+                System.out.println("lastname es "+lastname);
+                System.out.println("surname es "+surname);
+                System.out.println("birthday es "+birthday);
+                System.out.println("sex es "+sex);
+                System.out.println("email es "+email);
+                System.out.println("pass es "+pass);
+
                 Rols rols=new Rols();
                 rol="User";
 
