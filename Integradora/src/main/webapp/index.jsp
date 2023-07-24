@@ -59,7 +59,7 @@
                     <form id="loginForm" action="/api/auth" class="needs-validation"
                           novalidate method="post">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="email" id="email"
+                            <input type="email" class="form-control" name="email" id="email"
                                    placeholder="name@example.com" required>
                             <label for="email">Correo electrónico</label>
                             <div class="invalid-feedback text-start">
@@ -111,10 +111,17 @@
                 </div>
                 <form id="registrer" action="index.jsp" class="needs-validation"
                       novalidate method="post">
-
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="nombre" id="nombre"
+                               placeholder="nombre" required>
+                        <label for="nombre">ingresa tu nombre</label>
+                        <div class="invalid-feedback text-start">
+                            Campo obligatorio
+                        </div>
+                    </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="correo" id="correo"
+                        <input type="email" class="form-control" name="correo" id="correo"
                                placeholder="name@example.com" required>
                         <label for="correo">Correo electrónico</label>
                         <div class="invalid-feedback text-start">
@@ -168,6 +175,24 @@
                             Campo obligatorio
                         </div>
                         <div class="form-group mb-3"></div>
+                    </div>
+
+                    <div class="form-floating mb-1">
+                        <br>
+                        <br>
+                        <label for="hombre">Hombre</label>
+                        <br>
+                        <br>
+                        <input type="radio"  id="hombre" name="sex">
+                        <br>
+                        <br>
+                        <label for="mujer">Mujer</label>
+                        <br>
+                        <br>
+
+                        <input type="radio"  id="mujer" name="sex">
+                        <div class="form-group mb-3">
+                        </div>
                     </div>
 
 
