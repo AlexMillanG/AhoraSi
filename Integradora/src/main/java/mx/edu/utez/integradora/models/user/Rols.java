@@ -27,4 +27,12 @@ public class Rols {
     public void setRol(String rol) {
         this.rol = rol;
     }
+
+    @Override
+    public String toString() {
+        return "Rols{" +
+                "id=" + id +
+                ", rol='" + rol + '\'' +
+                '}';
+    }
 }

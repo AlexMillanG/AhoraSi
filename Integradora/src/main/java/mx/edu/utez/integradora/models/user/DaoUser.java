@@ -117,7 +117,7 @@ public class DaoUser implements DaoRepository<User> {
     public boolean save(User object) {
         try {
             conn= new MySQLConnection().connect();
-            String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,?,?);z";
+            String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,3,1);";
             pstm= conn.prepareStatement(query);
             pstm.setString(1,object.getName());
             pstm.setString(2,object.getLastname());
@@ -126,8 +126,8 @@ public class DaoUser implements DaoRepository<User> {
             pstm.setString(5,object.getSex());
             pstm.setString(6,object.getEmail());
             pstm.setString(7,object.getPass());
-            pstm.setLong(8,object.getRols().getId());
-            pstm.setLong(9,object.getStatus().getId());
+            /*pstm.setLong(8,object.getRols().getId());
+            pstm.setLong(9,object.getStatus().getId());*/
             return pstm.executeUpdate()>0;
         }catch (SQLException e){
             Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"ERROR save"+e.getMessage());

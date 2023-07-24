@@ -27,4 +27,12 @@ public class Status {
     public void setType_status(String type_status) {
         this.type_status = type_status;
     }
+
+    @Override
+    public String toString() {
+        return "Status{" +
+                "id=" + id +
+                ", type_status='" + type_status + '\'' +
+                '}';
+    }
 }

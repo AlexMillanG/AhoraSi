@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="password" name="pass" class="form-control" id="pass"
+                            <input type="password" name="pass" class="form-control" id="ppass"
                                    placeholder="pass" required>
                             <label for="pass">Contraseña</label>
                             <div class="invalid-feedback text-start">
@@ -114,25 +114,32 @@
                     <h5 class="modal-title" id="datos">Registrarse</h5>
                 </div>
 
-                <form id="registrer" action="/api/user/save" method="post" class="needs-validation"
+                <form id="formregistrer" action="/api/user/save" method="post" class="needs-validation"
                       novalidate method="post">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="nombre" id="nombre"
-                               placeholder="nombre" required>
-                        <label for="nombre">ingresa tu nombre</label>
-                        <div class="invalid-feedback text-start">
-                            Campo obligatorio
+                  <div class="row">
+                      <div class="col">
+                          <div class="form-floating mb-3">
+                              <input type="text" class="form-control" name="name" id="name"
+                                     placeholder="nombre" required>
+                              <label for="name">ingresa tu nombre</label>
+                              <div class="invalid-feedback text-start">
+                                  Campo obligatorio
+                              </div>
+                          </div>
+                          </div>
+                  </div>
+
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" name="email" id="email"
+                                   placeholder="name@example.com" required>
+                            <label for="email">Correo electrónico</label>
+                            <div class="invalid-feedback text-start">
+                                Campo obligatorio
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" name="correo" id="correo"
-                               placeholder="name@example.com" required>
-                        <label for="correo">Correo electrónico</label>
-                        <div class="invalid-feedback text-start">
-                            Campo obligatorio
-                        </div>
-                    </div>
 
 
                     <div class="form-floating mb-1">
@@ -182,6 +189,7 @@
                         <div class="form-group mb-3"></div>
                     </div>
                     <br>
+
                     <div class="form-floating mb-1">
                         <p>Ingresa tu sexo</p>
                         <br>
@@ -203,16 +211,10 @@
 
                 </form>
 
-                <!-- name
-                 surname
-                 lastname
-                 email
-                 pass
-                 sex
-                 -->
+
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"> Registrar </button>
+                <button type="button" onclick="registro()"  id="botonRegistro" class="btn btn-primary"> Registrar </button>
             </div>
         </div>
     </div>
@@ -224,7 +226,11 @@
 <script>
     const agregar = document.getElementById("login");
     const form = document.getElementById("loginForm");
-    const iniciar=document.getElementById("login");
+    const iniciar = document.getElementById("login");
+
+    const formRegistro=document.getElementById("formregistrer");
+    const botonRegistro=document.getElementById("botonRegistro");
+
     (function () {
         agregar.addEventListener("click",function (event){
             console.log(form.checkValidity());
@@ -233,6 +239,7 @@
                 event.preventDefault();
                 event.stopPropagation();
             }
+
             form.classList.add("was-validated")
         }, false);
 
@@ -243,6 +250,32 @@
             form.submit();
             console.log("DespuesSubmit");
         }
+    }
+    (function () {
+        botonRegistro.addEventListener("click",function (event){
+            console.log(formRegistro.checkValidity());
+
+            if(!formRegistro.checkValidity()){
+                event.preventDefault();
+                event.stopPropagation();
+                console.log("")
+            }
+
+            formRegistro.classList.add("was-validated")
+        }, false);
+
+    })();
+
+
+    function registro(){
+        if(formRegistro.checkValidity()){
+            console.log(formRegistro.checkValidity())
+            console.log("antes del submint")
+            formRegistro.submit();
+            console.log("despues del submint")
+
+        }
+
     }
 </script>
 </body>
