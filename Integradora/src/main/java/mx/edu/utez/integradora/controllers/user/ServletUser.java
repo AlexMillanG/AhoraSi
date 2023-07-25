@@ -31,6 +31,9 @@ import java.util.Objects;
         "/api/user/create",
         "/api/user/modify",
         "/api/user/update",
+        "/api/admin/home",
+        "/api/admin/users-view",
+        "/api/admin/stories-view"
 
 })
 public class ServletUser extends HttpServlet {
@@ -52,6 +55,14 @@ public class ServletUser extends HttpServlet {
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
             redirect="/view/user/home.jsp";
+                break;
+            case"/api/admin/home":
+                System.out.println();
+                List<Objects> users1=new ArrayList<>();
+                req.setAttribute("users1", new DaoUser().fiandAll());
+                redirect="/view/admin/adminHome.jsp";
+                break;
+            case "/api/admin/users-view":
                 break;
         }
         req.getRequestDispatcher(redirect).forward(req,resp);
@@ -80,14 +91,17 @@ public class ServletUser extends HttpServlet {
                         System.out.println();
                         switch (user.getRols().getRol()){
                             case"superAdmin":
-                                redirect="/api/user/all-view";
+                                redirect="/api/admin/home";
                                 break;
-                            case"User":
+                            case"user":
                                 redirect="/api/user/home";
                                 break;
+                            case"admin":
+                                redirect="/api/admin/home";
+                                System.out.println("Entro al case admin");
+
                         }
                     }else {
-                        System.out.println("a");
 
                         System.out.println("b");
                         throw new Exception("Credentials mismatch");

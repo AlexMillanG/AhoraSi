@@ -55,7 +55,7 @@ public class DaoUser implements DaoRepository<User> {
         List<User> users =new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query ="SLECT * FROM USERS;";
+            String query ="SELECT * FROM USERS;";
             pstm = conn.prepareStatement(query);
             rs=pstm.executeQuery();
             while (rs.next()){
@@ -68,9 +68,9 @@ public class DaoUser implements DaoRepository<User> {
                 user.setSex(rs.getString("sex"));
                 user.setEmail(rs.getString("email"));
                 user.setPass(rs.getString("pass"));
-                Rols role= new Rols();
+           /*     Rols role= new Rols();
                 role.setRol(rs.getString("rol"));
-                user.setRols(role);
+                user.setRols(role);*/
                 users.add(user);
             }
         }catch (SQLException e){

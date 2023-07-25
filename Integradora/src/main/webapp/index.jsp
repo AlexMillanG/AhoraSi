@@ -21,7 +21,7 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">¿Quienes somos?</a>
+                    <a class="nav-link active" aria-current="page" href="view/admin/adminHome.jsp">¿Quienes somos?</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/view/user/home.jsp">¿Que puedes hacer con nosotros?</a>
@@ -49,7 +49,7 @@
 
 <div class="container">
 
-    <!-- Modal -->
+    <!-- Modal Inicio Secion -->
     <div class="modal fade" id="inicioSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="password" name="pass" class="form-control" id="ppass"
+                            <input type="password" name="pass" class="form-control" id="password"
                                    placeholder="pass" required>
                             <label for="pass">Contraseña</label>
                             <div class="invalid-feedback text-start">
@@ -131,7 +131,7 @@
 
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" name="email" id="email"
+                            <input type="email" class="form-control" name="email" id="emailRegistro"
                                    placeholder="name@example.com" required>
                             <label for="email">Correo electrónico</label>
                             <div class="invalid-feedback text-start">
