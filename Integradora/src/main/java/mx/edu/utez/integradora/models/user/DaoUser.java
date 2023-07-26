@@ -55,7 +55,7 @@ public class DaoUser implements DaoRepository<User> {
         List<User> users =new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query ="SELECT * FROM USERS;";
+            String query ="SELECT * FROM USERS where rol_id !=1;";
             pstm = conn.prepareStatement(query);
             rs=pstm.executeQuery();
             while (rs.next()){
@@ -164,9 +164,10 @@ public class DaoUser implements DaoRepository<User> {
     public boolean delete(Long id) {
         try {
             conn=new  MySQLConnection().connect();
-            String query="delete * from users where id=?";
+            String query="delete from users where id= ?";
             pstm= conn.prepareStatement(query);
             pstm.setLong(1,id);
+            System.out.println(id);
             return pstm.executeUpdate()==1;
         }catch (SQLException e ){
             Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE, "Error delete" + e.getMessage());
