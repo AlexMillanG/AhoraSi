@@ -29,10 +29,8 @@ import java.util.Objects;
         "/api/user/one",
         "/api/user/save",
         "/api/user/create",
-        "/api/user/delete",
         "/api/user/modify",
         "/api/user/update",
-        "/api/user/update-view",
         "/api/admin/home",
         "/api/admin/users-view",
         "/api/admin/stories-view"
@@ -47,42 +45,26 @@ public class ServletUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        action = req.getServletPath();
-        switch (action) {
+        action=req.getServletPath();
+        switch (action){
             case "/api/auth":
                 System.out.println("get");
-                redirect = "/index.jsp";
+                redirect="/index.jsp";
                 break;
             case "/api/user/home":
-                List<Objects> users = new ArrayList<>();
-                req.setAttribute("users", users);
-                redirect = "/view/user/home.jsp";
+            List<Objects> users= new ArrayList<>();
+            req.setAttribute("users",users);
+            redirect="/view/user/home.jsp";
                 break;
-            case "/api/admin/home":
+            case"/api/admin/home":
                 System.out.println();
-                List<Objects> users1 = new ArrayList<>();
+                List<Objects> users1=new ArrayList<>();
                 req.setAttribute("users1", new DaoUser().fiandAll());
-                redirect = "/view/admin/superAdminHome.jsp";
+                redirect="/view/admin/adminHome.jsp";
                 break;
-
             case "/api/admin/users-view":
-
                 break;
-            case "/api/user/update-view":
-                id = req.getParameter("id");
-                user = new DaoUser().findOne(id != null ? Long.parseLong(id) : 0);
-
-                System.out.println(user);
-                if (user != null){
-                    req.setAttribute("user", user);
-                redirect = "";
-        }else{
-            redirect = "/api/admin/home?result" + false + "&message" + URLEncoder.encode("Recurso no encontrado", StandardCharsets.UTF_8);
         }
-
-        break;
-    }
-
         req.getRequestDispatcher(redirect).forward(req,resp);
     }
 
@@ -184,19 +166,6 @@ public class ServletUser extends HttpServlet {
                 }
                 break;
 
-            case "/api/user/delete":
-                id=req.getParameter("id");
-                System.out.println(id);
-                if (new DaoUser().delete(Long.parseLong(id))){
-                    redirect="/api/admin/home?result="+true+"&message=" + URLEncoder.encode("¡Exito!Usuario Eliminado correctamente.", StandardCharsets.UTF_8);
-                }else{
-                    redirect="/api/admin/home?result="+false+"&message="+ URLEncoder.encode
-                            ("¡Error!accion no realizada correctamente.", StandardCharsets.UTF_8);
-                }
-
-                break;
-            default:
-                redirect="/api/admin/home";
         }
         System.out.println("request" +req.getContextPath()+redirect);
         resp.sendRedirect(req.getContextPath()+redirect);
