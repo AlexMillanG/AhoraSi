@@ -55,7 +55,7 @@ public class DaoUser implements DaoRepository<User> {
         List<User> users =new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query ="SELECT * FROM USERS;";
+            String query ="SELECT * FROM USERS where rol_id != 1;";
             pstm = conn.prepareStatement(query);
             rs=pstm.executeQuery();
             while (rs.next()){

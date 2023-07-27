@@ -31,9 +31,11 @@ import java.util.Objects;
         "/api/user/create",
         "/api/user/modify",
         "/api/user/update",
+        "api/user/delete",
         "/api/admin/home",
         "/api/admin/users-view",
-        "/api/admin/stories-view"
+        "/api/admin/stories-view",
+        "/api/admin/superadminhome"
 
 })
 public class ServletUser extends HttpServlet {
@@ -51,16 +53,18 @@ public class ServletUser extends HttpServlet {
                 System.out.println("get");
                 redirect="/index.jsp";
                 break;
+
             case "/api/user/home":
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
-            redirect="/view/user/home.jsp";
+            redirect="/view/admin/superAdminHome.jsp";
+
                 break;
             case"/api/admin/home":
                 System.out.println();
                 List<Objects> users1=new ArrayList<>();
                 req.setAttribute("users1", new DaoUser().fiandAll());
-                redirect="/view/admin/adminHome.jsp";
+                redirect="/view/admin/superAdminHome.jsp";
                 break;
             case "/api/admin/users-view":
                 break;

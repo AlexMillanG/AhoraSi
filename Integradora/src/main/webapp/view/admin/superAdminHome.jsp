@@ -11,11 +11,12 @@
 <html>
 <head>
     <title>Administrador home</title>
+    <link href="../../assets/css/style.css" rel="stylesheet" type="text/css">
     <jsp:include page="/layouts/head.jsp"/>
 </head>
 <body>
-<jsp:include page="/layouts/navbarAdmin.jsp"/>
-
+'<jsp:include page="/layouts/navbarAdmin.jsp"/>
+'
 <div class="container-fluid">
     <div class="row">
         <div class="card">
