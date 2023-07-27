@@ -21,7 +21,7 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="view/admin/adminHome.jsp">¿Quienes somos?</a>
+                    <a class="nav-link active" aria-current="page" href="view/admin/superAdminHome.jsp">¿Quienes somos?</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/view/user/home.jsp">¿Que puedes hacer con nosotros?</a>
@@ -139,8 +139,6 @@
                             </div>
                         </div>
                     </div>
-
-
 
                     <div class="form-floating mb-1">
                     <input type="password" name="pass" class="form-control" id="pass"
