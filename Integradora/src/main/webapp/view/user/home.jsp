@@ -6,10 +6,7 @@
     <jsp:include page="../../layouts/head.jsp"/>
 </head>
 <body>
-
 <jsp:include page="../../layouts/navbar.jsp"/>
-
-
 <%-- chingadera de crear foro --%>
 <div class="modal fade" id="crearForo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">

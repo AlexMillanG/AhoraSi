@@ -24,8 +24,8 @@
             </th>
             <th scope="col">
                 <div  class="container-fluid" id="cont-1">
-                    <jsp:include page="/layouts/navbarAdmin.jsp"/>
                     <div class="container-fluid" id="cont-2">
+                        <jsp:include page="/layouts/navbarAdmin.jsp"/>
                         <table class="table table-striped" style="font-family: PT Serif" >
                             <thead>
                             <tr>
