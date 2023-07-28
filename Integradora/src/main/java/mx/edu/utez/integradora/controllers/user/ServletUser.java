@@ -31,7 +31,7 @@ import java.util.Objects;
         "/api/user/create",
         "/api/user/modify",
         "/api/user/update",
-        "api/user/delete",
+        "/api/user/delete",
         "/api/admin/home",
         "/api/admin/users-view",
         "/api/admin/stories-view",
@@ -57,7 +57,8 @@ public class ServletUser extends HttpServlet {
             case "/api/user/home":
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
-            redirect="/view/admin/superAdminHome.jsp";
+            redirect = "/home.jsp";
+           // redirect="/view/admin/superAdminHome.jsp";
 
                 break;
             case"/api/admin/home":
@@ -99,6 +100,7 @@ public class ServletUser extends HttpServlet {
                                 break;
                             case"user":
                                 redirect="/api/user/home";
+                                System.out.println("en teoria entró al case del user");
                                 break;
                             case"admin":
                                 redirect="/api/admin/home";

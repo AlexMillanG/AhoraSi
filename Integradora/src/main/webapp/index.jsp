@@ -11,7 +11,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light"
      style=" background: radial-gradient(137.13% 461.11% at 111.16% 113.45%, #8081B7 4.19%, #75BEF3 45.31%, #57F3C4 81.99%);">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">HistoriUtez</a>
+        <a class="navbar-brand" href="view/admin/adminIndex.jsp">HistoriUtez</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

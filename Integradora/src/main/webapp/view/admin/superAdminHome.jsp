@@ -12,11 +12,12 @@
 <head>
     <title>Administrador home</title>
     <link href="../../assets/css/style.css" rel="stylesheet" type="text/css">
-    <jsp:include page="/layouts/head.jsp"/>
+    <jsp:include page="../../layouts/head.jsp"/>
+
 </head>
 <body>
-'<jsp:include page="/layouts/navbarAdmin.jsp"/>
-'
+<jsp:include page="../../layouts/navbarAdmin.jsp"/>
+<div class="container-fluid" style= "font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
 <div class="container-fluid">
     <div class="row">
         <div class="card">
@@ -27,7 +28,9 @@
             </div>
         </div>
     </div>
-
+<div class="container-fluid" style= "font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
+<!-- chigadrea que lista los usuarios-->
+    <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="card">
@@ -97,21 +100,20 @@
         <div class="col-lg-6 col-md-6 col-sm-12">
         </div>
     </div>
-
-
+</div>
 
     <!--form de creación de admins-->
-
+<div class="container-fluid">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-header">
                     <div class="text-center fs-3">
-                        Usuarios
+                        Crear un nuevo administrador
                     </div>
                     <div class="card-body">
                         <div class="car-text">
-                            jdkdjakdjajd
+
                         </div>
                     </div>
 
@@ -122,7 +124,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12">
         </div>
     </div>
-
+</div>
 
 
 
@@ -240,8 +242,8 @@
     </div>
 
 </div>
-
-
+</div>
+</div>
 <jsp:include page="/layouts/footer.jsp"/>
 <script>
     const agregarB = document.getElementById("agregar");
@@ -262,6 +264,7 @@
 
 
 </script>
+<jsp:include page="../../layouts/footer.jsp"/>
 
 </body>
 </html>
