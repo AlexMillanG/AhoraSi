@@ -75,12 +75,12 @@
                                         EDITAR
                                     </button>
 
-                                    <form method="post" action="/api/user/delete">
+                                  <form method="post" action="/api/user/delete">
                                         <input hidden value="${user.id}" name="id">
                                         <button type="submit" class="btn btn-outline-danger btn-sm">ELIMINAR
                                         </button>
 
-                                    </form>
+                                </form>
                                 </td>
                             </tr>
                             </s:forEach>
@@ -139,14 +139,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="update" action="/api/user/update" method="post" class="needs-validation"
+                    <form id="updateForm" action="/api/user/update" method="post" class="needs-validation"
                           novalidate method="post">
                         <div class="row">
                             <div class="col">
                                 <div class="form-floating mb-3">
+                                    <input hidden value="" id="upId" name="id">
 
-                                    <label for="name">nombre</label>
-                                    <input type="text" class="form-control" name="name" id="name"
+                                    <label for="upName">nombre</label>
+                                    <input type="text" class="form-control" name="name" id="upName"
                                            placeholder="nombre" required value="${user.name}">
                                     <div class="invalid-feedback text-start">
                                         Campo obligatorio
@@ -157,9 +158,9 @@
 
                         <div class="col">
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" name="email" id="emailRegistro"
+                                <input type="email" class="form-control" name="email" id="upEmail"
                                        placeholder="name@example.com" required>
-                                <label for="emailRegistro">Correo electrónico</label>
+                                <label for="upEmail">Correo electrónico</label>
                                 <div class="invalid-feedback text-start">
                                     Campo obligatorio
                                 </div>
@@ -167,9 +168,9 @@
                         </div>
 
                         <div class="form-floating mb-1">
-                            <input type="password" name="pass" class="form-control" id="pass"
+                            <input type="password" name="pass" class="form-control" id="upPass"
                                    placeholder="name" required>
-                            <label for="pass">Contraseña</label>
+                            <label for="upPass">Contraseña</label>
                             <div class="invalid-feedback text-start">
                                 Campo obligatorio
                             </div>
@@ -178,9 +179,9 @@
                         </div>
 
                         <div class="form-floating mb-1">
-                            <input type="text" name="surname" class="form-control" id="surname"
+                            <input type="text" name="surname" class="form-control" id="upSurname"
                                    placeholder="surname" required>
-                            <label for="surname">Apellido</label>
+                            <label for="upSurname">Apellido</label>
                             <div class="invalid-feedback text-start">
                                 Campo obligatorio
                             </div>
@@ -189,9 +190,9 @@
                         </div>
 
                         <div class="form-floating mb-1">
-                            <input type="text" name="lastname" class="form-control" id="lastname"
+                            <input type="text" name="lastname" class="form-control" id="upLastname"
                                    placeholder="lastname" required>
-                            <label for="lastname">Segundo Apellido</label>
+                            <label for="upLastname">Segundo Apellido</label>
                             <div class="invalid-feedback text-start">
                                 Campo obligatorio
                             </div>
@@ -201,9 +202,9 @@
 
                         <div class="form-floating mb-1">
                             <input type="date" min="1900-01-01" max="2005-12-31" name="birthday" class="form-control"
-                                   id="birthday"
+                                   id="upBirthday"
                                    placeholder="birthday" required>
-                            <label for="birthday">Fecha de nacimiento</label>
+                            <label for="upBirthday">Fecha de nacimiento</label>
                             <div class="invalid-feedback text-start">
                                 Campo obligatorio
                             </div>
@@ -234,8 +235,11 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="botonUpdate" class="btn btn-outline-success" onclick="sendUpdate(${user.id})
+                  id= "sendUpdate${user.id}
+
+                    >Actualizar</button>
                 </div>
             </div>
         </div>
@@ -247,7 +251,9 @@
 <jsp:include page="/layouts/footer.jsp"/>
 <script>
     const agregarB = document.getElementById("agregar");
-    const form2 = document.getElementById("updateUsers");
+    const form2 = document.getElementById("updateForm");
+    const button =document.getElementById("botonUpdate");
+
 
     (function () {
         agregarB.addEventListener("click", function (event) {
@@ -262,6 +268,10 @@
 
     })();
 
+const sendUpdate=()=>{
+
+
+}
 
 </script>
 <jsp:include page="../../layouts/footer.jsp"/>

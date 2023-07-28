@@ -35,7 +35,7 @@ import java.util.Objects;
         "/api/admin/home",
         "/api/admin/users-view",
         "/api/admin/stories-view",
-        "/api/admin/superadminhome"
+        "/api/admin/superadminhome",
 
 })
 public class ServletUser extends HttpServlet {
@@ -50,15 +50,18 @@ public class ServletUser extends HttpServlet {
         action=req.getServletPath();
         switch (action){
             case "/api/auth":
-                System.out.println("get");
                 redirect="/index.jsp";
                 break;
 
             case "/api/user/home":
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
+<<<<<<< Updated upstream
             redirect = "/home.jsp";
            // redirect="/view/admin/superAdminHome.jsp";
+=======
+            redirect="/view/user/home.jsp";
+>>>>>>> Stashed changes
 
                 break;
             case"/api/admin/home":
@@ -78,71 +81,75 @@ public class ServletUser extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html");
-        action=req.getServletPath();
+        action = req.getServletPath();
         System.out.println("post");
-        switch (action){
+        switch (action) {
             case "/api/auth":
-                email=req.getParameter("email");
-                pass=req.getParameter("pass");
+                email = req.getParameter("email");
+                pass = req.getParameter("pass");
                 System.out.println(email);
                 System.out.println(pass);
                 try {
-                    user=new DaoUser().loadUserByUsernameAndPassword(email,pass);
-                    if (user!=null){
+                    user = new DaoUser().loadUserByUsernameAndPassword(email, pass);
+                    if (user != null) {
                         System.out.println("diferente");
                         System.out.println(user.getRols().getRol());
-                        session=req.getSession();
-                        session.setAttribute("user",user);
+                        session = req.getSession();
+                        session.setAttribute("user", user);
                         System.out.println();
-                        switch (user.getRols().getRol()){
-                            case"superAdmin":
-                                redirect="/api/admin/home";
+                        switch (user.getRols().getRol()) {
+                            case "superAdmin":
+                                redirect = "/api/admin/home";
                                 break;
+<<<<<<< Updated upstream
                             case"user":
                                 redirect="/api/user/home";
                                 System.out.println("en teoria entró al case del user");
+=======
+                            case "user":
+                                redirect = "/api/user/home";
+                                System.out.println("Entra al users");
+>>>>>>> Stashed changes
                                 break;
-                            case"admin":
-                                redirect="/api/admin/home";
+                            case "admin":
+                                redirect = "/api/admin/home";
                                 System.out.println("Entro al case admin");
 
                         }
-                    }else {
-
-                        System.out.println("b");
+                    } else {
                         throw new Exception("Credentials mismatch");
                     }
-                }catch (Exception e){
-                    System.out.println("c: "+e.getMessage());
-                    redirect="/api/auth?result=false&message="+ URLEncoder.encode("Usuario y/o contraseña incorrecta", StandardCharsets.UTF_8);
+                } catch (Exception e) {
+                    System.out.println("c: " + e.getMessage());
+                    redirect = "/api/auth?result=false&message=" + URLEncoder.encode("Usuario y/o contraseña incorrecta", StandardCharsets.UTF_8);
                 }
                 break;
-            case"/api/user/save":
+            case "/api/user/save":
                 try {
-                    name=req.getParameter("name");
-                    lastname=req.getParameter("lastname");
-                    surname=req.getParameter("surname");
-                    birthday=req.getParameter("birthday");
-                    sex=req.getParameter("sex");
-                    email=req.getParameter("email");
-                    pass=req.getParameter("pass");
+                    name = req.getParameter("name");
+                    lastname = req.getParameter("lastname");
+                    surname = req.getParameter("surname");
+                    birthday = req.getParameter("birthday");
+                    sex = req.getParameter("sex");
+                    email = req.getParameter("email");
+                    pass = req.getParameter("pass");
 
-                    System.out.println("nombre es "+name);
-                    System.out.println("lastname es "+lastname);
-                    System.out.println("surname es "+surname);
-                    System.out.println("birthday es "+birthday);
-                    System.out.println("sex es "+sex);
-                    System.out.println("email es "+email);
-                    System.out.println("pass es "+pass);
+                    System.out.println("nombre es " + name);
+                    System.out.println("lastname es " + lastname);
+                    System.out.println("surname es " + surname);
+                    System.out.println("birthday es " + birthday);
+                    System.out.println("sex es " + sex);
+                    System.out.println("email es " + email);
+                    System.out.println("pass es " + pass);
 
-                    Rols rols=new Rols();
-                    rol="User";
+                    Rols rols = new Rols();
+                    rol = "user";
 
-                    Status status1=new Status();
-                    status="1";
+                    Status status1 = new Status();
+                    status = "1";
                     status1.setType_status(status);
                     rols.setRol(rol);
-                    user=new User();
+                    user = new User();
                     user.setId(0L);
                     user.setName(name);
                     user.setLastname(lastname);
@@ -156,23 +163,40 @@ public class ServletUser extends HttpServlet {
                     System.out.println(user.getRols().getRol());
                     System.out.println(user.getStatus().getType_status());
                     boolean result = new DaoUser().save(user);
-                    if (result){
+
+                    if (result) {
 
                         redirect = "/api/user/home?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Te has registrado correctamente.",
                                 StandardCharsets.UTF_8);
 
-                    }else{
+                    } else {
 
                         redirect = "/api/user/auth?result= " + result + "&message=" + URLEncoder.encode("¡Error! Acción no realizada correctamente.",
                                 StandardCharsets.UTF_8);
                     }
 
-                }catch (Exception e){
-                    redirect= "/api/user/auth?result=false&message="+URLEncoder.encode("Ocurrio un eror",StandardCharsets.UTF_8);
+                } catch (Exception e) {
+                    redirect = "/api/user/auth?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
                 }
                 break;
 
+            case "/api/user/delete":
+                id = req.getParameter("id");
+                System.out.println(id);
+                System.out.println("delete");
+                if (new DaoUser().delete(Long.parseLong(id)))
+                    redirect = "/api/admin/home?result=" + true + "&message" + URLEncoder.encode
+                            ("¡Exito!Usuario Eliminado correctamente.", StandardCharsets.UTF_8);
+
+                else{
+            redirect = "/api/admin/home?result=" + false + "&message=" + URLEncoder.encode
+                    ("¡Error!accion no realizada correctamente.", StandardCharsets.UTF_8);
         }
+        break;
+            default:
+                redirect="/api/admin/home";
+    }
+
         System.out.println("request" +req.getContextPath()+redirect);
         resp.sendRedirect(req.getContextPath()+redirect);
     }
