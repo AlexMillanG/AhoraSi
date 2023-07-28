@@ -113,7 +113,102 @@
                     </div>
                     <div class="card-body">
                         <div class="car-text">
+                            <form id="formregistrer" action="/api/user/save" method="post" class="needs-validation"
+                                  novalidate method="post">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" name="name" id="name"
+                                                   placeholder="nombre" required>
+                                            <label for="name">Nombre del administrador</label>
+                                            <div class="invalid-feedback text-start">
+                                                Campo obligatorio
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" name="email" id="emailAdmin"
+                                               placeholder="name@example.com" required>
+                                        <label for="emailAdmin">Correo electrónico</label>
+                                        <div class="invalid-feedback text-start">
+                                            Campo obligatorio
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-floating mb-1">
+                                    <input type="password" name="pass" class="form-control" id="pass"
+                                           placeholder="name" required>
+                                    <label for="pass">Contraseña</label>
+                                    <div class="invalid-feedback text-start">
+                                        Campo obligatorio
+                                    </div>
+                                    <div class="form-group mb-3">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-floating mb-1">
+                                    <input type="text" name="surname" class="form-control" id="surname"
+                                           placeholder="surname" required>
+                                    <label for="surname">Apellido</label>
+                                    <div class="invalid-feedback text-start">
+                                        Campo obligatorio
+                                    </div>
+                                    <div class="form-group mb-3">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-floating mb-1">
+                                    <input type="text" name="lastname" class="form-control" id="lastname"
+                                           placeholder="lastname" required>
+                                    <label for="lastname">Segundo Apellido</label>
+                                    <div class="invalid-feedback text-start">
+                                        Campo obligatorio
+                                    </div>
+                                    <div class="form-group mb-3">
+                                    </div>
+                                </div>
+
+                                <div class="form-floating mb-1">
+                                    <input type="date" min="1900-01-01" max="2005-12-31" name="birthday" class="form-control" id="birthday"
+                                           placeholder="birthday" required>
+                                    <label for="birthday">Fecha de nacimiento</label>
+                                    <div class="invalid-feedback text-start">
+                                        Campo obligatorio
+                                    </div>
+                                    <div class="form-group mb-3"></div>
+                                </div>
+                                <br>
+
+                                <div class="form-floating mb-1">
+                                    <p>Sexo del administrador</p>
+                                    <br>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="hombre" name="sex" id="hombreAdmin">
+                                        <label class="form-check-label" for="hombre">
+                                            Hombre
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="mujer" checked name="sex" id="mujerAdmin" mujer>
+                                        <label class="form-check-label" for="mujer">
+                                            Mujer
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                            </form>
                         </div>
                     </div>
 
@@ -129,7 +224,7 @@
 
 
 
-    <!-- Modal -->
+    <!-- Modal para actualizar -->
     <div class="modal fade" id="updateUsers" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -236,8 +331,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" id="botonUpdate" class="btn btn-outline-success" onclick="sendUpdate(${user.id})
-                  id= "sendUpdate${user.id}
+                    <button type="button" id="botonUpdate" class="btn btn-outline-success" onclick="sendUpdate(${user.id})"
+                  id= "sendUpdate${user.id}"
 
                     >Actualizar</button>
                 </div>

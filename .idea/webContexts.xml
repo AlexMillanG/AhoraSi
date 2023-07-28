@@ -3,12 +3,7 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
-        <entry key="file://$PROJECT_DIR$/Integradora/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/Integradora/src/main/webapp" />
-<<<<<<< Updated upstream
-        <entry key="file://$PROJECT_DIR$/Integradora/src/main/webapp/view/admin/adminHistorias.jsp" value="file://$PROJECT_DIR$/Integradora/src/main/webapp/view/admin" />
-=======
-        <entry key="file://$PROJECT_DIR$/Integradora/src/main/webapp/view/admin/pantallaOGSuperAdmin.jsp" value="file://$PROJECT_DIR$/Integradora/src/main/webapp/view/admin" />
->>>>>>> Stashed changes
+        <entry key="file://$PROJECT_DIR$/Integradora/src/main/webapp/view/admin/superAdminHome.jsp" value="file://$PROJECT_DIR$/Integradora/src/main/webapp/view/admin" />
       </map>
     </option>
   </component>
