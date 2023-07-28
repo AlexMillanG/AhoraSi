@@ -8,40 +8,32 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary"
-     style=" background: radial-gradient(137.13% 461.11% at 111.16% 113.45%, #8081B7 4.19%, #75BEF3 45.31%, #57F3C4 81.99%);">
-
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/api/user/home">History Utez</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+<nav style="font-family: PT serif ;margin-bottom: 15px;" id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid" >
+        <a class="navbar-brand" href="#">HITU</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Foros</a>
+                    <a class="nav-link active" aria-current="page" href="../html/index-SuperAdmin.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Perfil</a>
+                    <a class="nav-link" href="usuario-SuperAdmin.html">Usuario</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Crear
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Nueva historia</a></li>
-                        <li>
-                            <button class="btn btn-outline-dark ms-3  " data-bs-toggle="modal"
-                                    data-bs-target="#crearForo">Nuevo Foro</button></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/Historias-SuperAdmin.html">Historias</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Foros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Mas-SuperAdmin.html">Mas</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/index.jsp">Cerrar sesión</a>
                 </li>
-
-
 
             </ul>
             <form class="d-flex" role="search">
@@ -50,5 +42,4 @@
             </form>
         </div>
     </div>
-</nav>
 </nav>

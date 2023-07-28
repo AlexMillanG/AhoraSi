@@ -7,45 +7,112 @@
     <title>JSP - Hello World</title>
     <jsp:include page="layouts/head.jsp"/>
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light"
-     style=" background: radial-gradient(137.13% 461.11% at 111.16% 113.45%, #8081B7 4.19%, #75BEF3 45.31%, #57F3C4 81.99%);">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="view/admin/superAdminHome.jsp">HistoriUtez</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="view/admin/adminHome.jsp">¿Quienes somos?</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/view/user/home.jsp">¿Que puedes hacer con nosotros?</a>
-                </li>
-            </ul>
-            </ul>
+<body style="
+      width:95%;
+      height: 100%;
+      background: radial-gradient(137.13% 461.11% at 111.16% 113.45%, #8081B7 4.19%, #75BEF3 45.31%, #57F3C4 81.99%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+      ">
+<div class="container-fluid" style="
+    		font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+		position: relative;
+		margin-left:3%;
+		margin-right:3%;
+		margin-top:2%;
+		background-color: rgba(255, 255, 255, 0.4);
+		border-radius: 30px;
+    ">
+    <table class="table">
+        <tr>
+            <div class="container-fluid"style="font-family: PT serif ;
+                  display: inline;
+                  text-align: center;
+                  margin-top: 0;"
+            >
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 30px 30px 0px 0px;
+                background: var(--neutro, radial-gradient(481.07% 191.27% at 111.16% 113.45%, #8081B7 4.19%, #75BEF3 45.31%, #57F3C4 81.99%));
+                box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.15);">
+                    <img src="assets/img/logo.png" alt="" width="250px" height="70px">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="../html/index-SuperAdmin.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="usuario-SuperAdmin.html">Usuario</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../html/Historias-SuperAdmin.html">Historias</a>
+                            </li>
+                        </ul>
+                        <div class="container-fluid" style="margin-right: -30%; position: relative; float: right;">
+                            <button  class="btn btn-outline-dark ms-3   " data-bs-toggle="modal" data-bs-target="#inicioSesion">
+                                Iniciar sesion
+                            </button>
+                            <button class="btn btn-outline-dark ms-3  "  data-bs-toggle="modal" data-bs-target="#registro">
+                                Registrarse
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
 
+            <div  class="container-fluid" style="  		background: rgb(255, 255, 255);
+          float: left;
+          position: relative;
+          border-radius: 0px 0px 30px 30px;
 
+          margin-top: -22px;
+                  ">
+                <div
+                        style="
+                  background: rgb(255, 255, 255);
+                  margin-top: 3%;
+                  border-radius: 15px;
+                  height: 100%;
+                  width: 100%;
+                  "
+                        class="container-fluid">
+                    <div class="card mb-3" style="max-width:850 px;">
+                        <div class="row g-0">
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"style="font-family:PT serif; "><strong>HistoriUtez</strong></h5>
+                                    <p class="card-text" style="text-align: center; font-size: 25px; font-family: PT serif;">Comparte tus Historias,Inspira al Mundo:La Plataforma
+                                        que da vida a tus relatos y conecta corazones
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4" style="height: auto; width: auto;">
+                                <img src="assets/img/leer.png" alt=""  class="img-fluid rounded-start" width="250px" height="70px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3" style="max-width:850 px;">
+                        <div class="row g-0">
+                            <div class="col-md-8">
+                                <div class="col-md-4" style="height: auto; width: auto;">
+                                    <img src="assets/img/logo1.png" alt=""  class="img-fluid rounded-start" width="250px" height="70px">
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text" style="text-align: center; font-size: 25px; font-family: PT serif;"
+                                    >"Sumèrjete en un oceano de historias facinantes y dèjate llevar por la magia de la ficciòn en cada publicaciòn "
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-
-            <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#inicioSesion">
-                Iniciar sesion
-            </button>
-            <button class="btn btn-outline-dark ms-3  " data-bs-toggle="modal" data-bs-target="#registro">
-                Registrarse
-            </button>
-        </div>
-
-    </div>
-</nav>
-
-
-
-
+                </div>
+            </div>
+</div>
+</tr>
+</thead>
+</table>
+</div>
 
 <div class="container">
 

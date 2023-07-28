@@ -68,6 +68,8 @@ public class ServletUser extends HttpServlet {
                 redirect="/view/admin/superAdminHome.jsp";
                 break;
             case "/api/admin/users-view":
+
+                redirect="/";
                 break;
         }
         req.getRequestDispatcher(redirect).forward(req,resp);
@@ -178,6 +180,7 @@ public class ServletUser extends HttpServlet {
                 id = req.getParameter("id");
                 System.out.println(id);
                 System.out.println("delete");
+
                 if (new DaoUser().delete(Long.parseLong(id)))
                     redirect = "/api/admin/home?result=" + true + "&message" + URLEncoder.encode
                             ("¡Exito!Usuario Eliminado correctamente.", StandardCharsets.UTF_8);
