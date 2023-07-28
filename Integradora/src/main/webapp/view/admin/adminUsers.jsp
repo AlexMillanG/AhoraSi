@@ -9,7 +9,8 @@
 <html>
 <head>
     <title>Hitu Usuarios</title>
-      <jsp:include page="/layouts/head.jsp"/>
+    <jsp:include page="../../layouts/head.jsp"/>
+
 </head>
 <body>
 <jsp:include page="/layouts/navbarAdmin.jsp"/>
@@ -20,6 +21,6 @@
 
   </div>
 </div>
-<jsp:include page="/layouts/footer.jsp"/>
+<jsp:include page="../../layouts/footer.jsp"/>
 </body>
 </html>

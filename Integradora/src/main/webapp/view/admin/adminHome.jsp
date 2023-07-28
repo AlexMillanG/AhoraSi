@@ -11,7 +11,7 @@
 <head>
     <title>Administrador home</title>
     <link href="../../assets/css/style.css" rel="stylesheet" type="text/css">
-    <jsp:include page="/layouts/head.jsp"/>
+    <jsp:include page="../../layouts/head.jsp"/>
 </head>
 
 <body>
@@ -76,6 +76,6 @@
         </tr>
     </table>
     </div>
-<jsp:include page="/layouts/footer.jsp"/>
+<jsp:include page="../../layouts/footer.jsp"/>
 </body>
 </html>

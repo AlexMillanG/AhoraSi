@@ -8,10 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    
+    <title>Admin foros</title>
+<jsp:include page="../../layouts/head.jsp"/>
 </head>
 <body>
+
 <div class="container-fluid" id='cont'>
     <table class="table">
         <tr>
@@ -225,5 +226,6 @@
     </table>
 </div>
 <jsp:include page="../../layouts/navbarAdmin.jsp"/>
+<jsp:include page="../../layouts/footer.jsp"/>
 </body>
 </html>

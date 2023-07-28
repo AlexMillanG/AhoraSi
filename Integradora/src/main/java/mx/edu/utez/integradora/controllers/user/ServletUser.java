@@ -56,12 +56,9 @@ public class ServletUser extends HttpServlet {
             case "/api/user/home":
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
-<<<<<<< Updated upstream
             redirect = "/home.jsp";
            // redirect="/view/admin/superAdminHome.jsp";
-=======
             redirect="/view/user/home.jsp";
->>>>>>> Stashed changes
 
                 break;
             case"/api/admin/home":
@@ -101,15 +98,12 @@ public class ServletUser extends HttpServlet {
                             case "superAdmin":
                                 redirect = "/api/admin/home";
                                 break;
-<<<<<<< Updated upstream
                             case"user":
                                 redirect="/api/user/home";
                                 System.out.println("en teoria entró al case del user");
-=======
-                            case "user":
+                            case "users":
                                 redirect = "/api/user/home";
                                 System.out.println("Entra al users");
->>>>>>> Stashed changes
                                 break;
                             case "admin":
                                 redirect = "/api/admin/home";

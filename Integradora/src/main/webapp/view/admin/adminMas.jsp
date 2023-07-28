@@ -9,9 +9,11 @@
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-    <title>Mas</title>
+    <title>Admin Mas</title>
     <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link type="text/css" rel="stylesheet" href="../../assets/css/style.css">
+    <jsp:include page="../../layouts/head.jsp"/>
+
 </head>
 <body>
 <div class="container-fluid" id='cont'>
@@ -502,6 +504,8 @@
         readURL(this);
     });
 </script>
+<jsp:include page="../../layouts/footer.jsp"/>
+
     </body>
 
 </html>
