@@ -37,6 +37,8 @@ import java.util.Objects;
         "/api/admin/stories-view",
         "/api/admin/superadminhome",
         "/api/admin/admins-view",
+        "/api/admin/admins-save",
+
 
 })
 public class ServletUser extends HttpServlet {
