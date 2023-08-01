@@ -32,7 +32,7 @@
                             <a class="nav-link" href="#">Historias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Foros</a>
+                            <a class="nav-link" href="/api/admin/admins-view">Administradores</a>
                         </li>
                         <li class="nav-item">
                             <a href="/api/auth" class="nav-link"> Cerrar Sesión</a>

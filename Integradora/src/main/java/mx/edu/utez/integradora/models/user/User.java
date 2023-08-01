@@ -17,7 +17,7 @@ public class User {
     public User() {
     }
 
-    public User(long id, String name, String lastname, String surname, String birthday, String sex, String email, String pass, String token, byte[] image, Rols rols, Status status) {
+    public User(long id, String name, String lastname, String surname, String birthday, String sex, String email, String pass, String token, byte[] image, mx.edu.utez.integradora.models.user.Rols rols, mx.edu.utez.integradora.models.user.Status status) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;

@@ -36,6 +36,7 @@ import java.util.Objects;
         "/api/admin/users-view",
         "/api/admin/stories-view",
         "/api/admin/superadminhome",
+        "/api/admin/admins-view",
 
 })
 public class ServletUser extends HttpServlet {
@@ -71,6 +72,13 @@ public class ServletUser extends HttpServlet {
 
                 redirect="/";
                 break;
+            case "/api/admin/admins-view":
+
+                List<Objects> admin=new ArrayList<>();
+                req.setAttribute("admin", new DaoUser().findAllAdmin());
+                redirect="/view/admin/adminForos.jsp";
+                break;
+
         }
         req.getRequestDispatcher(redirect).forward(req,resp);
     }

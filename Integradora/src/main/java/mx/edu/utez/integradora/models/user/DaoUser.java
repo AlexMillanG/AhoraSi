@@ -50,12 +50,66 @@ public class DaoUser implements DaoRepository<User> {
         }
         return null;
     }
+    public List<User> findAllAdmin(){
+        List<User> admins =new ArrayList<>();
+        try {
+            conn = new MySQLConnection().connect();
+            String query ="SELECT * FROM USERS where rol_id != 1 and rol_id!=3";
+            pstm = conn.prepareStatement(query);
+            rs=pstm.executeQuery();
+            while (rs.next()){
+                User admin=new User();
+                admin.setId(rs.getLong("id"));
+                admin.setName(rs.getString("name_"));
+                admin.setLastname(rs.getString("lastname"));
+                admin.setSurname(rs.getString("surname"));
+                admin.setBirthday(rs.getString("birthday"));
+                admin.setSex(rs.getString("sex"));
+                admin.setEmail(rs.getString("email"));
+                admin.setPass(rs.getString("pass"));
+           /*     Rols role= new Rols();
+                role.setRol(rs.getString("rol"));
+                user.setRols(role);*/
+                admins.add(admin);
+            }
+        }catch (SQLException e){
+            Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"ERROR findAll"+e.getMessage());
+        }finally {
+            close();
+        }
+        return admins;
+
+    }
+
+    public boolean createAdmin(User object) {
+        try {
+            conn= new MySQLConnection().connect();
+            String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,2,1);";
+            pstm= conn.prepareStatement(query);
+            pstm.setString(1,object.getName());
+            pstm.setString(2,object.getLastname());
+            pstm.setString(3,object.getSurname());
+            pstm.setString(4,object.getBirthday());
+            pstm.setString(5,object.getSex());
+            pstm.setString(6,object.getEmail());
+            pstm.setString(7,object.getPass());
+            /*pstm.setLong(8,object.getRols().getId());
+            pstm.setLong(9,object.getStatus().getId());*/
+            return pstm.executeUpdate()>0;
+        }catch (SQLException e){
+            Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"ERROR createAdmin"+e.getMessage());
+        }finally {
+            close();
+        }
+        return false;
+    }
+
     @Override
     public List<User> fiandAll() {
         List<User> users =new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query ="SELECT * FROM USERS where rol_id != 1;";
+            String query ="SELECT * FROM USERS where rol_id != 1 and rol_id!=2;";
             pstm = conn.prepareStatement(query);
             rs=pstm.executeQuery();
             while (rs.next()){
