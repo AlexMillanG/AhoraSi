@@ -195,7 +195,7 @@ public class DaoUser implements DaoRepository<User> {
     public boolean update(User object) {
         try {
             conn= new MySQLConnection().connect();
-            String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,?,?)";
+            String query="UPDATE users SET name_=?, lastname=?, surname=?, birthday=?, sex=?, email=?, pass=?, rol_id=?, status_id=? WHERE user_id=?;";
             pstm= conn.prepareStatement(query);
             pstm.setString(1,object.getName());
             pstm.setString(2,object.getLastname());
@@ -218,7 +218,7 @@ public class DaoUser implements DaoRepository<User> {
     public boolean updateAdmin(User object) {
         try {
             conn= new MySQLConnection().connect();
-            String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,?,?) where rol_id =2";
+            String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,?,?) where rol_id =2;";
             pstm= conn.prepareStatement(query);
             pstm.setString(1,object.getName());
             pstm.setString(2,object.getLastname());
@@ -241,7 +241,7 @@ public class DaoUser implements DaoRepository<User> {
     public boolean delete(Long id) {
         try {
             conn=new  MySQLConnection().connect();
-            String query="delete from users where id=?";
+            String query="delete from users where id=?;";
             pstm= conn.prepareStatement(query);
             pstm.setLong(1,id);
             return pstm.executeUpdate()==1;
@@ -258,7 +258,7 @@ public class DaoUser implements DaoRepository<User> {
     public boolean deleteAdmin(Long id) {
         try {
             conn=new  MySQLConnection().connect();
-            String query="delete from users where id=? and rol_id =2";
+            String query="delete from users where id=? and rol_id =2;";
             pstm= conn.prepareStatement(query);
             pstm.setLong(1,id);
             return pstm.executeUpdate()==1;

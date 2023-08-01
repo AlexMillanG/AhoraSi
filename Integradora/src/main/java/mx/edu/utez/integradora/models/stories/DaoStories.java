@@ -28,7 +28,7 @@ public class DaoStories {
                 stories.setId(rs.getLong("id"));
                 stories.setTitle(rs.getString("title"));
                 stories.setContent(rs.getString("content"));
-                stories.setCreated_ad(rs.getString("created_ad"));
+                stories.setCreated_atDATETIME(rs.getString("created_ad"));
                 stories.setFile(rs.getBytes("file"));//Aqui aun no funciona
                 Status status= new Status();
                 status.setType_status(rs.getString("type_status"));
@@ -61,7 +61,7 @@ public class DaoStories {
                 stories.setId(rs.getLong("id"));
                 stories.setTitle(rs.getString("title"));
                 stories.setContent(rs.getString("content"));
-                stories.setCreated_ad(rs.getString("created_ad"));
+                stories.setCreated_atDATETIME(rs.getString("created_ad"));
                 stories.setFile(rs.getBytes("file"));//Aqui aun no funciona
                 Status status= new Status();
                 status.setType_status(rs.getString("type_status"));
@@ -80,17 +80,18 @@ public class DaoStories {
         return  null;
     }
 
-    public boolean save(Stories object){
+    public boolean saveStory(Stories object){
         try {
             conn=new MySQLConnection().connect();
-            String query = "insert into ;";
+            String query = "insert into stories(tile,content,created_atDATETIME,image_id,status_id,user_id,category_id) values (?,?,curdate(),?,3,?,?);";
             pstm=conn.prepareStatement(query);
             pstm.setString(1,object.getTitle());
             pstm.setString(2,object.getContent());
-            pstm.setString(3,object.getCreated_ad());
-         //   pstm.setBytes(4,object.getFile());
-            pstm.setObject(4,object.getStatus());
-            pstm.setObject(5,object.getCategories());
+            pstm.setString(3,object.getCreated_atDATETIME());
+           pstm.setBytes(4,object.getFile());
+            pstm.setObject(5,object.getStatus());
+            pstm.setLong(6,object.getUser().getId());
+            pstm.setObject(7,object.getCategories().getId());
             return pstm.executeUpdate()>0;
 
         }catch (SQLException e){
@@ -101,27 +102,28 @@ public class DaoStories {
         return false;
     }
 
-    public boolean update(Stories object){
+    public boolean updateStory(Stories object) {
         try {
-            conn=new MySQLConnection().connect();
-            String query="update set";
-            pstm=conn.prepareStatement(query);
-            pstm.setString(1,object.getTitle());
-            pstm.setString(2,object.getContent());
-            pstm.setString(3,object.getCreated_ad());
-            //   pstm.setBytes(4,object.getFile());
-            pstm.setObject(4,object.getStatus());
-            pstm.setObject(5,object.getCategories());
-            return pstm.executeUpdate()>0;
-        }catch (SQLException e){
-            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR update"+e.getMessage());
-        }finally {
+            conn = new MySQLConnection().connect();
+            String query = "UPDATE stories SET tile=?, content=?, created_at=?, image_id=?, status_id=?, user_id=?, category_id=? WHERE story_id=?";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, object.getTitle());
+            pstm.setString(2, object.getContent());
+            pstm.setString(3, object.getCreated_atDATETIME());
+            pstm.setBytes(4, object.getFile());
+            pstm.setObject(5, object.getStatus());
+            pstm.setLong(6, object.getUser().getId());
+            pstm.setObject(7, object.getCategories().getId());
+            pstm.setLong(8, object.getStory_id()); // Asegúrate de reemplazar getStoryId() con el método correcto que obtiene el ID de la historia.
+            return pstm.executeUpdate() > 0;
+        } catch (SQLException e) {
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE, "ERROR update" + e.getMessage());
+        } finally {
             close();
         }
-
-
         return false;
     }
+
 
     public  boolean delete(Long id){
         try {
