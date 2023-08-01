@@ -186,6 +186,60 @@ public class ServletUser extends HttpServlet {
                 }
                 break;
 
+            case "/api/admin/admins-save":
+                try {
+                    name = req.getParameter("name");
+                    lastname = req.getParameter("lastname");
+                    surname = req.getParameter("surname");
+                    birthday = req.getParameter("birthday");
+                    sex = req.getParameter("sex");
+                    email = req.getParameter("email");
+                    pass = req.getParameter("pass");
+
+                    System.out.println("nombre es " + name);
+                    System.out.println("lastname es " + lastname);
+                    System.out.println("surname es " + surname);
+                    System.out.println("birthday es " + birthday);
+                    System.out.println("sex es " + sex);
+                    System.out.println("email es " + email);
+                    System.out.println("pass es " + pass);
+
+                    Rols rols = new Rols();
+                    rol = "admin";
+
+                    Status status2 = new Status();
+                    status = "1";
+                    status2.setType_status(status);
+                    rols.setRol(rol);
+                    user = new User();
+                    user.setId(0L);
+                    user.setName(name);
+                    user.setLastname(lastname);
+                    user.setSurname(surname);
+                    user.setBirthday(birthday);
+                    user.setEmail(email);
+                    user.setSex(sex);
+                    user.setPass(pass);
+                    user.setRols(rols);
+                    user.setStatus(status2);
+                    System.out.println(user.getRols().getRol());
+                    System.out.println(user.getStatus().getType_status());
+                    boolean result = new DaoUser().createAdmin(user);
+
+                    if (result) {
+                        redirect = "/api/admin/admins-view?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Te has registrado correctamente.",
+                                StandardCharsets.UTF_8);
+                    } else {
+
+                        redirect = "/api/admin/admins-view?result= " + result + "&message=" + URLEncoder.encode("¡Error! Acción no realizada correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+
+                } catch (Exception e) {
+                    redirect = "/api/admin/admins-save?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+                }
+                break;
+
             case "/api/user/delete":
                 id = req.getParameter("id");
                 System.out.println(id);

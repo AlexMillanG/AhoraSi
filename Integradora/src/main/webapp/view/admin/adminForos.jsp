@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: dulce
@@ -12,6 +13,7 @@
 <jsp:include page="../../layouts/head.jsp"/>
 </head>
 <body>
+<jsp:include page="../../layouts/navbarAdmin.jsp"/>
 
 <div class="container-fluid" id='cont'>
 <div class="card">
@@ -26,7 +28,35 @@
 
 </div>
 
+<div class="card-body">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre Completo</th>
+        <th scope="col">Correo</th>
+    </tr>
+    </thead>
+    <thbody>
+        <s:forEach items="${admin}" var="admin">
+            <th>
+                ${admin.id}
+            </th>
+            <th>
+                <p>${admin.name} ${admin.lastname} ${admin.surname} </p>
+            </th>
+            <th>
+                <p>${admin.email}</p>
+            </th>
+        </s:forEach>
+    </thbody>
+</table>
 
+</div>
+
+
+
+<%--Modal ADmin--%>
 <div class="modal fade" id="saveAdmins" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -34,7 +64,7 @@
             <div class="modal-header">
                 <div>
                     <div class="row">
-                        <h3>¿Quien dirigira esta comunidad?</h3>
+                        <h3>¿Quien se encargara de esta comunidad?</h3>
                     </div>
 
                 </div>
@@ -44,7 +74,7 @@
                 <div class="row">
                 </div>
 
-                <form id="formregistrer" action="/api/admin/admins-save" method="post" class="needs-validation"
+                <form id="formAdmin" action="/api/admin/admins-save" method="post" class="needs-validation"
                       novalidate method="post">
                     <div class="row">
                         <div class="col md-4 lg-3 sm-6">
@@ -57,7 +87,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                     <div class="col md-4 lg-3 sm-6">
                         <div class="form-floating mb-3">
@@ -70,53 +99,61 @@
                         </div>
                     </div>
 
-                    <div class="form-floating mb-1">
-                        <input type="password" name="pass" class="form-control" id="pass"
-                               placeholder="name" required>
-                        <label for="pass">Contraseña</label>
-                        <div class="invalid-feedback text-start">
-                            Campo obligatorio
+                    <div class="col md-4 lg-3 sm-6">
+                        <div class="form-floating mb-1">
+                            <input type="password" name="pass" class="form-control" id="pass"
+                                   placeholder="name" required>
+                            <label for="pass">Contraseña</label>
+                            <div class="invalid-feedback text-start">
+                                Campo obligatorio
+                            </div>
+                            <div class="form-group mb-3">
+                            </div>
                         </div>
-                        <div class="form-group mb-3">
-                        </div>
+
                     </div>
-
-
-
-                    <div class="form-floating mb-1">
-                        <input type="text" name="surname" class="form-control" id="surname"
-                               placeholder="surname" required>
-                        <label for="surname">Apellido</label>
-                        <div class="invalid-feedback text-start">
-                            Campo obligatorio
-                        </div>
-                        <div class="form-group mb-3">
-                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col md-4 lg-3 sm-6">
+                            <div class="form-floating mb-1">
+                                <input type="text" name="surname" class="form-control" id="surname"
+                                       placeholder="surname" required>
+                                <label for="surname">Apellido Paterno</label>
+                                <div class="invalid-feedback text-start">
+                                    Campo obligatorio
+                                </div>
+                                <div class="form-group mb-3">
+                                </div>
+                            </div>
 
-
-
-                    <div class="form-floating mb-1">
-                        <input type="text" name="lastname" class="form-control" id="lastname"
-                               placeholder="lastname" required>
-                        <label for="lastname">Segundo Apellido</label>
-                        <div class="invalid-feedback text-start">
-                            Campo obligatorio
                         </div>
-                        <div class="form-group mb-3">
+
+                        <div class="col md-4 lg-3 sm-6">
+                            <div class="form-floating mb-1">
+                                <input type="text" name="lastname" class="form-control" id="lastname"
+                                       placeholder="lastname" required>
+                                <label for="lastname">Apellido Materno</label>
+                                <div class="invalid-feedback text-start">
+                                    Campo obligatorio
+                                </div>
+                                <div class="form-group mb-3">
+                                </div>
+                            </div>
+
                         </div>
+                        <div class="col md-4 lg-3 sm-6">
+                            <div class="form-floating mb-1">
+                                <input type="date" min="1900-01-01" max="2005-12-31" name="birthday" class="form-control" id="birthday"
+                                       placeholder="birthday" required>
+                                <label for="birthday">Fecha de nacimiento</label>
+                                <div class="invalid-feedback text-start">
+                                    Campo obligatorio
+                                </div>
+                                <div class="form-group mb-3"></div>
+                            </div>
+                        </div>
+
                     </div>
-
-                    <div class="form-floating mb-1">
-                        <input type="date" min="1900-01-01" max="2005-12-31" name="birthday" class="form-control" id="birthday"
-                               placeholder="birthday" required>
-                        <label for="birthday">Fecha de nacimiento</label>
-                        <div class="invalid-feedback text-start">
-                            Campo obligatorio
-                        </div>
-                        <div class="form-group mb-3"></div>
-                    </div>
-                    <br>
 
                     <div class="form-floating mb-1">
                         <p>Ingresa tu sexo</p>
@@ -136,20 +173,50 @@
                         </div>
                     </div>
 
-
                 </form>
 
 
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="registro()"  id="botonRegistro" class="btn btn-primary"> Registrar </button>
+                <button type="button" onclick="registro()"  id="buttonAdmin" class="btn btn-primary"> Registrar </button>
             </div>
         </div>
     </div>
 </div>
 </div>
 
-<jsp:include page="../../layouts/navbarAdmin.jsp"/>
 <jsp:include page="../../layouts/footer.jsp"/>
+<script>
+    const formRegistro=document.getElementById("formAdmin");
+    const botonRegistro=document.getElementById("buttonAdmin");
+
+    (function () {
+        botonRegistro.addEventListener("click",function (event){
+            console.log(formRegistro.checkValidity());
+
+            if(!formRegistro.checkValidity()){
+                event.preventDefault();
+                event.stopPropagation();
+                console.log("")
+            }
+
+            formRegistro.classList.add("was-validated")
+        }, false);
+
+    })();
+
+
+    function registro(){
+        if(formRegistro.checkValidity()){
+            console.log(formRegistro.checkValidity())
+            console.log("antes del submint")
+            formRegistro.submit();
+            console.log("despues del submint")
+
+        }
+
+    }
+
+</script>
 </body>
 </html>
