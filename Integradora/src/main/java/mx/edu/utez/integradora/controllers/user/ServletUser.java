@@ -167,7 +167,7 @@ public class ServletUser extends HttpServlet {
 
                     } else {
 
-                        redirect = "/api/user/auth?result= " + result + "&message=" + URLEncoder.encode("¡Error! Acción no realizada correctamente.",
+                        redirect = "/api/auth?result= " + result + "&message=" + URLEncoder.encode("¡Error! Acción no realizada correctamente.",
                                 StandardCharsets.UTF_8);
                     }
 
