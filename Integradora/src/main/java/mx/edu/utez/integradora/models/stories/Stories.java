@@ -1,28 +1,36 @@
 package mx.edu.utez.integradora.models.stories;
 
 import mx.edu.utez.integradora.models.user.Status;
+import mx.edu.utez.integradora.models.user.User;
 
 public class Stories {
     private long id;
     private String title;
     private  String content;
-    private String created_ad;//fecha de creacion
+    private String created_atDATETIME;//fecha de creacion
     private byte[] file;//talvez asi agregue las imagenes
     private Status status;
+    private User user;
+    private long user_id;
     private Categories categories;
+    private Categories category;
 
     public Stories() {
     }
 
-    public Stories(long id, String title, String content, String created_ad, byte[] file, Status status, Categories categories) {
+    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, Status status, User user, long user_id, Categories categories, Categories category) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.created_ad = created_ad;
+        this.created_atDATETIME = created_atDATETIME;
         this.file = file;
         this.status = status;
+        this.user = user;
+        this.user_id = user_id;
         this.categories = categories;
+        this.category = category;
     }
+
 
     public long getId() {
         return id;
@@ -48,12 +56,12 @@ public class Stories {
         this.content = content;
     }
 
-    public String getCreated_ad() {
-        return created_ad;
+    public String getCreated_atDATETIME() {
+        return created_atDATETIME;
     }
 
-    public void setCreated_ad(String created_ad) {
-        this.created_ad = created_ad;
+    public void setCreated_atDATETIME(String created_atDATETIME) {
+        this.created_atDATETIME = created_atDATETIME;
     }
 
     public byte[] getFile() {
@@ -75,6 +83,24 @@ public class Stories {
     public Categories getCategories() {
         return categories;
     }
+
+    public long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
 
     public void setCategories(Categories categories) {
         this.categories = categories;
