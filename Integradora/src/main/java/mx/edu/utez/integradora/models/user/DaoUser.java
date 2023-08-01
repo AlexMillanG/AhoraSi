@@ -195,7 +195,30 @@ public class DaoUser implements DaoRepository<User> {
     public boolean update(User object) {
         try {
             conn= new MySQLConnection().connect();
-            String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,?,?);z";
+            String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,?,?)";
+            pstm= conn.prepareStatement(query);
+            pstm.setString(1,object.getName());
+            pstm.setString(2,object.getLastname());
+            pstm.setString(3,object.getSurname());
+            pstm.setString(4,object.getBirthday());
+            pstm.setString(5,object.getSex());
+            pstm.setString(6,object.getEmail());
+            pstm.setString(7,object.getPass());
+            pstm.setLong(8,object.getRols().getId());
+            pstm.setLong(9,object.getStatus().getId());
+            return pstm.executeUpdate()>0;
+        }catch (SQLException e){
+            Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"ERROR Update"+e.getMessage());
+
+        }
+        return false;
+    }
+
+
+    public boolean updateAdmin(User object) {
+        try {
+            conn= new MySQLConnection().connect();
+            String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,?,?) where rol_id =2";
             pstm= conn.prepareStatement(query);
             pstm.setString(1,object.getName());
             pstm.setString(2,object.getLastname());
@@ -219,6 +242,23 @@ public class DaoUser implements DaoRepository<User> {
         try {
             conn=new  MySQLConnection().connect();
             String query="delete from users where id=?";
+            pstm= conn.prepareStatement(query);
+            pstm.setLong(1,id);
+            return pstm.executeUpdate()==1;
+        }catch (SQLException e ){
+            Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE, "Error delete" + e.getMessage());
+
+        }finally {
+            close();
+        }
+
+
+        return false;
+    }
+    public boolean deleteAdmin(Long id) {
+        try {
+            conn=new  MySQLConnection().connect();
+            String query="delete from users where id=? and rol_id =2";
             pstm= conn.prepareStatement(query);
             pstm.setLong(1,id);
             return pstm.executeUpdate()==1;
