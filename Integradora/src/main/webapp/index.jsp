@@ -265,7 +265,7 @@
                             <label class="form-check-label" for="hombre">
                                 Hombre
                             </label>
-                            <p>kmdnkndkndkdnknd</p>
+                            <p></p>
                         </div>
 
                         <div class="form-check">

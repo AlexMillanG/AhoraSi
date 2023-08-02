@@ -63,6 +63,19 @@
                                         <p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
                                         <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
                                     </div>
+                                    <form id="formHistorias" action="/api/story/save">
+                                        <input type="text"name="title" id="title" placeholder="titulo" required>
+
+                                        <label for="title">titulo</label>
+
+                                        <input type="text" name="content" id="content" placeholder="contenido" required>
+
+                                        <label for="content">contenido</label>
+
+                                        <%--id, title content, created_atDATETIME, file
+                                         status, user, categories--%>
+                                        <button type="submit">enviar</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
