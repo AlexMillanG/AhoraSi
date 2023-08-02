@@ -13,7 +13,7 @@
 <jsp:include page="../../layouts/head.jsp"/>
 </head>
 <body>
-<jsp:include page="../../layouts/navbarAdmin.jsp"/>
+<jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
 
 <div class="container-fluid" id='cont'>
 <div class="card">

@@ -23,7 +23,7 @@
       </th>
       <th scope="col">
         <div  class="container-fluid" id='cont-2'>
-          <jsp:include page="/layouts/navbarAdmin.jsp"/>
+          <jsp:include page="/layouts/navbarSupeadmin.jsp"/>
           <div id="carrusel" class="container-fluid">
             <h1 style="margin-top: 20px; font-family: PT serif ;">Bienvenido </h1>
             <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
@@ -145,6 +145,6 @@
     </thead>
   </table>
 </div>
-<jsp:include page="../../layouts/navbarAdmin.jsp"/>
+<jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
 </body>
 </html>

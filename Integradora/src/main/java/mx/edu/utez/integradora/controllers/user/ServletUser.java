@@ -36,8 +36,13 @@ import java.util.Objects;
         "/api/admin/users-view",
         "/api/admin/stories-view",
         "/api/admin/superadminhome",
-        "/api/admin/admins-view",
-        "/api/admin/admins-save",
+        "/api/admin/admins-view", //vista crud admins
+        "/api/admin/admins-save",//crear administradores
+        "/api/admin/admin-home",//vista adminHiome
+        "/api/admin/admin-historias",//vistaAdminHistorias
+        "/api/admin/admin-mas",//
+        "/api/admin/admin-user",//
+
 
 
 })
@@ -65,10 +70,10 @@ public class ServletUser extends HttpServlet {
 
                 break;
             case"/api/admin/home":
-                System.out.println();
-                List<Objects> users1=new ArrayList<>();
-                req.setAttribute("users1", new DaoUser().fiandAll());
-                redirect="/view/admin/superAdminHome.jsp";
+               System.out.println();
+//                List<Objects> users1=new ArrayList<>();
+//                req.setAttribute("users1", new DaoUser().fiandAll());
+                redirect="/view/admin/adminIndex.jsp";
                 break;
             case "/api/admin/users-view":
 
@@ -81,6 +86,19 @@ public class ServletUser extends HttpServlet {
                 redirect="/view/admin/adminForos.jsp";
                 break;
 
+            case "/api/admin/admin-historias":
+
+                redirect="/view/admin/adminHistorias.jsp";
+                break;
+
+            case "/api/admin/admin-mas":
+                redirect="/view/admin/adminMas.jsp";
+                break;
+
+            case "/api/admin/admin-user":
+                List<Objects> users1=new ArrayList<>();
+                req.setAttribute("users1", new DaoUser().fiandAll());
+                redirect="/view/admin/superAdminHome.jsp";
         }
         req.getRequestDispatcher(redirect).forward(req,resp);
     }

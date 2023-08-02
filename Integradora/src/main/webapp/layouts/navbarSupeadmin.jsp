@@ -23,13 +23,13 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/api/admin/home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Usuario</a>
+                            <a class="nav-link" href="/api/admin/admin-user">Usuario</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Historias</a>
+                            <a class="nav-link" href="/api/admin/admin-historias">Historias</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/api/admin/admins-view">Administradores</a>
@@ -38,7 +38,7 @@
                             <a href="/api/auth" class="nav-link"> Cerrar Sesión</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Mas</a>
+                            <a class="nav-link" href="/api/admin/admin-mas">Mas</a>
                         </li>
                         <li>
                             <form class="d-flex" role="search" style="float: right">

@@ -24,7 +24,7 @@
             </th>
             <th scope="col">
                 <div class="container-fluid" id='cont-2'>
-                    <jsp:include page="/layouts/navbarAdmin.jsp"/>
+                    <jsp:include page="/layouts/navbarSupeadmin.jsp"/>
                     <div id="carrusel" class="container-fluid">
                         <h1 style="margin-top: 20px; font-family: PT serif ;">Bienvenido </h1>
                         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
@@ -57,7 +57,7 @@
                     </div>
                     <div class="container-fluid"
                          style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
-                        <button data-bs-toggle="modal" data-bs-target="#crearAdmin" type="button"
+                        <button data-bs-toggle="modal" data-bs-target="#saveAdmins" type="button"
                                 class="btn btn-outline-success" style="float: right; margin-top: 15px;"
                                 id="agregar-admin">Agregar
                         </button>
@@ -147,156 +147,132 @@
 </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="crearAdmin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<%--Modal ADmin--%>
+<div class="modal fade" id="saveAdmins" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+        <div class="modal-content ">
             <div class="modal-header">
-                <p style="font-family: PT serif; text-align: center; font-size: 30px;">Agregar Administrador</p>
+                <div>
+                    <div class="row">
+                        <h3>¿Quien se encargara de esta comunidad?</h3>
+                    </div>
+
+                </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="admin1-form" class="needs-validation" action="" method="post">
-                    <table class="table">
-                        <tr>
-                            <th>
-                                <div class="container-fluid">
-                                    <label for="name">Nombre</label>
-                                    <input class="form-control" placeholder="Nombre" name="name" id="name" type="text"
-                                           required>
-                                    <div class="invalid-feedback is-invalid">
-                                        Campo obligatorio
-                                    </div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="container-fluid" style="
-                                    fill: #FFF;
-                                    filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);
-                                    background: white;
-                                    border-radius: 15px;
-                                    margin-left: 3px;
-                                    font-family: PT serif;
-                                ">
-                                    <label for="name">Apellido</label>
-                                    <input class="form-control" placeholder="Apellido Completo" name="lastname"
-                                           id="lastname" type="text" required>
-                                    <div class="invalid-feedback is-invalid">
-                                        Campo obligatorio
-                                    </div>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th colspan="3">
-                                <div class="container-fluid" style="
-                                    fill: #FFF;
-                                    filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);
-                                    background: white;
-                                    border-radius: 15px;
-                                    margin-left: 3px;
-                                    font-family: PT serif;
-                                ">
-                                    <label for="name">Correo Eletronico</label>
-                                    <input class="form-control" placeholder="Correo Electronico" name="email" id="email1"
-                                           type="text" required>
-                                    <div class="invalid-feedback is-invalid">
-                                        Campo obligatorio
-                                    </div>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <div class="container-fluid"
-                                     style="
-                                    fill: #FFF;
-                                    filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);
-                                    background: white;
-                                    border-radius: 15px;
-                                    margin-left: 3px;
-                                    font-family: PT serif;
-                                    height: 60px
-                                    ">
-                                    <label for="name">Sexo</label>
-                                    <select style="width: 130px; height: 35px; margin-top: auto;">
-                                        <option value="">Selecionar</option>
-                                        <option value="mujer">Mujer</option>
-                                        <option value="hombre">Hombre</option>
-                                        <option value="otro">Otro</option>
-                                    </select>
-                                    <div class="invalid-feedback is-invalid">
-                                        Campo obligatorio
-                                    </div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="container-fluid " style="
-                                    fill: #FFF;
-                                    filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);
-                                    background: white;
-                                    border-radius: 15px;
-                                    margin-left: 3px;
-                                    font-family: PT serif;
-                                ">
-                                    <label for="name">Fecha de Nacimiento</label>
-                                    <input class="form-control" placeholder="Correo Electronico" name="email" id="email"
-                                           type="date" required>
-                                    <div class="invalid-feedback is-invalid">
-                                        Campo obligatorio
-                                    </div>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <div class="container-fluid "
-                                style="    fill: #FFF;
-                                filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);
-                                background: white;
-                                border-radius: 15px;
-                                margin-left: 3px;
-                                font-family: PT serif;">
-                                    <label for="name">Contraseña</label>
-                                    <input class="form-control" placeholder="Contraseña" name="password" id="password"
-                                           type="password" required>
-                                    <div class="invalid-feedback is-invalid">
-                                        Campo obligatorio
-                                    </div>
-                                </div>
-                            </th>
+                <div class="row">
+                </div>
 
-                            <th>
-                                <div class="container-fluid " style="fill: #FFF;
-                                filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);
-                                background: white;
-                                border-radius: 15px;
-                                margin-left: 3px;
-                                font-family: PT serif;"
-                                >
-                                    <label for="name">Confirmar contraseña</label>
-                                    <input class="form-control" placeholder="Contraseña" name="password" id="password1"
-                                           type="password" required>
-                                    <div class="invalid-feedback is-invalid">
-                                        Campo obligatorio
-                                    </div>
+                <form id="formAdmin" action="/api/admin/admins-save" method="post" class="needs-validation"
+                      novalidate method="post">
+                    <div class="row">
+                        <div class="col md-4 lg-3 sm-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="name" id="name"
+                                       placeholder="nombre" required>
+                                <label for="name">ingresa tu nombre</label>
+                                <div class="invalid-feedback text-start">
+                                    Campo obligatorio
                                 </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th colspan="2">
-                                <button type="submit" class="container-fluid"
-                                        style="height: 50px; background-color: black; font-family: PT serif; color: #FFF; border-radius: 15px;">
-                                    Agregar
-                                </button>
-                            </th>
-                        </tr>
-                    </table>
+                            </div>
+                        </div>
+
+                        <div class="col md-4 lg-3 sm-6">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" name="email" id="email"
+                                       placeholder="name@example.com" required>
+                                <label for="email">Correo electrónico</label>
+                                <div class="invalid-feedback text-start">
+                                    Campo obligatorio
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col md-4 lg-3 sm-6">
+                            <div class="form-floating mb-1">
+                                <input type="password" name="pass" class="form-control" id="pass"
+                                       placeholder="name" required>
+                                <label for="pass">Contraseña</label>
+                                <div class="invalid-feedback text-start">
+                                    Campo obligatorio
+                                </div>
+                                <div class="form-group mb-3">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col md-4 lg-3 sm-6">
+                            <div class="form-floating mb-1">
+                                <input type="text" name="surname" class="form-control" id="surname"
+                                       placeholder="surname" required>
+                                <label for="surname">Apellido Paterno</label>
+                                <div class="invalid-feedback text-start">
+                                    Campo obligatorio
+                                </div>
+                                <div class="form-group mb-3">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col md-4 lg-3 sm-6">
+                            <div class="form-floating mb-1">
+                                <input type="text" name="lastname" class="form-control" id="lastname"
+                                       placeholder="lastname" required>
+                                <label for="lastname">Apellido Materno</label>
+                                <div class="invalid-feedback text-start">
+                                    Campo obligatorio
+                                </div>
+                                <div class="form-group mb-3">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col md-4 lg-3 sm-6">
+                            <div class="form-floating mb-1">
+                                <input type="date" min="1900-01-01" max="2005-12-31" name="birthday" class="form-control" id="birthday"
+                                       placeholder="birthday" required>
+                                <label for="birthday">Fecha de nacimiento</label>
+                                <div class="invalid-feedback text-start">
+                                    Campo obligatorio
+                                </div>
+                                <div class="form-group mb-3"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-floating mb-1">
+                        <p>Ingresa tu sexo</p>
+                        <br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="hombre" name="sex" id="hombre">
+                            <label class="form-check-label" for="hombre">
+                                Hombre
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="mujer" checked name="sex" id="mujer" mujer>
+                            <label class="form-check-label" for="mujer">
+                                Mujer
+                            </label>
+                        </div>
+                    </div>
+
                 </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="registro()"  id="buttonAdmin" class="btn btn-primary"> Registrar </button>
             </div>
         </div>
     </div>
-
 </div>
 
 <div class="modal fade" id="crearCategoria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -466,7 +442,7 @@
         </div>
     </div>
 </div>
-<jsp:include page="../../layouts/navbarAdmin.jsp"/>
+<jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) { //Revisamos que el input tenga contenido
@@ -506,6 +482,37 @@
 </script>
 <jsp:include page="../../layouts/footer.jsp"/>
 
-    </body>
+<script>
+    const formRegistro=document.getElementById("formAdmin");
+    const botonRegistro=document.getElementById("buttonAdmin");
 
+    (function () {
+        botonRegistro.addEventListener("click",function (event){
+            console.log(formRegistro.checkValidity());
+
+            if(!formRegistro.checkValidity()){
+                event.preventDefault();
+                event.stopPropagation();
+                console.log("")
+            }
+
+            formRegistro.classList.add("was-validated")
+        }, false);
+
+    })();
+
+
+    function registro(){
+        if(formRegistro.checkValidity()){
+            console.log(formRegistro.checkValidity())
+            console.log("antes del submint")
+            formRegistro.submit();
+            console.log("despues del submint")
+
+        }
+
+    }
+
+</script>
+</body>
 </html>

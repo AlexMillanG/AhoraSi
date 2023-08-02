@@ -16,25 +16,25 @@
     <table class="table">
         <tr>
             <th scope="col" class="logo1">
-                <img src="../img/logo.png" class="logo">
+                <img src="/assets/img/logo.png" class="logo">
             </th>
             <th scope="col">
                 <div class="container-fluid" id='cont-2'>
-                    <jsp:include page="../../layouts/navbarAdmin.jsp"/>
+                    <jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
                     <div id="carrusel" class="container-fluid">
                         <h1 style="margin-top: 20px; font-family: PT serif ;">Bienvenido </h1>
                         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active" data-bs-interval="10000" style="margin-bottom: 30px;"
                                      style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                                    <img src="../img/1.jpg" class="d-block w-100" alt="...">
+                                    <img src="../../assets/img/1.jpg" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item" data-bs-interval="2000" style="margin-bottom: 30px;"
                                      style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                                    <img src="../img/2.jpg" class="d-block w-100" alt="...">
+                                    <img src="/assets/img/2.jpg" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../img/3.jpg" class="d-block w-100" alt="..." style="margin-bottom: 30px;"
+                                    <img src="/assets/img/3.jpg" class="d-block w-100" alt="..." style="margin-bottom: 30px;"
                                          style="margin-left: 30px;" style="margin-right: 30px;"
                                          style="border-radius: 15%;">
                                 </div>
@@ -74,7 +74,7 @@
                                  style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
                                 <div class="row g-0 bg-body-secondary position-relative">
                                     <div class="col-md-6 mb-md-0 p-md-4">
-                                        <img src="../img/3.jpg" class="w-100" alt="...">
+                                        <img src="/assets/img/3.jpg" class="w-100" alt="...">
                                     </div>
                                     <div class="col-md-6 p-4 ps-md-0">
                                         <h4 class="mt-0">Columns with stretched link</h4>
@@ -99,7 +99,7 @@
                                  style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  margin-bottom: 15px;">
                                 <div class="row g-0 bg-body-secondary position-relative">
                                     <div class="col-md-6 mb-md-0 p-md-4">
-                                        <img src="../img/3.jpg" class="w-100" alt="..." style="border-radius: 100%">
+                                        <img src="/assets/img/3.jpg" class="w-100" alt="..." style="border-radius: 100%">
                                     </div>
                                     <div class="col-md-6 p-4 ps-md-0">
                                         <h4 class="mt-0">Columns with stretched link</h4>
@@ -140,7 +140,7 @@
             <div class="modal-body">
                 <div class="row g-0 bg-body-secondary position-relative" style="height: 25%">
                     <div class="col-md-6 mb-md-0 p-md-4" style="height: 25%">
-                        <img src="../img/3.jpg" class="w-100" alt="...">
+                        <img src="/assets/img/2.jpg" class="w-100" alt="...">
                     </div>
                     <div class="col-md-6 p-4 ps-md-0" style="height: 25%">
                         <h4 class="mt-0">Columns with stretched link</h4>
