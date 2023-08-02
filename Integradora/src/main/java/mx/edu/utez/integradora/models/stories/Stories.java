@@ -6,31 +6,27 @@ import mx.edu.utez.integradora.models.user.User;
 public class Stories {
     private long id;
     private String title;
-    private  String content;
+    private String content;
     private String created_atDATETIME;//fecha de creacion
     private byte[] file;//talvez asi agregue las imagenes
-    private Status status;
-    private User user;
-    private long user_id;
-    private Categories categories;
-    private Categories category;
+    private Status status_id;
+    private User user_id;
+    private Categories category_id;
 
     public Stories() {
+
     }
 
-    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, Status status, User user, long user_id, Categories categories, Categories category) {
+    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, Status status_id, User user_id, Categories category_id) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.created_atDATETIME = created_atDATETIME;
         this.file = file;
-        this.status = status;
-        this.user = user;
+        this.status_id = status_id;
         this.user_id = user_id;
-        this.categories = categories;
-        this.category = category;
+        this.category_id = category_id;
     }
-
 
     public long getId() {
         return id;
@@ -72,37 +68,27 @@ public class Stories {
         this.file = file;
     }
 
-    public Status getStatus() {
-        return status;
+    public Status getStatus_id() {
+        return status_id;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus_id(Status status_id) {
+        this.status_id = status_id;
     }
 
-    public Categories getCategories() {
-        return categories;
-    }
-
-    public long getUser_id() {
+    public User getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(long user_id) {
+    public void setUser_id(User user_id) {
         this.user_id = user_id;
     }
 
-    public User getUser() {
-        return user;
+    public Categories getCategory_id() {
+        return category_id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-
-
-    public void setCategories(Categories categories) {
-        this.categories = categories;
+    public void setCategory_id(Categories category_id) {
+        this.category_id = category_id;
     }
 }

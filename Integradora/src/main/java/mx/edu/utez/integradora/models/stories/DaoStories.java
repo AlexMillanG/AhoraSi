@@ -32,10 +32,10 @@ public class DaoStories {
                 stories.setFile(rs.getBytes("file"));//Aqui aun no funciona
                 Status status= new Status();
                 status.setType_status(rs.getString("type_status"));
-                stories.setStatus(status);
+                stories.setStatus_id(status);
                 Categories categories=new Categories();
                 categories.setCategory(rs.getString("category"));
-                stories.setCategories(categories);
+                stories.setCategory_id(categories);
                 stories1.add(stories);
 
             }
@@ -65,10 +65,10 @@ public class DaoStories {
                 stories.setFile(rs.getBytes("file"));//Aqui aun no funciona
                 Status status= new Status();
                 status.setType_status(rs.getString("type_status"));
-                stories.setStatus(status);
+                stories.setStatus_id(status);
                 Categories categories=new Categories();
                 categories.setCategory(rs.getString("category"));
-                stories.setCategories(categories);
+                stories.setCategory_id(categories);
             }
             return stories;
         }catch (SQLException e){
@@ -89,7 +89,7 @@ public class DaoStories {
             pstm.setString(2,object.getContent());
             pstm.setString(3,object.getCreated_atDATETIME());
            pstm.setBytes(4,object.getFile());
-            pstm.setObject(5,object.getStatus());
+            pstm.setObject(5,object.getStatus_id());
 //            pstm.setLong(6,object.getUser().getId());
 //            pstm.setObject(7,object.getCategories().getId());
 //            return pstm.executeUpdate()>0;
@@ -111,9 +111,9 @@ public class DaoStories {
             pstm.setString(2, object.getContent());
             pstm.setString(3, object.getCreated_atDATETIME());
             pstm.setBytes(4, object.getFile());
-            pstm.setObject(5, object.getStatus());
-            pstm.setLong(6, object.getUser().getId());
-            pstm.setObject(7, object.getCategories().getId());
+            pstm.setObject(5, object.getStatus_id());
+            pstm.setLong(6, object.getUser_id().getId());
+            pstm.setObject(7, object.getCategory_id().getId());
 //            pstm.setLong(8, object.getStory_id()); // Asegúrate de reemplazar getStoryId() con el método correcto que obtiene el ID de la historia.
             return pstm.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -128,7 +128,7 @@ public class DaoStories {
     public  boolean delete(Long id){
         try {
             conn=new MySQLConnection().connect();
-            String query="delete * from users where id=?";
+            String query="delete * from stories where id=?";
             pstm= conn.prepareStatement(query);
             pstm.setLong(1,id);
             return pstm.executeUpdate()==1;
