@@ -39,15 +39,18 @@
     </thead>
     <thbody>
         <s:forEach items="${admin}" var="admin">
-            <th>
-                ${admin.id}
-            </th>
-            <th>
-                <p>${admin.name} ${admin.lastname} ${admin.surname} </p>
-            </th>
-            <th>
-                <p>${admin.email}</p>
-            </th>
+            <tr>
+                <th>
+                        ${admin.id}
+                </th>
+                <th>
+                    <p>${admin.name} ${admin.lastname} ${admin.surname} </p>
+                </th>
+                <th>
+                    <p>${admin.email}</p>
+                </th>
+            </tr>
+
         </s:forEach>
     </thbody>
 </table>

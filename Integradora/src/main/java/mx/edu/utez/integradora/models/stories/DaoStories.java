@@ -90,9 +90,9 @@ public class DaoStories {
             pstm.setString(3,object.getCreated_atDATETIME());
            pstm.setBytes(4,object.getFile());
             pstm.setObject(5,object.getStatus());
-            pstm.setLong(6,object.getUser().getId());
-            pstm.setObject(7,object.getCategories().getId());
-            return pstm.executeUpdate()>0;
+//            pstm.setLong(6,object.getUser().getId());
+//            pstm.setObject(7,object.getCategories().getId());
+//            return pstm.executeUpdate()>0;
 
         }catch (SQLException e){
             Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR save"+e.getMessage());
@@ -114,7 +114,7 @@ public class DaoStories {
             pstm.setObject(5, object.getStatus());
             pstm.setLong(6, object.getUser().getId());
             pstm.setObject(7, object.getCategories().getId());
-            pstm.setLong(8, object.getStory_id()); // Asegúrate de reemplazar getStoryId() con el método correcto que obtiene el ID de la historia.
+//            pstm.setLong(8, object.getStory_id()); // Asegúrate de reemplazar getStoryId() con el método correcto que obtiene el ID de la historia.
             return pstm.executeUpdate() > 0;
         } catch (SQLException e) {
             Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE, "ERROR update" + e.getMessage());
