@@ -32,7 +32,7 @@
                 border-radius: 15px;
                 max-height: 100%;">
                     <div class="container-fluid" id="cont-2">
-                        <jsp:include page="/layouts/navbarAdmin.jsp"/>
+                        <jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
                         <div class="card-body">
 
                             <div class="car-text">
@@ -44,7 +44,7 @@
                                     <th>Sexo</th>
                                     <th>Acción</th>
                                     </thead>
-                                <s:forEach var="user" items="${users2}" varStatus="s">
+                                <s:forEach var="user" items="${users1}" varStatus="s">
 
                             </div>
 
