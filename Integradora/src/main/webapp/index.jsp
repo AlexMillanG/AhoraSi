@@ -32,7 +32,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 30px 30px 0px 0px;
                 background: var(--neutro, radial-gradient(481.07% 191.27% at 111.16% 113.45%, #8081B7 4.19%, #75BEF3 45.31%, #57F3C4 81.99%));
                 box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.15);">
-                    <img src="assets/img/logo.png" alt="" width="250px" height="70px">
+                    <img src="/assets/img/logo.png" alt="" width="250px" height="70px">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4" style="height: auto; width: auto;">
-                                <img src="assets/img/leer.png" alt=""  class="img-fluid rounded-start" width="250px" height="70px">
+                                <img src="/assets/img/leer.png" alt=""  class="img-fluid rounded-start" width="250px" height="70px">
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                         <div class="row g-0">
                             <div class="col-md-8">
                                 <div class="col-md-4" style="height: auto; width: auto;">
-                                    <img src="assets/img/logo1.png" alt=""  class="img-fluid rounded-start" width="250px" height="70px">
+                                    <img src="/assets/img/logo1.png" alt=""  class="img-fluid rounded-start" width="250px" height="70px">
                                 </div>
                                 <div class="card-body">
                                     <p class="card-text" style="text-align: center; font-size: 25px; font-family: PT serif;"

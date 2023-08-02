@@ -33,11 +33,24 @@ import java.util.Objects;
         "/api/user/update",
         "/api/user/delete",
         "/api/admin/home",
+        "/api/superadmin/home",
+
         "/api/admin/users-view",
         "/api/admin/stories-view",
         "/api/admin/superadminhome",
-        "/api/admin/admins-view",
-        "/api/admin/admins-save",
+        "/api/superadmin/admins-view", //vista crud admins
+        "/api/admin/admins-save",//crear administradores
+        "/api/admin/admin-home",//vista adminHiome
+        "/api/admin/admin-historias",//vistaAdminHistorias
+        "/api/admin/admin-mas",
+        "/api/admin/admin-user",//"/api/admin/admins-view", //vista crud admins
+
+        "/api/superadmin/admins-save",//crear administradores
+        "/api/superadmin/admin-home",//vista adminHiome
+        "/api/superadmin/admin-historias",//vistaAdminHistorias
+        "/api/superadmin/admin-mas",//
+        "/api/superadmin/admin-user",//
+
 
 
 })
@@ -64,23 +77,58 @@ public class ServletUser extends HttpServlet {
             redirect="/view/user/home.jsp";
 
                 break;
-            case"/api/admin/home":
+            case"/api/superadmin/home":
                 System.out.println();
-                List<Objects> users1=new ArrayList<>();
-                req.setAttribute("users1", new DaoUser().fiandAll());
-                redirect="/view/admin/superAdminHome.jsp";
+//                List<Objects> users1=new ArrayList<>();
+//                req.setAttribute("users1", new DaoUser().fiandAll());
+                redirect="/view/superadmin/adminIndex.jsp";
+                break;
+            case"/api/admin/home":
+               System.out.println();
+//                List<Objects> users1=new ArrayList<>();
+//                req.setAttribute("users1", new DaoUser().fiandAll());
+                System.out.println("ADmin");
+                redirect="/view/admin/adminIndex.jsp";
                 break;
             case "/api/admin/users-view":
 
                 redirect="/";
                 break;
-            case "/api/admin/admins-view":
-
+                //EndPonits  superAdmin
+            case "/api/superadmin/admins-view":
+                System.out.println("SUPEradmin");
                 List<Objects> admin=new ArrayList<>();
                 req.setAttribute("admin", new DaoUser().findAllAdmin());
-                redirect="/view/admin/adminForos.jsp";
+                redirect="/view/superadmin/adminForos.jsp";
                 break;
 
+            case "/api/superadmin/admin-historias":
+                System.out.println("SUPEradmin");
+                redirect="/view/superadmin/adminHistorias.jsp";
+                break;
+
+            case "/api/superadmin/admin-mas":
+                System.out.println("SUPEradmin");
+                redirect="/view/superadmin/adminMas.jsp";
+                break;
+
+            case "/api/superadmin/admin-user":
+                System.out.println("SUPEradmin");
+                List<Objects> users1=new ArrayList<>();
+                req.setAttribute("users1", new DaoUser().fiandAll());
+                redirect="/view/superadmin/superAdminHome.jsp";
+                break;
+
+                //EndPoints para los Admins asi los normalitosç
+
+            case "/api/admin/admin-historias":
+                redirect="/view/admin/adminHistorias.jsp";
+                break;
+            case "/api/admin/admin-user":
+                System.out.println("SUPEradmin");
+                List<Objects> users2=new ArrayList<>();
+                req.setAttribute("users2", new DaoUser().fiandAll());
+                redirect="/view/admin/superAdminHome.jsp";
         }
         req.getRequestDispatcher(redirect).forward(req,resp);
     }
@@ -101,14 +149,13 @@ public class ServletUser extends HttpServlet {
                 try {
                     user = new DaoUser().loadUserByUsernameAndPassword(email, pass);
                     if (user != null) {
-                        System.out.println("diferente");
                         System.out.println(user.getRols().getRol());
                         session = req.getSession();
                         session.setAttribute("user", user);
                         System.out.println();
                         switch (user.getRols().getRol()) {
                             case "superAdmin":
-                                redirect = "/api/admin/home";
+                                redirect = "/api/superadmin/home";
                                 break;
                             case"user":
                                 redirect="/api/user/home";
