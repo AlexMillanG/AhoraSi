@@ -9,23 +9,23 @@ public class Stories {
     private String content;
     private String created_atDATETIME;//fecha de creacion
     private byte[] file;//talvez asi agregue las imagenes
-    private Status status_id;
-    private User user_id;
-    private Categories category_id;
+    private Status status;
+    private User user;
+    private Categories categories;
 
     public Stories() {
 
     }
 
-    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, Status status_id, User user_id, Categories category_id) {
+    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, Status status, User user, Categories categories) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.created_atDATETIME = created_atDATETIME;
         this.file = file;
-        this.status_id = status_id;
-        this.user_id = user_id;
-        this.category_id = category_id;
+        this.status = status;
+        this.user = user;
+        this.categories = categories;
     }
 
     public long getId() {
@@ -68,27 +68,27 @@ public class Stories {
         this.file = file;
     }
 
-    public Status getStatus_id() {
-        return status_id;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStatus_id(Status status_id) {
-        this.status_id = status_id;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Categories getCategory_id() {
-        return category_id;
+    public Categories getCategories() {
+        return categories;
     }
 
-    public void setCategory_id(Categories category_id) {
-        this.category_id = category_id;
+    public void setCategories(Categories categories) {
+        this.categories = categories;
     }
 }
