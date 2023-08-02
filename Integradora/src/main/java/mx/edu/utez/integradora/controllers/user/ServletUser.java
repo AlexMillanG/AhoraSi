@@ -274,11 +274,11 @@ public class ServletUser extends HttpServlet {
                     boolean result = new DaoUser().createAdmin(user);
 
                     if (result) {
-                        redirect = "/api/admin/admins-view?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Te has registrado correctamente.",
+                        redirect = "/api/superadmin/admin-mas?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Te has registrado correctamente.",
                                 StandardCharsets.UTF_8);
                     } else {
 
-                        redirect = "/api/admin/admins-view?result= " + result + "&message=" + URLEncoder.encode("¡Error! Acción no realizada correctamente.",
+                        redirect = "/api/superadmin/admin-mas?result= " + result + "&message=" + URLEncoder.encode("¡Error! Acción no realizada correctamente.",
                                 StandardCharsets.UTF_8);
                     }
 

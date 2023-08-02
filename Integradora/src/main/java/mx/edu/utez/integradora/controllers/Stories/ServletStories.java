@@ -10,12 +10,12 @@ import mx.edu.utez.integradora.models.stories.Stories;
 import java.io.IOException;
 
 @WebServlet(name = "story",urlPatterns ={
-        "/api/auth",
+        "/api/auth1",
 
 })
 
 public class ServletStories extends HttpServlet {
-    String action, redirect ="/api/auth";
+    String action, redirect ="/api/auth1";
     Stories story;
     HttpSession session;
     String id, title, content, created_atDATETIME,file, status_id, user_id, category_id;

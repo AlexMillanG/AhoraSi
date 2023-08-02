@@ -443,6 +443,8 @@
     </div>
 </div>
 <jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
+<jsp:include page="../../layouts/footer.jsp"/>
+
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) { //Revisamos que el input tenga contenido
@@ -480,7 +482,6 @@
         readURL(this);
     });
 </script>
-<jsp:include page="../../layouts/footer.jsp"/>
 
 <script>
     const formRegistro=document.getElementById("formAdmin");
