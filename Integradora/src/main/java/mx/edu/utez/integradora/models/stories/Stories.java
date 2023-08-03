@@ -10,21 +10,21 @@ public class Stories {
     private String created_atDATETIME;//fecha de creacion
     private byte[] file;//talvez asi agregue las imagenes
     private Status status;
-    private User user;
+    private User user_id;
     private Categories categories;
 
     public Stories() {
 
     }
 
-    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, Status status, User user, Categories categories) {
+    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, Status status, User user_id, Categories categories) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.created_atDATETIME = created_atDATETIME;
         this.file = file;
         this.status = status;
-        this.user = user;
+        this.user_id = user_id;
         this.categories = categories;
     }
 
@@ -76,12 +76,12 @@ public class Stories {
         this.status = status;
     }
 
-    public User getUser() {
-        return user;
+    public User getUser_id() {
+        return user_id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
     }
 
     public Categories getCategories() {
