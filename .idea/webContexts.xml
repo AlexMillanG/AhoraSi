@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/Integradora/src/main/webapp/view/admin/superAdminHome.jsp" value="file://$PROJECT_DIR$/Integradora/src/main/webapp/view/admin" />
+        <entry key="file://$PROJECT_DIR$/Integradora/src/main/webapp/view/superadmin/adminForos.jsp" value="file://$PROJECT_DIR$/Integradora/src/main/webapp/view/superadmin" />
       </map>
     </option>
   </component>

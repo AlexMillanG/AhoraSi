@@ -1,4 +1,6 @@
 <%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: dulce
@@ -32,23 +34,34 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">Id</th>
+        <th scope="col">#</th>
         <th scope="col">Nombre Completo</th>
         <th scope="col">Correo</th>
+        <th scope="col">Acciones</th>
     </tr>
     </thead>
     <thbody>
-        <s:forEach items="${admin}" var="admin">
+        <s:forEach items="${admin}" var="admin"  varStatus="s">
             <tr>
-                <th>
-                        ${admin.id}
-                </th>
-                <th>
+                <td>
+                    <c:out value="${s.count}"/>
+                </td>
+                <td>
                     <p>${admin.name} ${admin.lastname} ${admin.surname} </p>
-                </th>
-                <th>
+                </td>
+                <td>
                     <p>${admin.email}</p>
-                </th>
+                </td>
+                <td>
+                    <input hidden value="${admin.id}" name="id">
+                    <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editarr">Editar</button>
+                    <form method="post" action="/api/superadmin/delete-admin">
+                        <input hidden value="${admin.id}" name="id">
+                        <button type="submit" class="btn btn-outline-danger btn-sm">ELIMINAR
+                        </button>
+
+                    </form>
+                </td>
             </tr>
 
         </s:forEach>

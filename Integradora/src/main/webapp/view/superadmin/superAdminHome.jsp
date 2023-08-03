@@ -46,9 +46,6 @@
                                     </thead>
                                 <s:forEach var="user" items="${users1}" varStatus="s">
 
-                            </div>
-
-
                                 <tbody>
                                 <tr>
                                     <td>
@@ -65,10 +62,17 @@
                                         <c:out value="${user.sex}"/>
                                     </td>
                                     <td>
-                                        <input hidden value="${user.id}" name="id">
-                                        <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editarr">Editar</button>
+                                        <input value="${user.id}" name="id">
+                                        <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editarr"
+                                        onclick="editUser(${user.id})
+                                                id="editUser${user.id}"
+                                        data-id=${user.id} data-name=${user.name}
+                                        data-lastname${user.lastname} data.surname${user.surname}
+                                        data-
+                                        >Editar</button>
+
                                         <form method="post" action="/api/user/delete">
-                                            <input hidden value="${user.id}" name="id">
+                                            <input  value="${user.id}" name="id">
                                             <button type="submit" class="btn btn-outline-danger btn-sm">ELIMINAR
                                             </button>
 
@@ -83,6 +87,8 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            </div>
+
                         </div>
 
                     </div>
@@ -95,23 +101,25 @@
     <div class="modal-dialog modal-lg" >
         <div class="modal-content">
             <div class="modal-header">
-                <p  style="font-family: PT serif; text-align: center; font-size: 30px;">Agregar Administrador</p>        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <p  style="font-family: PT serif; text-align: center; font-size: 30px;">Actualizar informacion</p>        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="updateForm" action="/api/user/update" method="post" class="needs-validation"
-                      novalidate method="post">
+                      novalidate method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col">
-                            <div class="form-floating mb-3">
-                                <input hidden value="" id="upId" name="id">
 
-                                <label for="upName">nombre</label>
-                                <input type="text" class="form-control" name="name" id="upName"
-                                       placeholder="nombre" required value="${user.name}">
+                            <div class="form-floating mb-3">
+                                <input  hidden value="" id="upId" name="id">
+
+                                <label for="name">nombre</label>
+                                <input type="text" class="form-control" name="name" id="name"
+                                       placeholder="nombre" class="form-control"/>
                                 <div class="invalid-feedback text-start">
                                     Campo obligatorio
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -191,6 +199,10 @@
                             </label>
                         </div>
                     </div>
+                    <button type="button" id="updateUserbtn" onclick="upSendForm()"
+                            class="btn btn-outline-success btn-sm">
+                        <i data-feather="check"></i> Aceptar
+                    </button>
                     </form>
             </div>
         </div>
@@ -198,4 +210,10 @@
 </div>
 
 </div><jsp:include page="../../layouts/footer.jsp"/>
+
+<script>
+const  form=document.getElementById("updateForm")
+const btn=document.getElementById("updateUserbtn")
+
+</script>
 </body>

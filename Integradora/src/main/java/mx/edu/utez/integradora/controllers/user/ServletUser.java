@@ -45,12 +45,13 @@ import java.util.Objects;
         "/api/admin/admin-mas",
         "/api/admin/admin-user",//"/api/admin/admins-view", //vista crud admins
 
+
         "/api/superadmin/admins-save",//crear administradores
         "/api/superadmin/admin-home",//vista adminHiome
         "/api/superadmin/admin-historias",//vistaAdminHistorias
         "/api/superadmin/admin-mas",//
         "/api/superadmin/admin-user",//
-
+        "/api/superadmin/delete-admin"//eliminar Administradores
 
 
 })
@@ -84,10 +85,8 @@ public class ServletUser extends HttpServlet {
                 redirect="/view/superadmin/adminIndex.jsp";
                 break;
             case"/api/admin/home":
-               System.out.println();
 //                List<Objects> users1=new ArrayList<>();
 //                req.setAttribute("users1", new DaoUser().fiandAll());
-                System.out.println("ADmin");
                 redirect="/view/admin/adminIndex.jsp";
                 break;
             case "/api/admin/users-view":
@@ -96,24 +95,20 @@ public class ServletUser extends HttpServlet {
                 break;
                 //EndPonits  superAdmin
             case "/api/superadmin/admins-view":
-                System.out.println("SUPEradmin");
                 List<Objects> admin=new ArrayList<>();
                 req.setAttribute("admin", new DaoUser().findAllAdmin());
                 redirect="/view/superadmin/adminForos.jsp";
                 break;
 
             case "/api/superadmin/admin-historias":
-                System.out.println("SUPEradmin");
                 redirect="/view/superadmin/adminHistorias.jsp";
                 break;
 
             case "/api/superadmin/admin-mas":
-                System.out.println("SUPEradmin");
                 redirect="/view/superadmin/adminMas.jsp";
                 break;
 
             case "/api/superadmin/admin-user":
-                System.out.println("SUPEradmin");
                 List<Objects> users1=new ArrayList<>();
                 req.setAttribute("users1", new DaoUser().fiandAll());
                 redirect="/view/superadmin/superAdminHome.jsp";
@@ -125,7 +120,6 @@ public class ServletUser extends HttpServlet {
                 redirect="/view/admin/adminHistorias.jsp";
                 break;
             case "/api/admin/admin-user":
-                System.out.println("SUPEradmin");
                 List<Objects> users2=new ArrayList<>();
                 req.setAttribute("users2", new DaoUser().fiandAll());
                 redirect="/view/admin/superAdminHome.jsp";
@@ -293,6 +287,20 @@ public class ServletUser extends HttpServlet {
                     ("¡Error!accion no realizada correctamente.", StandardCharsets.UTF_8);
         }
         break;
+            case "/api/superadmin/delete-admin":
+                id = req.getParameter("id");
+                System.out.println(id);
+                System.out.println("delete");
+
+                if (new DaoUser().deleteAdmin(Long.parseLong(id)))
+                    redirect = "/api/superadmin/admins-view?result=" + true + "&message" + URLEncoder.encode
+                            ("¡Exito!Administrador Eliminado correctamente.", StandardCharsets.UTF_8);
+
+                else{
+                    redirect = "/api/superadmin/admins-view?result=" + false + "&message=" + URLEncoder.encode
+                            ("¡Error!accion no realizada correctamente.", StandardCharsets.UTF_8);
+                }
+                break;
             default:
                 redirect="/api/admin/home";
     }
