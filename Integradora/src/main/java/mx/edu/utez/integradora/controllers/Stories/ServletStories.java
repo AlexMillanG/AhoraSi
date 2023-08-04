@@ -63,7 +63,7 @@ public class ServletStories extends HttpServlet {
                     story.setStatus(status1);
                   //  story.setUser_id(User user_id);
              //       story.setCategories(Categories categories);
-                    
+
 
 
                     /*id, title content, created_atDATETIME, file
