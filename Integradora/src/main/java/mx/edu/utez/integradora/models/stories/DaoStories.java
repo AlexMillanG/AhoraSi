@@ -140,6 +140,33 @@ public class DaoStories {
         return false;
     }
 
+
+    public List<Categories> types() {
+        List<Categories> list = new ArrayList<>();
+        try {
+            conn = new MySQLConnection().connect();
+            String query = "SELECT * FROM Categories;";
+            pstm = conn.prepareStatement(query);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                Categories categories = new Categories();
+                categories.setId(rs.getLong("id"));
+                categories.setCategory(rs.getString("category"));
+                list.add(categories);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DaoStories.class.getName())
+                    .log(Level.SEVERE,
+                            "Get types : " + e.getMessage());
+        } finally {
+            close();
+        }
+        return list;
+    }
+
+
+
+
     public void close(){
         try{
             if (conn!=null)conn.close();

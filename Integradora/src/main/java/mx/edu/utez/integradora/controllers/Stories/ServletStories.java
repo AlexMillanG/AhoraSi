@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "story",urlPatterns ={
         "/api/auth2",
+        "/api/story/save"
 
 })
 
@@ -53,20 +54,29 @@ public class ServletStories extends HttpServlet {
                     user_id = req.getParameter("user_id");
 
                     Status status1 = new Status();
-//                    status = "3"; //status publicado
-//                    status1.setType_status(status);
-                    User user1 = new User();
+                    status_id = "3"; //status publicado
+                   status1.setType_status(status_id);
 
-//                    categories = req.getParameter("categories");
+                    //User user1 = new User();
 
+                   category_id = req.getParameter("categories");
                     story = new Stories();
                     story.setId(0L);
                     story.setTitle(title);
                     story.setContent(content);
                     //story.setFile(byte[] file); // pendiente pk no le sabemos
                     story.setStatus(status1);
-                    //  story.setUser_id(User user_id);
-                    //       story.setCategories(Categories categories);
+                    User user = new User();
+                    user.setId(Long.parseLong(user_id));
+                    story.setUser_id(user);
+
+                    System.out.println(title);
+                    System.out.println(content);
+                    System.out.println(user.getId());
+                    System.out.println(user_id);
+
+                  Categories categories1 = new Categories();
+                          // story.setCategories(Categories categories);
 
 
 
