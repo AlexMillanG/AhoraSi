@@ -91,4 +91,5 @@ public class Stories {
     public void setCategories(Categories categories) {
         this.categories = categories;
     }
+
 }
