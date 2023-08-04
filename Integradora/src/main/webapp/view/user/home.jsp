@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -69,7 +70,7 @@
 
 
 
-                                    <form id="formHistorias" action="/api/story/save">
+                                    <form id="formHistorias" action="/api/story/save" method="post">
                                         <input name="user_id" hidden value="${user.id}">
 
                                         <input type="text"name="title" id="title" placeholder="titulo" required>
@@ -82,6 +83,14 @@
 
                                         <label for="content">contenido</label>
 
+                                        <select name="categories" id="Categories" class="form-select" required>
+                                        <option value="">Seleccione ...</option>
+                                        <s:forEach var="category" items="${categories}">
+                                            <option value="${category.id}"><s:out value="${category.category}"/>
+
+                                            </option>
+                                        </s:forEach>
+                                        </select>
                                         <%--id, title content, created_atDATETIME, file
                                          status, user, categories--%>
                                         <button type="submit">enviar</button>
