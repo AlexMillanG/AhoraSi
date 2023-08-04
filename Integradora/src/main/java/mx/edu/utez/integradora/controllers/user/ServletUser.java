@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import mx.edu.utez.integradora.models.stories.DaoStories;
 import mx.edu.utez.integradora.models.user.DaoUser;
 import mx.edu.utez.integradora.models.user.Rols;
 import mx.edu.utez.integradora.models.user.Status;
@@ -74,7 +75,7 @@ public class ServletUser extends HttpServlet {
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
             redirect = "/home.jsp";
-           // redirect="/view/admin/superAdminHome.jsp";
+            req.setAttribute("categories",new DaoStories().fiandAllCategories());
             redirect="/view/user/home.jsp";
 
                 break;
@@ -123,6 +124,7 @@ public class ServletUser extends HttpServlet {
                 List<Objects> users2=new ArrayList<>();
                 req.setAttribute("users2", new DaoUser().fiandAll());
                 redirect="/view/admin/superAdminHome.jsp";
+
         }
         req.getRequestDispatcher(redirect).forward(req,resp);
     }

@@ -6,15 +6,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.integradora.models.stories.Categories;
+import mx.edu.utez.integradora.models.stories.DaoStories;
 import mx.edu.utez.integradora.models.stories.Stories;
+import mx.edu.utez.integradora.models.user.DaoUser;
 import mx.edu.utez.integradora.models.user.Status;
 import mx.edu.utez.integradora.models.user.User;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "story",urlPatterns ={
         "/api/auth2",
-        "/api/story/save"
+        "/api/story/save",
+        "/api/categories/all"
+
 
 })
 
@@ -33,6 +41,7 @@ public class ServletStories extends HttpServlet {
         switch (action){
 
         }
+
     }
 
     @Override
@@ -40,14 +49,15 @@ public class ServletStories extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html");
-
         action = req.getServletPath();
 
         System.out.println("post");
 
         switch(action){
             case "/api/story/save":
+                System.out.println("entro al story save");
                 try {
+
                     title = req.getParameter("title");
                     content = req.getParameter("content");
                     file = req.getParameter("file");
@@ -60,6 +70,7 @@ public class ServletStories extends HttpServlet {
                     //User user1 = new User();
 
                    category_id = req.getParameter("categories");
+                    System.out.println("id de category en texto "+category_id);
                     story = new Stories();
                     story.setId(0L);
                     story.setTitle(title);
@@ -72,10 +83,22 @@ public class ServletStories extends HttpServlet {
 
                     System.out.println(title);
                     System.out.println(content);
-                    System.out.println(user.getId());
-                    System.out.println(user_id);
 
                   Categories categories1 = new Categories();
+                    categories1.setId(Long.parseLong(category_id));
+                  story.setCategories(categories1);
+                    boolean result = new DaoStories().saveStory(story);
+
+                    if (result) {
+
+                        redirect = "/api/user/home?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Te has registrado correctamente.",
+                                StandardCharsets.UTF_8);
+
+                    } else {
+
+                        redirect = "/api/user/home?result= " + result + "&message=" + URLEncoder.encode("¡Error! Acción no realizada correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
                           // story.setCategories(Categories categories);
 
 
@@ -84,13 +107,14 @@ public class ServletStories extends HttpServlet {
                      * status, user, categories*/
 
                 }catch (Exception e){
-
+                    redirect = "/api/user/home?result= " + URLEncoder.encode("Historia no publicada correctamente", StandardCharsets.UTF_8);
                 }
                 break;
 
         }
 
-//>>>>>>> 5b132da2375c229295a9aef189a06702cb4ffb7e
+        resp.sendRedirect(req.getContextPath()+redirect);
+
     }
     }
 

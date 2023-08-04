@@ -47,7 +47,7 @@ public class ServletFiles extends HttpServlet {
 //        stories=new DaoStories().findFile(id); aun no existe la clase
 
             OutputStream outputStream1=resp.getOutputStream();
-            outputStream1.write(categories.getFile(),0,stories.getFile().length);
+      //      outputStream1.write(categories.getFile(),0,stories.getFile().length);
             break;
     }
     }
