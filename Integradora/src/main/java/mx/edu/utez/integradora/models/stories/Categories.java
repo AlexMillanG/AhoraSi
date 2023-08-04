@@ -3,8 +3,17 @@ package mx.edu.utez.integradora.models.stories;
 public class Categories {
     private long id;
     private String category;
+    private String fileName;
+    private byte[] file;
 
     public Categories() {
+    }
+
+    public Categories(long id, String category, String fileName, byte[] file) {
+        this.id = id;
+        this.category = category;
+        this.fileName = fileName;
+        this.file = file;
     }
 
     public Categories(long id, String category) {
@@ -26,5 +35,21 @@ public class Categories {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
     }
 }
