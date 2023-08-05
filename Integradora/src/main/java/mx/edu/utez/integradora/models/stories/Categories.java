@@ -1,19 +1,23 @@
 package mx.edu.utez.integradora.models.stories;
 
+import mx.edu.utez.integradora.models.user.Images;
+
 public class Categories {
     private long id;
     private String category;
     private String fileName;
     private byte[] file;
+    private Images images;
 
     public Categories() {
     }
 
-    public Categories(long id, String category, String fileName, byte[] file) {
+    public Categories(long id, String category, String fileName, byte[] file, Images images) {
         this.id = id;
         this.category = category;
         this.fileName = fileName;
         this.file = file;
+        this.images = images;
     }
 
     public Categories(long id, String category) {
@@ -51,5 +55,13 @@ public class Categories {
 
     public void setFile(byte[] file) {
         this.file = file;
+    }
+
+    public Images getImages() {
+        return images;
+    }
+
+    public void setImages(Images images) {
+        this.images = images;
     }
 }

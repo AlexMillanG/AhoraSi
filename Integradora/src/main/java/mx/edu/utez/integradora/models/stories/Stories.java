@@ -1,5 +1,6 @@
 package mx.edu.utez.integradora.models.stories;
 
+import mx.edu.utez.integradora.models.user.Images;
 import mx.edu.utez.integradora.models.user.Status;
 import mx.edu.utez.integradora.models.user.User;
 
@@ -9,6 +10,7 @@ public class Stories {
     private String content;
     private String created_atDATETIME;//fecha de creacion
     private byte[] file;//talvez asi agregue las imagenes
+    private Images images;
     private Status status;
     private User user_id;
     private Categories categories;
@@ -17,12 +19,13 @@ public class Stories {
 
     }
 
-    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, Status status, User user_id, Categories categories) {
+    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, Images images, Status status, User user_id, Categories categories) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.created_atDATETIME = created_atDATETIME;
         this.file = file;
+        this.images = images;
         this.status = status;
         this.user_id = user_id;
         this.categories = categories;
@@ -92,4 +95,11 @@ public class Stories {
         this.categories = categories;
     }
 
+    public Images getImages() {
+        return images;
+    }
+
+    public void setImages(Images images) {
+        this.images = images;
+    }
 }

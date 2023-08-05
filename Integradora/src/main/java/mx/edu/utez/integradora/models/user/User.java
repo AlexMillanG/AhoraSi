@@ -10,6 +10,7 @@ public class User {
     private String email;
     private String pass;
     private String token;
+    private Images images;
     private byte[] image;
      private  Rols rols;
      private Status status;
@@ -17,7 +18,7 @@ public class User {
     public User() {
     }
 
-    public User(long id, String name, String lastname, String surname, String birthday, String sex, String email, String pass, String token, byte[] image, mx.edu.utez.integradora.models.user.Rols rols, mx.edu.utez.integradora.models.user.Status status) {
+    public User(long id, String name, String lastname, String surname, String birthday, String sex, String email, String pass, String token, Images images, byte[] image, Rols rols, Status status) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
@@ -27,6 +28,7 @@ public class User {
         this.email = email;
         this.pass = pass;
         this.token = token;
+        this.images = images;
         this.image = image;
         this.rols = rols;
         this.status = status;
@@ -126,5 +128,13 @@ public class User {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Images getImages() {
+        return images;
+    }
+
+    public void setImages(Images images) {
+        this.images = images;
     }
 }
