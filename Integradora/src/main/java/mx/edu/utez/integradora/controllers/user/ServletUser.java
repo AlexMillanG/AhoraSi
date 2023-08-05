@@ -24,13 +24,11 @@ import java.util.Objects;
 @WebServlet (name = "user",urlPatterns = {
         "/api/auth",
         "/api/user/home",
-        "/api/user/logout",
         "/api/user/all",
         "/api/user/all-view",
         "/api/user/one",
         "/api/user/save",
         "/api/user/create",
-        "/api/user/modify",
         "/api/user/update",
         "/api/user/delete",
         "/api/admin/home",
@@ -111,6 +109,9 @@ public class ServletUser extends HttpServlet {
 
             case "/api/superadmin/admin-user":
                 List<Objects> users1=new ArrayList<>();
+                id=req.getParameter("id");
+                System.out.println(id);
+                req.setAttribute("users2",new DaoUser().findOne(id!= null ? Long.parseLong(id):0));
                 req.setAttribute("users1", new DaoUser().fiandAll());
                 redirect="/view/superadmin/superAdminHome.jsp";
                 break;

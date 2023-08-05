@@ -62,13 +62,12 @@
                                         <c:out value="${user.sex}"/>
                                     </td>
                                     <td>
+                                        <form action="">
+
+                                        </form>
                                         <input value="${user.id}" name="id">
-                                        <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editarr"
-                                        onclick="editUser(${user.id})
-                                                id="editUser${user.id}"
-                                        data-id=${user.id} data-name=${user.name}
-                                        data-lastname${user.lastname} data.surname${user.surname}
-                                        data-
+                                        <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editar"
+                                        value="${user.id}" name="editar"
                                         >Editar</button>
 
                                         <form method="post" action="/api/user/delete">
