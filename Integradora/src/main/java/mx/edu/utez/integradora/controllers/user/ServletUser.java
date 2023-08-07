@@ -72,9 +72,16 @@ public class ServletUser extends HttpServlet {
                 break;
             //End Points para usuarios
             case "/api/user/home":
+            List<Objects> stories = new ArrayList<>();
+            req.setAttribute("stories", new DaoStories().findAllStories());
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
+<<<<<<< HEAD
             req.setAttribute("categories",new DaoStories().fiandAllCategories());
+=======
+            redirect = "/home.jsp";
+            req.setAttribute("categories",new DaoStories().findAllCategories());
+>>>>>>> df81d6e18083e27c4ab76754786a51739ac82b78
             redirect="/view/user/home.jsp";
             break;
 

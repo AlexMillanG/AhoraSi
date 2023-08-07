@@ -21,7 +21,7 @@ public class DaoCategories {
         List<Categories> categories = new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query = "SELECT * FROM categoties;";
+            String query = "SELECT * FROM categories;";
             pstm = conn.prepareStatement(query);
             rs = pstm.executeQuery();
             while (rs.next()) {

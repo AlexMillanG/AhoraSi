@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -59,10 +60,13 @@
                                         <img src= "../../assets/img/3.jpg"  class="w-100" alt="...">
                                     </div>
                                     <div class="col-md-6 p-4 ps-md-0">
-                                        <h4 class="mt-0">Columns with stretched link</h4>
-                                        <h5 class="mt-0">Usuario Accion</h5>
-                                        <p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+                                        <h4 class="mt-0">Columns with stretched link <knsdnkg></knsdnkg></h4>
+                                          <c:forEach var="Story" items="${stories}">
+                                        <h5 class="mt-0"><c:out value="${Story.title}"/></h5>
+                                        <p><c:out value="${Story.content}"/> </p>
+                                             <p></p>
                                         <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
+                                        </c:forEach>
                                     </div>
 
 
@@ -72,16 +76,17 @@
 
                                     <form id="formHistorias" action="/api/story/save" method="post">
                                         <input name="user_id" hidden value="${user.id}">
+                                        <label for="title">titulo</label>
+                                        <br>
 
                                         <input type="text"name="title" id="title" placeholder="titulo" required>
-
-                                        <label for="title">titulo</label>
-
+                                        <br>
+                                        <label for="content">contenido</label>
+                                        <br>
                                         <input type="text" name="content" id="content" placeholder="contenido" required>
 
 
 
-                                        <label for="content">contenido</label>
 
                                         <select name="categories" id="Categories" class="form-select" required>
                                         <option value="">Seleccione ...</option>
@@ -95,6 +100,12 @@
                                          status, user, categories--%>
                                         <button type="submit">enviar</button>
                                     </form>
+
+
+                                  <%--  <c:forEach var="Story" items="${stories}">
+                                        <h5 class="mt-0"><c:out value="${Story.title}"/></h5>
+                                        <p><c:out value="${Story.content}"/> </p>
+                                            </c:forEach>  --%>
                                 </div>
                             </div>
                         </div>
@@ -107,9 +118,15 @@
                                         <img src= "../../assets/img/3.jpg"  class="w-100" alt="..." style="border-radius: 100%">
                                     </div>
                                     <div class="col-md-6 p-4 ps-md-0">
-                                        <h4 class="mt-0">Columns with stretched link</h4>
+
                                         <h5 class="mt-0">Usuario</h5>
-                                        <p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+                                <%--        <s:forEach var="stories" items="${Stories}" varStatus="s">
+
+                                        <h4 class="mt-0"><c:out value="${Stories.title}"/></h4>
+                                        <p>Another instance of placeholder content for this other custom component.
+                                            It is intended to mimic what some real-world content would look like,
+                                            and we're using it here to give the component a bit of body and size.</p>
+                                        </s:forEach>   --%>
                                         <button  type="button" class="btn" style="float: right; width: 50%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Entra al Foro</button>
                                     </div>
                                 </div>
@@ -142,8 +159,17 @@
                         <h5 class="mt-0">Usuario</h5>
                         <div style="	overflow-y: scroll; height: 300px;">
                             <div style="font-family: PT serif; margin-top: 5%; margin-bottom: 5%; margin-left: 5%; margin-right: 5%;">
-                                <p> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-                                    Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+                                <p> Contrary to popular belief, Lorem Ipsum is not simply random text.
+                                    It has roots in a piece of classical Latin literature from 45 BC,
+                                    making it over 2000 years old. Richard McClintock, a Latin professor
+                                    at Hampden-Sydney College in Virginia, looked up one of the more obscure
+                                    Latin words, consectetur, from a Lorem Ipsum passage, and going through
+                                    the cites of the word in classical literature, discovered the undoubtable
+                                    source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus
+                                    Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in
+                                    45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                                    Another instance of placeholder content for this other custom component.
+                                    It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
                             </div>
                         </div>
                        </div>
