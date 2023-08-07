@@ -53,6 +53,8 @@ import java.util.Objects;
         "/api/superadmin/delete-admin"//eliminar Administradores
 
 
+
+
 })
 public class ServletUser extends HttpServlet {
     String action,redirect="/api/auth";
