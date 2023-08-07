@@ -60,13 +60,21 @@
                                         <img src= "../../assets/img/3.jpg"  class="w-100" alt="...">
                                     </div>
                                     <div class="col-md-6 p-4 ps-md-0">
-                                        <h4 class="mt-0">Columns with stretched link </h4>
                                           <c:forEach var="Story" items="${stories}">
+                                        <h4 class="mt-0"><c:out value="${Story.title}"/></h4>
                                               <br>
-                                        <h5 class="mt-0"><c:out value="${Story.title}"/></h5>
+                                        <h5 class="mt-0">Story.category</h5>
                                         <p><c:out value="${Story.content}"/> </p>
 
                                         <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
+                                              <br>
+                                              <br>
+                                                <div>
+                                                    <form  method="post" action="/api/user/delete-history">
+                                                    <input hidden value="${user.id}" name="idUser" >
+                                                    <button type="submit" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Eliminar mi historia</button>
+                                                      </form>
+                                                </div>
                                               <br>
                                               <br>
                                         </c:forEach>

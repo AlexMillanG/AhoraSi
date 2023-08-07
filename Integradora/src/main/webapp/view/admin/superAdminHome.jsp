@@ -68,10 +68,9 @@
                                         <input hidden value="${user.id}" name="id">
                                         <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editarr">Editar</button>
                                         <form method="post" action="/api/user/delete">
-                                            <input hidden value="${user.id}" name="id">
-                                            <button type="submit" class="btn btn-outline-danger btn-sm">ELIMINAR
-                                            </button>
 
+                                            <input hidden value="${user.id}" name="id">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm">ELIMINAR</button>
                                         </form>
                                     </td>
                                 </tr>

@@ -1,7 +1,6 @@
 package mx.edu.utez.integradora.models.stories;
 
 import mx.edu.utez.integradora.models.user.Status;
-import mx.edu.utez.integradora.models.user.User;
 import mx.edu.utez.integradora.utils.MySQLConnection;
 
 import java.sql.*;
@@ -19,7 +18,7 @@ public class DaoStories {
         List<Stories> stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query= "{call show_stories();}";
+            String query= "SELECT * from stories;";
             pstm= conn.prepareStatement(query);
             rs= pstm.executeQuery();
             while (rs.next()){
@@ -33,15 +32,8 @@ public class DaoStories {
                 status.setType_status(rs.getString("status_id"));
                 stories1.setStatus(status);
                 Categories categories=new Categories();
-                categories.setCategory(rs.getString("category"));
-                categories.setId(rs.getLong("id"));
+                categories.setCategory(rs.getString("category_id"));
                 stories1.setCategories(categories);
-
-                   User user = new User();
-
-                user.setName(rs.getString("name_"));
-                user.setLastname(rs.getString("lastname"));
-                user.setSurname(rs.getString("surname"));
                 stories.add(stories1);
 
             }

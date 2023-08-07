@@ -50,7 +50,9 @@ import java.util.Objects;
         "/api/superadmin/admin-historias",//vistaAdminHistorias
         "/api/superadmin/admin-mas",//
         "/api/superadmin/admin-user",//
-        "/api/superadmin/delete-admin"//eliminar Administradores
+        "/api/superadmin/delete-admin",//eliminar Administradores
+
+        "/api/user/delete-story"
 
 
 
@@ -290,9 +292,9 @@ public class ServletUser extends HttpServlet {
                             ("¡Exito!Usuario Eliminado correctamente.", StandardCharsets.UTF_8);
 
                 else{
-            redirect = "/api/admin/home?result=" + false + "&message=" + URLEncoder.encode
+               redirect = "/api/admin/home?result=" + false + "&message=" + URLEncoder.encode
                     ("¡Error!accion no realizada correctamente.", StandardCharsets.UTF_8);
-        }
+                  }
         break;
             case "/api/superadmin/delete-admin":
                 id = req.getParameter("id");
@@ -307,6 +309,11 @@ public class ServletUser extends HttpServlet {
                     redirect = "/api/superadmin/admins-view?result=" + false + "&message=" + URLEncoder.encode
                             ("¡Error!accion no realizada correctamente.", StandardCharsets.UTF_8);
                 }
+                break;
+            case  "/api/user/delete-story":
+                  id = req.getParameter("idUser");
+                  System.out.println(id);
+                  redirect = "/api/user/home";
                 break;
             default:
                 redirect="/api/admin/home";
