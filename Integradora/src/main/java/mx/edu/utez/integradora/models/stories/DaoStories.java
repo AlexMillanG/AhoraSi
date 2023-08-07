@@ -16,37 +16,59 @@ public class DaoStories {
     private Connection conn;
     private PreparedStatement pstm;
     private ResultSet rs;
-    public List<Stories> fiandAll(){
-        List<Stories> stories1=new ArrayList<>();
+    public List<Stories> findAllStories(){
+        List<Stories> stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
             String query= "select * from stories;";
             pstm= conn.prepareStatement(query);
             rs= pstm.executeQuery();
             while (rs.next()){
-                Stories stories=new Stories();
-                stories.setId(rs.getLong("id"));
-                stories.setTitle(rs.getString("title"));
-                stories.setContent(rs.getString("content"));
-                stories.setCreated_atDATETIME(rs.getString("created_ad"));
-                stories.setFile(rs.getBytes("file"));//Aqui aun no funciona
+                Stories stories1=new Stories();
+                stories1.setId(rs.getLong("id"));
+                stories1.setTitle(rs.getString("title"));
+                stories1.setContent(rs.getString("content"));
+                stories1.setCreated_atDATETIME(rs.getString("created_atDATETIME"));
+                stories1.setFile(rs.getBytes("image_id"));//Aqui aun no funciona
                 Status status= new Status();
-                status.setType_status(rs.getString("type_status"));
-                stories.setStatus(status);
+                status.setType_status(rs.getString("status_id"));
+                stories1.setStatus(status);
                 Categories categories=new Categories();
-                categories.setCategory(rs.getString("category"));
-                stories.setCategories(categories);
-                stories1.add(stories);
+                categories.setCategory(rs.getString("category_id"));
+                stories1.setCategories(categories);
+                stories.add(stories1);
 
             }
 
         }catch (SQLException e){
-            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FIANDALL"+e.getMessage());
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FIANDALL stories"+e.getMessage());
         }finally {
             close();
         }
-        return  stories1;
+        return  stories;
 
+    }
+    public List<Categories> findAllCategories(){
+        List<Categories> categories=new ArrayList<>();
+        try {
+            conn = new MySQLConnection().connect();
+            String query= "select * from categories;";
+            pstm= conn.prepareStatement(query);
+            rs= pstm.executeQuery();
+            while (rs.next()){
+                Categories categories1 = new Categories();
+
+                categories1.setId(rs.getLong("id"));
+                categories1.setCategory(rs.getString("category"));
+
+                categories.add(categories1);
+            }
+        }catch (SQLException e){
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FIAND ALL categorias"+e.getMessage());
+        }finally {
+            close();
+        }
+        return  categories;
     }
 
     public  Stories findOne(Long id){
@@ -87,7 +109,6 @@ public class DaoStories {
             String query = "insert into stories(title,content,created_atDATETIME,status_id,user_id,category_id) values (?,?,curdate(),3,?,?);";
             pstm=conn.prepareStatement(query);
             pstm.setString(1,object.getTitle());
-
             pstm.setString(2,object.getContent());
             pstm.setLong(3,object.getUser_id().getId());
             System.out.println(object.getUser_id().getId());
@@ -167,27 +188,7 @@ public class DaoStories {
         return list;
     }
 
-    public List<Categories> fiandAllCategories(){
-        List<Categories> categories=new ArrayList<>();
-        try {
-            conn = new MySQLConnection().connect();
-            String query= "select * from categories;";
-            pstm= conn.prepareStatement(query);
-            rs= pstm.executeQuery();
-            while (rs.next()){
-                Categories categories1 = new Categories();
-                categories1.setId(rs.getLong("id"));
-                categories1.setCategory(rs.getString("category"));
-                System.out.println(categories);
-                categories.add(categories1);
-            }
-        }catch (SQLException e){
-            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FIANDALL"+e.getMessage());
-        }finally {
-            close();
-        }
-        return  categories;
-    }
+
 
 
 

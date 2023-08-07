@@ -70,10 +70,12 @@ public class ServletUser extends HttpServlet {
                 break;
 
             case "/api/user/home":
+            List<Objects> stories = new ArrayList<>();
+            req.setAttribute("stories", new DaoStories().findAllStories());
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
             redirect = "/home.jsp";
-            req.setAttribute("categories",new DaoStories().fiandAllCategories());
+            req.setAttribute("categories",new DaoStories().findAllCategories());
             redirect="/view/user/home.jsp";
 
                 break;
