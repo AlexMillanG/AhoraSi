@@ -34,8 +34,14 @@
                     <div class="container-fluid" id="cont-2">
                         <jsp:include page="/layouts/navbarAdmin.jsp"/>
                         <div class="card-body">
-
-                            <div class="car-text">
+                            <s:if test="users.isEmpty()">
+                            <div class="row">
+                                <div class="col">
+                                    <h3>Sin registros</h3>
+                                </div>
+                            </div>
+                            </s:if>
+                            <div class="card-text">
                                 <table class="table table-stripped">
                                     <thead>
                                     <th>#</th>
@@ -77,9 +83,7 @@
                                 </tr>
                                 </s:forEach>
                                 <tr>
-                                    <td colspan="6">
-                                        Sin registros
-                                    </td>
+
                                 </tr>
                                 </tbody>
                             </table>

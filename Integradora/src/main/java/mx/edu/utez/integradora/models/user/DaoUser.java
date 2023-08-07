@@ -153,9 +153,9 @@ public class DaoUser implements DaoRepository<User> {
                 user.setSex(rs.getString("sex"));
                 user.setEmail(rs.getString("email"));
                 user.setPass(rs.getString("pass"));
-                Rols role= new Rols();
-                role.setRol(rs.getString("rol"));
-                user.setRols(role);
+//                Rols role= new Rols();
+//                role.setRol(rs.getString("rols"));
+//                user.setRols(role);
             }
             return user;
         }catch (SQLException e){

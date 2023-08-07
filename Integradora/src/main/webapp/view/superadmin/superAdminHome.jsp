@@ -34,8 +34,14 @@
                     <div class="container-fluid" id="cont-2">
                         <jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
                         <div class="card-body">
-
-                            <div class="car-text">
+                            <s:if test="user.isEmpty()">
+                                <div class="row">
+                                    <div class="col">
+                                        <h3>Sin registros</h3>
+                                    </div>
+                                </div>
+                            </s:if>
+                            <div class="card-text">
                                 <table class="table table-stripped">
                                     <thead>
                                     <th>#</th>
@@ -70,7 +76,7 @@
                                         value="${user.id}" name="editar"
                                         >Editar</button>
 
-                                        <form method="post" action="/api/user/delete">
+                                        <form method="post" action="/api/user/super-delete">
                                             <input  value="${user.id}" name="id">
                                             <button type="submit" class="btn btn-outline-danger btn-sm">ELIMINAR
                                             </button>
@@ -79,11 +85,7 @@
                                     </td>
                                 </tr>
                                 </s:forEach>
-                                <tr>
-                                    <td colspan="6">
-                                        Sin registros
-                                    </td>
-                                </tr>
+
                                 </tbody>
                             </table>
                             </div>

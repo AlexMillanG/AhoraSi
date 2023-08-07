@@ -17,22 +17,22 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../html/index-SuperAdmin.html">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/api/user/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="usuario-SuperAdmin.html">Usuario</a>
+                    <form action="/api/user/perfil">
+                        <input hidden value="${user.id}" name="id">
+                        <button class="btn btn-link-dark" type="submit">
+                        Perfil
+                        </button>
+                    </form>
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../html/Historias-SuperAdmin.html">Historias</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Foros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Mas-SuperAdmin.html">Mas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/index.jsp">Cerrar sesión</a>
+                    <a class="nav-link" href="/api/auth">Cerrar sesión</a>
                 </li>
 
             </ul>
