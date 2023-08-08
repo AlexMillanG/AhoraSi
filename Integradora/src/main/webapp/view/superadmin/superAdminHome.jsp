@@ -103,15 +103,15 @@
                 <p  style="font-family: PT serif; text-align: center; font-size: 30px;">Actualizar informacion</p><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="updateForm" action="/api/user/update" method="post" class="needs-validation"
+                <form id="updateForm" action="/api/user/save" method="post" class="needs-validation"
                       novalidate method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col">
-                            <input id="id" name="id">
+                            <input id="id" name="id" class="form-control">
 
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="nameActualizar" id="nameActualizar"
-                                       placeholder="nombre" class="form-control"/>
+                                       placeholder="nombre" />
                                 <label for="nameActualizar">nombre</label>
                                 <div class="invalid-feedback text-start">
                                     Campo obligatorio
@@ -216,7 +216,7 @@
 <script>
 const  form=document.getElementById("updateForm")
 const btn=document.getElementById("updateUserbtn")
-
+var id=document.getElementById("id");
 
 
 function prueba(user){
@@ -242,7 +242,6 @@ function prueba(user){
     document.getElementsByTagName("sex").value=sex;
 }
 
-
 (function () {
     btn.addEventListener("click",function (event){
         console.log(form.checkValidity());
@@ -258,6 +257,13 @@ function prueba(user){
 })();
 function upSendForm() {
 if(form.checkValidity()){
+    console.log("a "+document.getElementById("nameActualizar").value);
+    var id = document.getElementById("id");
+    console.log("aa "+id.value);
+    var nombre = document.getElementById("nameActualizar");
+    console.log("aaa "+nombre.value);
+    console.log(document.getElementById("updateForm").value);
+    console.log(form.checkValidity());
     form.submit();
 }
 }

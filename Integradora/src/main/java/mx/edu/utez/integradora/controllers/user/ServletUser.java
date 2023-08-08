@@ -187,13 +187,21 @@ public class ServletUser extends HttpServlet {
                 break;
             case "/api/user/save":
                 try {
-                    name = req.getParameter("name");
-                    lastname = req.getParameter("lastname");
+                    name = req.getParameter("nameActualizar");
+                    lastname = req.getParameter("nameActualizar");
                     surname = req.getParameter("surname");
                     birthday = req.getParameter("birthday");
                     sex = req.getParameter("sex");
                     email = req.getParameter("email");
                     pass = req.getParameter("pass");
+
+                    System.out.println("nombre es " + name);
+                    System.out.println("lastname es " + lastname);
+                    System.out.println("surname es " + surname);
+                    System.out.println("birthday es " + birthday);
+                    System.out.println("sex es " + sex);
+                    System.out.println("email es " + email);
+                    System.out.println("pass es " + pass);
 
                     Rols rols = new Rols();
                     rol = "user";
@@ -213,8 +221,7 @@ public class ServletUser extends HttpServlet {
                     user.setPass(pass);
                     user.setRols(rols);
                     user.setStatus(status1);
-                    System.out.println(user.getRols().getRol());
-                    System.out.println(user.getStatus().getType_status());
+
                     boolean result = new DaoUser().save(user);
 
                     if (result) {
@@ -274,11 +281,11 @@ public class ServletUser extends HttpServlet {
                     boolean result = new DaoUser().createAdmin(user);
 
                     if (result) {
-                        redirect = "/api/superadmin/admin-mas?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Te has registrado correctamente.",
+                        redirect = "/api/superadmin/admins-view?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Te has registrado correctamente.",
                                 StandardCharsets.UTF_8);
                     } else {
 
-                        redirect = "/api/superadmin/admin-mas?result= " + result + "&message=" + URLEncoder.encode("¡Error! Acción no realizada correctamente.",
+                        redirect = "/api/superadmin/admins-view?result= " + result + "&message=" + URLEncoder.encode("¡Error! Acción no realizada correctamente.",
                                 StandardCharsets.UTF_8);
                     }
 
@@ -336,12 +343,12 @@ public class ServletUser extends HttpServlet {
                 System.out.println("update");
                 try {
                     id = req.getParameter("id");
-                    name = req.getParameter("nameActualizar");
-                    lastname = req.getParameter("upSurname");
-                    surname = req.getParameter("upLastname");
-                    birthday = req.getParameter("upBirthday");
-                    email = req.getParameter("upEmail");
-                    pass = req.getParameter("upPass");
+                    name = req.getParameter("name");
+                    lastname = req.getParameter("surname");
+                    surname = req.getParameter("lastname");
+                    birthday = req.getParameter("birthday");
+                    email = req.getParameter("emailRegistro");
+                    pass = req.getParameter("pass");
 
                     System.out.println("id is"+id);
                     System.out.println("name is"+name);

@@ -1,5 +1,8 @@
 package mx.edu.utez.integradora.models.user;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class User {
     private long id;
     private String name;
@@ -14,6 +17,23 @@ public class User {
     private byte[] image;
      private  Rols rols;
      private Status status;
+
+    public int[] calcualrEdad( String fecha){
+        String[] fechas=fecha.split("/");
+
+        int dia = Integer.parseInt(fechas[0]);
+        int mes = Integer.parseInt(fechas[1]);
+        int año = Integer.parseInt(fechas[2]);
+
+        LocalDate fechaNacimiento = LocalDate.of(año, mes, dia);
+        LocalDate fechaActual = LocalDate.now();
+
+        Period periodo=Period.between(fechaNacimiento, fechaActual);
+
+        int[] edad = { periodo.getYears(), periodo.getMonths(), periodo.getDays() };
+
+        return edad;
+    }
 
     public User() {
     }

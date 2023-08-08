@@ -198,9 +198,9 @@
 
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" name="email" id="emailRegistro"
+                            <input type="email" class="form-control" name="emailRegistro" id="emailRegistro"
                                    placeholder="name@example.com" required>
-                            <label for="email">Correo electrónico</label>
+                            <label for="emailRegistro">Correo electrónico</label>
                             <div class="invalid-feedback text-start">
                                 Campo obligatorio
                             </div>
@@ -337,9 +337,10 @@
 
     function registro(){
         if(formRegistro.checkValidity()){
-            console.log(formRegistro.checkValidity())
+            console.log("a"+formRegistro.value)
             console.log("antes del submint")
             formRegistro.submit();
+            console.log("A"+formRegistro.value);
             console.log("despues del submint")
 
         }

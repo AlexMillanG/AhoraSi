@@ -168,7 +168,7 @@ public class DaoUser implements DaoRepository<User> {
     }
 
     @Override
-    public boolean save(User object) {
+   public boolean save(User object) {
         try {
             conn= new MySQLConnection().connect();
             String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,3,1);";
@@ -189,7 +189,7 @@ public class DaoUser implements DaoRepository<User> {
             close();
         }
         return false;
-    }
+   }
 
     @Override
     public boolean update(User object) {
