@@ -344,9 +344,10 @@ public class ServletUser extends HttpServlet {
                 try {
                     id = req.getParameter("id");
                     name = req.getParameter("name");
-                    lastname = req.getParameter("surname");
-                    surname = req.getParameter("lastname");
+                    lastname = req.getParameter("lastname");
+                    surname = req.getParameter("surname");
                     birthday = req.getParameter("birthday");
+                    sex = req.getParameter("sex");
                     email = req.getParameter("emailRegistro");
                     pass = req.getParameter("pass");
 

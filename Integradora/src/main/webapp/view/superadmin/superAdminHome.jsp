@@ -103,29 +103,27 @@
                 <p  style="font-family: PT serif; text-align: center; font-size: 30px;">Actualizar informacion</p><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="updateForm" action="/api/user/save" method="post" class="needs-validation"
-                      novalidate method="post" enctype="multipart/form-data">
+                    <form id="form" action="/api/user/update" method="post" class="needs-validation" novalidate method="post">
                     <div class="row">
                         <div class="col">
-                            <input id="id" name="id" class="form-control">
-
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="nameActualizar" id="nameActualizar"
-                                       placeholder="nombre" />
-                                <label for="nameActualizar">nombre</label>
+                                <input id="id" name="id" class="form-control" >
+                                <label for="id"> id</label>
+                                <input type="text"   name="name" id="name"
+                                       placeholder="nombre" required>
+                                <label for="name">ingresa tu nombre</label>
                                 <div class="invalid-feedback text-start">
                                     Campo obligatorio
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" name="upEmail" id="upEmail"
+                            <input type="email" class="form-control" name="emailRegistro" id="emailRegistro"
                                    placeholder="name@example.com" required>
-                            <label for="upEmail">Correo electrónico</label>
+                            <label for="emailRegistro">Correo electrónico</label>
                             <div class="invalid-feedback text-start">
                                 Campo obligatorio
                             </div>
@@ -133,9 +131,9 @@
                     </div>
 
                     <div class="form-floating mb-1">
-                        <input type="password" name="upPass" class="form-control" id="upPass"
+                        <input type="password" name="pass" class="form-control" id="pass"
                                placeholder="name" required>
-                        <label for="upPass">Contraseña</label>
+                        <label for="pass">Contraseña</label>
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
@@ -144,9 +142,9 @@
                     </div>
 
                     <div class="form-floating mb-1">
-                        <input type="text" name="upSurname" class="form-control" id="upSurname"
+                        <input type="text" name="surname" class="form-control" id="surname"
                                placeholder="surname" required>
-                        <label for="upSurname">Apellido</label>
+                        <label for="surname">Apellido</label>
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
@@ -155,9 +153,9 @@
                     </div>
 
                     <div class="form-floating mb-1">
-                        <input type="text" name="upLastname" class="form-control" id="upLastname"
+                        <input type="text" name="lastname" class="form-control" id="lastname"
                                placeholder="lastname" required>
-                        <label for="upLastname">Segundo Apellido</label>
+                        <label for="lastname">Segundo Apellido</label>
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
@@ -166,11 +164,9 @@
                     </div>
 
                     <div class="form-floating mb-1">
-                        <input type="date" min="1900-01-01" max="2005-12-31" name="upBirthday"
-                               class="form-control"
-                               id="upBirthday"
+                        <input type="date" min="1900-01-01" max="2005-12-31" name="birthday" class="form-control" id="birthday"
                                placeholder="birthday" required>
-                        <label for="upBirthday">Fecha de nacimiento</label>
+                        <label for="birthday">Fecha de nacimiento</label>
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
@@ -179,19 +175,17 @@
                     <br>
 
                     <div class="form-floating mb-1">
-                        <p>Ingresa el sexo</p>
+                        <p>Ingresa tu sexo</p>
                         <br>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="hombre" name="sex"
-                                   id="hombre">
+                            <input class="form-check-input" type="radio" value="hombre" name="sex" id="hombre">
                             <label class="form-check-label" for="hombre">
                                 Hombre
                             </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="mujer" name="sex" id="mujer"
-                                   mujer>
+                            <input class="form-check-input" type="radio" value="mujer" checked name="sex" id="mujer" mujer>
                             <label class="form-check-label" for="mujer">
                                 Mujer
                             </label>
@@ -201,12 +195,15 @@
                             class="btn btn-outline-success btn-sm">
                         <i data-feather="check"></i> Aceptar
                     </button>
+
                     <button class="btn btn-outline-danger btn-sm"type="button" data-bs-dismiss="modal">
                         <i data-feather="x"></i>
                         Cancelar
                     </button>
                     </form>
+                </form>
             </div>
+        </div>
         </div>
     </div>
 </div>
@@ -214,7 +211,7 @@
 </div><jsp:include page="../../layouts/footer.jsp"/>
 
 <script>
-const  form=document.getElementById("updateForm")
+const  form=document.getElementById("form")
 const btn=document.getElementById("updateUserbtn")
 var id=document.getElementById("id");
 
@@ -233,12 +230,12 @@ function prueba(user){
     console.log("hola1 "+valores);
     console.log("hola2 "+name);
     document.getElementById("id").value=id;
-    document.getElementById("nameActualizar").value = name;
-    document.getElementById("upEmail").value= correo;
-    document.getElementById("upPass").value= password;
-    document.getElementById("upSurname").value= surname;
-    document.getElementById("upLastname").value= lastname;
-    document.getElementById("upBirthday").value= birthday;
+    document.getElementById("name").value = name;
+    document.getElementById("emailRegistro").value= correo;
+    document.getElementById("pass").value= password;
+    document.getElementById("surname").value= surname;
+    document.getElementById("lastname").value= lastname;
+    document.getElementById("birthday").value= birthday;
     document.getElementsByTagName("sex").value=sex;
 }
 
@@ -257,12 +254,12 @@ function prueba(user){
 })();
 function upSendForm() {
 if(form.checkValidity()){
-    console.log("a "+document.getElementById("nameActualizar").value);
+    console.log("a "+document.getElementById("name").value);
     var id = document.getElementById("id");
     console.log("aa "+id.value);
-    var nombre = document.getElementById("nameActualizar");
+    var nombre = document.getElementById("name");
     console.log("aaa "+nombre.value);
-    console.log(document.getElementById("updateForm").value);
+    console.log(document.getElementById("form").value);
     console.log(form.checkValidity());
     form.submit();
 }
