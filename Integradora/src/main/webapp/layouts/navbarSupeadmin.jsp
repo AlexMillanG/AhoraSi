@@ -26,16 +26,16 @@
                             <a class="nav-link active" aria-current="page" href="/api/admin/home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/api/superadmin/admin-user">Usuario</a>
+                            <a class="nav-link" href="/api/superadmin/admin-user">Usuario <i data-feather="users"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/api/superadmin/admin-historias">Historias</a>
+                            <a class="nav-link" href="/api/superadmin/admin-historias">Historias <i data-feather="book-open"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/api/superadmin/admins-view">Administradores</a>
+                            <a class="nav-link" href="/api/superadmin/admins-view">Administradores <i data-feather="user-plus"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="/api/auth" class="nav-link"> Cerrar Sesión</a>
+                            <a href="/api/auth" class="nav-link"> Cerrar Sesión<i data-feather="log-out"></i></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/api/superadmin/admin-mas">Mas</a>

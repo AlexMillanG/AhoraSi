@@ -68,17 +68,15 @@
                                         <c:out value="${user.sex}"/>
                                     </td>
                                     <td>
-                                        <form action="">
-
-                                        </form>
-                                        <input value="${user.id}" name="id">
                                         <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editar"
-                                        value="${user.id}" name="editar"
-                                        >Editar</button>
+                                                onclick="prueba('${user.id}|${user.name}|${user.email}|${user.pass}|${user.lastname}|${user.surname}|${user.birthday}|${user.sex}')" name="editar"
+                                        ><i data-feather="edit-3"></i>Editar</button>
 
                                         <form method="post" action="/api/user/super-delete">
-                                            <input  value="${user.id}" name="id">
-                                            <button type="submit" class="btn btn-outline-danger btn-sm">ELIMINAR
+                                            <input hidden value="${user.id}" name="id">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                <i data-feather="user-x"></i>
+                                                ELIMINAR
                                             </button>
 
                                         </form>
@@ -102,20 +100,19 @@
     <div class="modal-dialog modal-lg" >
         <div class="modal-content">
             <div class="modal-header">
-                <p  style="font-family: PT serif; text-align: center; font-size: 30px;">Actualizar informacion</p>        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <p  style="font-family: PT serif; text-align: center; font-size: 30px;">Actualizar informacion</p><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="updateForm" action="/api/user/update" method="post" class="needs-validation"
                       novalidate method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col">
+                            <input id="id" name="id">
 
                             <div class="form-floating mb-3">
-                                <input  hidden value="" id="upId" name="id">
-
-                                <label for="name">nombre</label>
-                                <input type="text" class="form-control" name="name" id="name"
+                                <input type="text" class="form-control" name="nameActualizar" id="nameActualizar"
                                        placeholder="nombre" class="form-control"/>
+                                <label for="nameActualizar">nombre</label>
                                 <div class="invalid-feedback text-start">
                                     Campo obligatorio
                                 </div>
@@ -126,7 +123,7 @@
 
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" name="email" id="upEmail"
+                            <input type="email" class="form-control" name="upEmail" id="upEmail"
                                    placeholder="name@example.com" required>
                             <label for="upEmail">Correo electrónico</label>
                             <div class="invalid-feedback text-start">
@@ -136,7 +133,7 @@
                     </div>
 
                     <div class="form-floating mb-1">
-                        <input type="password" name="pass" class="form-control" id="upPass"
+                        <input type="password" name="upPass" class="form-control" id="upPass"
                                placeholder="name" required>
                         <label for="upPass">Contraseña</label>
                         <div class="invalid-feedback text-start">
@@ -147,7 +144,7 @@
                     </div>
 
                     <div class="form-floating mb-1">
-                        <input type="text" name="surname" class="form-control" id="upSurname"
+                        <input type="text" name="upSurname" class="form-control" id="upSurname"
                                placeholder="surname" required>
                         <label for="upSurname">Apellido</label>
                         <div class="invalid-feedback text-start">
@@ -158,7 +155,7 @@
                     </div>
 
                     <div class="form-floating mb-1">
-                        <input type="text" name="lastname" class="form-control" id="upLastname"
+                        <input type="text" name="upLastname" class="form-control" id="upLastname"
                                placeholder="lastname" required>
                         <label for="upLastname">Segundo Apellido</label>
                         <div class="invalid-feedback text-start">
@@ -169,7 +166,7 @@
                     </div>
 
                     <div class="form-floating mb-1">
-                        <input type="date" min="1900-01-01" max="2005-12-31" name="birthday"
+                        <input type="date" min="1900-01-01" max="2005-12-31" name="upBirthday"
                                class="form-control"
                                id="upBirthday"
                                placeholder="birthday" required>
@@ -204,6 +201,10 @@
                             class="btn btn-outline-success btn-sm">
                         <i data-feather="check"></i> Aceptar
                     </button>
+                    <button class="btn btn-outline-danger btn-sm"type="button" data-bs-dismiss="modal">
+                        <i data-feather="x"></i>
+                        Cancelar
+                    </button>
                     </form>
             </div>
         </div>
@@ -216,5 +217,49 @@
 const  form=document.getElementById("updateForm")
 const btn=document.getElementById("updateUserbtn")
 
+
+
+function prueba(user){
+    var valores = user.split("|");
+    var id=valores[0];
+    var name = valores[1];
+    var correo = valores[2];
+    var password =valores[3];
+    var surname=valores[4];
+    var lastname=valores[5];
+    var birthday=valores[6];
+    var sex=valores[7];
+    console.log("hola "+user);
+    console.log("hola1 "+valores);
+    console.log("hola2 "+name);
+    document.getElementById("id").value=id;
+    document.getElementById("nameActualizar").value = name;
+    document.getElementById("upEmail").value= correo;
+    document.getElementById("upPass").value= password;
+    document.getElementById("upSurname").value= surname;
+    document.getElementById("upLastname").value= lastname;
+    document.getElementById("upBirthday").value= birthday;
+    document.getElementsByTagName("sex").value=sex;
+}
+
+
+(function () {
+    btn.addEventListener("click",function (event){
+        console.log(form.checkValidity());
+
+        if(!form.checkValidity()){
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        form.classList.add("was-validated")
+    }, false);
+
+})();
+function upSendForm() {
+if(form.checkValidity()){
+    form.submit();
+}
+}
 </script>
 </body>

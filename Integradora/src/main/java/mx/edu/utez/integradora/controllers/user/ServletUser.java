@@ -76,12 +76,12 @@ public class ServletUser extends HttpServlet {
             req.setAttribute("stories", new DaoStories().findAllStories());
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
-<<<<<<< HEAD
-            req.setAttribute("categories",new DaoStories().fiandAllCategories());
-=======
-            redirect = "/home.jsp";
-            req.setAttribute("categories",new DaoStories().findAllCategories());
->>>>>>> df81d6e18083e27c4ab76754786a51739ac82b78
+//<<<<<<< HEAD
+//            req.setAttribute("categories",new DaoStories().fiandAllCategories());
+//=======
+//            redirect = "/home.jsp";
+//            req.setAttribute("categories",new DaoStories().findAllCategories());
+//>>>>>>> df81d6e18083e27c4ab76754786a51739ac82b78
             redirect="/view/user/home.jsp";
             break;
 
@@ -326,6 +326,62 @@ public class ServletUser extends HttpServlet {
                             ("¡Error!accion no realizada correctamente.", StandardCharsets.UTF_8);
                 }
                 break;
+            case "/api/user/update":
+                System.out.println("update");
+                try {
+                    id = req.getParameter("id");
+                    name = req.getParameter("nameActualizar");
+                    lastname = req.getParameter("upSurname");
+                    surname = req.getParameter("upLastname");
+                    birthday = req.getParameter("upBirthday");
+                    email = req.getParameter("upEmail");
+                    pass = req.getParameter("upPass");
+
+                    System.out.println("id is"+id);
+                    System.out.println("name is"+name);
+                    System.out.println("lastname is"+lastname);
+                    System.out.println("id is"+surname);
+                    System.out.println("id is"+birthday);
+                    System.out.println("id is"+email);
+                    System.out.println("id is"+pass);
+
+                    Rols rols = new Rols();
+                    rol = "user";
+
+                    Status status1 = new Status();
+                    status = "1";
+                    status1.setType_status(status);
+                    rols.setRol(rol);
+                    user = new User();
+                    user.setId(0L);
+                    user.setName(name);
+                    user.setLastname(lastname);
+                    user.setSurname(surname);
+                    user.setBirthday(birthday);
+                    user.setEmail(email);
+                    user.setSex(sex);
+                    user.setPass(pass);
+                    user.setRols(rols);
+                    user.setStatus(status1);
+                    System.out.println(user.getRols().getRol());
+                    System.out.println(user.getStatus().getType_status());
+                    boolean result = new DaoUser().update(user);
+
+                    if (result) {
+
+                        redirect = "/api/superadmin/admin-user?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado correctamente.",
+                                StandardCharsets.UTF_8);
+
+                    } else {
+
+                        redirect = "/api/superadmin/admin-user?result= " + result + "&message=" + URLEncoder.encode("¡Error! Actualizacion no realizada correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+
+                } catch (Exception e) {
+                    redirect = "/api/superadmin/home?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+                }
+                    break;
             default:
                 redirect="/api/user/home";
     }
