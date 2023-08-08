@@ -5,6 +5,7 @@
   Time: 10:38 a. m.
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,6 +16,16 @@
 <jsp:include page="/layouts/navbar.jsp"/>
 
 <div class="container mt-5">
+  <div class="col-md-6 p-4 ps-md-0">
+    <c:forEach var="Stories" items="${Stories}">
+      <h4 class="mt-0"><c:out value="${Stories.title}"/></h4>
+      <p><c:out value="${Stories.content}"/></p>
+      <form action="/api/user/delete-story" method="post">
+        <input name="id" hidden value="${Stories.id}">
+        <button type="submit" >Eliminar Mi historia</button>
+      </form>
+    </c:forEach>
+  </div>
   <h1>Perfil de Usuario</h1>
   <form>
     <div class="form-group">
@@ -38,6 +49,8 @@
     </div>
     <div class="form-group">
       <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+      <br>
+      <br>
       <input type="date" class="form-control" id="fechaNacimiento" value="${user1.birthday}">
     </div>
     <div class="form-group">
@@ -52,6 +65,11 @@
     <button type="button" class="btn btn-secondary">Cancelar</button>
   </form>
 </div>
+
+
+
+
+
 <!-- Enlace a Bootstrap JS y Popper.js -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

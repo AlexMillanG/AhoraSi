@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import mx.edu.utez.integradora.models.stories.DaoStories;
+import mx.edu.utez.integradora.models.stories.Stories;
 import mx.edu.utez.integradora.models.user.DaoUser;
 import mx.edu.utez.integradora.models.user.Rols;
 import mx.edu.utez.integradora.models.user.Status;
@@ -80,17 +81,16 @@ public class ServletUser extends HttpServlet {
             req.setAttribute("stories", new DaoStories().findAllStories());
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
-//<<<<<<< HEAD
-//            req.setAttribute("categories",new DaoStories().fiandAllCategories());
-//=======
-//            redirect = "/home.jsp";
-//            req.setAttribute("categories",new DaoStories().findAllCategories());
-//>>>>>>> df81d6e18083e27c4ab76754786a51739ac82b78
+            req.setAttribute("categories",new DaoStories().findAllCategories());
+            redirect = "/home.jsp";
+           req.setAttribute("categories",new DaoStories().findAllCategories());
             redirect="/view/user/home.jsp";
             break;
 
             case "/api/user/perfil":
                 id=req.getParameter("id");
+                List<Objects> Stories = new ArrayList<>();
+                req.setAttribute("Stories",new DaoStories().findAllUserStories(id != null ? Long.parseLong(id):0));
                 req.setAttribute("user1",new DaoUser().findOne(  id != null ? Long.parseLong(id):0));
                 redirect="/view/user/perfil.jsp";
             break;
@@ -397,10 +397,15 @@ public class ServletUser extends HttpServlet {
                 }
                     break;
             case  "/api/user/delete-story":
-                  id = req.getParameter("idUser");
-                  System.out.println(id);
-                  redirect = "/api/user/home";
+                  id = req.getParameter("id");
+                  System.out.println("ID de la historia borrar" + id);
+                if (new DaoStories().delete(Long.parseLong(id)))
+                    redirect = "/api/admin/admin-user?result=" + true + "&message" + URLEncoder.encode
+                            ("¡Exito!Usuario Eliminado correctamente.", StandardCharsets.UTF_8);
+
+                redirect = "/api/user/perfil";
                 break;
+
             default:
                 redirect="/api/user/home";
     }

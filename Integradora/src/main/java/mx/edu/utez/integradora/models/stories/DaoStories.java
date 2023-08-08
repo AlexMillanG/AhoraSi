@@ -1,6 +1,7 @@
 package mx.edu.utez.integradora.models.stories;
 
 import mx.edu.utez.integradora.models.user.Status;
+import mx.edu.utez.integradora.models.user.User;
 import mx.edu.utez.integradora.utils.MySQLConnection;
 
 import java.sql.*;
@@ -46,6 +47,47 @@ public class DaoStories {
         return  stories;
 
     }
+
+    public List<Stories> findAllUserStories(Long id){
+        List<Stories> Stories=new ArrayList<>();
+        try {
+            conn = new MySQLConnection().connect();
+            String query= "SELECT * from showStoriesByUser where user_id = ?;";
+            pstm= conn.prepareStatement(query);
+            pstm.setLong(1,id);
+            System.out.println("id en el dao "+id);
+
+            rs= pstm.executeQuery();
+            System.out.println(rs.next());
+            while (rs.next())
+            {
+                Stories stories1=new Stories();
+                stories1.setId(rs.getLong("id"));
+                stories1.setTitle(rs.getString("title"));
+                stories1.setContent(rs.getString("content"));
+             //   stories1.setFile(rs.getBytes("image_id"));//Aqui aun no funciona
+                User user = new User();
+                user.setName(rs.getString("name_"));
+                user.setLastname(rs.getString("lastname"));
+
+                user.setSurname(rs.getString("surname"));
+            //    user.setId(rs.getLong("id"));
+                stories1.setUser_id(user);
+                System.out.println(stories1.getTitle());
+                System.out.println(stories1.getContent());
+                Stories.add(stories1);
+
+            }
+
+        }catch (SQLException e){
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FIANDALL stories"+e.getMessage());
+        }finally {
+            close();
+        }
+        return  Stories;
+
+    }
+
     public List<Categories> findAllCategories(){
         List<Categories> categories=new ArrayList<>();
         try {
@@ -150,7 +192,7 @@ public class DaoStories {
     public  boolean delete(Long id){
         try {
             conn=new MySQLConnection().connect();
-            String query="delete * from stories where id=?";
+            String query="delete from stories where id=?";
             pstm= conn.prepareStatement(query);
             pstm.setLong(1,id);
             return pstm.executeUpdate()==1;

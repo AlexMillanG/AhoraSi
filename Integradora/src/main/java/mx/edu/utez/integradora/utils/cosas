@@ -5,3 +5,14 @@ ROLS
 
 STATUS
 
+ // vista para mostrar las historias del usuario
+create view showStoriesByUser as
+
+    select users.name_,
+           stories.user_id,
+           users.lastname ,
+           users.surname,
+           stories.title,
+           stories.content
+      from users
+    inner join stories on users.id = stories.user_id;
