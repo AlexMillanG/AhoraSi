@@ -52,7 +52,6 @@ import java.util.Objects;
         "/api/superadmin/admin-user",//
         "/api/user/super-delete",// eliminar usuarios desdel SuperAdmin
         "/api/superadmin/delete-admin",//eliminar Administradores
-        "/api/superadmin/delete-admin",//eliminar Administradores
 
         "/api/user/delete-story"
 
