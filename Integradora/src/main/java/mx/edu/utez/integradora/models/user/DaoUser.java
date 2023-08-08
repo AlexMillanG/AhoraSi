@@ -195,7 +195,7 @@ public class DaoUser implements DaoRepository<User> {
     public boolean update(User object) {
         try {
             conn= new MySQLConnection().connect();
-            String query="UPDATE users SET name_=?, lastname=?, surname=?, birthday=?, sex=?, email=?, pass=?, rol_id=?, status_id=? WHERE user_id=?;";
+            String query="UPDATE users SET name_=?, lastname=?, surname=?, birthday=?, sex=?, email=?, pass=?, rol_id=?, status_id=? WHERE id=?;";
             pstm= conn.prepareStatement(query);
             pstm.setString(1,object.getName());
             pstm.setString(2,object.getLastname());
@@ -204,8 +204,10 @@ public class DaoUser implements DaoRepository<User> {
             pstm.setString(5,object.getSex());
             pstm.setString(6,object.getEmail());
             pstm.setString(7,object.getPass());
+            System.out.println(object.getRols().getId());
             pstm.setLong(8,object.getRols().getId());
             pstm.setLong(9,object.getStatus().getId());
+            pstm.setLong(10,object.getId());
             return pstm.executeUpdate()>0;
         }catch (SQLException e){
             Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"ERROR Update"+e.getMessage());

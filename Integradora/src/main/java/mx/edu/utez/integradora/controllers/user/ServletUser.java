@@ -360,14 +360,14 @@ public class ServletUser extends HttpServlet {
                     System.out.println("id is"+pass);
 
                     Rols rols = new Rols();
-                    rol = "user";
+                    rol = "3";
 
                     Status status1 = new Status();
                     status = "1";
-                    status1.setType_status(status);
-                    rols.setRol(rol);
+                    status1.setId(Long.parseLong(status));
+                    rols.setId(Long.parseLong(rol));
                     user = new User();
-                    user.setId(0L);
+                    user.setId(Long.parseLong(id));
                     user.setName(name);
                     user.setLastname(lastname);
                     user.setSurname(surname);
@@ -377,8 +377,8 @@ public class ServletUser extends HttpServlet {
                     user.setPass(pass);
                     user.setRols(rols);
                     user.setStatus(status1);
-                    System.out.println(user.getRols().getRol());
-                    System.out.println(user.getStatus().getType_status());
+                    System.out.println(user.getRols().getId());
+                    System.out.println(user.getStatus().getId());
                     boolean result = new DaoUser().update(user);
 
                     if (result) {
