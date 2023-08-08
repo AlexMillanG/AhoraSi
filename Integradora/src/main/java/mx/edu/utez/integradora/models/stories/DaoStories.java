@@ -3,10 +3,7 @@ package mx.edu.utez.integradora.models.stories;
 import mx.edu.utez.integradora.models.user.Status;
 import mx.edu.utez.integradora.utils.MySQLConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,11 +13,12 @@ public class DaoStories {
     private Connection conn;
     private PreparedStatement pstm;
     private ResultSet rs;
+    private CallableStatement cs;
     public List<Stories> findAllStories(){
         List<Stories> stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query= "select * from stories;";
+            String query= "SELECT * from stories;";
             pstm= conn.prepareStatement(query);
             rs= pstm.executeQuery();
             while (rs.next()){

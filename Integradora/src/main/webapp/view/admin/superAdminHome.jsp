@@ -76,10 +76,9 @@
                                         <button onclick="prueba(${$user})" class="btn btn-outline-warning">Editar</button>
 
                                         <form method="post" action="/api/user/delete">
-                                            <input hidden value="${user.id}" name="id">
-                                            <button type="submit" class="btn btn-outline-danger btn-sm">ELIMINAR
-                                            </button>
 
+                                            <input hidden value="${user.id}" name="id">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm">ELIMINAR</button>
                                         </form>
                                     </td>
                                 </tr>

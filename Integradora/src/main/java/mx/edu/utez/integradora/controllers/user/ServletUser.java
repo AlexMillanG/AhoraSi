@@ -50,8 +50,16 @@ import java.util.Objects;
         "/api/superadmin/admin-historias",//vistaAdminHistorias
         "/api/superadmin/admin-mas",//
         "/api/superadmin/admin-user",//
+<<<<<<< HEAD
         "/api/user/super-delete",// eliminar usuarios desdel SuperAdmin
         "/api/superadmin/delete-admin"//eliminar Administradores
+=======
+        "/api/superadmin/delete-admin",//eliminar Administradores
+
+        "/api/user/delete-story"
+
+
+>>>>>>> 82147b4f6fa923a4acd7335266c985e815b59f9d
 
 
 })
@@ -293,9 +301,13 @@ public class ServletUser extends HttpServlet {
                             ("¡Exito!Usuario Eliminado correctamente.", StandardCharsets.UTF_8);
 
                 else{
+<<<<<<< HEAD
             redirect = "/api/admin/admin-user?result=" + false + "&message=" + URLEncoder.encode
+=======
+               redirect = "/api/admin/home?result=" + false + "&message=" + URLEncoder.encode
+>>>>>>> 82147b4f6fa923a4acd7335266c985e815b59f9d
                     ("¡Error!accion no realizada correctamente.", StandardCharsets.UTF_8);
-        }
+                  }
         break;
             case "/api/user/super-delete":
                 id = req.getParameter("id");
@@ -326,6 +338,7 @@ public class ServletUser extends HttpServlet {
                             ("¡Error!accion no realizada correctamente.", StandardCharsets.UTF_8);
                 }
                 break;
+<<<<<<< HEAD
             case "/api/user/update":
                 System.out.println("update");
                 try {
@@ -382,6 +395,13 @@ public class ServletUser extends HttpServlet {
                     redirect = "/api/superadmin/home?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
                 }
                     break;
+=======
+            case  "/api/user/delete-story":
+                  id = req.getParameter("idUser");
+                  System.out.println(id);
+                  redirect = "/api/user/home";
+                break;
+>>>>>>> 82147b4f6fa923a4acd7335266c985e815b59f9d
             default:
                 redirect="/api/user/home";
     }
