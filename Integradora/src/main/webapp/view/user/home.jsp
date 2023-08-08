@@ -70,10 +70,10 @@
                                               <br>
                                               <br>
                                                 <div>
-                                                    <form  method="post" action="/api/user/delete-history">
+                                                  <%--  <form  method="post" action="/api/user/delete-story">
                                                     <input hidden value="${user.id}" name="idUser" >
                                                     <button type="submit" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Eliminar mi historia</button>
-                                                      </form>
+                                                      </form>  --%>
                                                 </div>
                                               <br>
                                               <br>
