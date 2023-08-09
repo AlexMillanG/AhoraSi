@@ -38,6 +38,7 @@ import java.util.Objects;
         "/api/admin/users-view",
         "/api/admin/stories-view",
         "/api/admin/superadminhome",
+        "/api/admin/update-user",//Actualizar usuarios desde el perfil Administrador
         "/api/superadmin/admins-view", //vista crud admins
         "/api/admin/admins-save",//crear administradores
         "/api/admin/admin-home",//vista adminHiome
@@ -53,6 +54,7 @@ import java.util.Objects;
         "/api/superadmin/admin-user",//
         "/api/user/super-delete",// eliminar usuarios desdel SuperAdmin
         "/api/superadmin/delete-admin",//eliminar Administradores
+        "/api/superadmin/update-admin",//actualizar administradores desde el Super
 
         "/api/user/delete-story"
 
@@ -340,7 +342,6 @@ public class ServletUser extends HttpServlet {
                 }
                 break;
             case "/api/user/update":
-                System.out.println("update");
                 try {
                     id = req.getParameter("id");
                     name = req.getParameter("name");
@@ -396,6 +397,119 @@ public class ServletUser extends HttpServlet {
                     redirect = "/api/superadmin/home?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
                 }
                     break;
+            case "/api/admin/update-user":
+                try {
+                    id = req.getParameter("id");
+                    name = req.getParameter("name");
+                    lastname = req.getParameter("lastname");
+                    surname = req.getParameter("surname");
+                    birthday = req.getParameter("birthday");
+                    sex = req.getParameter("sex");
+                    email = req.getParameter("emailRegistro");
+                    pass = req.getParameter("pass");
+
+                    System.out.println("id is"+id);
+                    System.out.println("name is"+name);
+                    System.out.println("lastname is"+lastname);
+                    System.out.println("id is"+surname);
+                    System.out.println("id is"+birthday);
+                    System.out.println("id is"+email);
+                    System.out.println("id is"+pass);
+
+                    Rols rols = new Rols();
+                    rol = "3";
+
+                    Status status1 = new Status();
+                    status = "1";
+                    status1.setId(Long.parseLong(status));
+                    rols.setId(Long.parseLong(rol));
+                    user = new User();
+                    user.setId(Long.parseLong(id));
+                    user.setName(name);
+                    user.setLastname(lastname);
+                    user.setSurname(surname);
+                    user.setBirthday(birthday);
+                    user.setEmail(email);
+                    user.setSex(sex);
+                    user.setPass(pass);
+                    user.setRols(rols);
+                    user.setStatus(status1);
+                    System.out.println(user.getRols().getId());
+                    System.out.println(user.getStatus().getId());
+                    boolean result = new DaoUser().update(user);
+
+                    if (result) {
+
+                        redirect = "/api/admin/admin-user?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado correctamente.",
+                                StandardCharsets.UTF_8);
+
+                    } else {
+
+                        redirect = "/api/admin/admin-user?result= " + result + "&message=" + URLEncoder.encode("¡Error! Actualizacion no realizada correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+
+                } catch (Exception e) {
+                    redirect = "/api/admin/admin-user?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+                }
+                break;
+
+            case "/api/superadmin/update-admin":
+                try {
+                    id = req.getParameter("id");
+                    name = req.getParameter("name1");
+                    lastname = req.getParameter("lastname1");
+                    surname = req.getParameter("surname1");
+                    birthday = req.getParameter("birthday1");
+                    sex = req.getParameter("sex");
+                    email = req.getParameter("emailRegistro");
+                    pass = req.getParameter("pass1");
+
+                    System.out.println("id is"+id);
+                    System.out.println("name is"+name);
+                    System.out.println("lastname is"+lastname);
+                    System.out.println("Surname is"+surname);
+                    System.out.println("birht is"+birthday);
+                    System.out.println("email is"+email);
+                    System.out.println("pass is"+pass);
+
+                    Rols rols = new Rols();
+                    rol = "2";
+
+                    Status status1 = new Status();
+                    status = "1";
+                    status1.setId(Long.parseLong(status));
+                    rols.setId(Long.parseLong(rol));
+                    user = new User();
+                    user.setId(Long.parseLong(id));
+                    user.setName(name);
+                    user.setLastname(lastname);
+                    user.setSurname(surname);
+                    user.setBirthday(birthday);
+                    user.setEmail(email);
+                    user.setSex(sex);
+                    user.setPass(pass);
+                    user.setRols(rols);
+                    user.setStatus(status1);
+                    System.out.println(user.getRols().getId());
+                    System.out.println(user.getStatus().getId());
+                    boolean result = new DaoUser().update(user);
+
+                    if (result) {
+
+                        redirect = "/api/superadmin/admins-view?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado correctamente.",
+                                StandardCharsets.UTF_8);
+
+                    } else {
+
+                        redirect = "/api/superadmin/admins-view?result= " + result + "&message=" + URLEncoder.encode("¡Error! Actualizacion no realizada correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+
+                } catch (Exception e) {
+                    redirect = "/api/superadmin/admins-view?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+                }
+                break;
             case  "/api/user/delete-story":
                   id = req.getParameter("id");
                   System.out.println("ID de la historia borrar" + id);

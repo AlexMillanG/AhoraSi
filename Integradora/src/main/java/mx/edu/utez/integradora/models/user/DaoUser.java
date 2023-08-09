@@ -198,6 +198,7 @@ public class DaoUser implements DaoRepository<User> {
             String query="UPDATE users SET name_=?, lastname=?, surname=?, birthday=?, sex=?, email=?, pass=?, rol_id=?, status_id=? WHERE id=?;";
             pstm= conn.prepareStatement(query);
             pstm.setString(1,object.getName());
+            System.out.println(object.getName());
             pstm.setString(2,object.getLastname());
             pstm.setString(3,object.getSurname());
             pstm.setString(4,object.getBirthday());
@@ -208,6 +209,8 @@ public class DaoUser implements DaoRepository<User> {
             pstm.setLong(8,object.getRols().getId());
             pstm.setLong(9,object.getStatus().getId());
             pstm.setLong(10,object.getId());
+            System.out.println("rolID"+object.getRols().getId());
+            System.out.println("Status"+object.getStatus().getId());
             return pstm.executeUpdate()>0;
         }catch (SQLException e){
             Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"ERROR Update"+e.getMessage());

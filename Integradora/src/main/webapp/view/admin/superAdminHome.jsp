@@ -34,12 +34,12 @@
                     <div class="container-fluid" id="cont-2">
                         <jsp:include page="/layouts/navbarAdmin.jsp"/>
                         <div class="card-body">
-                            <s:if test="users.isEmpty()">
-                            <div class="row">
-                                <div class="col">
-                                    <h3>Sin registros</h3>
+                            <s:if test="user.isEmpty()">
+                                <div class="row">
+                                    <div class="col">
+                                        <h3>Sin registros</h3>
+                                    </div>
                                 </div>
-                            </div>
                             </s:if>
                             <div class="card-text">
                                 <table class="table table-stripped">
@@ -50,81 +50,68 @@
                                     <th>Sexo</th>
                                     <th>Acción</th>
                                     </thead>
-                                <s:forEach var="user" items="${users2}" varStatus="s">
+                                    <s:forEach var="user" items="${users2}" varStatus="s">
 
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <c:out value="${s.count}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${user.name}"/> <c:out value="${user.surname}"/>
+                                            <c:out value="${user.lastname}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${user.email}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${user.sex}"/>
+                                        </td>
+                                        <td>
+                                            <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editar"
+                                                    onclick="prueba('${user.id}|${user.name}|${user.email}|${user.pass}|${user.lastname}|${user.surname}|${user.birthday}|${user.sex}')" name="editar"
+                                            ><i data-feather="edit-3"></i>Editar</button>
+
+                                            <form method="post" action="/api/user/super-delete">
+                                                <input hidden value="${user.id}" name="id">
+                                                <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                    <i data-feather="user-x"></i>
+                                                    ELIMINAR
+                                                </button>
+
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    </s:forEach>
+
+                                    </tbody>
+                                </table>
                             </div>
 
-                            <table id="table">
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <c:out value="${s.count}"/>
-                                    </td>
-                                    <td>
-                                        <c:out value="${user.name}"/> <c:out value="${user.lastname}"/> <c:out
-                                            value="${user.surname}"/>
-                                    </td>
-                                    <td>
-                                        <c:out value="${user.email}"/>
-                                    </td>
-                                    <td>
-                                        <c:out value="${user.sex}"/>
-                                    </td>
-                                    <td>
-<%--                                        <input hidden value="${user.id}" name="id">--%>
-<%--                                         data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" --%>
-                                        <button onclick="prueba(${$user})" class="btn btn-outline-warning">Editar</button>
-
-                                        <form method="post" action="/api/user/delete">
-
-                                            <input hidden value="${user.id}" name="id">
-                                            <button type="submit" class="btn btn-outline-danger btn-sm">ELIMINAR</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                </s:forEach>
-                                <tr>
-
-                                </tr>
-                                </tbody>
-                            </table>
                         </div>
 
                     </div>
                 </div>
-</th>
-</tr>
-</table>
+            </th>
+        </tr>
+    </table>
 </div>
 <div class="modal fade" id="updateUsers" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
     <div class="modal-dialog modal-lg" >
         <div class="modal-content">
             <div class="modal-header">
-                <p  style="font-family: PT serif; text-align: center; font-size: 30px;">Agregar Administrador</p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <p  style="font-family: PT serif; text-align: center; font-size: 30px;">Actualizar informacion</p><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
-                <form id="updateForm" action="/api/user/update" method="post" class="needs-validation"
-                      novalidate method="post">
+                <form id="form" action="/api/admin/update-user" method="post" class="needs-validation" novalidate method="post">
                     <div class="row">
                         <div class="col">
                             <div class="form-floating mb-3">
-                                <label for="a">nombre</label>
-                                <input type="text" class="form-control" name="a" id="a"
-                                       placeholder="nombre" required >
-                                <div class="invalid-feedback text-start">
-                                    Campo obligatorio
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-floating mb-3">
-                                <label for="nameActualizar">nombre</label>
-                                <input type="text" class="form-control" name="nameActualizar" id="nameActualizar"
-                                       placeholder="nombre" required >
+                                <input id="id" name="id" class="form-control" >
+                                <label for="id"> id</label>
+                                <input type="text"   name="name" id="name"
+                                       placeholder="nombre" required>
+                                <label for="name">ingresa tu nombre</label>
                                 <div class="invalid-feedback text-start">
                                     Campo obligatorio
                                 </div>
@@ -134,9 +121,9 @@
 
                     <div class="col">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" name="email" id="upEmail"
+                            <input type="email" class="form-control" name="emailRegistro" id="emailRegistro"
                                    placeholder="name@example.com" required>
-                            <label for="upEmail">Correo electrónico</label>
+                            <label for="emailRegistro">Correo electrónico</label>
                             <div class="invalid-feedback text-start">
                                 Campo obligatorio
                             </div>
@@ -144,9 +131,9 @@
                     </div>
 
                     <div class="form-floating mb-1">
-                        <input type="password" name="pass" class="form-control" id="upPass"
+                        <input type="password" name="pass" class="form-control" id="pass"
                                placeholder="name" required>
-                        <label for="upPass">Contraseña</label>
+                        <label for="pass">Contraseña</label>
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
@@ -155,9 +142,9 @@
                     </div>
 
                     <div class="form-floating mb-1">
-                        <input type="text" name="surname" class="form-control" id="upSurname"
+                        <input type="text" name="surname" class="form-control" id="surname"
                                placeholder="surname" required>
-                        <label for="upSurname">Apellido</label>
+                        <label for="surname">Primer Apellido</label>
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
@@ -166,9 +153,9 @@
                     </div>
 
                     <div class="form-floating mb-1">
-                        <input type="text" name="lastname" class="form-control" id="upLastname"
+                        <input type="text" name="lastname" class="form-control" id="lastname"
                                placeholder="lastname" required>
-                        <label for="upLastname">Segundo Apellido</label>
+                        <label for="lastname">Segundo Apellido</label>
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
@@ -177,11 +164,9 @@
                     </div>
 
                     <div class="form-floating mb-1">
-                        <input type="date" min="1900-01-01" max="2005-12-31" name="birthday"
-                               class="form-control"
-                               id="upBirthday"
+                        <input type="date" min="1900-01-01" max="2005-12-31" name="birthday" class="form-control" id="birthday"
                                placeholder="birthday" required>
-                        <label for="upBirthday">Fecha de nacimiento</label>
+                        <label for="birthday">Fecha de nacimiento</label>
                         <div class="invalid-feedback text-start">
                             Campo obligatorio
                         </div>
@@ -190,44 +175,94 @@
                     <br>
 
                     <div class="form-floating mb-1">
-                        <p>Ingresa el sexo</p>
+                        <p>Ingresa tu sexo</p>
                         <br>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="hombre" name="sex"
-                                   id="hombre">
+                            <input class="form-check-input" type="radio" value="hombre" name="sex" id="hombre">
                             <label class="form-check-label" for="hombre">
                                 Hombre
                             </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="mujer" name="sex" id="mujer"
-                                   mujer>
+                            <input class="form-check-input" type="radio" value="mujer" checked name="sex" id="mujer" mujer>
                             <label class="form-check-label" for="mujer">
                                 Mujer
                             </label>
                         </div>
                     </div>
-                    </form>
+                    <button type="button" id="updateUserbtn" onclick="upSendForm()"
+                            class="btn btn-outline-success btn-sm">
+                        <i data-feather="check"></i> Aceptar
+                    </button>
+
+                    <button class="btn btn-outline-danger btn-sm"type="button" data-bs-dismiss="modal">
+                        <i data-feather="x"></i>
+                        Cancelar
+                    </button>
+                </form>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 </div><jsp:include page="../../layouts/footer.jsp"/>
 
 <script>
-    const table=document.getElementById("table");
-    const form=document.getElementById("updateForm");
-    table.addEventListener('click',(e)=>{
-        e.stopPropagation();
-    console.log(e.target.parentElement);
-})
+    const  form=document.getElementById("form")
+    const btn=document.getElementById("updateUserbtn")
+    var id=document.getElementById("id");
 
-function prueba(user){
-        console.log("hola"+user);
-   document.getElementById("nameActualizar").value(user.name);
-    console.log("hola"+user.name);
-}
+
+    function prueba(user){
+        var valores = user.split("|");
+        var id=valores[0];
+        var name = valores[1];
+        var correo = valores[2];
+        var password =valores[3];
+        var surname=valores[4];
+        var lastname=valores[5];
+        var birthday=valores[6];
+        var sex=valores[7];
+        console.log("hola "+user);
+        console.log("hola1 "+valores);
+        console.log("hola2 "+name);
+        document.getElementById("id").value=id;
+        document.getElementById("name").value = name;
+        document.getElementById("emailRegistro").value= correo;
+        document.getElementById("pass").value= password;
+        document.getElementById("surname").value= surname;
+        document.getElementById("lastname").value= lastname;
+        document.getElementById("birthday").value= birthday;
+        document.getElementsByTagName("sex").value=sex;
+    }
+
+    (function () {
+        btn.addEventListener("click",function (event){
+            console.log(form.checkValidity());
+
+            if(!form.checkValidity()){
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            form.classList.add("was-validated")
+        }, false);
+
+    })();
+    function upSendForm() {
+        if(form.checkValidity()){
+            console.log("a "+document.getElementById("name").value);
+            var id = document.getElementById("id");
+            console.log("aa "+id.value);
+            var nombre = document.getElementById("name");
+            console.log("aaa "+nombre.value);
+            console.log(document.getElementById("form").value);
+            console.log(form.checkValidity());
+            form.submit();
+        }
+    }
 </script>
 </body>
