@@ -275,6 +275,8 @@
     </div>
 </div>
 
+
+<%--Modal Crear categoria--%>
 <div class="modal fade" id="crearCategoria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"> >
@@ -305,26 +307,26 @@
                             </th>
                         </tr>
 
-                        <tr>
-                            <td style="text-align: center;">
-                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                                <div class="container-fluid" style=" filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF); /* 10px horizontal, 3px vertical, 30px desenfoque,5px propagacion */
-                  background: white;">
-                                    <form runat="server" style="text-align: center;">
-                                        <div>
-                                            <label for="name"
-                                                   style="float: left; font-family: PT serif; margin-bottom: 4%; margin-right: 5%;">Imagen</label>
-                                        </div>
-                                        <input type='file' id="imgInp" style="float: left;"/>
-                                        <img id="blah" src="#" alt="Imagen"
-                                             style="height: 100px; width: 100px; border-radius: 20px;"/>
-                                    </form>
-                                </div>
-                                <div class="invalid-feedback is-invalid">
-                                    Campo obligatorio
-                                </div>
-                            </td>
-                        </tr>
+<%--                        <tr>--%>
+<%--                            <td style="text-align: center;">--%>
+<%--                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--%>
+<%--                                <div class="container-fluid" style=" filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF); /* 10px horizontal, 3px vertical, 30px desenfoque,5px propagacion */--%>
+<%--                  background: white;">--%>
+<%--                                    <form runat="server" style="text-align: center;">--%>
+<%--                                        <div>--%>
+<%--                                            <label for="name"--%>
+<%--                                                   style="float: left; font-family: PT serif; margin-bottom: 4%; margin-right: 5%;">Imagen</label>--%>
+<%--                                        </div>--%>
+<%--                                        <input type='file' id="imgInp" style="float: left;"/>--%>
+<%--                                        <img id="blah" src="#" alt="Imagen"--%>
+<%--                                             style="height: 100px; width: 100px; border-radius: 20px;"/>--%>
+<%--                                    </form>--%>
+<%--                                </div>--%>
+<%--                                <div class="invalid-feedback is-invalid">--%>
+<%--                                    Campo obligatorio--%>
+<%--                                </div>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
                         <tr>
                             <td style="float: right;">
                                 <button type="button"

@@ -29,7 +29,6 @@
   <h1>Perfil de Usuario</h1>
   <form>
     <div class="form-group">
-      <input hidden value="${user1.id}">
       <label for="nombre">Nombre:</label>
       <input type="text" class="form-control" id="nombre" value="${user1.name}">
     </div>

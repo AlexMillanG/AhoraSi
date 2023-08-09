@@ -65,7 +65,7 @@ import java.util.Objects;
 public class ServletUser extends HttpServlet {
     String action,redirect="/api/auth";
     User user;
-    HttpSession  session;
+    HttpSession  session,getSession;
     String id,name,lastname,surname,birthday,sex,email,pass,status,rol;
 
     @Override
@@ -79,6 +79,7 @@ public class ServletUser extends HttpServlet {
                 break;
             //End Points para usuarios
             case "/api/user/home":
+                System.out.println("DEntro del get "+getSession.getAttribute("id"));
             List<Objects> stories = new ArrayList<>();
             req.setAttribute("stories", new DaoStories().findAllStories());
             List<Objects> users= new ArrayList<>();
@@ -90,7 +91,9 @@ public class ServletUser extends HttpServlet {
             break;
 
             case "/api/user/perfil":
-                id=req.getParameter("id");
+                System.out.println("PErfil "+getSession.getAttribute("id"));
+               id= getSession.getAttribute("id").toString();
+                System.out.println(id);
                 List<Objects> Stories = new ArrayList<>();
                 req.setAttribute("Stories",new DaoStories().findAllUserStories(id != null ? Long.parseLong(id):0));
                 req.setAttribute("user1",new DaoUser().findOne(  id != null ? Long.parseLong(id):0));
@@ -165,7 +168,10 @@ public class ServletUser extends HttpServlet {
                         System.out.println(user.getRols().getRol());
                         session = req.getSession();
                         session.setAttribute("user", user);
-                        System.out.println();
+                        getSession=req.getSession();
+                        getSession.setAttribute("id",user.getId());
+                        System.out.println(user.getId());
+                        System.out.println("SESSION"+getSession.getAttribute("id"));
                         switch (user.getRols().getRol()) {
                             case "superAdmin":
                                 redirect = "/api/superadmin/home";

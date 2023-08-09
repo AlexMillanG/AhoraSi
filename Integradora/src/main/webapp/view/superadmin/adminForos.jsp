@@ -54,7 +54,7 @@
                     <c:out value="${s.count}"/>
                 </td>
                 <td>
-                    <p>${admin.name} ${admin.lastname} ${admin.surname} </p>
+                    <p>${admin.name}${admin.surname}  ${admin.lastname}  </p>
                 </td>
                 <td>
                     <p>${admin.email}</p>
