@@ -118,7 +118,3 @@ public class ServletStories extends HttpServlet {
 
     }
     }
-
-
-
-

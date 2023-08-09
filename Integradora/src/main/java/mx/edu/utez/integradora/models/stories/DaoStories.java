@@ -19,7 +19,7 @@ public class DaoStories {
         List<Stories> stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query= "SELECT * from stories;";
+            String query= "SELECT * from showStoriesByUser;";
             pstm= conn.prepareStatement(query);
             rs= pstm.executeQuery();
             while (rs.next()){
@@ -32,8 +32,10 @@ public class DaoStories {
                 Status status= new Status();
                 status.setType_status(rs.getString("status_id"));
                 stories1.setStatus(status);
+
                 Categories categories=new Categories();
-                categories.setCategory(rs.getString("category_id"));
+                categories.setCategory(rs.getString("category"));
+                categories.setId(rs.getLong("category_id"));
                 stories1.setCategories(categories);
                 stories.add(stories1);
 
@@ -75,6 +77,10 @@ public class DaoStories {
                 stories1.setUser_id(user);
                 System.out.println(stories1.getTitle());
                 System.out.println(stories1.getContent());
+
+                Categories categories=new Categories();
+                categories.setCategory(rs.getString("category"));
+                stories1.setCategories(categories);
                 Stories.add(stories1);
 
             }
