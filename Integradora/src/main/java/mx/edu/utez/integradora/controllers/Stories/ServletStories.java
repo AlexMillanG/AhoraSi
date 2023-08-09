@@ -62,6 +62,7 @@ public class ServletStories extends HttpServlet {
                     content = req.getParameter("content");
                     file = req.getParameter("file");
                     user_id = req.getParameter("user_id");
+                    status_id = req.getParameter("status");
 
                     Status status1 = new Status();
                     status_id = "3"; //status publicado

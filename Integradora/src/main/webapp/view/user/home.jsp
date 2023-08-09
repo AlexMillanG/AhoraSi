@@ -102,10 +102,12 @@
                                         <select name="categories" id="Categories" class="form-select" required>
                                         <option value="">Seleccione ...</option>
                                         <s:forEach var="category" items="${categories}">
-                                            <option value="${category.id}"><s:out value="${category.category}"/>
-
-                                            </option>
+                                            <option value="${category.id}"><s:out value="${category.category}"/></option>
                                         </s:forEach>
+                                        </select>
+                                        <select name="status" id="status"class="form-select" required>
+                                            <option value="3">Como historia</option>
+                                            <option value="4">Como articulo</option>
                                         </select>
                                         <%--id, title content, created_atDATETIME, file
                                          status, user, categories--%>
