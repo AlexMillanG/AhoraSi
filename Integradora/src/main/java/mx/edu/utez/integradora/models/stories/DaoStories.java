@@ -19,7 +19,7 @@ public class DaoStories {
         List<Stories> stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query= "SELECT * from showStoriesByUser;";
+            String query= "SELECT * from showStoriesByUser where status_id = 3;";
             pstm= conn.prepareStatement(query);
             rs= pstm.executeQuery();
             while (rs.next()){
@@ -50,6 +50,77 @@ public class DaoStories {
 
     }
 
+
+    public List<Stories> findAllPublishedArticles(){
+        List<Stories> stories=new ArrayList<>();
+        try {
+            conn = new MySQLConnection().connect();
+            String query= "SELECT * from showStoriesByUser where status_id = 5;";
+            pstm= conn.prepareStatement(query);
+            rs= pstm.executeQuery();
+            while (rs.next()){
+                Stories stories1=new Stories();
+                stories1.setId(rs.getLong("id"));
+                stories1.setTitle(rs.getString("title"));
+                stories1.setContent(rs.getString("content"));
+                stories1.setCreated_atDATETIME(rs.getString("created_atDATETIME"));
+                stories1.setFile(rs.getBytes("image_id"));//Aqui aun no funciona
+                Status status= new Status();
+                status.setType_status(rs.getString("status_id"));
+                stories1.setStatus(status);
+
+                Categories categories=new Categories();
+                categories.setCategory(rs.getString("category"));
+                categories.setId(rs.getLong("category_id"));
+                stories1.setCategories(categories);
+                stories.add(stories1);
+
+            }
+
+        }catch (SQLException e){
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FIANDALL stories"+e.getMessage());
+        }finally {
+            close();
+        }
+        return  stories;
+
+    }
+    public List<Stories> findAllWaitingArticles(){
+        List<Stories> stories=new ArrayList<>();
+        try {
+            conn = new MySQLConnection().connect();
+            String query= "SELECT * from showStoriesByUser where status_id = 4;";
+            pstm= conn.prepareStatement(query);
+            rs= pstm.executeQuery();
+            while (rs.next()){
+                Stories stories1=new Stories();
+                stories1.setId(rs.getLong("id"));
+                stories1.setTitle(rs.getString("title"));
+                stories1.setContent(rs.getString("content"));
+                stories1.setCreated_atDATETIME(rs.getString("created_atDATETIME"));
+                stories1.setFile(rs.getBytes("image_id"));//Aqui aun no funciona
+                Status status= new Status();
+                status.setType_status(rs.getString("status_id"));
+                stories1.setStatus(status);
+
+                Categories categories=new Categories();
+                categories.setCategory(rs.getString("category"));
+                categories.setId(rs.getLong("category_id"));
+                stories1.setCategories(categories);
+                stories.add(stories1);
+
+            }
+
+        }catch (SQLException e){
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FIANDALL stories"+e.getMessage());
+        }finally {
+            close();
+        }
+        return  stories;
+
+    }
+
+
     public List<Stories> findAllUserStories(Long id){
         List<Stories> Stories=new ArrayList<>();
         try {
@@ -60,7 +131,6 @@ public class DaoStories {
             System.out.println("id en el dao "+id);
 
             rs= pstm.executeQuery();
-            System.out.println(rs.next());
             while (rs.next())
             {
                 Stories stories1=new Stories();
@@ -75,8 +145,6 @@ public class DaoStories {
                 user.setSurname(rs.getString("surname"));
             //    user.setId(rs.getLong("id"));
                 stories1.setUser_id(user);
-                System.out.println(stories1.getTitle());
-                System.out.println(stories1.getContent());
 
                 Categories categories=new Categories();
                 categories.setCategory(rs.getString("category"));
@@ -152,13 +220,15 @@ public class DaoStories {
         try {
             System.out.println("entro al save story del Dao");
             conn=new MySQLConnection().connect();
-            String query = "insert into stories(title,content,created_atDATETIME,status_id,user_id,category_id) values (?,?,curdate(),3,?,?);";
+            String query = "insert into stories(title,content,created_atDATETIME,status_id,user_id,category_id) values (?,?,curdate(),?,?,?);";
             pstm=conn.prepareStatement(query);
             pstm.setString(1,object.getTitle());
             pstm.setString(2,object.getContent());
-            pstm.setLong(3,object.getUser_id().getId());
+            pstm.setLong(3,object.getStatus().getId());
+            System.out.println(object.getStatus().getId());
+            pstm.setLong(4,object.getUser_id().getId());
             System.out.println(object.getUser_id().getId());
-            pstm.setLong(4,object.getCategories().getId());
+            pstm.setLong(5,object.getCategories().getId());
             System.out.println(object.getCategories().getId());
 
             return pstm.executeUpdate()>0;
@@ -199,6 +269,21 @@ public class DaoStories {
         try {
             conn=new MySQLConnection().connect();
             String query="delete from stories where id=?";
+            pstm= conn.prepareStatement(query);
+            pstm.setLong(1,id);
+            return pstm.executeUpdate()==1;
+        }catch (SQLException e){
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR delete"+e.getMessage());
+        }finally {
+            close();
+        }
+        return false;
+    }
+
+    public  boolean AproveArticle(Long id){
+        try {
+            conn=new MySQLConnection().connect();
+            String query="update stories set status_id = 5 where id =?";
             pstm= conn.prepareStatement(query);
             pstm.setLong(1,id);
             return pstm.executeUpdate()==1;

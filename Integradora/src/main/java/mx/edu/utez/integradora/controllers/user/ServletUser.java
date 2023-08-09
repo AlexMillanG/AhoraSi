@@ -56,7 +56,9 @@ import java.util.Objects;
         "/api/superadmin/delete-admin",//eliminar Administradores
         "/api/superadmin/update-admin",//actualizar administradores desde el Super
 
-        "/api/user/delete-story"
+        "/api/user/delete-story",
+        "/api/superadmin/aprove",
+        "/api/superadmin/delete-story"
 
 
 
@@ -81,6 +83,8 @@ public class ServletUser extends HttpServlet {
             case "/api/user/home":
             List<Objects> stories = new ArrayList<>();
             req.setAttribute("stories", new DaoStories().findAllStories());
+            List<Objects> articles = new ArrayList<>();
+            req.setAttribute("articles", new DaoStories().findAllPublishedArticles());
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
             req.setAttribute("categories",new DaoStories().findAllCategories());
@@ -117,6 +121,8 @@ public class ServletUser extends HttpServlet {
                 break;
                 //EndPonits  superAdmin
             case"/api/superadmin/home":
+                List<Objects> waitingArticles = new ArrayList<>();
+                req.setAttribute("waitingArticles", new DaoStories().findAllWaitingArticles());
                 redirect="/view/superadmin/adminIndex.jsp";
                 break;
 
@@ -518,6 +524,18 @@ public class ServletUser extends HttpServlet {
                             ("¡Exito!Usuario Eliminado correctamente.", StandardCharsets.UTF_8);
 
                 redirect = "/api/user/perfil";
+                break;
+            case "/api/superadmin/aprove":
+                id = req.getParameter("articleId");
+                System.out.println(id);
+                req.setAttribute(id,new DaoStories().AproveArticle(Long.parseLong(id)));
+                redirect= "/api/superadmin/home";
+                break;
+            case "/api/superadmin/delete-story":
+                id = req.getParameter("articleId");
+                System.out.println("id del articulo " + id);
+                req.setAttribute(id,new DaoStories().delete(Long.parseLong(id)));
+                redirect= "/api/superadmin/home";
                 break;
 
             default:
