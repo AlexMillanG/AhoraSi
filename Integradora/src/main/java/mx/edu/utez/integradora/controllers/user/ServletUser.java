@@ -51,7 +51,6 @@ import java.util.Objects;
         "/api/user/super-delete",// eliminar usuarios desdel SuperAdmin
         "/api/superadmin/delete-admin",//eliminar Administradores
         "/api/superadmin/update-admin",//actualizar administradores desde el Super
-        "/api/user/delete-story",
 
         "/api/user/delete-story",
         "/api/superadmin/aprove",
@@ -546,7 +545,10 @@ public class ServletUser extends HttpServlet {
                 user_id = req.getParameter("user_id");
                 story_id = req.getParameter("story_id");
                 Likes like = new Likes();
-//                like.setUser;
+                User user1 = new User();
+                user1.setId(Long.parseLong(user_id));
+                Stories stories = new Stories();
+
                 break;
 
 
