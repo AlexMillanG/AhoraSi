@@ -46,16 +46,14 @@ public class ServletStories extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html");
-        action = req.getServletPath();
+            req.setCharacterEncoding("UTF-8");
+            resp.setCharacterEncoding("UTF-8");
+            resp.setContentType("text/html");
+            action = req.getServletPath();
 
-        System.out.println("post");
 
         switch(action){
             case "/api/story/save":
-                System.out.println("entro al story save");
                 try {
 
                     title = req.getParameter("title");
@@ -63,15 +61,14 @@ public class ServletStories extends HttpServlet {
                     file = req.getParameter("file");
                     user_id = req.getParameter("user_id");
                     status_id = req.getParameter("status");
-
                     Status status1 = new Status();
-                    status_id = "3"; //status publicado
-                   status1.setType_status(status_id);
+                    status_id = req.getParameter("status"); //status publicado
+                    System.out.println("estatus recibido " +status_id);
+                   status1.setId(Long.parseLong(status_id));
 
                     //User user1 = new User();
 
-                   category_id = req.getParameter("categories");
-                    System.out.println("id de category en texto "+category_id);
+                    category_id = req.getParameter("categories");
                     story = new Stories();
                     story.setId(0L);
                     story.setTitle(title);
@@ -82,8 +79,6 @@ public class ServletStories extends HttpServlet {
                     user.setId(Long.parseLong(user_id));
                     story.setUser_id(user);
 
-                    System.out.println(title);
-                    System.out.println(content);
 
                   Categories categories1 = new Categories();
                     categories1.setId(Long.parseLong(category_id));

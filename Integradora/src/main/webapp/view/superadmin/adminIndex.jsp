@@ -5,6 +5,8 @@
   Time: 06:41 p. m.
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -102,19 +104,26 @@
                                         <img src="/assets/img/3.jpg" class="w-100" alt="..." style="border-radius: 100%">
                                     </div>
                                     <div class="col-md-6 p-4 ps-md-0">
-                                        <h4 class="mt-0">Columns with stretched link</h4>
+                                        <c:forEach var="Article" items="${waitingArticles}">
+                                        <h4 class="mt-0"><c:out value="${Article.title}"/></h4>
                                         <h5 class="mt-0">Usuario</h5>
-                                        <p>Another instance of placeholder content for this other custom component. It
-                                            is intended to mimic what some real-world content would look like, and we're
-                                            using it here to give the component a bit of body and size.</p>
-                                        <button type="button" class="btn"
-                                                style="float: right; width: 50%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;">
-                                            Publicar
-                                        </button>
-                                        <button type="button" class="btn"
-                                                style="float: right; width: 50%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;">
-                                            Eliminar
-                                        </button>
+                                        <p><c:out value="${Article.content}"/></p>
+
+                                            <form action="/api/superadmin/aprove" method="post">
+                                                <input hidden value="${Article.id}" name="articleId" id="articleIdAprove">
+                                                <button type="submit" class="btn" style="float: right; width: 50%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;"> Aprobar </button>
+                                            </form>
+
+                                            <form action="/api/superadmin/delete-story" method="post">
+                                                <input hidden value="${Article.id}" name="articleId" id="articleIdDelete">
+                                                <button type="submit" class="btn" style="float: right; width: 50%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;"> Eliminar </button>
+                                            </form>
+
+                                            <br>
+                                            <br>
+                                            <br>
+                                        </c:forEach>
+
                                     </div>
                                 </div>
                             </div>

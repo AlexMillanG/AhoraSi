@@ -125,16 +125,15 @@
                                         <img src= "../../assets/img/3.jpg"  class="w-100" alt="..." style="border-radius: 100%">
                                     </div>
                                     <div class="col-md-6 p-4 ps-md-0">
+                                        <c:forEach var="Article" items="${articles}">
+                                            <h4 class="mt-0"><c:out value="${Article.title}"/></h4>
 
-                                        <h5 class="mt-0">Usuario</h5>
-                                <%--        <s:forEach var="stories" items="${Stories}" varStatus="s">
+                                            <h5 class="mt-0"><c:out value="${Article.categories.category}"/></h5>
+                                            <p><c:out value="${Article.content}"/> </p>
 
-                                        <h4 class="mt-0"><c:out value="${Stories.title}"/></h4>
-                                        <p>Another instance of placeholder content for this other custom component.
-                                            It is intended to mimic what some real-world content would look like,
-                                            and we're using it here to give the component a bit of body and size.</p>
-                                        </s:forEach>   --%>
-                                        <button  type="button" class="btn" style="float: right; width: 50%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Entra al Foro</button>
+                                            <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
+
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>

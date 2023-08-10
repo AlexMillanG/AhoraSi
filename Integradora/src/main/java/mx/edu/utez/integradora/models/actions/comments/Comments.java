@@ -1,4 +1,4 @@
-package mx.edu.utez.integradora.models.actions;
+package mx.edu.utez.integradora.models.actions.comments;
 
 
 import mx.edu.utez.integradora.models.stories.Stories;
