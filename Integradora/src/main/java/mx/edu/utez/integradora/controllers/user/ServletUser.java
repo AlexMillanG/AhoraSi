@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import mx.edu.utez.integradora.models.actions.likes.DaoLikes;
 import mx.edu.utez.integradora.models.actions.likes.Likes;
 import mx.edu.utez.integradora.models.stories.Categories;
 import mx.edu.utez.integradora.models.stories.DaoCategories;
@@ -548,6 +549,11 @@ public class ServletUser extends HttpServlet {
                 User user1 = new User();
                 user1.setId(Long.parseLong(user_id));
                 Stories stories = new Stories();
+                stories.setId(Long.parseLong(story_id));
+                like.setUser(user1);
+                like.setStories(stories);
+                boolean result = new DaoLikes().save(like);
+                
 
                 break;
 
