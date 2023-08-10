@@ -70,7 +70,7 @@
                         <div class="card-group">
                             <c:forEach var="category" items="${categories}">
                             <div class="card" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
+                                <img src="#" class="card-img-top" alt="...">
 
                                     <div class="card-body">
                                         <h5 class="card-title"><c:out value="${category.category}"/></h5>
@@ -373,7 +373,7 @@ console.log(form.value);
     function prueba(category) {
         var valores = category.split("|");
         var id = valores[0];
-        var categories = valores[1];
+        const categories = valores[1];
         console.log("hola " + category);
         console.log("hola1 " + valores);
         console.log("hola2 " + categories);
@@ -400,7 +400,6 @@ console.log(form.value);
             var id = document.getElementById("id");
             console.log("aa "+id.value);
             var nombre = document.getElementById("categoria1");
-            console.log("aaa "+categories.value);
             console.log(document.getElementById("formUpdate").value);
             console.log(form.checkValidity());
             form.submit();

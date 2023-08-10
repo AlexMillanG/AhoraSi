@@ -41,7 +41,7 @@ import java.util.Objects;
         "/api/superadmin/admins-view", //vista crud admins
         "/api/admin/admin-historias",//vistaAdminHistorias
         "/api/admin/admin-user",//"/api/admin/admins-view", //vista crud admins
-
+        "/api/actoresDeDoblaje/update",
         "/api/superadmin/admins-save",//crear administradores
         "/api/superadmin/admin-historias",//vistaAdminHistorias
         "/api/superadmin/mas",//
