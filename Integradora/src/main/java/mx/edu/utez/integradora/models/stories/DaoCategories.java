@@ -81,27 +81,16 @@ public class DaoCategories {
     public boolean update(Categories categories) throws SQLException {
         try {
             conn = new MySQLConnection().connect();
-            conn.setAutoCommit(false); // Preparar la transaccion
-            String query = "update caregories c  set c.category=? where c.id=?;";
-            pstm = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+            String query = "update categories c  set c.category=? where id=?;";
             pstm = conn.prepareStatement(query);
             pstm.setString(1, categories.getCategory());
             pstm.setLong(2, categories.getId());
-            rs = pstm.getGeneratedKeys();
-            if (rs.next()) {
-                long id = rs.getLong(1);//ID pokemon
-                String querySaveImg = "UPDATE  images i SET i.image=? i.file_name=?   VALUES (?,?);";
-                pstm = conn.prepareStatement(querySaveImg);
-                pstm.setBytes(1, categories.getFile());
-                pstm.setString(2, categories.getFileName());
-                pstm.execute();
-            }
-            conn.commit(); // flush - COMMIT;
-            return true;
+            System.out.println(categories.getCategory());
+            System.out.println(categories.getId());
+            return pstm.executeUpdate()>0;
         } catch (SQLException e) {
             Logger.getLogger(DaoCategories.class.getName())
                     .log(Level.SEVERE, "ERROR save " + e.getMessage());
-            conn.rollback();
         } finally {
             close();
         }

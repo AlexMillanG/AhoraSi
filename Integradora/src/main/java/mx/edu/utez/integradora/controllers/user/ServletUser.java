@@ -520,11 +520,25 @@ public class ServletUser extends HttpServlet {
             case "/api/actoresDeDoblaje/update":
                 try {
                     System.out.println("en el caso");
-                    id=req.getParameter("id");
-                    category=req.getParameter("categoria1");
+                    id = req.getParameter("id");
+                    category = req.getParameter("categoria1");
 
                     System.out.println(id);
                     System.out.println(category);
+               Categories categories=new Categories();
+               categories.setId(Long.parseLong(id));
+               categories.setCategory(category);
+
+                    boolean result = new DaoCategories().update(categories);
+                    if (result) {
+
+                        redirect = "/api/superadmin/mas?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado correctamente.",
+                                StandardCharsets.UTF_8);
+                    } else {
+                        redirect = "/api/superadmin/mas?result= " + result + "&message=" + URLEncoder.encode("¡Error! Actualizacion no realizada correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+
 
                 }catch (Exception e) {
                     redirect = "/api/superadmin/mas?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);

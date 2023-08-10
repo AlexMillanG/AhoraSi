@@ -75,7 +75,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><c:out value="${category.category}"/></h5>
                                         <form action="/api/actoresDeDoblaje" method="post">
-                                            <input name="id"  value="${category.id}">
+                                            <input name="id" hidden value="${category.id}">
                                             <button type="submit" class="btn btn-outline-danger"><i data-feather="trash-2"></i></button>
                                         </form>
 
@@ -242,15 +242,16 @@
             <div class="modal-body">
                 <form id="formUpdate" action="/api/actoresDeDoblaje/update" method="post" class="needs-validation"
                       novalidate method="post">
+                    <input hidden id="id" name="id" class="form-control">
 
                     <div class="row">
                         <div class="col">
                             <div class="form-floating mb-3">
-                                <input id="id" name="id" class="form-control" >
-                                <label for="id"> id</label>
-                                <input type="text"   name="categoria1" id="categoria1"
-                                       placeholder="nombre" required>
-                                <label for="categoria1">ingresa tu nombre</label>
+
+                                <label for="categoria1">Nueva categpria</label>
+                                <input type="text" name="categoria1" id="categoria1"
+                                        required>
+
                                 <div class="invalid-feedback text-start">
                                     Campo obligatorio
                                 </div>
