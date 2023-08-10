@@ -48,7 +48,7 @@
                             <button class="nav-link active" id="accion-tab" data-bs-toggle="tab" data-bs-target="#accion-tab-pane" type="button" role="tab" aria-controls="accion-tab-pane" aria-selected="true">Historias</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="aventura-tab" data-bs-toggle="tab" data-bs-target="#aventura-tab-pane" type="button" role="tab" aria-controls="aventura-tab-pane" aria-selected="false">Foros</button>
+                            <button class="nav-link" id="aventura-tab" data-bs-toggle="tab" data-bs-target="#aventura-tab-pane" type="button" role="tab" aria-controls="aventura-tab-pane" aria-selected="false">Articulos</button>
                         </li>
                     </ul>
 
@@ -65,6 +65,12 @@
 
                                         <h5 class="mt-0"><c:out value="${Story.categories.category}"/></h5>
                                         <p><c:out value="${Story.content}"/> </p>
+
+                                              <form action="" method="post">
+                                                  <input hidden value ="${user.id}" name = "user_id">
+                                                  <input hidden value ="${Story.id}" name = "story_id">
+                                                  <button type="submit"><i data-feather ="star"></i></button>
+                                              </form>
 
                                         <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
                                               <br>
@@ -130,8 +136,10 @@
 
                                             <h5 class="mt-0"><c:out value="${Article.categories.category}"/></h5>
                                             <p><c:out value="${Article.content}"/> </p>
+                                            <br>
+                                            <br>
 
-                                            <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
+                                            <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Articulo</button>
 
                                         </c:forEach>
                                     </div>
