@@ -567,7 +567,7 @@ public class ServletUser extends HttpServlet {
                 like.setUser(user1);
                 like.setStories(stories);
                 boolean result = new DaoLikes().save(like);
-                
+
 
                 break;
 
