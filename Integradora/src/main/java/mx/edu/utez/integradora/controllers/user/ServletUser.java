@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import mx.edu.utez.integradora.models.stories.Categories;
+import mx.edu.utez.integradora.models.stories.DaoCategories;
 import mx.edu.utez.integradora.models.stories.DaoStories;
 import mx.edu.utez.integradora.models.stories.Stories;
 import mx.edu.utez.integradora.models.user.DaoUser;
@@ -25,48 +27,38 @@ import java.util.Objects;
 @WebServlet (name = "user",urlPatterns = {
         "/api/auth",
         "/api/user/home",
-        "/api/user/all",
-        "/api/user/all-view",
         "/api/user/perfil",
         "/api/user/save",
-        "/api/user/create",
         "/api/user/update",
         "/api/user/delete",
         "/api/admin/home",
+
         "/api/superadmin/home",
 
-        "/api/admin/users-view",
-        "/api/admin/stories-view",
         "/api/admin/superadminhome",
         "/api/admin/update-user",//Actualizar usuarios desde el perfil Administrador
         "/api/superadmin/admins-view", //vista crud admins
-        "/api/admin/admins-save",//crear administradores
-        "/api/admin/admin-home",//vista adminHiome
         "/api/admin/admin-historias",//vistaAdminHistorias
-        "/api/admin/admin-mas",
         "/api/admin/admin-user",//"/api/admin/admins-view", //vista crud admins
 
-
         "/api/superadmin/admins-save",//crear administradores
-        "/api/superadmin/admin-home",//vista adminHiome
         "/api/superadmin/admin-historias",//vistaAdminHistorias
-        "/api/superadmin/admin-mas",//
+        "/api/superadmin/mas",//
         "/api/superadmin/admin-user",//
+        "/api/superadmin/add-category",//añadir categoria
+        "/api/actoresDeDoblaje",//Borrar categoria
         "/api/user/super-delete",// eliminar usuarios desdel SuperAdmin
         "/api/superadmin/delete-admin",//eliminar Administradores
         "/api/superadmin/update-admin",//actualizar administradores desde el Super
-
-        "/api/user/delete-story"
-
-
-
+        "/api/user/delete-story",
 
 })
 public class ServletUser extends HttpServlet {
     String action,redirect="/api/auth";
     User user;
+    Status status1;
     HttpSession  session,getSession;
-    String id,name,lastname,surname,birthday,sex,email,pass,status,rol;
+    String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -79,7 +71,6 @@ public class ServletUser extends HttpServlet {
                 break;
             //End Points para usuarios
             case "/api/user/home":
-                System.out.println("DEntro del get "+getSession.getAttribute("id"));
             List<Objects> stories = new ArrayList<>();
             req.setAttribute("stories", new DaoStories().findAllStories());
             List<Objects> users= new ArrayList<>();
@@ -111,13 +102,9 @@ public class ServletUser extends HttpServlet {
                 break;
 
             case"/api/admin/home":
-
                 redirect="/view/admin/adminIndex.jsp";
                 break;
-            case "/api/admin/users-view":
 
-                redirect="/";
-                break;
                 //EndPonits  superAdmin
             case"/api/superadmin/home":
                 redirect="/view/superadmin/adminIndex.jsp";
@@ -133,7 +120,8 @@ public class ServletUser extends HttpServlet {
                 redirect="/view/superadmin/adminHistorias.jsp";
                 break;
 
-            case "/api/superadmin/admin-mas":
+            case "/api/superadmin/mas":
+                req.setAttribute("categories",new DaoCategories().fiandAll());
                 redirect="/view/superadmin/adminMas.jsp";
                 break;
 
@@ -178,11 +166,9 @@ public class ServletUser extends HttpServlet {
                                 break;
                             case"user":
                                 redirect="/api/user/home";
-                                System.out.println("en teoria entró al case del user");
                                 break;
                             case "admin":
                                 redirect = "/api/admin/home";
-                                System.out.println("Entro al case admin");
                                 break;
                         }
                     } else {
@@ -193,6 +179,7 @@ public class ServletUser extends HttpServlet {
                     redirect = "/api/auth?result=false&message=" + URLEncoder.encode("Usuario y/o contraseña incorrecta", StandardCharsets.UTF_8);
                 }
                 break;
+
             case "/api/user/save":
                 try {
                     name = req.getParameter("nameActualizar");
@@ -202,14 +189,6 @@ public class ServletUser extends HttpServlet {
                     sex = req.getParameter("sex");
                     email = req.getParameter("email");
                     pass = req.getParameter("pass");
-
-                    System.out.println("nombre es " + name);
-                    System.out.println("lastname es " + lastname);
-                    System.out.println("surname es " + surname);
-                    System.out.println("birthday es " + birthday);
-                    System.out.println("sex es " + sex);
-                    System.out.println("email es " + email);
-                    System.out.println("pass es " + pass);
 
                     Rols rols = new Rols();
                     rol = "user";
@@ -258,13 +237,6 @@ public class ServletUser extends HttpServlet {
                     email = req.getParameter("email");
                     pass = req.getParameter("pass");
 
-                    System.out.println("nombre es " + name);
-                    System.out.println("lastname es " + lastname);
-                    System.out.println("surname es " + surname);
-                    System.out.println("birthday es " + birthday);
-                    System.out.println("sex es " + sex);
-                    System.out.println("email es " + email);
-                    System.out.println("pass es " + pass);
 
                     Rols rols = new Rols();
                     rol = "admin";
@@ -298,14 +270,12 @@ public class ServletUser extends HttpServlet {
                     }
 
                 } catch (Exception e) {
-                    redirect = "/api/admin/admins-save?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+                    redirect = "/api/superadmin/admins-view?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
                 }
                 break;
 
             case "/api/user/delete":
                 id = req.getParameter("id");
-                System.out.println(id);
-                System.out.println("delete");
 
                 if (new DaoUser().delete(Long.parseLong(id)))
                     redirect = "/api/admin/admin-user?result=" + true + "&message" + URLEncoder.encode
@@ -313,11 +283,9 @@ public class ServletUser extends HttpServlet {
 
                 else{
             redirect = "/api/admin/admin-user?result=" + false + "&message=" + URLEncoder.encode("¡Error Accion no realizada correctamente",StandardCharsets.UTF_8);
-
-//               redirect = "/api/admin/home?result=" + false + "&message=" + URLEncoder.encode
-//                    ("¡Error!accion no realizada correctamente.", StandardCharsets.UTF_8);
-                 }
+              }
         break;
+//BOrrar usuarios desde el superAdmin
             case "/api/user/super-delete":
                 id = req.getParameter("id");
                 System.out.println(id);
@@ -358,14 +326,6 @@ public class ServletUser extends HttpServlet {
                     email = req.getParameter("emailRegistro");
                     pass = req.getParameter("pass");
 
-                    System.out.println("id is"+id);
-                    System.out.println("name is"+name);
-                    System.out.println("lastname is"+lastname);
-                    System.out.println("id is"+surname);
-                    System.out.println("id is"+birthday);
-                    System.out.println("id is"+email);
-                    System.out.println("id is"+pass);
-
                     Rols rols = new Rols();
                     rol = "3";
 
@@ -384,8 +344,6 @@ public class ServletUser extends HttpServlet {
                     user.setPass(pass);
                     user.setRols(rols);
                     user.setStatus(status1);
-                    System.out.println(user.getRols().getId());
-                    System.out.println(user.getStatus().getId());
                     boolean result = new DaoUser().update(user);
 
                     if (result) {
@@ -403,6 +361,7 @@ public class ServletUser extends HttpServlet {
                     redirect = "/api/superadmin/home?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
                 }
                     break;
+
             case "/api/admin/update-user":
                 try {
                     id = req.getParameter("id");
@@ -413,14 +372,6 @@ public class ServletUser extends HttpServlet {
                     sex = req.getParameter("sex");
                     email = req.getParameter("emailRegistro");
                     pass = req.getParameter("pass");
-
-                    System.out.println("id is"+id);
-                    System.out.println("name is"+name);
-                    System.out.println("lastname is"+lastname);
-                    System.out.println("id is"+surname);
-                    System.out.println("id is"+birthday);
-                    System.out.println("id is"+email);
-                    System.out.println("id is"+pass);
 
                     Rols rols = new Rols();
                     rol = "3";
@@ -440,8 +391,6 @@ public class ServletUser extends HttpServlet {
                     user.setPass(pass);
                     user.setRols(rols);
                     user.setStatus(status1);
-                    System.out.println(user.getRols().getId());
-                    System.out.println(user.getStatus().getId());
                     boolean result = new DaoUser().update(user);
 
                     if (result) {
@@ -471,18 +420,9 @@ public class ServletUser extends HttpServlet {
                     email = req.getParameter("emailRegistro");
                     pass = req.getParameter("pass1");
 
-                    System.out.println("id is"+id);
-                    System.out.println("name is"+name);
-                    System.out.println("lastname is"+lastname);
-                    System.out.println("Surname is"+surname);
-                    System.out.println("birht is"+birthday);
-                    System.out.println("email is"+email);
-                    System.out.println("pass is"+pass);
-
                     Rols rols = new Rols();
                     rol = "2";
 
-                    Status status1 = new Status();
                     status = "1";
                     status1.setId(Long.parseLong(status));
                     rols.setId(Long.parseLong(rol));
@@ -497,10 +437,7 @@ public class ServletUser extends HttpServlet {
                     user.setPass(pass);
                     user.setRols(rols);
                     user.setStatus(status1);
-                    System.out.println(user.getRols().getId());
-                    System.out.println(user.getStatus().getId());
                     boolean result = new DaoUser().update(user);
-
                     if (result) {
 
                         redirect = "/api/superadmin/admins-view?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado correctamente.",
@@ -516,14 +453,69 @@ public class ServletUser extends HttpServlet {
                     redirect = "/api/superadmin/admins-view?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
                 }
                 break;
-            case  "/api/user/delete-story":
-                  id = req.getParameter("id");
-                  System.out.println("ID de la historia borrar" + id);
-                if (new DaoStories().delete(Long.parseLong(id)))
-                    redirect = "/api/admin/admin-user?result=" + true + "&message" + URLEncoder.encode
-                            ("¡Exito!Usuario Eliminado correctamente.", StandardCharsets.UTF_8);
 
-                redirect = "/api/user/perfil";
+            case  "/api/user/delete-story":
+                try{
+                    id = req.getParameter("id");
+                    System.out.println("ID de la historia borrar" + id);
+                    if (new DaoStories().delete(Long.parseLong(id)))
+                        redirect = "/api/user/perfil?result=" + true + "&message" + URLEncoder.encode
+                                ("¡Exito!Historia Eliminado correctamente.", StandardCharsets.UTF_8);
+
+                }catch (Exception e) {
+                    redirect = "/api/user/perfil?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+                }
+                break;
+
+            case"/api/superadmin/add-category":
+                try {
+                    category=req.getParameter("categoria");
+                    System.out.println(category);
+                    Categories categories=new Categories();
+                    categories.setCategory(category);
+                    boolean result = new DaoCategories().save(categories);
+                    if (result) {
+                        redirect = "/api/superadmin/mas?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado correctamente.",
+                                StandardCharsets.UTF_8);
+                    } else {
+                        redirect = "/api/superadmin/mas?result= " + result + "&message=" + URLEncoder.encode("¡Error! Actualizacion no realizada correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+                } catch (Exception e) {
+            redirect = "/api/superadmin/mas?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+                }
+                break;
+
+
+            case"/api/actoresDeDoblaje":
+                try {
+                    id=req.getParameter("id");
+                    System.out.println("Id categorias "+id);
+
+                    if (new DaoCategories().delete(Long.parseLong(id))) {
+                        redirect = "/api/superadmin/mas?result= " + true + "&message=" + URLEncoder.encode("¡Éxito! has Eliminado  correctamente la Categorias.",
+                                StandardCharsets.UTF_8);
+                    } else {
+                        redirect = "/api/superadmin/mas?result= " + false + "&message=" + URLEncoder.encode("¡Error! accion no realizada correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+                } catch (Exception e) {
+                    redirect = "/api/superadmin/mas?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+                }
+                break;
+
+            case "/api/actoresDeDoblaje/update":
+                try {
+                    System.out.println("en el caso");
+                    id=req.getParameter("id");
+                    category=req.getParameter("categoria1");
+
+                    System.out.println(id);
+                    System.out.println(category);
+
+                }catch (Exception e) {
+                    redirect = "/api/superadmin/mas?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+                }
                 break;
 
             default:

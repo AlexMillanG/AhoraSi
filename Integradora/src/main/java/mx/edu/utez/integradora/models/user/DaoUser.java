@@ -256,8 +256,6 @@ public class DaoUser implements DaoRepository<User> {
         }finally {
             close();
         }
-
-
         return false;
     }
     public boolean deleteAdmin(Long id) {
@@ -273,8 +271,6 @@ public class DaoUser implements DaoRepository<User> {
         }finally {
             close();
         }
-
-
         return false;
     }
 

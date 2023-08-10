@@ -63,22 +63,11 @@ public class DaoCategories {
     public boolean save(Categories categories) throws SQLException {
         try {
             conn = new MySQLConnection().connect();
-            conn.setAutoCommit(false); // Preparar la transaccion
+//            conn.setAutoCommit(false); // Preparar la transaccion
             String query = "insert into  categories(category) values(?);";
-            pstm = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
             pstm = conn.prepareStatement(query);
             pstm.setString(1, categories.getCategory());
-            rs = pstm.getGeneratedKeys();
-            if (rs.next()) {
-                long id = rs.getLong(1);//ID pokemon
-                String querySaveImg = "INSERT INTO images (image, file_name) VALUES (?,?);";
-                pstm = conn.prepareStatement(querySaveImg);
-                pstm.setBytes(1, categories.getFile());
-                pstm.setString(2, categories.getFileName());
-                pstm.execute();
-            }
-            conn.commit(); // flush - COMMIT;
-            return true;
+            return pstm.executeUpdate()>0;
         } catch (SQLException e) {
             Logger.getLogger(DaoCategories.class.getName())
                     .log(Level.SEVERE, "ERROR save " + e.getMessage());
@@ -124,8 +113,9 @@ public class DaoCategories {
     public boolean delete(Long id) {
         try {
             conn = new MySQLConnection().connect();
-            String query = "delete * from categories where id=?";
+            String query = "delete from categories where id=?";
             pstm = conn.prepareStatement(query);
+            System.out.println("Adentro del delete");
             pstm.setLong(1, id);
             return pstm.executeUpdate() == 1;
         } catch (SQLException e) {

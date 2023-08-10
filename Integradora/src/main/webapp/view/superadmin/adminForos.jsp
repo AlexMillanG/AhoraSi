@@ -315,7 +315,6 @@
                         Cancelar
                     </button>
                 </form>
-                </form>
             </div>
         </div>
     </div>
@@ -381,6 +380,7 @@
             form.submit();
         }
     }
+
     (function () {
         botonRegistro.addEventListener("click",function (event){
             console.log(formRegistro.checkValidity());

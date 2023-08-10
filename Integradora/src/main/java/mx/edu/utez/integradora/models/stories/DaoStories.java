@@ -50,6 +50,9 @@ public class DaoStories {
 
     }
 
+
+
+
     public List<Stories> findAllUserStories(Long id){
         List<Stories> Stories=new ArrayList<>();
         try {
@@ -233,9 +236,6 @@ public class DaoStories {
         }
         return list;
     }
-
-
-
 
 
     public void close(){
