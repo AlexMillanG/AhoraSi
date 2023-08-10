@@ -368,7 +368,7 @@
     const  form=document.getElementById("formUpdate");
     const btn=document.getElementById("updateUserbtn");
 console.log(form.value);
-    
+
 
     function prueba(category) {
         var valores = category.split("|");
