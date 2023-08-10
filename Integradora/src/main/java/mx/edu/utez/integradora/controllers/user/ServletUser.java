@@ -546,7 +546,7 @@ public class ServletUser extends HttpServlet {
                 user_id = req.getParameter("user_id");
                 story_id = req.getParameter("story_id");
                 Likes like = new Likes();
-                like.setUser;
+//                like.setUser;
                 break;
 
 
