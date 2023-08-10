@@ -49,7 +49,75 @@ public class DaoStories {
         return  stories;
 
     }
+    public List<Stories> findAllWaitingArticles(){
+        List<Stories> stories=new ArrayList<>();
+        try {
+            conn = new MySQLConnection().connect();
+            String query= "SELECT * from showStoriesByUser where status_id = 4;";
+            pstm= conn.prepareStatement(query);
+            rs= pstm.executeQuery();
+            while (rs.next()){
+                Stories stories1=new Stories();
+                stories1.setId(rs.getLong("id"));
+                stories1.setTitle(rs.getString("title"));
+                stories1.setContent(rs.getString("content"));
+                stories1.setCreated_atDATETIME(rs.getString("created_atDATETIME"));
+                stories1.setFile(rs.getBytes("image_id"));//Aqui aun no funciona
+                Status status= new Status();
+                status.setType_status(rs.getString("status_id"));
+                stories1.setStatus(status);
 
+                Categories categories=new Categories();
+                categories.setCategory(rs.getString("category"));
+                categories.setId(rs.getLong("category_id"));
+                stories1.setCategories(categories);
+                stories.add(stories1);
+
+            }
+
+        }catch (SQLException e){
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FIANDALL stories"+e.getMessage());
+        }finally {
+            close();
+        }
+        return  stories;
+
+    }
+
+    public List<Stories> findAllPublishedArticles(){
+        List<Stories> stories=new ArrayList<>();
+        try {
+            conn = new MySQLConnection().connect();
+            String query= "SELECT * from showStoriesByUser where status_id = 5;";
+            pstm= conn.prepareStatement(query);
+            rs= pstm.executeQuery();
+            while (rs.next()){
+                Stories stories1=new Stories();
+                stories1.setId(rs.getLong("id"));
+                stories1.setTitle(rs.getString("title"));
+                stories1.setContent(rs.getString("content"));
+                stories1.setCreated_atDATETIME(rs.getString("created_atDATETIME"));
+                stories1.setFile(rs.getBytes("image_id"));//Aqui aun no funciona
+                Status status= new Status();
+                status.setType_status(rs.getString("status_id"));
+                stories1.setStatus(status);
+
+                Categories categories=new Categories();
+                categories.setCategory(rs.getString("category"));
+                categories.setId(rs.getLong("category_id"));
+                stories1.setCategories(categories);
+                stories.add(stories1);
+
+            }
+
+        }catch (SQLException e){
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FIANDALL stories"+e.getMessage());
+        }finally {
+            close();
+        }
+        return  stories;
+
+    }
 
 
 
@@ -95,6 +163,20 @@ public class DaoStories {
         }
         return  Stories;
 
+    }
+    public  boolean AproveArticle(Long id){
+        try {
+            conn=new MySQLConnection().connect();
+            String query="update stories set status_id = 5 where id =?";
+            pstm= conn.prepareStatement(query);
+            pstm.setLong(1,id);
+            return pstm.executeUpdate()==1;
+        }catch (SQLException e){
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR delete"+e.getMessage());
+        }finally {
+            close();
+        }
+        return false;
     }
 
     public List<Categories> findAllCategories(){
