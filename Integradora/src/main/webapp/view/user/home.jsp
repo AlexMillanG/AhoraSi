@@ -66,7 +66,7 @@
                                         <h5 class="mt-0"><c:out value="${Story.categories.category}"/></h5>
                                         <p><c:out value="${Story.content}"/> </p>
 
-                                              <form action="" method="post">
+                                              <form action="/api/user/like" method="post">
                                                   <input hidden value ="${user.id}" name = "user_id">
                                                   <input hidden value ="${Story.id}" name = "story_id">
                                                   <button type="submit"><i data-feather ="star"></i></button>

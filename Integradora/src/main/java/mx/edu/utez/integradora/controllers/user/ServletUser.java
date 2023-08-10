@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import mx.edu.utez.integradora.models.actions.likes.Likes;
 import mx.edu.utez.integradora.models.stories.Categories;
 import mx.edu.utez.integradora.models.stories.DaoCategories;
 import mx.edu.utez.integradora.models.stories.DaoStories;
@@ -54,7 +55,8 @@ import java.util.Objects;
 
         "/api/user/delete-story",
         "/api/superadmin/aprove",
-        "/api/superadmin/delete-story"
+        "/api/superadmin/delete-story",
+        "/api/user/like"
 
 
 
@@ -65,7 +67,7 @@ public class ServletUser extends HttpServlet {
     User user;
     Status status1;
     HttpSession  session,getSession;
-    String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category;
+    String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category, user_id, story_id;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -540,6 +542,13 @@ public class ServletUser extends HttpServlet {
                 req.setAttribute(id,new DaoStories().delete(Long.parseLong(id)));
                 redirect= "/api/superadmin/home";
                 break;
+            case "/api/user/like":
+                user_id = req.getParameter("user_id");
+                story_id = req.getParameter("story_id");
+                Likes like = new Likes();
+                like.setUser;
+                break;
+
 
             default:
                 redirect="/api/user/home";
