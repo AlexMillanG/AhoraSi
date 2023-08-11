@@ -85,10 +85,15 @@ public class ServletUser extends HttpServlet {
                 break;
             //End Points para usuarios
             case "/api/user/home":
+            List<Objects> likes = new ArrayList<>();
+          //  req.setAttribute("likes",new DaoLikes().findAllLikes());
+
             List<Objects> stories = new ArrayList<>();
             req.setAttribute("stories", new DaoStories().findAllStories());
+
             List<Objects> articles = new ArrayList<>();
             req.setAttribute("articles", new DaoStories().findAllPublishedArticles());
+
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
             req.setAttribute("categories",new DaoStories().findAllCategories());
@@ -517,7 +522,7 @@ public class ServletUser extends HttpServlet {
                 break;
 
 
-            case"/api/actoresDeDoblaje":
+            case"/api/actoresDeDoblaje": //borrar categorías
                 try {
                     id=req.getParameter("id");
                     System.out.println("Id categorias "+id);
@@ -534,7 +539,7 @@ public class ServletUser extends HttpServlet {
                 }
                 break;
 
-            case "/api/actoresDeDoblaje/update":
+            case "/api/actoresDeDoblaje/update": //actualizar categorias
                 try {
                     System.out.println("en el caso");
                     id = req.getParameter("id");
@@ -574,17 +579,40 @@ public class ServletUser extends HttpServlet {
                 redirect= "/api/superadmin/home";
                 break;
             case "/api/user/like":
-                user_id = req.getParameter("user_id");
-                story_id = req.getParameter("story_id");
-                Likes like = new Likes();
-                User user1 = new User();
-                user1.setId(Long.parseLong(user_id));
-                Stories stories = new Stories();
-                stories.setId(Long.parseLong(story_id));
-                like.setUser(user1);
-                like.setStories(stories);
-                boolean result = new DaoLikes().save(like);
 
+
+                try {
+                    user_id = req.getParameter("user_id");
+                    story_id = req.getParameter("story_id");
+                    Likes like = new Likes();
+                    User user1 = new User();
+                    user1.setId(Long.parseLong(user_id));
+                    Stories stories = new Stories();
+                    stories.setId(Long.parseLong(story_id));
+                    like.setUser(user1);
+                    like.setStories(stories);
+
+                    boolean result = new DaoLikes().save(like);
+                    if (result == false){
+                        boolean result2 = new DaoLikes().delete(Long.parseLong(user_id),Long.parseLong(story_id));
+                        redirect = "/api/user/home?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Te has registrado correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+
+                    if (result) {
+
+                        redirect = "/api/user/home?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! se ha registrado el like registrado correctamente.",
+                                StandardCharsets.UTF_8);
+
+                    } else {
+
+                        redirect = "/api/user/home?result= " + result + "&message=" + URLEncoder.encode("¡Éxito!, se ha eliminado el like correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+                }catch (Exception e){
+                    redirect = "/api/user/home?result= " + URLEncoder.encode("Historia no publicada correctamente", StandardCharsets.UTF_8);
+
+                }
 
                 break;
 

@@ -39,38 +39,40 @@ public class DaoLikes  {
     }
 
 
-    public  List<Likes> findAllLikes(){
+    public  List<Likes> findAllLikes(Long Story_id){
         List<Likes> likes = new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query = "SELECT * from likes where = story_id = ?;";
+            String query = "SELECT count(*) from likes where = story_id = ?;";
             pstm = conn.prepareStatement(query);
             rs = pstm.executeQuery();
             while (rs.next()){
                 Likes likes1 = new Likes();
                 Stories story = new Stories();
-                story.setId(rs.getLong("id"));
+                story.setId(rs.getLong("story_id"));
                 likes1.setStories(story);
                 User user = new User();
-                user.setId(rs.getLong("id"));
+                user.setId(rs.getLong("user_id"));
                 likes1.setUser(user);
                 likes.add(likes1);
             }
         }catch (SQLException e){
-            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FIANDALL Likes"+e.getMessage());
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FINDALL Likes"+e.getMessage());
         }finally {
             close();
         }
         return likes;
+
     }
 
-    public boolean delete(Long id){
+    public boolean delete(Long user_id,Long story_id){
         try {
             conn = new MySQLConnection().connect();
-            String query = "delete from likes where user_id = ?;";
+            String query = "delete from likes where user_id = ? and story_id = ?;";
             pstm= conn.prepareStatement(query);
-            pstm.setLong(1,id);
-            return pstm.executeUpdate()==1;
+            pstm.setLong(1,user_id);
+            pstm.setLong(2, story_id);
+            return pstm.executeUpdate()>1;
         }catch (SQLException e){
             Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR delete Like"+e.getMessage());
         }finally {
@@ -87,7 +89,7 @@ public class DaoLikes  {
         try{
             if (conn!=null)conn.close();
             if(pstm!= null)pstm.close();
-            if (rs!= null)pstm.close();
+            if (rs!= null)rs.close();
         }catch (SQLException e){
 
         }

@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="mx.edu.utez.integradora.models.actions.likes.DaoLikes" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,12 +76,6 @@
                                         <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
                                               <br>
                                               <br>
-                                                <div>
-                                                  <%--  <form  method="post" action="/api/user/delete-story">
-                                                    <input hidden value="${user.id}" name="idUser" >
-                                                    <button type="submit" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Eliminar mi historia</button>
-                                                      </form>  --%>
-                                                </div>
                                               <br>
                                               <br>
                                         </c:forEach>
