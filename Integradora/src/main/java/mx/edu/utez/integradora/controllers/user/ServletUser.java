@@ -2,11 +2,9 @@ package mx.edu.utez.integradora.controllers.user;
 
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 import mx.edu.utez.integradora.models.actions.likes.DaoLikes;
 import mx.edu.utez.integradora.models.actions.likes.Likes;
 import mx.edu.utez.integradora.models.stories.Categories;
@@ -19,13 +17,20 @@ import mx.edu.utez.integradora.models.user.Status;
 import mx.edu.utez.integradora.models.user.User;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
+@MultipartConfig(
+        fileSizeThreshold =1024*1024,
+        maxFileSize = 1024*1024*5,
+        maxRequestSize = 1024*1024*100
+)
 @WebServlet (name = "user",urlPatterns = {
         "/api/auth",
         "/api/user/home",
@@ -67,7 +72,7 @@ public class ServletUser extends HttpServlet {
     User user;
     Status status1;
     HttpSession  session,getSession;
-    String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category, user_id, story_id;
+    String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category, user_id, story_id,filename,mime;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -483,8 +488,20 @@ public class ServletUser extends HttpServlet {
             case"/api/superadmin/add-category":
                 try {
                     category=req.getParameter("categoria");
-                    System.out.println(category);
                     Categories categories=new Categories();
+                    for (Part part: req.getParts()){
+                        filename=part.getSubmittedFileName();
+                        System.out.println(filename);
+                        if (filename!=null){
+                            mime =part.getContentType().split("/")[1];
+                            System.out.println(mime);
+                            String uid= UUID.randomUUID().toString();
+                            categories.setFileName(uid+"."+mime);
+                            InputStream stream=part.getInputStream();
+                            byte[] arr=stream.readAllBytes();
+                            categories.setFile(arr);
+                        }
+                    }
                     categories.setCategory(category);
                     boolean result = new DaoCategories().save(categories);
                     if (result) {

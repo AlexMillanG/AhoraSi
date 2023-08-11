@@ -139,32 +139,16 @@
                                         Campo obligatorio
                                     </div>
                             </th>
-                        </tr>
 
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="img">Imagen</label>
+                                <input type="file" class="form-control" id="img"  name="categoria" accept="image/*" onchange="handleFileChange()">
+                                <div class="col-12 mt-5" id="preview"></div>
                             </th>
                         </tr>
 
-<%--                        <tr>--%>
-<%--                            <td style="text-align: center;">--%>
-<%--                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--%>
-<%--                                <div class="container-fluid" style=" filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF); /* 10px horizontal, 3px vertical, 30px desenfoque,5px propagacion */--%>
-<%--                  background: white;">--%>
-<%--                                    <form runat="server" style="text-align: center;">--%>
-<%--                                        <div>--%>
-<%--                                            <label for="name"--%>
-<%--                                                   style="float: left; font-family: PT serif; margin-bottom: 4%; margin-right: 5%;">Imagen</label>--%>
-<%--                                        </div>--%>
-<%--                                        <input type='file' id="imgInp" style="float: left;"/>--%>
-<%--                                        <img id="blah" src="#" alt="Imagen"--%>
-<%--                                             style="height: 100px; width: 100px; border-radius: 20px;"/>--%>
-<%--                                    </form>--%>
-<%--                                </div>--%>
-<%--                                <div class="invalid-feedback is-invalid">--%>
-<%--                                    Campo obligatorio--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-                        <tr>
                             <td style="float: right;">
                                 <button type="button"
                                         style="     margin: 0; padding: 0;background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px;"
@@ -248,9 +232,9 @@
                         <div class="col">
                             <div class="form-floating mb-3">
 
-                                <label for="categoria1">Nueva categpria</label>
+                                <label for="categoria1"></label>
                                 <input type="text" name="categoria1" id="categoria1"
-                                        required>
+                                        required class="form-control">
 
                                 <div class="invalid-feedback text-start">
                                     Campo obligatorio
@@ -404,6 +388,20 @@ console.log(form.value);
             console.log(document.getElementById("formUpdate").value);
             console.log(form.checkValidity());
             form.submit();
+        }
+    }
+
+    const handleFileChange = () => {
+        const inputFile = document.getElementById("img").files;
+        let preview = document.getElementById("preview");
+        preview.innerHTML = "";
+        for (let i = 0; i < inputFile.length; i++) {
+            let reader = new FileReader();
+            reader.onloadend = (result) => {
+                preview.innerHTML = "<img src='" + result.target.result
+                    + "' style='height: 200px;width: auto;'/>";
+            }
+            reader.readAsDataURL(inputFile[i]);
         }
     }
 </script>

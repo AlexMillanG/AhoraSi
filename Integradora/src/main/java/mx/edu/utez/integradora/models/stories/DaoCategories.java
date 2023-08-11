@@ -63,9 +63,9 @@ public class DaoCategories {
     public boolean save(Categories categories) throws SQLException {
         try {
             conn = new MySQLConnection().connect();
-//            conn.setAutoCommit(false); // Preparar la transaccion
+            conn.setAutoCommit(false); // Preparar la transaccion
             String query = "insert into  categories(category) values(?);";
-            pstm = conn.prepareStatement(query);
+            pstm=conn.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
             pstm.setString(1, categories.getCategory());
             return pstm.executeUpdate()>0;
         } catch (SQLException e) {
