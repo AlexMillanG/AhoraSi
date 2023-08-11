@@ -40,6 +40,7 @@ public class DaoCategories {
     }
     public Categories findFile(long id) {
         Categories categories = null;
+        System.out.println("Dentro del FindFile"+id);
         try {
             conn = new MySQLConnection().connect();
             String query = "SELECT * FROM images WHERE id = ?;";

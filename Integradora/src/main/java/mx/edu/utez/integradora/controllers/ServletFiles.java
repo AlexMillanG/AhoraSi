@@ -45,15 +45,25 @@ public class ServletFiles extends HttpServlet {
 //            stream.write(stories.getFile(),0,stories.getFile().length);
             break;
         case"/api/categories/loadFiles":
-            int id2 =Integer.parseInt(req.getParameter("id_cat")!= null ? req.getParameter("file"):"0");
+            System.out.println("Dentro del case");
+            System.out.println("req "+req.getParameter("id"));
+            int id2 = Integer.parseInt(req.getParameter("id") != null ? req.getParameter("id") : "0");
+            System.out.println(id2);
             categories=new DaoCategories().findFile(id2);
+            System.out.println(categories.getFileName());
+            System.out.println(categories.getFile());
             OutputStream outputStream1=resp.getOutputStream();
             outputStream1.write(categories.getFile(),0,categories.getFile().length);
-
-      //      outputStream1.write(categories.getFile(),0,stories.getFile().length);
             break;
+        default:
+            if (action=="/api/categories/loadFiles"){
+                req.getRequestDispatcher("/api/superadmin/mas").forward(req,resp);
+            }
+
+
     }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -70,7 +70,7 @@
                         <div class="card-group">
                             <c:forEach var="category" items="${categories}">
                             <div class="card" style="width: 18rem;">
-                                <img src="#" class="card-img-top" alt="...">
+                                <img src="/api/categories/loadFiles?id=${category.img_id}" class="card-img-top" alt="${category.category}">
 
                                     <div class="card-body">
                                         <h5 class="card-title"><c:out value="${category.category}"/></h5>
