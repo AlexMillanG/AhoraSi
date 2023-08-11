@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mx.edu.utez.integradora.models.stories.Categories;
+import mx.edu.utez.integradora.models.stories.DaoCategories;
 import mx.edu.utez.integradora.models.stories.DaoStories;
 import mx.edu.utez.integradora.models.stories.Stories;
 
@@ -22,6 +23,7 @@ public class ServletFiles extends HttpServlet {
     private String action;
     private Stories stories;
     private Categories categories;
+    private DaoStories stories1;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,10 +45,11 @@ public class ServletFiles extends HttpServlet {
 //            stream.write(stories.getFile(),0,stories.getFile().length);
             break;
         case"/api/categories/loadFiles":
-            int id2 =Integer.parseInt(req.getParameter("id")!= null ? req.getParameter("file"):"0");
-//        stories=new DaoStories().findFile(id); aun no existe la clase
-
+            int id2 =Integer.parseInt(req.getParameter("id_cat")!= null ? req.getParameter("file"):"0");
+            categories=new DaoCategories().findFile(id2);
             OutputStream outputStream1=resp.getOutputStream();
+            outputStream1.write(categories.getFile(),0,categories.getFile().length);
+
       //      outputStream1.write(categories.getFile(),0,stories.getFile().length);
             break;
     }

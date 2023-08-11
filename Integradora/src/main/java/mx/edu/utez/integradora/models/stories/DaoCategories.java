@@ -28,10 +28,32 @@ public class DaoCategories {
                 Categories categorie = new Categories();
                 categorie.setId(rs.getLong("id"));
                 categorie.setCategory(rs.getString("category"));
+                categorie.setImg_id(rs.getLong("img_id"));
                 categories.add(categorie);
             }
         } catch (SQLException e) {
             Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE, "ERROR findAll" + e.getMessage());
+        } finally {
+            close();
+        }
+        return categories;
+    }
+    public Categories findFile(long id) {
+        Categories categories = null;
+        try {
+            conn = new MySQLConnection().connect();
+            String query = "SELECT * FROM images WHERE id = ?;";
+            pstm = conn.prepareStatement(query);
+            pstm.setLong(1, id);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                categories = new Categories();
+                categories.setFileName(rs.getString("file_name"));
+                categories.setFile(rs.getBytes("image"));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DaoCategories.class.getName())
+                    .log(Level.SEVERE, "ERROR findFile" + e.getMessage());
         } finally {
             close();
         }
@@ -64,10 +86,23 @@ public class DaoCategories {
         try {
             conn = new MySQLConnection().connect();
             conn.setAutoCommit(false); // Preparar la transaccion
-            String query = "insert into  categories(category) values(?);";
+            String query = "insert into images (image,file_name)values(?,?);";
             pstm=conn.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
-            pstm.setString(1, categories.getCategory());
-            return pstm.executeUpdate()>0;
+            pstm.setBytes(1,categories.getFile());
+            pstm.setString(2,categories.getFileName());
+            pstm.execute();
+            rs=pstm.getGeneratedKeys();
+            if (rs.next()){
+                long id= rs.getLong(1);//id Image
+                System.out.println(id);
+                String querySaveImg="insert into categories (category,img_id)values(?,?);";
+                pstm=conn.prepareStatement(querySaveImg);
+                pstm.setString(1, categories.getCategory());
+                pstm.setLong(2,id);
+                pstm.execute();
+            }
+            conn.commit();
+            return true;
         } catch (SQLException e) {
             Logger.getLogger(DaoCategories.class.getName())
                     .log(Level.SEVERE, "ERROR save " + e.getMessage());
@@ -95,8 +130,6 @@ public class DaoCategories {
             close();
         }
         return false;
-
-        //Probablemente no se actualizara
     }
 
     public boolean delete(Long id) {

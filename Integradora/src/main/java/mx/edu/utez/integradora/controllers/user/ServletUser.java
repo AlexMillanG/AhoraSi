@@ -71,6 +71,7 @@ public class ServletUser extends HttpServlet {
     String action,redirect="/api/auth";
     User user;
     Status status1;
+    Categories categories;
     HttpSession  session,getSession;
     String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category, user_id, story_id,filename,mime;
 
@@ -492,10 +493,10 @@ public class ServletUser extends HttpServlet {
 
             case"/api/superadmin/add-category":
                 try {
-                    category=req.getParameter("categoria");
-                    Categories categories=new Categories();
+                    categories=new Categories();
                     for (Part part: req.getParts()){
                         filename=part.getSubmittedFileName();
+                        System.out.println(part.getSubmittedFileName());
                         System.out.println(filename);
                         if (filename!=null){
                             mime =part.getContentType().split("/")[1];
@@ -507,7 +508,10 @@ public class ServletUser extends HttpServlet {
                             categories.setFile(arr);
                         }
                     }
+                    category=req.getParameter("categoria");
                     categories.setCategory(category);
+                    System.out.println(categories.getFile());
+                    System.out.println(categories.getFileName());
                     boolean result = new DaoCategories().save(categories);
                     if (result) {
                         redirect = "/api/superadmin/mas?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado correctamente.",

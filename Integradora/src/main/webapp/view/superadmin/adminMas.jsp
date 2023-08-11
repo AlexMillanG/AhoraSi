@@ -128,7 +128,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="categ-form" class="needs-validation" action="/api/superadmin/add-category" method="post">
+                <form id="categ-form" class="needs-validation" action="/api/superadmin/add-category"
+                      method="post" enctype="multipart/form-data" novalidate>
                     <table class="table">
                         <tr>
                             <th>
@@ -144,7 +145,8 @@
                         <tr>
                             <th>
                                 <label for="img">Imagen</label>
-                                <input type="file" class="form-control" id="img"  name="categoria" accept="image/*" onchange="handleFileChange()">
+                                <input type="file" class="form-control" id="img"
+                                       name="fileCategory" accept="image/*" onchange="handleFileChange()">
                                 <div class="col-12 mt-5" id="preview"></div>
                             </th>
                         </tr>
@@ -353,7 +355,6 @@
     const  form=document.getElementById("formUpdate");
     const btn=document.getElementById("updateUserbtn");
 console.log(form.value);
-
 
     function prueba(category) {
         var valores = category.split("|");
