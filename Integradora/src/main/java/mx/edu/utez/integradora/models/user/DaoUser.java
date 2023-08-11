@@ -171,7 +171,7 @@ public class DaoUser implements DaoRepository<User> {
    public boolean save(User object) {
         try {
             conn= new MySQLConnection().connect();
-            String query="insert into  users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,3,1);";
+            String query="insert into users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,3,1);";
             pstm= conn.prepareStatement(query);
             pstm.setString(1,object.getName());
             pstm.setString(2,object.getLastname());

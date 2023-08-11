@@ -10,6 +10,7 @@ public class Stories {
     private String content;
     private String created_atDATETIME;//fecha de creacion
     private byte[] file;//talvez asi agregue las imagenes
+    private String file_name;
     private Images images;
     private Status status;
     private User user_id;
@@ -19,12 +20,13 @@ public class Stories {
 
     }
 
-    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, Images images, Status status, User user_id, Categories categories) {
+    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, String file_name, Images images, Status status, User user_id, Categories categories) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.created_atDATETIME = created_atDATETIME;
         this.file = file;
+        this.file_name = file_name;
         this.images = images;
         this.status = status;
         this.user_id = user_id;
@@ -101,5 +103,13 @@ public class Stories {
 
     public void setImages(Images images) {
         this.images = images;
+    }
+
+    public String getFile_name() {
+        return file_name;
+    }
+
+    public void setFile_name(String file_name) {
+        this.file_name = file_name;
     }
 }

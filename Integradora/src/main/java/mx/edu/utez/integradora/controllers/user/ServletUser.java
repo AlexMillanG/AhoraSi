@@ -206,12 +206,12 @@ public class ServletUser extends HttpServlet {
 
             case "/api/user/save":
                 try {
-                    name = req.getParameter("nameActualizar");
-                    lastname = req.getParameter("nameActualizar");
+                    name = req.getParameter("name");
+                    lastname = req.getParameter("lastname");
                     surname = req.getParameter("surname");
                     birthday = req.getParameter("birthday");
                     sex = req.getParameter("sex");
-                    email = req.getParameter("email");
+                    email = req.getParameter("emailRegistro");
                     pass = req.getParameter("pass");
 
                     Rols rols = new Rols();

@@ -235,16 +235,26 @@ public class DaoStories {
 
     public boolean saveStory(Stories object){
         try {
-            System.out.println("entro al save story del Dao");
             conn=new MySQLConnection().connect();
-            String query = "insert into stories(title,content,created_atDATETIME,status_id,user_id,category_id) values (?,?,curdate(),3,?,?);";
-            pstm=conn.prepareStatement(query);
-            pstm.setString(1,object.getTitle());
-            pstm.setString(2,object.getContent());
-            pstm.setLong(3,object.getUser_id().getId());
-            System.out.println(object.getUser_id().getId());
-            pstm.setLong(4,object.getCategories().getId());
-            System.out.println(object.getCategories().getId());
+            conn.setAutoCommit(false); // Preparar la transaccion
+            String queryImg = "insert into images (image,file_name)values(?,?);";
+            pstm=conn.prepareStatement(queryImg,PreparedStatement.RETURN_GENERATED_KEYS);
+            pstm.setBytes(1,object.getFile());
+            pstm.setString(2,object.getFile_name());
+            pstm.execute();
+            rs=pstm.getGeneratedKeys();
+            if (rs.next()){
+                String query = "insert into stories(title,content,created_atDATETIME,status_id,user_id,category_id) values (?,?,curdate(),3,?,?);";
+                pstm=conn.prepareStatement(query);
+                pstm.setString(1,object.getTitle());
+                pstm.setString(2,object.getContent());
+                pstm.setLong(3,object.getUser_id().getId());
+                System.out.println(object.getUser_id().getId());
+                pstm.setLong(4,object.getCategories().getId());
+                System.out.println(object.getCategories().getId());
+            }
+
+
 
             return pstm.executeUpdate()>0;
 
