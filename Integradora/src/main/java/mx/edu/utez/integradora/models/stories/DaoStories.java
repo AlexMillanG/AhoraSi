@@ -1,5 +1,6 @@
 package mx.edu.utez.integradora.models.stories;
 
+import mx.edu.utez.integradora.models.actions.likes.DaoLikes;
 import mx.edu.utez.integradora.models.user.Status;
 import mx.edu.utez.integradora.models.user.User;
 import mx.edu.utez.integradora.utils.MySQLConnection;
@@ -19,7 +20,7 @@ public class DaoStories {
         List<Stories> stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query= "SELECT * from showStoriesByUser;";
+            String query= "SELECT * from showStoriesByUser ;";
             pstm= conn.prepareStatement(query);
             rs= pstm.executeQuery();
             while (rs.next()){
@@ -39,6 +40,12 @@ public class DaoStories {
                 stories1.setCategories(categories);
                 stories.add(stories1);
 
+            }
+            DaoLikes daoLikes = new DaoLikes();
+            for (Stories storyLike : stories) {
+                System.out.println("story like: " +storyLike.getLikes() + " id: " +storyLike.getId());
+                storyLike.setLikes(daoLikes.findAllLikes((int)storyLike.getId() ));
+                System.out.println("story like: " +storyLike.getLikes() + " id: " +storyLike.getId());
             }
 
         }catch (SQLException e){
