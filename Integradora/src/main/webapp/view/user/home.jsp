@@ -72,6 +72,15 @@
                                                   <input hidden value ="${Story.id}" name = "story_id">
                                                   <button type="submit"><i data-feather ="star"></i></button>
                                               </form>
+                                         <%-- <c:forEach var="like" items="${likes}">
+
+                                              <p><c:out value="${like}"/> </p>
+                                          </c:forEach> --%>
+
+                                            <%--    <% Long StoryID = Story.id;%>
+                                                <% DaoLikes daoLikes = new DaoLikes(); %>
+                                                <% daoLikes.findAllLikes(); %> --%>
+                                              <p><c:out value="${Story.likes}"></c:out> </p>
 
                                         <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
                                               <br>

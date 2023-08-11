@@ -87,7 +87,7 @@ public class ServletUser extends HttpServlet {
             //End Points para usuarios
             case "/api/user/home":
             List<Objects> likes = new ArrayList<>();
-          //  req.setAttribute("likes",new DaoLikes().findAllLikes());
+        //    req.setAttribute("likes",new DaoLikes().findAllLikes());
 
             List<Objects> stories = new ArrayList<>();
             req.setAttribute("stories", new DaoStories().findAllStories());

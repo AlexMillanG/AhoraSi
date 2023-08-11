@@ -14,12 +14,14 @@ public class Stories {
     private Status status;
     private User user_id;
     private Categories categories;
+    private  int Likes;
+
 
     public Stories() {
 
     }
 
-    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, Images images, Status status, User user_id, Categories categories) {
+    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, Images images, Status status, User user_id, Categories categories, int likes) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -29,6 +31,7 @@ public class Stories {
         this.status = status;
         this.user_id = user_id;
         this.categories = categories;
+        Likes = likes;
     }
 
     public long getId() {
@@ -101,5 +104,13 @@ public class Stories {
 
     public void setImages(Images images) {
         this.images = images;
+    }
+
+    public int getLikes() {
+        return Likes;
+    }
+
+    public void setLikes(int likes) {
+        Likes = likes;
     }
 }

@@ -38,30 +38,57 @@ public class DaoLikes  {
         return false;
     }
 
-
-    public  List<Likes> findAllLikes(Long Story_id){
-        List<Likes> likes = new ArrayList<>();
+    public  Likes findAllLikes1(int story_id){
         try {
             conn = new MySQLConnection().connect();
             String query = "SELECT count(*) from likes where = story_id = ?;";
             pstm = conn.prepareStatement(query);
+            pstm.setInt(1,story_id);
             rs = pstm.executeQuery();
-            while (rs.next()){
-                Likes likes1 = new Likes();
+            Likes likes1 = new Likes();
+            if (rs.next()){
                 Stories story = new Stories();
                 story.setId(rs.getLong("story_id"));
                 likes1.setStories(story);
                 User user = new User();
                 user.setId(rs.getLong("user_id"));
                 likes1.setUser(user);
-                likes.add(likes1);
+
             }
+            return likes1;
         }catch (SQLException e){
             Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FINDALL Likes"+e.getMessage());
         }finally {
             close();
         }
-        return likes;
+        return null;
+
+    }
+    public  int findAllLikes(int story_id){
+        try {
+            int valor = 0;
+            System.out.println("get story_id: " + story_id);
+
+            conn = new MySQLConnection().connect();
+            String query = "select  count(*) as eldrip from likes where story_id = ?;";
+            pstm = conn.prepareStatement(query);
+            pstm.setInt(1,story_id);
+            rs = pstm.executeQuery();
+            System.out.println(rs.getFetchSize());
+            Likes likes1 = new Likes();
+            System.out.println("get row : " +rs.getRow());
+            if (rs.next()){
+                 valor = rs.getInt("eldrip");
+
+            }
+            return valor;
+        }catch (SQLException e){
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FINDALL Likes"+e.getMessage());
+            return 0;
+        }finally {
+
+            close();
+        }
 
     }
 
