@@ -29,7 +29,7 @@ public class DaoStories {
                 stories1.setTitle(rs.getString("title"));
                 stories1.setContent(rs.getString("content"));
                 stories1.setCreated_atDATETIME(rs.getString("created_atDATETIME"));
-                stories1.setFile(rs.getBytes("image_id"));//Aqui aun no funciona
+                stories1.setImg_id(rs.getLong("image_id"));
                 Status status= new Status();
                 status.setType_status(rs.getString("status_id"));
                 stories1.setStatus(status);
@@ -198,7 +198,6 @@ public class DaoStories {
 
                 categories1.setId(rs.getLong("id"));
                 categories1.setCategory(rs.getString("category"));
-
                 categories.add(categories1);
             }
         }catch (SQLException e){
@@ -251,7 +250,8 @@ public class DaoStories {
             pstm.execute();
             rs=pstm.getGeneratedKeys();
             if (rs.next()){
-                String query = "insert into stories(title,content,created_atDATETIME,status_id,user_id,category_id) values (?,?,curdate(),3,?,?);";
+                long id= rs.getLong(1);
+                String query = "insert into stories(title,content,created_atDATETIME,status_id,user_id,category_id,image_id) values (?,?,curdate(),3,?,?,?);";
                 pstm=conn.prepareStatement(query);
                 pstm.setString(1,object.getTitle());
                 pstm.setString(2,object.getContent());
@@ -259,13 +259,11 @@ public class DaoStories {
                 System.out.println(object.getUser_id().getId());
                 pstm.setLong(4,object.getCategories().getId());
                 System.out.println(object.getCategories().getId());
+                pstm.setLong(5,id);
+                pstm.execute();
             }
-
-
-
-            return pstm.executeUpdate()>0;
-
-
+            conn.commit();
+            return true;
         }catch (SQLException e){
             Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR save"+e.getMessage());
         }finally {
@@ -273,6 +271,29 @@ public class DaoStories {
         }
         return false;
     }
+    public Stories findFile(long id) {
+        Stories stories = null;
+        System.out.println("Dentro del FindFile de historias"+id);
+        try {
+            conn = new MySQLConnection().connect();
+            String query = "SELECT * FROM images WHERE id = ?;";
+            pstm = conn.prepareStatement(query);
+            pstm.setLong(1, id);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                stories = new Stories();
+                stories.setFile_name(rs.getString("file_name"));
+                stories.setFile(rs.getBytes("image"));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DaoCategories.class.getName())
+                    .log(Level.SEVERE, "ERROR findFile" + e.getMessage());
+        } finally {
+            close();
+        }
+        return stories;
+    }
+
 
     public boolean updateStory(Stories object) {
         try {

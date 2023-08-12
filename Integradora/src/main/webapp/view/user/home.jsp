@@ -66,7 +66,8 @@
 
                                         <h5 class="mt-0"><c:out value="${Story.categories.category}"/></h5>
                                         <p><c:out value="${Story.content}"/> </p>
-
+                                              <img src="/api/stories/loadFiles?id=${Story.img_id}" alt="">
+                                              <input value="${Story.img_id}">
                                               <form action="/api/user/like" method="post">
                                                   <input hidden value ="${user.id}" name = "user_id">
                                                   <input hidden value ="${Story.id}" name = "story_id">
@@ -95,7 +96,7 @@
 
 
 
-                                    <form id="formHistorias" action="/api/story/save" method="post">
+                                    <form id="formHistorias" action="/api/story/save" method="post" enctype="multipart/form-data" novalidate>
                                         <input name="user_id" hidden value="${user.id}">
                                         <label for="title">titulo</label>
                                         <br>
@@ -105,6 +106,13 @@
                                         <label for="content">contenido</label>
                                         <br>
                                         <input type="text" name="content" id="content" placeholder="contenido" required>
+
+                                        <br>
+                                        <label for="img1">Imagen</label>
+                                        <input type="file" class="form-control" id="img1"
+                                               name="fileCategory" accept="image/*" onchange="handleFileChange1()">
+                                        <div class="col-12 mt-5" id="preview1"></div>
+                                        <br>
 
 
 
@@ -198,20 +206,34 @@
 </div>
 <jsp:include page="../../layouts/footer.jsp"/>
     <script>
-        const agregarB = document.getElementById("agregar");
-        const form = document.getElementById("pokemon-form");
-        (function () {
-            agregarB.addEventListener("click",function (event){
-                console.log(form.checkValidity());
+        // const agregarB = document.getElementById("agregar");
+        // const form = document.getElementById("pokemon-form");
+        // (function () {
+        //     agregarB.addEventListener("click",function (event){
+        //         console.log(form.checkValidity());
+        //
+        //         if(!form.checkValidity()){
+        //             event.preventDefault();
+        //             event.stopPropagation();
+        //         }
+        //         form.classList.add("was-validated")
+        //     }, false);
+        //
+        // })();
 
-                if(!form.checkValidity()){
-                    event.preventDefault();
-                    event.stopPropagation();
+        const handleFileChange1 = () => {
+            const inputFile = document.getElementById("img1").files;
+            let preview = document.getElementById("preview1");
+            preview.innerHTML = "";
+            for (let i = 0; i < inputFile.length; i++) {
+                let reader = new FileReader();
+                reader.onloadend = (result) => {
+                    preview.innerHTML = "<img src='" + result.target.result
+                        + "' style='height: 200px;width: auto;'/>";
                 }
-                form.classList.add("was-validated")
-            }, false);
-
-        })();
+                reader.readAsDataURL(inputFile[i]);
+            }
+        }
     </script>
 
 </body>

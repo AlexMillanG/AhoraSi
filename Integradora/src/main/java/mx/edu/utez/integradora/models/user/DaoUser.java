@@ -1,6 +1,8 @@
 package mx.edu.utez.integradora.models.user;
 
 import mx.edu.utez.integradora.models.crud.DaoRepository;
+import mx.edu.utez.integradora.models.stories.Categories;
+import mx.edu.utez.integradora.models.stories.DaoCategories;
 import mx.edu.utez.integradora.utils.MySQLConnection;
 
 import java.sql.Connection;
@@ -218,8 +220,74 @@ public class DaoUser implements DaoRepository<User> {
         }
         return false;
     }
+    public Images findFile(long id) {
+        Images images = null;
+        System.out.println("Dentro del FindFile avatar"+id);
+        try {
+            conn = new MySQLConnection().connect();
+            String query = "SELECT * FROM images WHERE id = ?;";
+            pstm = conn.prepareStatement(query);
+            pstm.setLong(1, id);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                images = new Images();
+                images.setFilename(rs.getString("file_name"));
+                images.setFile(rs.getBytes("image"));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DaoCategories.class.getName())
+                    .log(Level.SEVERE, "ERROR findFile" + e.getMessage());
+        } finally {
+            close();
+        }
+        return images;
+    }
 
+    public List<Images> imagesList() {
+        List<Images> list = new ArrayList<>();
+        try {
+            conn = new MySQLConnection().connect();
+            String query = "SELECT * FROM images;";
+            pstm = conn.prepareStatement(query);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                Images type = new Images();
+                type.setId(rs.getLong("id"));
+                type.setFilename(rs.getString("file_name"));
+                type.setFile(rs.getBytes("image"));
+                list.add(type);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DaoUser.class.getName())
+                    .log(Level.SEVERE,
+                            "Erro bussqueda Img: " + e.getMessage());
+        } finally {
+            close();
+        }
+        return list;
+    }
 
+    public boolean saveImg(Images images) throws SQLException{
+        try {
+            conn = new MySQLConnection().connect();
+            conn.setAutoCommit(false); // Preparar la transaccion
+            String query = "insert into images (image,file_name)values(?,?);";
+            pstm=conn.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
+            pstm.setBytes(1,images.getFile());
+            pstm.setString(2,images.getFilename());
+            pstm.execute();
+            conn.commit();
+            return true;
+        }catch (SQLException e) {
+            Logger.getLogger(DaoCategories.class.getName())
+                    .log(Level.SEVERE, "ERROR saveImg " + e.getMessage());
+            conn.rollback();
+        } finally {
+            close();
+        }
+        return false;
+
+    }
     public boolean updateAdmin(User object) {
         try {
             conn= new MySQLConnection().connect();

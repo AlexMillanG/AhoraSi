@@ -16,13 +16,15 @@ public class Stories {
     private User user_id;
     private Categories categories;
     private  int Likes;
+    private long img_id;
+
 
 
     public Stories() {
 
     }
 
-    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, String file_name, Images images, Status status, User user_id, Categories categories, int likes) {
+    public Stories(long id, String title, String content, String created_atDATETIME, byte[] file, String file_name, Images images, Status status, User user_id, Categories categories, int likes, long img_id) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -34,6 +36,7 @@ public class Stories {
         this.user_id = user_id;
         this.categories = categories;
         Likes = likes;
+        this.img_id = img_id;
     }
 
     public long getId() {
@@ -122,5 +125,13 @@ public class Stories {
 
     public void setLikes(int likes) {
         Likes = likes;
+    }
+
+    public long getImg_id() {
+        return img_id;
+    }
+
+    public void setImg_id(long img_id) {
+        this.img_id = img_id;
     }
 }

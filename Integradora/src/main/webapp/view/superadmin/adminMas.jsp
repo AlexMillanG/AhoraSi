@@ -89,8 +89,7 @@
                         </div>
 
                         </div>
-                    <div class="container-fluid"
-                         style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
+                    <div class="container-fluid" style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
                         <button data-bs-toggle="modal" data-bs-target="#crearAvatar" type="button"
                                 class="btn btn-outline-success" style="float: right; margin-top: 15px;" id="agregar">
                             Agregar
@@ -98,16 +97,17 @@
                         <p style="font-family: PT serif ; font-size: 30px;">Avatars</p>
                         <div class="container-fluid"
                              style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; height: 150px; width: 150px; margin-top: 10px; margin-bottom: 25px; margin-left: 10px;">
-                            <table class="table"
-                                   style=" margin-left:2%; margin-right: 2%; margin-top: 2px; margin-bottom: 2%;">
-                                <tr style="height: 100px;">
-                                    <th class="col">
-                                        <img src="/assets/img/photo-1608501078713-8e445a709b39.jpg" class="card-img-top"
-                                             alt="..." ; style="border-radius: 50%;">
-                                    </th>
-                                </tr>
-                            </table>
-                            <p style="font-family: PT serif ; font-size: 25px; text-align: center;">Admin</p>
+
+                            <c:forEach items="${image}" var="img">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/api/avatar/loadFiles?idA=${img.id}" class="card-img-top" alt="${img.filename}">
+
+
+                                </div>
+
+                            </c:forEach>
+
+
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                                     <label for="categoria">Categoria</label>
                                     <input class="form-control" placeholder="Categoria" name="categoria" id="categoria"
                                            type="text" required>
-                                    <div class="invalid-feedback is-invalid">
+                                   <div class="invalid-feedback is-invalid">
                                         Campo obligatorio
                                     </div>
                             </th>
@@ -177,30 +177,21 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="admin-form" class="needs-validation" action="" method="post">
+                <form id="admin-form" class="needs-validation" action="/api/superadmin/add-avatar" method="post"
+                      enctype="multipart/form-data" novalidate>
                     <table class="table">
 
                         <tr>
-                            <td style="text-align: center;">
-                                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                                <div class="container-fluid" style=" filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white;">
-                                    <form runat="server" style="text-align: center;">
-                                        <div>
-                                            <label for="imgen1"
-                                                   style="float: left; font-family: PT serif; margin-bottom: 4%; margin-right: 5%;">Imagen</label>
-                                        </div>
-                                        <input type='file' id="imgen1" style="float: left;"/>
-                                        <img id="blah1" src="#" alt="Imagen"
-                                             style="height: 100px; width: 100px; border-radius: 20px;"/>
-                                    </form>
-                                </div>
-                                <div class="invalid-feedback is-invalid">
-                                    Campo obligatorio
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="float: right;">
+                            <tr>
+                        <th>
+                            <label for="img">Imagen</label>
+                            <input type="file" class="form-control" id="img1"
+                                   name="fileCategory" accept="image/*" onchange="handleFileChange1()">
+                            <div class="col-12 mt-5" id="preview1"></div>
+                        </th>
+                            </tr>
+
+                            <td>
                                 <button type="button"
                                         style="     margin: 0; padding: 0;background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px;"
                                         data-bs-dismiss="modal">Cerrar
@@ -395,6 +386,19 @@ console.log(form.value);
     const handleFileChange = () => {
         const inputFile = document.getElementById("img").files;
         let preview = document.getElementById("preview");
+        preview.innerHTML = "";
+        for (let i = 0; i < inputFile.length; i++) {
+            let reader = new FileReader();
+            reader.onloadend = (result) => {
+                preview.innerHTML = "<img src='" + result.target.result
+                    + "' style='height: 200px;width: auto;'/>";
+            }
+            reader.readAsDataURL(inputFile[i]);
+        }
+    }
+    const handleFileChange1 = () => {
+        const inputFile = document.getElementById("img1").files;
+        let preview = document.getElementById("preview1");
         preview.innerHTML = "";
         for (let i = 0; i < inputFile.length; i++) {
             let reader = new FileReader();

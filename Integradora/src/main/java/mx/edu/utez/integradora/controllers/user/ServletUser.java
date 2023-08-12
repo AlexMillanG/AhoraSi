@@ -11,10 +11,7 @@ import mx.edu.utez.integradora.models.stories.Categories;
 import mx.edu.utez.integradora.models.stories.DaoCategories;
 import mx.edu.utez.integradora.models.stories.DaoStories;
 import mx.edu.utez.integradora.models.stories.Stories;
-import mx.edu.utez.integradora.models.user.DaoUser;
-import mx.edu.utez.integradora.models.user.Rols;
-import mx.edu.utez.integradora.models.user.Status;
-import mx.edu.utez.integradora.models.user.User;
+import mx.edu.utez.integradora.models.user.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,7 +54,7 @@ import java.util.UUID;
         "/api/user/super-delete",// eliminar usuarios desdel SuperAdmin
         "/api/superadmin/delete-admin",//eliminar Administradores
         "/api/superadmin/update-admin",//actualizar administradores desde el Super
-
+        "/api/superadmin/add-avatar",
         "/api/user/delete-story",
         "/api/superadmin/aprove",
         "/api/superadmin/delete-story",
@@ -73,6 +70,7 @@ public class ServletUser extends HttpServlet {
     Status status1;
     Categories categories;
     HttpSession  session,getSession;
+    Images images;
     String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category, user_id, story_id,filename,mime;
 
     @Override
@@ -146,6 +144,7 @@ public class ServletUser extends HttpServlet {
 
             case "/api/superadmin/mas":
                 req.setAttribute("categories",new DaoCategories().fiandAll());
+                req.setAttribute("image",new DaoUser().imagesList());
                 redirect="/view/superadmin/adminMas.jsp";
                 break;
 
@@ -583,8 +582,6 @@ public class ServletUser extends HttpServlet {
                 redirect= "/api/superadmin/home";
                 break;
             case "/api/user/like":
-
-
                 try {
                     user_id = req.getParameter("user_id");
                     story_id = req.getParameter("story_id");
@@ -616,6 +613,39 @@ public class ServletUser extends HttpServlet {
                 }catch (Exception e){
                     redirect = "/api/user/home?result= " + URLEncoder.encode("Historia no publicada correctamente", StandardCharsets.UTF_8);
 
+                }
+                break;
+
+            case "/api/superadmin/add-avatar":
+                try {
+                    images=new Images();
+                    for (Part part: req.getParts()){
+                        filename=part.getSubmittedFileName();
+                        System.out.println(part.getSubmittedFileName());
+                        System.out.println(filename);
+                        if (filename!=null){
+                            mime =part.getContentType().split("/")[1];
+                            System.out.println(mime);
+                            String uid= UUID.randomUUID().toString();
+                            images.setFilename(uid+"."+mime);
+                            InputStream stream=part.getInputStream();
+                            byte[] arr=stream.readAllBytes();
+                            images.setFile(arr);
+                            System.out.println(images.getFile());
+                        }
+                    }
+
+
+                    boolean result = new DaoUser().saveImg(images);
+                    if (result) {
+                        redirect = "/api/superadmin/mas?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado correctamente.",
+                                StandardCharsets.UTF_8);
+                    } else {
+                        redirect = "/api/superadmin/mas?result= " + result + "&message=" + URLEncoder.encode("¡Error! Actualizacion no realizada correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+                } catch (Exception e) {
+                    redirect = "/api/superadmin/mas?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
                 }
 
                 break;

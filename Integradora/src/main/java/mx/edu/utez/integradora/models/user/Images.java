@@ -3,7 +3,7 @@ package mx.edu.utez.integradora.models.user;
 public class Images {
     private  long id;
     private byte file[];
-    private  String file_name;
+    private  String filename;
 
     public Images() {
     }
@@ -11,7 +11,7 @@ public class Images {
     public Images(long id, byte[] file, String file_name) {
         this.id = id;
         this.file = file;
-        this.file_name = file_name;
+        this.filename = file_name;
     }
 
     public long getId() {
@@ -30,11 +30,11 @@ public class Images {
         this.file = file;
     }
 
-    public String getFile_name() {
-        return file_name;
+    public String getFilename() {
+        return filename;
     }
 
-    public void setFile_name(String file_name) {
-        this.file_name = file_name;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 }
