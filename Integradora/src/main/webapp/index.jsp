@@ -8,286 +8,445 @@
     <jsp:include page="layouts/head.jsp"/>
 </head>
 
-<body style="
-      width:95%;
-      height: 100%;
-      background: radial-gradient(137.13% 461.11% at 111.16% 113.45%, #8081B7 4.19%, #75BEF3 45.31%, #57F3C4 81.99%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-      ">
-<div class="container-fluid" style="
-    		font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-		position: relative;
-		margin-left:3%;
-		margin-right:3%;
-		margin-top:2%;
-		background-color: rgba(255, 255, 255, 0.4);
-		border-radius: 30px;
-    ">
+<body>
+<div class="container-fluid" id="cont">
     <table class="table">
         <tr>
-            <div class="container-fluid"style="font-family: PT serif ;
-                  display: inline;
-                  text-align: center;
-                  margin-top: 0;"
-            >
-                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 30px 30px 0px 0px;
-                background: var(--neutro, radial-gradient(481.07% 191.27% at 111.16% 113.45%, #8081B7 4.19%, #75BEF3 45.31%, #57F3C4 81.99%));
-                box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.15);">
-                    <img src="/assets/img/logo.png" alt="" width="250px" height="70px">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="../html/index-SuperAdmin.html">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="usuario-SuperAdmin.html">Usuario</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../html/Historias-SuperAdmin.html">Historias</a>
-                            </li>
-                        </ul>
-                        <div class="container-fluid" style="margin-right: -30%; position: relative; float: right;">
-                            <button  class="btn btn-outline-dark ms-3   " data-bs-toggle="modal" data-bs-target="#inicioSesion">
-                                Iniciar sesion
-                            </button>
-                            <button class="btn btn-outline-dark ms-3  "  data-bs-toggle="modal" data-bs-target="#registro">
-                                Registrarse
-                            </button>
+            <th scope="col">
+                <nav style="font-family: PT serif ;
+                     background: radial-gradient(137.13% 461.11% at 111.16% 113.45%, #8081B7 4.19%, #75BEF3 45.31%, #57F3C4 81.99%);
+                     border-radius: 30px 30px 0px 0px;
+                    " id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">HITU</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#acerca-de">HistoriUtez</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#acciones">Que hacer?</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#historias">Historias</a>
+                                </li>
+                                <li style=" margin-left: 500px;">
+                                    <button  class="btn btn-outline-dark" style="border-radius: 15px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);" data-bs-toggle="modal" data-bs-target="#InicioSecion">
+                                        Iniciar sesion
+                                    </button>
+                                    <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#registro" style="border-radius: 15px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">
+                                        Registrarse
+                                    </button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </nav>
-            </div>
-
-            <div  class="container-fluid" style="  		background: rgb(255, 255, 255);
-          float: left;
-          position: relative;
-          border-radius: 0px 0px 30px 30px;
-
-          margin-top: -22px;
-                  ">
-                <div
-                        style="
-                  background: rgb(255, 255, 255);
-                  margin-top: 3%;
-                  border-radius: 15px;
-                  height: 100%;
-                  width: 100%;
-                  "
-                        class="container-fluid">
-                    <div class="card mb-3" style="max-width:850 px;">
-                        <div class="row g-0">
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title"style="font-family:PT serif; "><strong>HistoriUtez</strong></h5>
-                                    <p class="card-text" style="text-align: center; font-size: 25px; font-family: PT serif;">Comparte tus Historias,Inspira al Mundo:La Plataforma
-                                        que da vida a tus relatos y conecta corazones
-                                    </p>
-                                </div>
+                <div  class="container-fluid" style="background: rgb(255, 255, 255);
+                    float: left;
+                    position: relative;
+                    border-radius: 0px 0px 30px 30px;
+                  	overflow-y: scroll; height: 550px;
+                    " id="cont1">
+                    <div class="container-fluid" id="acerca-de">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    <div class="container-fluid" style="max-width:850px; height: 300px; margin-top: 70px;">
+                                        <table>
+                                            <tr>
+                                                <th>
+                                                    <h5 style="font-family:PT serif; font-size: 50px; text-align: left;"><strong>HistoriUtez</strong></h5>
+                                                    <p style="color: #000;
+                                    text-align: center;
+                                    font-family: PT Serif;
+                                    font-size: 20px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    width: 400px;">Comparte tus Historias,Inspira al Mundo:La Plataforma
+                                                        que da vida a tus relatos y conecta corazones
+                                                    </p>
+                                                </th>
+                                                <th>
+                                                    <img src="../img/logo1.png" alt=""  class="img-fluid rounded-start" width="250px">
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </th>
+                                <th>
+                                    <img src="../img/Imagen2.png" alt="" style="height: 300px; width: 300px; float: right;">
+                                </th>
+                        </table>
+                        <div class="container-fluid" style=" margin-top: 100px; height: 250px; margin-bottom: 10%;">
+                            <table class="table" style="width: 800px; height: 200px; margin-left: 100px;">
+                                <tr>
+                                    <th  style="width: 50px; margin-left: 10px;">
+                                        <img src="../img/leer.png" alt="" width="300px" height="300px">
+                                    </th>
+                                    <th style="width: 300px; vertical-align: middle;">
+                                        <p style="text-align: center;
+                              color: #000;
+                              text-align: center;
+                              font-family: PT Serif;
+                              font-size: 20px;
+                              font-style: normal;
+                              font-weight: 400;
+                              line-height: normal;">"Sumérgete en un océano de historias fascinantes y déjate llevar por la magia de la ficción en cada publicación."</p>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="container-fluid" id="acciones" style="height: 550px;">
+                        <div class="row">
+                            <div class="col "  style="margin-top: 150px;">
+                                <img src="../img/Imagen1.png" alt="" style="height: 200px; width: 200px;">
                             </div>
-                            <div class="col-md-4" style="height: auto; width: auto;">
-                                <img src="/assets/img/leer.png" alt=""  class="img-fluid rounded-start" width="250px" height="70px">
+                            <div class="col"  style="margin-top: 150px;">
+                                <table style="height: 50px;border-bottom: 1px solid black; text-align: center; margin-top: 100px;">
+                                    <tr style=" height: 50px; font-family:  PT serif;">
+                                        <th style="width: 150px; ">
+                                            <img src="../img/leerHistorias.png" alt="" height="50px" width="50px">
+                                            <p>Leer Historias</p>
+                                        </th>
+                                        <th style="width: 150px; ">
+                                            <img src="../img/escribirHistorias.png" alt="" height="50px" width="50px">
+                                            <p>Escribir Historias</p>
+                                        </th>
+                                        <th style="width: 150px; ">
+                                            <img src="../img/compartir_1.png" alt="" height="50px" width="50px">
+                                            <p>Compartir Historias</p>
+                                        </th>
+                                        <th style="width: 150px; ">
+                                            <img src="../img/foross.png" alt="" height="50px" width="50px">
+                                            <p>Comentar Historias</p>
+                                        </th>
+                                        <th style="width: 150px; ">
+                                            <img src="../img/reaccion_1.png" alt="" height="50px" width="50px">
+                                            <p>Reaccionar a Historias</p>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col"  style="margin-top: 150px;">
+                                <img src="../img/Imagen2.png" alt="" style="height: 300px; width: 300px;margin-bottom: 0%;">
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-3" style="max-width:850 px;">
-                        <div class="row g-0">
-                            <div class="col-md-8">
-                                <div class="col-md-4" style="height: auto; width: auto;">
-                                    <img src="/assets/img/logo1.png" alt=""  class="img-fluid rounded-start" width="250px" height="70px">
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text" style="text-align: center; font-size: 25px; font-family: PT serif;"
-                                    >"Sumèrjete en un oceano de historias facinantes y dèjate llevar por la magia de la ficciòn en cada publicaciòn "
-                                    </p>
+
+                    <div class="container-fluid" id="historias">
+                        <div class="container-fluid" style="max-width:850 px; margin-top: 70px;">
+                            <table>
+                                <tr>
+                                    <th>
+                                        <h5 style="font-family:PT serif; font-size: 30px; text-align: left;"><strong>Historias en HistoriUtez</strong></h5>
+                                        <p style="color: #000;
+                              text-align: left;
+                              font-family: PT Serif;
+                              font-size: 20px;
+                              font-style: normal;
+                              font-weight: 400;
+                              width: 400px;">"Desde cuentos cortos hasta epopeyas épicas, en Historiutez no hay límites para la imaginación. Comparte tus creaciones y únete a una comunidad que celebra la magia de la narrativa."
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <img src="../img/historias.png" alt=""  class="img-fluid rounded-start" width="250px">
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="container-fluid" style="margin-top: 10%; margin-bottom: 10%;">
+                            <h5 style="font-family:PT serif; font-size: 30px; text-align: left;"><strong>Historias en HistoriUtez</strong></h5>
+                            <div class="container-fluid" style="display: flex; justify-content: center; align-items: center;">
+                                <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <div class="cards-wrapper" style="display: flex; flex-direction: row;">
+                                                <div class="card" style="width: 18rem; margin-left: 10px;" >
+                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" style="width: 18rem; margin-left: 10px;">
+                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" style="width: 18rem; margin-left: 10px;">
+                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="cards-wrapper" style="display: flex; flex-direction: row;">
+                                                <div class="card" style="width: 18rem; margin-left: 10px;" >
+                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" style="width: 18rem; margin-left: 10px;">
+                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" style="width: 18rem; margin-left: 10px;">
+                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="cards-wrapper" style="display: flex; flex-direction: row;">
+                                                <div class="card" style="width: 18rem; margin-left: 10px;" >
+                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" style="width: 18rem; margin-left: 10px;">
+                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" style="width: 18rem; margin-left: 10px;">
+                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
-            </div>
+            </th>
+        </tr>
+    </table>
 </div>
-</tr>
-</thead>
-</table>
-</div>
-
-<div class="container">
-
     <!-- Modal Inicio Secion -->
-    <div class="modal fade" id="inicioSesion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Inicio Sesión</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+<div class="modal fade" id="InicioSecion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="border-radius: 30px; width: 350px;">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-top: 20px; margin-left: 90%;"></button>
+            <div class="modal-body">
+                <form  id="loginForm" action="/api/auth" class="needs-validation"
+                       novalidate method="post">
+                    <div style="margin-left: 30%; border-radius: 100%; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);background: white;width:150px; height:150px; text-align: center; vertical-align: middle; padding: 10px;"  >
+                        <i class="fa-solid fa-user" style="font-size: 100px; text-align: center"></i>
+                    </div>
+                    <table class="table" >
+                        <tr style="height: 5px;">
+                            <th>
+                                <div class="container-fluid " style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);background: white;
+                      border-radius: 15px;
+                      margin-left: 3px;
+                      font-family: PT serif;">
+                                    <label for="name">Correo Electrónico</label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                           placeholder="name@example.com" required
+                                           style="border: none; outline: none;
+                         border-radius: 5px;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                            </th>
+                        </tr>
+                        <tr  style="height: 5px;">
+                            <th>
+                                <div class="container-fluid " style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);background: white;
+                      border-radius: 15px;
+                      margin-left: 3px;
+                      font-family: PT serif;">
+                                    <label for="name">Contraseña</label>
+                                    <input type="password" name="pass" class="form-control" id="password"
+                                           placeholder="pass" required
+                                           style="border: none; outline: none;
+                         border-radius: 5px;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                            </th>
+                        </tr>
+                        <tr  style="height: 5px;">
+                            <th style="border-bottom: 1px solid black;">
 
-                    <form id="loginForm" action="/api/auth" class="needs-validation"
-                          novalidate method="post">
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" name="email" id="email"
-                                   placeholder="name@example.com" required>
-                            <label for="email">Correo electrónico</label>
-                            <div class="invalid-feedback text-start">
-                                Campo obligatorio
-                            </div>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input type="password" name="pass" class="form-control" id="password"
-                                   placeholder="pass" required>
-                            <label for="pass">Contraseña</label>
-                            <div class="invalid-feedback text-start">
-                                Campo obligatorio
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group"></div>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" onclick="prueba()" class="btn btn-primary" id="login">Iniciar sesion</button>
-                    <button class="btn btn-outline-dark ms-3  " data-bs-toggle="modal"
-                            data-bs-target="#registro">Registrate</button>
-
-                </div>
+                                <button type="button" onclick="prueba()"  id="login" class="container-fluid" style="height: 60px; background-color: black; font-family: PT serif; color: #FFF; border-radius: 15px;">Iniciar Sesión</button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th style="font-family: PT serif; text-align: center; font-style: normal;">
+                                <p>
+                                <h6 style="color: #7E7C7C;">¿No tienes una Cuenta? <a style="color: #5A6AA9;  text-decoration: none;" data-bs-dismiss="modal"aria-label="Close"  data-bs-toggle="modal" data-bs-target="#registro">Registrarte</a></h6>
+                                </p>
+                            </th>
+                        </tr>
+                    </table>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Modal registro -->
-<div class="modal fade" id="registro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <div>
-                    <div class="row">
-                        <h3>Se parte de nuestra comunidad</h3>
-                    </div>
-
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+<div class="modal fade" id="registro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 30px;">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="mostrarAlerta()" style="margin-top: 20px; margin-left: 90%;"></button>
+            <p  style="font-family: PT serif; font-size: 35px; text-align: center; margin-top: 20px; font-style: normal;font-weight: 700;"><strong>Registrarse</strong></p>
             <div class="modal-body">
-                <div class="row">
-                    <h5 class="modal-title" id="datos">Registrarse</h5>
-                </div>
-
                 <form id="formregistrer" action="/api/user/save" method="post" class="needs-validation"
                       novalidate method="post">
-                  <div class="row">
-                      <div class="col">
-                          <div class="form-floating mb-3">
-                              <input type="text" class="form-control" name="name" id="name"
-                                     placeholder="nombre" required>
-                              <label for="name">ingresa tu nombre</label>
-                              <div class="invalid-feedback text-start">
-                                  Campo obligatorio
-                              </div>
-                          </div>
-                          </div>
-                  </div>
-
-                    <div class="col">
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" name="emailRegistro" id="emailRegistro"
-                                   placeholder="name@example.com" required>
-                            <label for="emailRegistro">Correo electrónico</label>
-                            <div class="invalid-feedback text-start">
-                                Campo obligatorio
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="form-floating mb-1">
-                    <input type="password" name="pass" class="form-control" id="pass"
-                               placeholder="name" required>
-                        <label for="pass">Contraseña</label>
-                        <div class="invalid-feedback text-start">
-                            Campo obligatorio
-                        </div>
-                           <div class="form-group mb-3">
-                     </div>
-                    </div>
-
-
-
-                    <div class="form-floating mb-1">
-                        <input type="text" name="surname" class="form-control" id="surname"
-                               placeholder="surname" required>
-                        <label for="surname">Apellido</label>
-                        <div class="invalid-feedback text-start">
-                            Campo obligatorio
-                        </div>
-                        <div class="form-group mb-3">
-                        </div>
-                    </div>
-
-
-
-                    <div class="form-floating mb-1">
-                        <input type="text" name="lastname" class="form-control" id="lastname"
-                               placeholder="lastname" required>
-                        <label for="lastname">Segundo Apellido</label>
-                        <div class="invalid-feedback text-start">
-                            Campo obligatorio
-                        </div>
-                        <div class="form-group mb-3">
-                        </div>
-                    </div>
-                    
-                    <div class="form-floating mb-1">
-                        <input type="date" min="1900-01-01" max="2005-12-31" name="birthday" class="form-control" id="birthday"
-                            placeholder="birthday" required>
-                        <label for="birthday">Fecha de nacimiento</label>
-                        <div class="invalid-feedback text-start">
-                            Campo obligatorio
-                        </div>
-                        <div class="form-group mb-3"></div>
-                    </div>
-                    <br>
-
-                    <div class="form-floating mb-1">
-                        <p>Ingresa tu sexo</p>
-                        <br>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" value="hombre" name="sex" id="hombre">
-                            <label class="form-check-label" for="hombre">
-                                Hombre
-                            </label>
-                            <p></p>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" value="mujer" checked name="sex" id="mujer" mujer>
-                            <label class="form-check-label" for="mujer">
-                                Mujer
-                            </label>
-                        </div>
-                    </div>
-
-
+                    <table class="table">
+                        <tr>
+                            <th colspan="2">
+                                <div class="container-fluid " style="    fill: #FFF;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="name">Nombre:</label>
+                                    <input type="text" class="form-control" name="name" id="name"
+                                           placeholder="Nombre" required
+                                           style="border: none; outline: none;
+                      padding: 10px; border-radius: 5px;
+                      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="container-fluid " style="    fill: #FFF;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="name">Apellido Paterno:</label>
+                                    <input type="text"type="text" name="surname" class="form-control" id="surname"
+                                           placeholder="Apellido Paterno" required style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                            </th>
+                            <th>
+                                <div class="container-fluid " style="    fill: #FFF;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="name">Apellido Materno:</label>
+                                    <input  type="text" name="lastname" class="form-control" id="lastname"
+                                            placeholder="Apellido Materno" required style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <div class="container-fluid " style="    fill: #FFF;
+                   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="name">Correo Electrónico:</label>
+                                    <input type="email" class="form-control" name="emailRegistro" id="emailRegistro"
+                                           placeholder="matricula@utez.edu.mx" required style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="container-fluid ">
+                                    <div class="input-group mb-3 "style="top:0px;">
+                                        <label for="name" style="font-family: PT serif">Sexo:</label>
+                                        <select name="sex" id="sex"class="form-select" required style="width: 100%; height: 199%;  border: none;
+                        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);border-radius: 15px; font-family: PT Serif">
+                                            <option value="">-Selecionar-</option>
+                                            <option value="mujer">Mujer</option>
+                                            <option value="hombre">Hombre</option>
+                                            <option value="otro">Otro</option>                                            </select>
+                                    </div>
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="container-fluid " style="    fill: #FFF;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="name">Fecha Nacimiento:</label>
+                                    <input type="date" min="1900-01-01" max="2005-12-31" name="birthday" class="form-control" id="birthday"
+                                           placeholder="birthday" required
+                                            style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <div class="container-fluid " style="    fill: #FFF;
+                   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="name">Contraseña:</label>
+                                    <input type="password" name="pass" class="form-control" id="pass"
+                                            placeholder="Contraseña" required
+                                            style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <button type="button" onclick="registro()"  id="botonRegistro" class="container-fluid" style="height: 50px; background-color: black; font-family: PT serif; color: #FFF; border-radius: 15px;">Aceptar</button>
+                            </th>
+                        </tr>
+                    </table>
                 </form>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" onclick="registro()"  id="botonRegistro" class="btn btn-primary"> Registrar </button>
             </div>
         </div>
     </div>
 </div>
-</div>
+
 
 
 <jsp:include page="layouts/footer.jsp"/>

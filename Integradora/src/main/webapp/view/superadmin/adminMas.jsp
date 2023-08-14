@@ -27,37 +27,6 @@
             <th scope="col">
                 <div class="container-fluid" id='cont-2'>
                     <jsp:include page="/layouts/navbarSupeadmin.jsp"/>
-                    <div id="carrusel" class="container-fluid">
-                        <h1 style="margin-top: 20px; font-family: PT serif ;">Bienvenido </h1>
-                        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active" data-bs-interval="10000" style="margin-bottom: 30px;"
-                                     style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                                    <img src="/assets/img/1.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item" data-bs-interval="2000" style="margin-bottom: 30px;"
-                                     style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                                    <img src="/assets/img/2.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/assets/img/3.jpg" class="d-block w-100" alt="..." style="margin-bottom: 30px;"
-                                         style="margin-left: 30px;" style="margin-right: 30px;"
-                                         style="border-radius: 15%;">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-
                     <div class="container-fluid"
                          style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
                         <button data-bs-toggle="modal" data-bs-target="#crearCategoria" type="button"
@@ -67,47 +36,39 @@
                         <p style="font-family: PT serif ; font-size: 30px; margin-top: 5px; height: 20px; width: 20px;">
                             Categorias</p>
                         <div class="container-fluid">
-                        <div class="card-group">
-                            <c:forEach var="category" items="${categories}">
-                            <div class="card" style="width: 18rem;">
-                                <img src="/api/categories/loadFiles?id=${category.img_id}" class="card-img-top" alt="${category.category}">
-
-                                    <div class="card-body">
-                                        <h5 class="card-title"><c:out value="${category.category}"/></h5>
-                                        <form action="/api/actoresDeDoblaje" method="post">
-                                            <input name="id" hidden value="${category.id}">
-                                            <button type="submit" class="btn btn-outline-danger"><i data-feather="trash-2"></i></button>
-                                        </form>
-
-                                        <button data-bs-toggle="modal" data-bs-target="#updateCategory" type="button" class="btn btn-outline-warning"  id="editar"
-                                                onclick="prueba('${category.id}|${category.category}')" name="editar"
-                                        ><i data-feather="edit-3"></i></button>
-
+                            <div class="card-group">
+                                <c:forEach var="category" items="${categories}">
+                                    <div class="card" style="width: 18rem;">
+                                        <img src="/api/categories/loadFiles?id=${category.img_id}" class="card-img-top" alt="${category.category}">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><c:out value="${category.category}"/></h5>
+                                            <form action="/api/actoresDeDoblaje" method="post">
+                                                <input name="id" hidden value="${category.id}">
+                                                <button type="submit" class="btn btn-outline-danger"><i data-feather="trash-2"></i></button>
+                                            </form>
+                                            <button data-bs-toggle="modal" data-bs-target="#updateCategory" type="button" class="btn btn-outline-warning"  id="editar"
+                                                    onclick="prueba('${category.id}|${category.category}')" name="editar"
+                                            ><i data-feather="edit-3"></i></button>
+                                        </div>
                                     </div>
-                                </div>
-                            </c:forEach>
-                        </div>
+                                </c:forEach>
+                            </div>
 
                         </div>
-                    <div class="container-fluid" style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
-                        <button data-bs-toggle="modal" data-bs-target="#crearAvatar" type="button"
-                                class="btn btn-outline-success" style="float: right; margin-top: 15px;" id="agregar">
-                            Agregar
-                        </button>
-                        <p style="font-family: PT serif ; font-size: 30px;">Avatars</p>
-                        <div class="container-fluid"
-                             style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; height: 150px; width: 150px; margin-top: 10px; margin-bottom: 25px; margin-left: 10px;">
-
-                            <c:forEach items="${image}" var="img">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="/api/avatar/loadFiles?idA=${img.id}" class="card-img-top" alt="${img.filename}">
-
-
-                                </div>
-
-                            </c:forEach>
-
-
+                        <div class="container-fluid" style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
+                            <button data-bs-toggle="modal" data-bs-target="#crearAvatar" type="button"
+                                    class="btn btn-outline-success" style="float: right; margin-top: 15px;" id="agregar">
+                                Agregar
+                            </button>
+                            <p style="font-family: PT serif ; font-size: 30px;">Avatars</p>
+                            <div class="container-fluid"
+                                 style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; height: 150px; width: 150px; margin-top: 10px; margin-bottom: 25px; margin-left: 10px;">
+                                <c:forEach items="${image}" var="img">
+                                    <div class="card" style="width: 18rem;">
+                                        <img src="/api/avatar/loadFiles?idA=${img.id}" class="card-img-top" alt="${img.filename}">
+                                    </div>
+                                </c:forEach>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -310,11 +271,9 @@
             reader.onload = function (e) { //Al cargar el contenido lo pasamos como atributo de la imagen de arriba
                 $('#blah').attr('src', e.target.result);
             }
-
             reader.readAsDataURL(input.files[0]);
         }
     }
-
     $("#imgInp").change(function () { //Cuando el input cambie (se cargue un nuevo archivo) se va a ejecutar de nuevo el cambio de imagen y se verá reflejado.
         readURL(this);
     });
