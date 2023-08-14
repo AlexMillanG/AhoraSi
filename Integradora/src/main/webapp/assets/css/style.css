@@ -3,16 +3,14 @@ body{position: relative;
     width:90%;
     height: 100%;
     /* Neutro */
+    justify-content: center;
 
     background: radial-gradient(137.13% 461.11% at 111.16% 113.45%, #8081B7 4.19%, #75BEF3 45.31%, #57F3C4 81.99%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
 
 #cont{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    position: relative;
-    margin-left:3%;
-    margin-right:3%;
-    margin-top:2%;
+
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 30px;
 }
@@ -32,7 +30,7 @@ body{position: relative;
     position: relative;
     margin-top: 3%;
     border-radius: 15px;
-    max-height: 100%;
+    overflow-y: scroll; height: 550px;
 }
 #navegador li{
     float:right;
@@ -60,9 +58,17 @@ body{position: relative;
     margin-bottom: 15px;
 }
 
+
 /*-----------------------------------------------------------------------------------------------*/
 
 
+.logo {position: fixed;
+    border-radius: 30px;
+    margin-left:auto;
+    top: 5%;
+    width: 200px; /* Ancho estático inicial */
+
+}
 .logo {position: fixed;
     border-radius: 30px;
     margin-left:auto;
@@ -266,4 +272,10 @@ body {
         -o-transform: translateY(0);
         transform: translateY(0);
     }
-}s
+}
+
+input{
+    border: none; outline: none;
+    padding: 10px; border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
