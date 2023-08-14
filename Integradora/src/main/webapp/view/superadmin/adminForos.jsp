@@ -99,13 +99,13 @@
                 </div>
 
                 <form id="formAdmin" action="/api/admin/admins-save" method="post" class="needs-validation"
-                      novalidate method="post">
+                      novalidate>
                     <div class="row">
                         <div class="col md-4 lg-3 sm-6">
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="name1" id="name"
                                        placeholder="nombre" required>
-                                <label for="name">ingresa tu nombre</label>
+                                <label for="name1">ingresa tu nombre</label>
                                 <div class="invalid-feedback text-start">
                                     Campo obligatorio
                                 </div>
@@ -154,7 +154,7 @@
 
                         <div class="col md-4 lg-3 sm-6">
                             <div class="form-floating mb-1">
-                                <input type="text" name="lastname1" class="form-control" id="lastname"
+                                <input type="text" name="lastname" class="form-control" id="lastname"
                                        placeholder="lastname" required>
                                 <label for="lastname">Apellido Materno</label>
                                 <div class="invalid-feedback text-start">
@@ -167,7 +167,7 @@
                         </div>
                         <div class="col md-4 lg-3 sm-6">
                             <div class="form-floating mb-1">
-                                <input type="date" min="1900-01-01" max="2005-12-31" name="birthday1" class="form-control" id="birthday"
+                                <input type="date" min="1900-01-01" max="2005-12-31" name="birthday" class="form-control" id="birthday"
                                        placeholder="birthday" required>
                                 <label for="birthday">Fecha de nacimiento</label>
                                 <div class="invalid-feedback text-start">

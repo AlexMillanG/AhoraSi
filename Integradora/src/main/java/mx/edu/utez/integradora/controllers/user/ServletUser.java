@@ -58,7 +58,8 @@ import java.util.UUID;
         "/api/user/delete-story",
         "/api/superadmin/aprove",
         "/api/superadmin/delete-story",
-        "/api/user/like"
+        "/api/user/like",
+        "/api/admin/admins-save"
 
 
 
@@ -252,7 +253,7 @@ public class ServletUser extends HttpServlet {
 
             case "/api/admin/admins-save":
                 try {
-                    name = req.getParameter("name");
+                    name = req.getParameter("name1");
                     lastname = req.getParameter("lastname");
                     surname = req.getParameter("surname");
                     birthday = req.getParameter("birthday");
