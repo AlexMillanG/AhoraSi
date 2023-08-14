@@ -67,12 +67,14 @@
                                         <h5 class="mt-0"><c:out value="${Story.categories.category}"/></h5>
                                         <p><c:out value="${Story.content}"/> </p>
                                               <img src="/api/stories/loadFiles?id=${Story.img_id}" alt="">
-                                              <input value="${Story.img_id}">
+                                              <input hidden value ="${Story.img_id}">
                                               <form action="/api/user/like" method="post">
                                                   <input hidden value ="${user.id}" name = "user_id">
                                                   <input hidden value ="${Story.id}" name = "story_id">
                                                   <button type="submit"><i data-feather ="star"></i></button>
+                                                  
                                               </form>
+
                                          <%-- <c:forEach var="like" items="${likes}">
 
                                               <p><c:out value="${like}"/> </p>
@@ -82,6 +84,10 @@
                                                 <% DaoLikes daoLikes = new DaoLikes(); %>
                                                 <% daoLikes.findAllLikes(); %> --%>
                                               <p><c:out value="${Story.likes}"></c:out> </p>
+                                              <form action="/api/user/shared" method="post">
+                                                  <input value="${Story.id}" name="story_id">
+                                                  <button type="submit">compartir en el perfil</button>
+                                              </form>
 
                                         <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
                                               <br>

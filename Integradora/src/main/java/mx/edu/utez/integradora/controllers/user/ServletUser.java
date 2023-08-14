@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import mx.edu.utez.integradora.models.actions.Shared.Shared;
 import mx.edu.utez.integradora.models.actions.likes.DaoLikes;
 import mx.edu.utez.integradora.models.actions.likes.Likes;
 import mx.edu.utez.integradora.models.stories.Categories;
@@ -17,7 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -59,7 +59,8 @@ import java.util.UUID;
         "/api/superadmin/aprove",
         "/api/superadmin/delete-story",
         "/api/user/like",
-        "/api/admin/admins-save"
+        "/api/admin/admins-save",
+        "/api/user/shared",
 
 
 
@@ -648,6 +649,20 @@ public class ServletUser extends HttpServlet {
                 } catch (Exception e) {
                     redirect = "/api/superadmin/mas?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
                 }
+
+                break;
+
+            case "/api/user/shared":
+                    id=getSession.getAttribute("id").toString();
+                    System.out.println(id);
+                    story_id = req.getParameter("story_id");
+                    Shared shared = new Shared();
+                    User user1 = new User();
+                    user1.setId(Long.parseLong(id));
+                    Stories stories = new Stories();
+                    stories.setId(Long.parseLong(story_id));
+                    shared.setUser(user1);
+                    shared.setStories(stories);
 
                 break;
 
