@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,17 +20,17 @@ public class DaoShared {
     private PreparedStatement pstm;
     private ResultSet rs;
 
-    public boolean save(Likes object) {
+    public boolean save(Shared object) {
         try {
             conn = new MySQLConnection().connect();
-            String query = "INSERT INTO likes(story_id, user_id) values (?,?)";
+            String query = "INSERT INTO shared (story_id, user_id) values (?,?)";
             pstm = conn.prepareStatement(query);
             pstm.setLong(1, object.getStories().getId());
             pstm.setLong(2, object.getUser().getId());
             return pstm.executeUpdate() > 0;
 
         } catch (SQLException e) {
-            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE, "ERROR save" + e.getMessage());
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE, "ERROR save shared" + e.getMessage());
 
         } finally {
             close();
@@ -36,71 +38,44 @@ public class DaoShared {
         return false;
     }
 
-    public Likes findAllLikes1(int story_id) {
+    public List<Shared> FindAllSharedStories(Long user_id) {
+        List<Shared> shareds = new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query = "SELECT count(*) from likes where = story_id = ?;";
+            String query = "SELECT * from likes where user_id = ?;";
             pstm = conn.prepareStatement(query);
-            pstm.setInt(1, story_id);
+            pstm.setLong(1, user_id);
             rs = pstm.executeQuery();
-            Likes likes1 = new Likes();
-            if (rs.next()) {
-                Stories story = new Stories();
-                story.setId(rs.getLong("story_id"));
-                likes1.setStories(story);
+            while (rs.next()) {
+            Shared shared = new Shared();
                 User user = new User();
-                user.setId(rs.getLong("user_id"));
-                likes1.setUser(user);
-
+                user.setId(rs.getLong("id"));
+                Stories stories = new Stories();
+                stories.setId(rs.getLong("id"));
+                shared.setStories(stories);
+                shared.setUser(user);
+            shareds.add(shared);
             }
-            return likes1;
         } catch (SQLException e) {
-            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE, "ERROR FINDALL Likes" + e.getMessage());
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE, "ERROR FINDALL shared" + e.getMessage());
         } finally {
             close();
         }
-        return null;
+        return shareds;
 
     }
 
-    public int findAllLikes(int story_id) {
-        try {
-            int valor = 0;
-            System.out.println("get story_id: " + story_id);
-
-            conn = new MySQLConnection().connect();
-            String query = "select  count(*) as eldrip from likes where story_id = ?;";
-            pstm = conn.prepareStatement(query);
-            pstm.setInt(1, story_id);
-            rs = pstm.executeQuery();
-            System.out.println(rs.getFetchSize());
-            Likes likes1 = new Likes();
-            System.out.println("get row : " + rs.getRow());
-            if (rs.next()) {
-                valor = rs.getInt("eldrip");
-
-            }
-            return valor;
-        } catch (SQLException e) {
-            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE, "ERROR FINDALL Likes" + e.getMessage());
-            return 0;
-        } finally {
-
-            close();
-        }
-
-    }
 
     public boolean delete(Long user_id, Long story_id) {
         try {
             conn = new MySQLConnection().connect();
-            String query = "delete from likes where user_id = ? and story_id = ?;";
+            String query = "delete from shared where user_id = ? and story_id = ?;";
             pstm = conn.prepareStatement(query);
             pstm.setLong(1, user_id);
             pstm.setLong(2, story_id);
             return pstm.executeUpdate() > 1;
         } catch (SQLException e) {
-            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE, "ERROR delete Like" + e.getMessage());
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE, "ERROR delete shared" + e.getMessage());
         } finally {
             close();
         }

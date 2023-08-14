@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import mx.edu.utez.integradora.models.actions.Shared.DaoShared;
 import mx.edu.utez.integradora.models.actions.Shared.Shared;
 import mx.edu.utez.integradora.models.actions.likes.DaoLikes;
 import mx.edu.utez.integradora.models.actions.likes.Likes;
@@ -663,6 +664,17 @@ public class ServletUser extends HttpServlet {
                     stories.setId(Long.parseLong(story_id));
                     shared.setUser(user1);
                     shared.setStories(stories);
+
+                  boolean result= new DaoShared().save(shared);
+
+                  if(result){
+                      redirect = "/api/user/home?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Has compartido esta historia con exito.",
+                              StandardCharsets.UTF_8);
+                  } else {
+
+                      redirect = "/api/user/home?result= " + result + "&message=" + URLEncoder.encode("¡Error! compartir no realizada correctamente.",
+                              StandardCharsets.UTF_8);
+                  }
 
                 break;
 
