@@ -750,9 +750,14 @@ public class ServletUser extends HttpServlet {
                     user_id = req.getParameter("user_id");
 
                     System.out.println("ID de la compartida borrar" + story_id);
-                    if (new DaoShared().delete(Long.parseLong(story_id),Long.parseLong(user_id)))
+                    if (new DaoShared().delete(Long.parseLong(story_id),Long.parseLong(user_id))){
                         redirect = "/api/user/perfil?result=" + true + "&message" + URLEncoder.encode
-                                ("¡Exito!Compartir Eliminado correctamente.", StandardCharsets.UTF_8);
+                                ("¡Exito!Compartir Eliminado correctamente.", StandardCharsets.UTF_8);}else{
+
+
+                        redirect = "/api/user/perfil?result=" + false + "&message" + URLEncoder.encode
+                                ("¡ERROR!Compartir  NO  Eliminado correctamente.", StandardCharsets.UTF_8);
+                    }
 
                 }catch (Exception e) {
                     redirect = "/api/user/perfil?result=false&message=" + URLEncoder.encode("Ocurrio un error", StandardCharsets.UTF_8);

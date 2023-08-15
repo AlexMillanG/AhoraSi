@@ -42,7 +42,7 @@ public class DaoShared {
         List<Shared> shareds = new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query = "SELECT * from likes where user_id = ?;";
+            String query = "SELECT * from SharedStories where user_id = ?;";
             pstm = conn.prepareStatement(query);
             pstm.setLong(1, user_id);
             rs = pstm.executeQuery();
@@ -50,8 +50,14 @@ public class DaoShared {
             Shared shared = new Shared();
                 User user = new User();
                 user.setId(rs.getLong("id"));
+                user.setName(rs.getString("name_"));
+                user.setLastname(rs.getString("lastname"));
+                user.setSurname(rs.getString("surname"));
                 Stories stories = new Stories();
                 stories.setId(rs.getLong("id"));
+                stories.setTitle(rs.getString("title"));
+                stories.setContent(rs.getString("content"));
+                
                 shared.setStories(stories);
                 shared.setUser(user);
             shareds.add(shared);

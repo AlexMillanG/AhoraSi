@@ -25,10 +25,17 @@
         <button type="submit" >Eliminar Mi historia</button>
       </form>
     </c:forEach>
-    <c:forEach var="Shared" items="${Shared}">
-      <h4></h4>
+<c:forEach var="Shared" items="${Shared}">
+  <h4><c:out value="${Shared.getStories().getTitle()}"/></h4>
+  <h5>Por: <c:out value="${Shared.getUser().getName()}"/> <c:out value="${Shared.getUser().getLastname()}"/> <c:out value="${Shared.getUser().getSurname()}"/></h5>
+  <p><c:out value="${Shared.getStories().getContent()}" /></p>
+  <form action="/api/user/delete-shared" method="post">
+  <input hidden value="${Shared.getUser().getId()}" name="user_id">
+  <input hidden value="${Shared.getStories().getId()}" name="story_id">
+  <button type="submit">Eliminar Compartido</button>
+  </form>
+</c:forEach>
 
-    </c:forEach>
 
   </div>
   <h1>Perfil de Usuario</h1>
