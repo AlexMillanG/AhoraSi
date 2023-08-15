@@ -256,7 +256,7 @@
                 <form  id="loginForm" action="/api/auth" class="needs-validation"
                        novalidate method="post">
                     <div style="margin-left: 30%; border-radius: 100%; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);background: white;width:150px; height:150px; text-align: center; vertical-align: middle; padding: 10px;"  >
-                        <i class="fa-solid fa-user" style="font-size: 100px; text-align: center"></i>
+                        <i class="fa-solid fa-user" style="font-size: 100px; text-align: center "></i>
                     </div>
                     <table class="table" >
                         <tr style="height: 5px;">

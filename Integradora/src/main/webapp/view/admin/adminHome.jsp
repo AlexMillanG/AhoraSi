@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: uriel
@@ -9,73 +10,304 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Administrador home</title>
-    <link href="../../assets/css/style.css" rel="stylesheet" type="text/css">
+    <title>Administrador Usuarios</title>
     <jsp:include page="../../layouts/head.jsp"/>
 </head>
-
 <body>
-
+<body>
 <div class="container-fluid" id='cont'>
-    <table class="table" style="font-family: PT Serif">
+    <table class="table">
+        <thead>
         <tr>
-            <th scope="col" class="logo1">
-                <img src= "../../assets/img/logo.png"  class="logo">
-            </th>
             <th scope="col">
-                <div  class="container-fluid" id="cont-1">
+                <div class="container-fluid" style="
+                background: rgb(255, 255, 255);
+                float: left;
+                position: relative;
+                margin-top: 3%;
+                border-radius: 15px;
+                max-height: 100%;">
                     <div class="container-fluid" id="cont-2">
                         <jsp:include page="/layouts/navbarAdmin.jsp"/>
-                        <table class="table table-striped" style="font-family: PT Serif" >
-                            <thead>
-                            <tr>
-                                <p style="font-size: 30px; text-align: center">Usuarios</p>
-                            </tr>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nombre Completo</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <s:forEach items="${users1}" var="user">
-                                <tr>
-                                    <th>
-                                        <p>${user.id}</p>
-                                    </th>
-                                    <th>
-                                        <p>${user.name} ${user.lastname} ${user.surname} </p>
-                                    </th>
-                                    <th>
-                                        <p>${user.email}</p>
-                                    </th>
-                                    <th>
-                                        <form method="post" action="/user/delete">
-                                            <input hidden value="${user.id}" name="id">
-                                            <button class="btn" id="eliminarAdmin">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
-                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
-                                                </svg>
+                        <div class="card-body">
+                            <s:if test="user.isEmpty()">
+                                <div class="row">
+                                    <div class="col">
+                                        <h3>Sin registros</h3>
+                                    </div>
+                                </div>
+                            </s:if>
+                            <h3 style="font-family: PT serif;text-align: center">Usuarios</h3>
+                            <div class="card-text">
+                                <table class="table table-stripped" style="box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.15), -4px -4px 16px 0px #FFF;">
+                                    <thead  style="font-family: PT Serif;font-size: 18px;">
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Correo</th>
+                                    <th>Fecha de Nacimiento</th>
+                                    <th>Sexo</th>
+                                    <th>Acción</th>
+                                    </thead>
+                                    <s:forEach var="user" items="${users1}" varStatus="s">
+                                    <tbody style="font-family: PT Serif;font-size: 16px;">
+                                    <tr>
+                                        <td>
+                                            <c:out value="${s.count}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${user.name}"/> <c:out
+                                                value="${user.surname}"/> <c:out value="${user.lastname}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${user.email}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${user.birthday}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${user.sex}"/>
+                                        </td>
+                                        <td style="display: flex; flex-direction: row">
+                                            <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editar" style="width: 30px; height:30px; padding:  5px;";
+                                                    onclick="prueba('${user.id}|${user.name}|${user.email}|${user.pass}|${user.lastname}|${user.surname}|${user.birthday}|${user.sex}')" name="editar">
+                                                <i class="fa-solid fa-pen-to-square" style="font-size: 16px;"></i>
                                             </button>
-                                        </form>
-                                    </th>
-                                </tr>
-                            </s:forEach>
-                            <tr>
-                                <td colspan="4">
-                                    Sin registros
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                            <form method="post" action="/api/user/super-delete">
+                                                <input hidden value="${user.id}" name="id">
+                                                <button type="submit" class="btn btn-outline-danger" style="width: 30px; height:30px; padding:  5px;">
+                                                    <i class="fa-solid fa-trash-can" style="font-size: 16px;"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    </s:forEach>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
             </th>
         </tr>
     </table>
+</div>
+
+<%--Modal ADmin User--%>
+<div class="modal fade" id="updateUsers" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 30px;">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="mostrarAlerta()" style="margin-top: 20px; margin-left: 90%;"></button>
+            <p  style="font-family: PT serif; font-size: 35px; text-align: center; margin-top: 20px; font-style: normal;font-weight: 700;"><strong>Actualizar Información</strong></p>
+            <div class="modal-body">
+                <form  id="form" action="/api/user/update" method="post" class="needs-validation" novalidate method="post">
+                    <table class="table" style="width: 100%">
+                        <tr>
+                            <th>
+                                <div class="container-fluid " style="    fill: #FFF;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="id">ID</label>
+                                    <input id="id" name="id" class="form-control" onmousedown="return false;"
+                                           style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                            </th>
+                            <th >
+                                <div class="container-fluid " style="    fill: #FFF;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="name">Nombre</label>
+                                    <input type="text"   name="name" id="name"
+                                           placeholder="nombre" required
+                                           style="border: none; outline: none;
+                      padding: 10px; border-radius: 5px;
+                      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="container-fluid " style="    fill: #FFF;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="name">Apellido Paterno</label>
+                                    <input  type="text" name="surname" class="form-control" id="surname"
+                                            placeholder="Apellido Paterno" required
+                                            style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid"style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                            </th>
+                            <th>
+                                <div class="container-fluid " style="    fill: #FFF;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="name">Apellido Materno</label>
+                                    <input  type="text" name="lastname" class="form-control" id="lastname"
+                                            placeholder="Apellido Materno" required
+                                            style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid"style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <div class="container-fluid " style="    fill: #FFF;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="name">Correo Electrónico:</label>
+                                    <input type="email" class="form-control" name="emailRegistro" id="emailRegistro"
+                                           placeholder="matricula@utez.edu.mx" required
+                                           style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid"style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="container-fluid ">
+                                    <label for="name" style="font-family: PT serif">Sexo:</label>
+                                    <select name="sex" id="sex"class="form-select" required style="width: 100%; height: 199%;  border: none;
+                        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);border-radius: 15px; font-family: PT Serif">
+                                        <option value="">-Selecionar-</option>
+                                        <option value="mujer" id="mujer1">Mujer</option>
+                                        <option value="hombre" id="hombre1">Hombre</option>
+                                        <option value="otro">Otro</option>
+                                    </select>
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                            </th>
+                            <th>
+                                <div class="container-fluid " style="    fill: #FFF;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                        background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="name">Fecha Nacimiento:</label>
+                                    <input type="date" min="1900-01-01" max="2005-12-31" name="birthday" class="form-control" id="birthday"
+                                           placeholder="birthday" required style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid"style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <div class="container-fluid " style="    fill: #FFF;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                    <label for="name">Contraseña:</label>
+                                    <input type="password" name="pass" class="form-control" id="pass"
+                                           placeholder="name" placeholder="Contraseña" required
+                                           style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <button  class="container-fluid"
+                                         type="button" data-bs-dismiss="modal" style="height: 50px; background-color: black; font-family: PT serif; color: #FFF; border-radius: 15px;">Cancelar</button>
+                            </th>
+                            <th>
+                                <button  class="container-fluid"
+                                         type="button" id="updateUserbtn" onclick="upSendForm()" style="height: 50px; background-color: black; font-family: PT serif; color: #FFF; border-radius: 15px;">Aceptar</button>
+                            </th>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
     </div>
-<jsp:include page="../../layouts/footer.jsp"/>
+</div>
+
+
+</div><jsp:include page="../../layouts/footer.jsp"/>
+
+<script>
+    const  form=document.getElementById("form")
+    const btn=document.getElementById("updateUserbtn")
+    var id=document.getElementById("id");
+
+
+    function prueba(user){
+        var valores = user.split("|");
+        var id=valores[0];
+        var name = valores[1];
+        var correo = valores[2];
+        var password =valores[3];
+        var surname=valores[4];
+        var lastname=valores[5];
+        var birthday=valores[6];
+        var sex=valores[7];
+        console.log("hola "+user);
+        console.log("hola1 "+valores);
+        console.log("hola2 "+name);
+        document.getElementById("id").value=id;
+        document.getElementById("name").value = name;
+        document.getElementById("emailRegistro").value= correo;
+        document.getElementById("pass").value= password;
+        document.getElementById("surname").value= surname;
+        document.getElementById("lastname").value= lastname;
+        document.getElementById("birthday").value= birthday;
+        document.getElementsByTagName("sex").value=sex;
+    }
+
+    (function () {
+        btn.addEventListener("click",function (event){
+            console.log(form.checkValidity());
+
+            if(!form.checkValidity()){
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            form.classList.add("was-validated")
+        }, false);
+
+    })();
+    function upSendForm() {
+        if(form.checkValidity()){
+            console.log("a "+document.getElementById("name").value);
+            var id = document.getElementById("id");
+            console.log("aa "+id.value);
+            var nombre = document.getElementById("name");
+            console.log("aaa "+nombre.value);
+            console.log(document.getElementById("form").value);
+            console.log(form.checkValidity());
+            form.submit();
+        }
+    }
+</script>
 </body>
 </html>

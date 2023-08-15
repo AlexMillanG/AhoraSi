@@ -18,36 +18,10 @@
 <div class="container-fluid" id='cont'>
   <table class="table">
     <tr>
-      <th scope="col" class="logo1">
-        <img src= "/assets/img/logo.png"  class="logo">
-      </th>
       <th scope="col">
         <div  class="container-fluid" id='cont-2'>
           <jsp:include page="/layouts/navbarAdmin.jsp"/>
-          <div id="carrusel" class="container-fluid">
-            <h1 style="margin-top: 20px; font-family: PT serif ;">Bienvenido </h1>
-            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="10000" style="margin-bottom: 30px;" style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                  <img src="/assets/img/1.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item" data-bs-interval="2000" style="margin-bottom: 30px;" style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                  <img src="/assets/img/2.jpg"  class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="/assets/img/3.jpg"  class="d-block w-100" alt="..."  style="margin-bottom: 30px;" style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
+          <jsp:include page="/layouts/carrusel.jsp"/>
           <ul class="nav nav-tabs" id="myTab" role="tablist" style="float: right; font-family: PT serif; color: #8081B7;">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="accion-tab" data-bs-toggle="tab" data-bs-target="#accion-tab-pane" type="button" role="tab" aria-controls="accion-tab-pane" aria-selected="true">Accion</button>
@@ -139,12 +113,11 @@
               </div>
             </div></div>
           </div>
-        </div>---
+        </div>
       </th>
     </tr>
     </thead>
   </table>
 </div>
-<jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
 </body>
 </html>

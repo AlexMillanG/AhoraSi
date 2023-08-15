@@ -11,21 +11,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Admin foros</title>
+    <title>HITU Administradores</title>
     <jsp:include page="../../layouts/head.jsp"/>
 </head>
 <body>
 <div class="container-fluid" id="cont">
     <table class="table" id="tabla">
         <tr>
-            <th scope="col" class="logo1">
-                <img src= "../img/logo.png"  class="logo">
-            </th>
             <th scope="col" id="conta" >
                 <div  class="container-fluid" id="cont-2">
-
                     <jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
-
                     <s:if test="users.isEmpty()">
                         <div class="row">
                             <div class="col">
@@ -35,22 +30,22 @@
                     </s:if>
                     <div class="container-fluid"  style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
                         <button data-bs-toggle="modal" data-bs-target="#saveAdmins" type="button" class="btn btn-outline-success" style="float: right; margin-top: 15px;" id="agregar">Agregar</button>
-                        <p style="font-family: PT serif ; font-size: 30px; margin-top: 15px">Administradores</p>
+                        <p style="font-family: PT serif ; font-size: 30px; margin-top: 15px; text-align: center">Administradores</p>
                         <s:forEach items="${admin}" var="admin"  varStatus="s">
                             <div class="container-fluid"
                                  style="box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.15), -4px -4px 16px 0px #FFF;
                                  background:white; position: relative; float: left;  border-radius: 15px; width: 200px; margin-top: 10px; margin-bottom: 25px; margin-left: 10px;">
                                 <table class="table" style=" margin-top: 25px; margin-bottom: 2%;">
                                     <tr style="height: 130px;">
-                                        <th scope="col" style="float: left; margin-left: -15px;" >
+                                        <th scope="col" style="float: left; margin-left: -15px; color: #5A6AA9" >
                                             <form method="post" action="/api/superadmin/delete-admin">
                                                 <input hidden value="${admin.id}" name="id">
                                                 <button  data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn"  id="editar"
                                                          onclick="prueba('${admin.id}|${admin.name}|${admin.email}|${admin.pass}|${admin.lastname}|${admin.surname}|${admin.birthday}|${admin.sex}')" name="editar"
-                                                ><i class="fa-solid fa-pen"></i>
+                                                ><i class="fa-solid fa-pen" style="color: #5A6AA9"></i>
                                                 </button>
                                                 <li style="list-style-type: none;">
-                                                    <button type="submit" class="btn "><i class="fa-solid fa-trash-can"></i>
+                                                    <button type="submit" class="btn "><i class="fa-solid fa-trash-can" style="color: #5A6AA9"></i>
                                                     </button>
                                                 </li>
                                                 </li>
@@ -68,47 +63,11 @@
                             </div>
                         </s:forEach>
                     </div>
-
-
-                        <div class="container-fluid"
-                             style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
-                            <button data-bs-toggle="modal" data-bs-target="#crearCategoria" type="button"
-                                    class="btn btn-outline-success" style="float: right; margin-top: 15px;"
-                                    id="agregar-categorias">Agregar
-                            </button>
-                            <p style="font-family: PT serif ; font-size: 30px; margin-top: 5px; height: 20px; width: 20px;">
-                                Categorias</p>
-                            <div class="container-fluid">
-                                <div class="card-group">
-                                    <c:forEach var="category" items="${categories}">
-                                        <div class="card" style="width: 18rem;">
-                                            <img src="/api/categories/loadFiles?id=${category.img_id}" class="card-img-top" alt="${category.category}">
-
-                                            <div class="card-body">
-                                                <h5 class="card-title"><c:out value="${category.category}"/></h5>
-                                                <form action="/api/actoresDeDoblaje" method="post">
-                                                    <input name="id" hidden value="${category.id}">
-                                                    <button type="submit" class="btn btn-outline-danger"><i data-feather="trash-2"></i></button>
-                                                </form>
-
-                                                <button data-bs-toggle="modal" data-bs-target="#updateCategory" type="button" class="btn btn-outline-warning"  id="editar"
-                                                        onclick="prueba('${category.id}|${category.category}')" name="editar"
-                                                ><i data-feather="edit-3"></i></button>
-
-                                            </div>
-                                        </div>
-                                    </c:forEach>
-                                </div>
-
-                            </div>
                 </div>
             </th>
         </tr>
     </table>
 </div>
-
-
-
 <%--Modal ADmin--%>
 <div class="modal fade" id="saveAdmins" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered">
@@ -249,7 +208,6 @@
         </div>
     </div>
 </div>
-
 <%--Modal ADmin Actualizar--%>
 <div class="modal fade" id="updateUsers" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered">
@@ -257,7 +215,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="mostrarAlerta()" style="margin-top: 20px; margin-left: 90%;"></button>
             <p  style="font-family: PT serif; font-size: 35px; text-align: center; margin-top: 20px; font-style: normal;font-weight: 700;"><strong>Actualizar Información</strong></p>
             <div class="modal-body">
-                <form id="form" action="/api/superadmin/update-admin" method="post" class="needs-validation" novalidate method="post">
+                <form id="form" action="/api/superadmin/update-admin" method="post" class="needs-validation" novalidate>
                     <table class="table">
                         <tr>
                             <th>
@@ -333,8 +291,8 @@
                     margin-left: 3px;
                     font-family: PT serif;">
                                     <label for="name">Correo Electrónico:</label>
-                                    <input type="email" class="form-control" name="emailRegistro" id="emailRegistro"
-                                           placeholder="matricula@utez.edu.mx" required
+                                    <input  type="email" class="form-control" name="emailRegistro" id="emailRegistro"
+                                            placeholder="matricula@utez.edu.mx" required
                                            style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                                     <div class="invalid-feedback is-invalid"style="text-align: right">
                                         Campo obligatorio
@@ -381,7 +339,7 @@
                     margin-left: 3px;
                     font-family: PT serif;">
                                     <label for="name">Contraseña:</label>
-                                    <input type="text" name="pass1" class="form-control" id="pass1"
+                                    <input type="password" name="pass1" class="form-control" id="pass1"
                                            placeholder="Contraseña" required
                                            style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                                     <div class="invalid-feedback is-invalid" style="text-align: right">
@@ -391,10 +349,13 @@
                             </th>
                         </tr>
                         <tr>
-                            <th colspan="2">
-                                <button type="submit" class="container-fluid"
-                                        type="button" onclick="registro()"  id="buttonAdmin"
-                                        style="height: 50px; background-color: black; font-family: PT serif; color: #FFF; border-radius: 15px;">Aceptar</button>
+                            <th>
+                                <button type="button" data-bs-dismiss="modal"
+                                        style="height: 50px;width: 100%; background-color: black; font-family: PT serif; color: #FFF; border-radius: 15px;">Cancelar</button>
+                            </th>
+                            <th>
+                                <button type="button" id="updateUserbtn" onclick="upSendForm()"
+                                        style="width: 100%; height: 50px; background-color: black; font-family: PT serif; color: #FFF; border-radius: 15px;">Aceptar</button>
                             </th>
                         </tr>
                     </table>

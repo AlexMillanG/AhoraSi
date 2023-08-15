@@ -225,7 +225,6 @@
     </thead>
   </table>
 </div>
-<jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
 <jsp:include page="../../layouts/footer.jsp"/>
 </body>
 </html>

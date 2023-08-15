@@ -16,7 +16,7 @@
 
         <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: PT Serif; margin-bottom:5%;">
             <div class="container-fluid" >
-                <a class="navbar-brand" href="/api/admin/home">HITU</a>
+                <a class="navbar-brand" href="/api/admin/home"><img src="../../assets/img/logo1.png" width="50px" height="50px"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -34,12 +34,6 @@
 
                         <li class="nav-item">
                             <a href="/api/auth" class="nav-link"> Cerrar Sesión</a>
-                        </li>
-                        <li>
-                            <form class="d-flex" role="search" style="float: right">
-                                <input class="form-control me-2" type="search" placeholder="¿Que vas a buscar hoy?" aria-label="Search">
-                                <button class="btn" type="submit">Buscar</button>
-                            </form>
                         </li>
                     </ul>
                 </div>

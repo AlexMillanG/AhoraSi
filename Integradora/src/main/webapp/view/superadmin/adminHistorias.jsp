@@ -8,19 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-  <title>admin Historias</title>
-  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link type="text/css" rel="stylesheet" href="../../assets/css/style.css">
+  <title>HITU Historias</title>
   <jsp:include page="../../layouts/head.jsp"/>
 </head>
 <body>
 <div class="container-fluid" id='cont'>
   <table class="table">
     <tr>
-      <th scope="col" class="logo1">
-        <img src= "/assets/img/logo.png"  class="logo">
-      </th>
       <th scope="col">
         <div  class="container-fluid" id='cont-2'>
           <jsp:include page="/layouts/navbarSupeadmin.jsp"/>
@@ -139,12 +133,12 @@
               </div>
             </div></div>
           </div>
-        </div>---
+        </div>
       </th>
     </tr>
     </thead>
   </table>
 </div>
-<jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
+<jsp:include page="/layouts/footer.jsp"/>
 </body>
 </html>

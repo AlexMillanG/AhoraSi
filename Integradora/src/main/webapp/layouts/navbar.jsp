@@ -6,11 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
 <nav style="font-family: PT serif ;margin-bottom: 15px;" id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid" >
-        <a class="navbar-brand" href="/api/user/home">HITU</a>
+        <a class="navbar-brand" href="/api/user/home"><img src="../../assets/img/logo1.png" width="50px" height="50px"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,12 +32,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/api/auth">Cerrar sesión</a>
                 </li>
-
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="¿Que vas a buscar hoy?" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
         </div>
     </div>
 </nav>

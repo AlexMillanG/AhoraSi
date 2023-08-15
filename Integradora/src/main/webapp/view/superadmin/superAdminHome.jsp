@@ -10,9 +10,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Administrador home</title>
+    <title>Administrador Usuarios</title>
     <jsp:include page="../../layouts/head.jsp"/>
-
 </head>
 <body>
 <body>
@@ -20,9 +19,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col" class="logo1">
-                <img src="../../assets/img/logo.png" class="logo">
-            </th>
             <th scope="col">
                 <div class="container-fluid" style="
                 background: rgb(255, 255, 255);
@@ -52,51 +48,51 @@
                                     <th>Sexo</th>
                                     <th>Acción</th>
                                     </thead>
-                                <s:forEach var="user" items="${users1}" varStatus="s">
-                                <tbody style="font-family: PT Serif;font-size: 16px;">
-                                <tr>
-                                    <td>
-                                        <c:out value="${s.count}"/>
-                                    </td>
-                                    <td>
-                                        <c:out value="${user.name}"/> <c:out
-                                            value="${user.surname}"/> <c:out value="${user.lastname}"/>
-                                    </td>
-                                    <td>
-                                        <c:out value="${user.email}"/>
-                                    </td>
-                                    <td>
-                                        <c:out value="${user.birthday}"/>
-                                    </td>
-                                    <td>
-                                        <c:out value="${user.sex}"/>
-                                    </td>
-                                    <td style="display: flex; flex-direction: row">
-                                        <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editar" style="width: 30px; height:30px; padding:  5px;";
-                                                onclick="prueba('${user.id}|${user.name}|${user.email}|${user.pass}|${user.lastname}|${user.surname}|${user.birthday}|${user.sex}')" name="editar">
-                                            <i class="fa-solid fa-pen-to-square" style="font-size: 16px;"></i>
-                                        </button>
-                                        <form method="post" action="/api/user/super-delete">
-                                            <input hidden value="${user.id}" name="id">
-                                            <button type="submit" class="btn btn-outline-danger" style="width: 30px; height:30px; padding:  5px;">
-                                                <i class="fa-solid fa-trash-can" style="font-size: 16px;"></i>
-                                               </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                </s:forEach>
+                                    <s:forEach var="user" items="${users1}" varStatus="s">
+                                    <tbody style="font-family: PT Serif;font-size: 16px;">
+                                    <tr>
+                                        <td>
+                                            <c:out value="${s.count}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${user.name}"/> <c:out
+                                                value="${user.surname}"/> <c:out value="${user.lastname}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${user.email}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${user.birthday}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${user.sex}"/>
+                                        </td>
+                                        <td style="display: flex; flex-direction: row">
+                                            <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editar" style="width: 30px; height:30px; padding:  5px;";
+                                                    onclick="prueba('${user.id}|${user.name}|${user.email}|${user.pass}|${user.lastname}|${user.surname}|${user.birthday}|${user.sex}')" name="editar">
+                                                <i class="fa-solid fa-pen-to-square" style="font-size: 16px;"></i>
+                                            </button>
+                                            <form method="post" action="/api/user/super-delete">
+                                                <input hidden value="${user.id}" name="id">
+                                                <button type="submit" class="btn btn-outline-danger" style="width: 30px; height:30px; padding:  5px;">
+                                                    <i class="fa-solid fa-trash-can" style="font-size: 16px;"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    </s:forEach>
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
                             </div>
 
                         </div>
 
                     </div>
                 </div>
-</th>
-</tr>
-</table>
+            </th>
+        </tr>
+    </table>
 </div>
 
 <%--Modal ADmin User--%>
@@ -152,7 +148,7 @@
                                     <label for="name">Apellido Paterno</label>
                                     <input  type="text" name="surname" class="form-control" id="surname"
                                             placeholder="Apellido Paterno" required
-                                           style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                            style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                                     <div class="invalid-feedback is-invalid"style="text-align: right">
                                         Campo obligatorio
                                     </div>
@@ -167,7 +163,7 @@
                                     <label for="name">Apellido Materno</label>
                                     <input  type="text" name="lastname" class="form-control" id="lastname"
                                             placeholder="Apellido Materno" required
-                                           style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                            style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                                     <div class="invalid-feedback is-invalid"style="text-align: right">
                                         Campo obligatorio
                                     </div>
@@ -193,14 +189,14 @@
                         <tr>
                             <th>
                                 <div class="container-fluid ">
-                                      <label for="name" style="font-family: PT serif">Sexo:</label>
-                                        <select name="sex" id="sex"class="form-select" required style="width: 100%; height: 199%;  border: none;
+                                    <label for="name" style="font-family: PT serif">Sexo:</label>
+                                    <select name="sex" id="sex"class="form-select" required style="width: 100%; height: 199%;  border: none;
                         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);border-radius: 15px; font-family: PT Serif">
-                                            <option value="">-Selecionar-</option>
-                                            <option value="mujer" id="mujer1">Mujer</option>
-                                            <option value="hombre" id="hombre1">Hombre</option>
-                                            <option value="otro">Otro</option>
-                                        </select>
+                                        <option value="">-Selecionar-</option>
+                                        <option value="mujer" id="mujer1">Mujer</option>
+                                        <option value="hombre" id="hombre1">Hombre</option>
+                                        <option value="otro">Otro</option>
+                                    </select>
                                     <div class="invalid-feedback is-invalid" style="text-align: right">
                                         Campo obligatorio
                                     </div>
@@ -259,58 +255,59 @@
 </div><jsp:include page="../../layouts/footer.jsp"/>
 
 <script>
-const  form=document.getElementById("form")
-const btn=document.getElementById("updateUserbtn")
-var id=document.getElementById("id");
+    const  form=document.getElementById("form")
+    const btn=document.getElementById("updateUserbtn")
+    var id=document.getElementById("id");
 
 
-function prueba(user){
-    var valores = user.split("|");
-    var id=valores[0];
-    var name = valores[1];
-    var correo = valores[2];
-    var password =valores[3];
-    var surname=valores[4];
-    var lastname=valores[5];
-    var birthday=valores[6];
-    var sex=valores[7];
-    console.log("hola "+user);
-    console.log("hola1 "+valores);
-    console.log("hola2 "+name);
-    document.getElementById("id").value=id;
-    document.getElementById("name").value = name;
-    document.getElementById("emailRegistro").value= correo;
-    document.getElementById("pass").value= password;
-    document.getElementById("surname").value= surname;
-    document.getElementById("lastname").value= lastname;
-    document.getElementById("birthday").value= birthday;
-    document.getElementsByTagName("sex").value=sex;
-}
+    function prueba(user){
+        var valores = user.split("|");
+        var id=valores[0];
+        var name = valores[1];
+        var correo = valores[2];
+        var password =valores[3];
+        var surname=valores[4];
+        var lastname=valores[5];
+        var birthday=valores[6];
+        var sex=valores[7];
+        console.log("hola "+user);
+        console.log("hola1 "+valores);
+        console.log("hola2 "+name);
+        document.getElementById("id").value=id;
+        document.getElementById("name").value = name;
+        document.getElementById("emailRegistro").value= correo;
+        document.getElementById("pass").value= password;
+        document.getElementById("surname").value= surname;
+        document.getElementById("lastname").value= lastname;
+        document.getElementById("birthday").value= birthday;
+        document.getElementsByTagName("sex").value=sex;
+    }
 
-(function () {
-    btn.addEventListener("click",function (event){
-        console.log(form.checkValidity());
+    (function () {
+        btn.addEventListener("click",function (event){
+            console.log(form.checkValidity());
 
-        if(!form.checkValidity()){
-            event.preventDefault();
-            event.stopPropagation();
+            if(!form.checkValidity()){
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            form.classList.add("was-validated")
+        }, false);
+
+    })();
+    function upSendForm() {
+        if(form.checkValidity()){
+            console.log("a "+document.getElementById("name").value);
+            var id = document.getElementById("id");
+            console.log("aa "+id.value);
+            var nombre = document.getElementById("name");
+            console.log("aaa "+nombre.value);
+            console.log(document.getElementById("form").value);
+            console.log(form.checkValidity());
+            form.submit();
         }
-
-        form.classList.add("was-validated")
-    }, false);
-
-})();
-function upSendForm() {
-if(form.checkValidity()){
-    console.log("a "+document.getElementById("name").value);
-    var id = document.getElementById("id");
-    console.log("aa "+id.value);
-    var nombre = document.getElementById("name");
-    console.log("aaa "+nombre.value);
-    console.log(document.getElementById("form").value);
-    console.log(form.checkValidity());
-    form.submit();
-}
-}
+    }
 </script>
+</body>
 </body>

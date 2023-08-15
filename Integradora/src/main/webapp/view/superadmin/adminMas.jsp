@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
@@ -15,48 +14,46 @@
     <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link type="text/css" rel="stylesheet" href="../../assets/css/style.css">
     <jsp:include page="/layouts/head.jsp"/>
-
 </head>
 <body>
 <div class="container-fluid" id='cont'>
     <table class="table">
         <tr>
-            <th scope="col" class="logo1">
-                <img src="/assets/img/logo.png" class="logo">
-            </th>
             <th scope="col">
                 <div class="container-fluid" id='cont-2'>
                     <jsp:include page="/layouts/navbarSupeadmin.jsp"/>
-                    <div class="container-fluid"
-                         style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
+                    <div class="container-fluid"  style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
                         <button data-bs-toggle="modal" data-bs-target="#crearCategoria" type="button"
                                 class="btn btn-outline-success" style="float: right; margin-top: 15px;"
-                                id="agregar-categorias">Agregar
-                        </button>
-                        <p style="font-family: PT serif ; font-size: 30px; margin-top: 5px; height: 20px; width: 20px;">
-                            Categorias</p>
-                        <div class="container-fluid">
-                            <div class="card-group">
-                                <c:forEach var="category" items="${categories}">
-                                    <div class="card" style="width: 18rem;">
-                                        <img src="/api/categories/loadFiles?id=${category.img_id}" class="card-img-top" alt="${category.category}">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><c:out value="${category.category}"/></h5>
+                                id="agregar-categorias">Agregar</button>
+                        <p style="font-family: PT serif ; font-size: 30px; margin-top: 15px;">Categorias</p>
+                        <c:forEach var="category" items="${categories}">
+                        <div class="container-fluid"
+                                 style="box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.15), -4px -4px 16px 0px #FFF;
+                                 background:white; position: relative; float: left;  border-radius: 15px; width: 200px; margin-top: 10px; margin-bottom: 25px; margin-left: 5px;">
+                                <table class="table" style=" margin-top: 25px; margin-bottom: 2%;">
+                                    <tr style="height: 130px;">
+                                        <th scope="col" style="float: left; margin-left: -15px;" >
+                                            <button data-bs-toggle="modal" data-bs-target="#updateCategory" type="button" class="btn"  id="editar"
+                                                    onclick="prueba('${category.id}|${category.category}')" name="editar"
+                                            ><i class="fa-solid fa-pen"></i>
+                                            </button>
                                             <form action="/api/actoresDeDoblaje" method="post">
                                                 <input name="id" hidden value="${category.id}">
-                                                <button type="submit" class="btn btn-outline-danger"><i data-feather="trash-2"></i></button>
+                                                <button type="submit" class="btn"> <i class="fa-solid fa-trash-can"></i></button>
                                             </form>
-                                            <button data-bs-toggle="modal" data-bs-target="#updateCategory" type="button" class="btn btn-outline-warning"  id="editar"
-                                                    onclick="prueba('${category.id}|${category.category}')" name="editar"
-                                            ><i data-feather="edit-3"></i></button>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                            </div>
-
+                                        </th>
+                                        <th rowspan="2">
+                                            <img src="/api/categories/loadFiles?id=${category.img_id}" class="card-img-top" alt="..."; style="border-radius: 50%;">
+                                        </th>
+                                    </tr>
+                                </table>
+                            <h6 style="font-family: PT serif ; font-size: 20px; text-align: center;"><c:out value="${category.category}"/></h6>
                         </div>
-                        <div class="container-fluid" style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
-                            <button data-bs-toggle="modal" data-bs-target="#crearAvatar" type="button"
+                        </c:forEach>
+                    </div>
+                    <div class="container-fluid" style="fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
+                        <button data-bs-toggle="modal" data-bs-target="#crearAvatar" type="button"
                                     class="btn btn-outline-success" style="float: right; margin-top: 15px;" id="agregar">
                                 Agregar
                             </button>
@@ -71,57 +68,67 @@
                             </div>
                         </div>
                     </div>
-                </div>
 </th>
 </tr>
 </table>
 </div>
-</div>
 <!-- Modal -->
-
 <%--Modal Crear categoria--%>
 <div class="modal fade" id="crearCategoria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"> >
-        <div class="modal-content">
-            <div class="modal-header">
-                <p style="font-family: PT serif; text-align: center; font-size: 30px;">Agregar Nueva Categoria</p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+        <div class="modal-content"style="border-radius: 30px;">
+            <p style="font-family: PT serif; text-align: center; font-size: 30px; padding-top: 5px">Agregar Categoria</p>
+                <div class="modal-body">
                 <form id="categ-form" class="needs-validation" action="/api/superadmin/add-category"
                       method="post" enctype="multipart/form-data" novalidate>
                     <table class="table">
                         <tr>
                             <th>
+                                <div class="container-fluid " style="    fill: #FFF;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
                                     <label for="categoria">Categoria</label>
                                     <input class="form-control" placeholder="Categoria" name="categoria" id="categoria"
-                                           type="text" required>
-                                   <div class="invalid-feedback is-invalid">
+                                           type="text" required
+                                            style="border: none; outline: none;
+                      padding: 10px; border-radius: 5px;
+                      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
                                         Campo obligatorio
                                     </div>
                             </th>
-
                         </tr>
                         <tr>
                             <th>
-                                <label for="img">Imagen</label>
-                                <input type="file" class="form-control" id="img"
-                                       name="fileCategory" accept="image/*" onchange="handleFileChange()">
-                                <div class="col-12 mt-5" id="preview"></div>
+                                <div class="container-fluid " style="    fill: #FFF;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;"><label for="img">Imagen</label>
+                                    <input type="file" class="form-control" id="img"
+                                           name="fileCategory" accept="image/*" onchange="handleFileChange()">
+                                    <div class="col-12 mt-5" id="preview"></div>
+                                    <div class="invalid-feedback is-invalid" style="text-align: right">
+                                        Campo obligatorio
+                                    </div>
+                                </div>
                             </th>
                         </tr>
-
-                            <td style="float: right;">
-                                <button type="button"
-                                        style="     margin: 0; padding: 0;background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px;"
-                                        data-bs-dismiss="modal">Cerrar
-                                </button>
-                                <button type="submit"
-                                        style="margin: 0; padding: 0;background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px;">
-                                    Agregar
-                                </button>
-                            </td>
+                        <th style="text-align: right">
+                            <button type="submit"
+                                    style="     margin: 0; padding: 0;background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px; border: none">
+                                Agregar
+                            </button>
+                            <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                    style="background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px; border: none"
+                                    data-bs-dismiss="modal">Cerrar
+                            </button>
+                            </th>
                         </tr>
                     </table>
                 </form>
@@ -132,80 +139,84 @@
 <div class="modal fade" id="crearAvatar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"> >
-        <div class="modal-content">
-            <div class="modal-header">
-                <p style="font-family: PT serif; text-align: center; font-size: 30px;">Agregar Avatar</p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+        <div class="modal-content" style="border-radius: 30px;">
+                <h6 style="font-family: PT serif; text-align: center; font-size: 30px; padding-top: 6px">Agregar Avatar</h6>
             <div class="modal-body">
                 <form id="admin-form" class="needs-validation" action="/api/superadmin/add-avatar" method="post"
                       enctype="multipart/form-data" novalidate>
                     <table class="table">
-
                         <tr>
-                            <tr>
                         <th>
-                            <label for="img">Imagen</label>
-                            <input type="file" class="form-control" id="img1"
-                                   name="fileCategory" accept="image/*" onchange="handleFileChange1()">
-                            <div class="col-12 mt-5" id="preview1"></div>
+                            <div class="container-fluid " style="    fill: #FFF;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                                <label for="img">Imagen</label>
+                                <input type="file" class="form-control" id="img1"
+                                       name="fileCategory" accept="image/*" onchange="handleFileChange1()">
+                                <div class="col-12 mt-5" id="preview1"></div>
+                                <div class="invalid-feedback is-invalid" style="text-align: right">
+                                    Campo obligatorio
+                                </div>
+                            </div>
                         </th>
-                            </tr>
-
-                            <td>
-                                <button type="button"
-                                        style="     margin: 0; padding: 0;background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px;"
-                                        data-bs-dismiss="modal">Cerrar
-                                </button>
+                        </tr>
+                        <tr>
+                            <th style="text-align: right">
                                 <button type="submit"
-                                        style="     margin: 0; padding: 0;background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px;">
+                                        style="     margin: 0; padding: 0;background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px; border: none">
                                     Agregar
                                 </button>
-                            </td>
+                                <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                        style="background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px; border: none"
+                                        data-bs-dismiss="modal" >Cerrar
+                                </button>
+                            </th>
                         </tr>
-                    </table>
+                  </table>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="updateCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"> >
         <div class="modal-content">
-            <div class="modal-header">
-                <p style="font-family: PT serif; text-align: center; font-size: 30px;">Actualizar Categoria</p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+                <h6 style="font-family: PT serif; text-align: center; font-size: 30px; padding-top: 6px">Actualizar Categoria</h6>
+            <div class="modal-body" style="border-radius: 50px;">
                 <form id="formUpdate" action="/api/actoresDeDoblaje/update" method="post" class="needs-validation"
                       novalidate method="post">
                     <input hidden id="id" name="id" class="form-control">
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-floating mb-3">
-
-                                <label for="categoria1"></label>
-                                <input type="text" name="categoria1" id="categoria1"
-                                        required class="form-control">
-
-                                <div class="invalid-feedback text-start">
-                                    Campo obligatorio
-                                </div>
-                            </div>
+                    <div class="container-fluid " style="    fill: #FFF;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    background: white;
+                    border-radius: 15px;
+                    margin-left: 3px;
+                    font-family: PT serif;">
+                        <label for="categoria1">Categoria</label>
+                        <input type="text" name="categoria1" id="categoria1"
+                               required class="form-control"
+                               style="border: none; outline: none;
+                      padding: 10px; border-radius: 5px;
+                      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                        <div class="invalid-feedback is-invalid" style="text-align: right">
+                            Campo obligatorio
                         </div>
                     </div>
-
-                    <button type="button" id="updateUserbtn" onclick="upSendForm()"
-                            class="btn btn-outline-success btn-sm">
-                        <i data-feather="check"></i> Aceptar
-                    </button>
-
-                    <button class="btn btn-outline-danger btn-sm"type="button" data-bs-dismiss="modal">
-                        <i data-feather="x"></i>
-                        Cancelar
-                    </button>
+                    <div style="text-align: right;margin: 10px">
+                        <button type="button" id="updateUserbtn" onclick="upSendForm()"
+                                style="     margin: 0; padding: 0;background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px; border: none">
+                            Aceptar
+                        </button>
+                        <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                                style="background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px; border: none"
+                                data-bs-dismiss="modal" >Cerrar
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -215,7 +226,7 @@
 
 <div class="modal fade" id="editarAdmin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"> >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <p style="font-family: PT serif; text-align: center; font-size: 30px;">Editar Administrador</p>
@@ -280,7 +291,6 @@
 
 </script>
 
-
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) { //Revisamos que el input tenga contenido
@@ -320,17 +330,13 @@ console.log(form.value);
     (function () {
         btn.addEventListener("click",function (event){
             console.log(form.checkValidity());
-
             if(!form.checkValidity()){
                 event.preventDefault();
                 event.stopPropagation();
             }
-
             form.classList.add("was-validated")
         }, false);
-
     })();
-
     function upSendForm() {
         if(form.checkValidity()){
             var id = document.getElementById("id");
