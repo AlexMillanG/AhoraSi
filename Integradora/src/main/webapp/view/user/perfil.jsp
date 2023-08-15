@@ -25,6 +25,11 @@
         <button type="submit" >Eliminar Mi historia</button>
       </form>
     </c:forEach>
+    <c:forEach var="Shared" items="${Shared}">
+      <h4></h4>
+
+    </c:forEach>
+
   </div>
   <h1>Perfil de Usuario</h1>
   <form>

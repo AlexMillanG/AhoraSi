@@ -62,6 +62,7 @@ import java.util.UUID;
         "/api/user/like",
         "/api/admin/admins-save",
         "/api/user/shared",
+        "/api/user/delete-shared"
 
 
 
@@ -105,9 +106,13 @@ public class ServletUser extends HttpServlet {
             break;
 
             case "/api/user/perfil":
-                System.out.println("PErfil "+getSession.getAttribute("id"));
-               id= getSession.getAttribute("id").toString();
+
+                System.out.println("Perfil "+getSession.getAttribute("id"));
+                id= getSession.getAttribute("id").toString();
                 System.out.println(id);
+                List<Objects> Shared = new ArrayList<>();
+                req.setAttribute("Shared",new DaoShared().FindAllSharedStories(id != null ? Long.parseLong(id):0));
+
                 List<Objects> Stories = new ArrayList<>();
                 req.setAttribute("Stories",new DaoStories().findAllUserStories(id != null ? Long.parseLong(id):0));
                 req.setAttribute("user1",new DaoUser().findOne(  id != null ? Long.parseLong(id):0));
@@ -675,6 +680,22 @@ public class ServletUser extends HttpServlet {
                       redirect = "/api/user/home?result= " + result + "&message=" + URLEncoder.encode("¡Error! compartir no realizada correctamente.",
                               StandardCharsets.UTF_8);
                   }
+
+                break;
+            case "/api/user/delete-shared":
+                try{
+                    story_id = req.getParameter("story_id");
+                    user_id = req.getParameter("user_id");
+
+                    System.out.println("ID de la compartida borrar" + story_id);
+                    if (new DaoShared().delete(Long.parseLong(story_id),Long.parseLong(user_id)))
+                        redirect = "/api/user/perfil?result=" + true + "&message" + URLEncoder.encode
+                                ("¡Exito!Compartir Eliminado correctamente.", StandardCharsets.UTF_8);
+
+                }catch (Exception e) {
+                    redirect = "/api/user/perfil?result=false&message=" + URLEncoder.encode("Ocurrio un error", StandardCharsets.UTF_8);
+                }
+
 
                 break;
 
