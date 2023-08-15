@@ -294,20 +294,30 @@ public class DaoStories {
     }
 
 
-    public boolean updateStory(Stories object) {
+    public boolean updateStory(Stories stories) {
         try {
             conn = new MySQLConnection().connect();
-            String query = "UPDATE stories SET tile=?, content=?, created_at=?, image_id=?, status_id=?, user_id=?, category_id=? WHERE story_id=?";
-            pstm = conn.prepareStatement(query);
-            pstm.setString(1, object.getTitle());
-            pstm.setString(2, object.getContent());
-            pstm.setString(3, object.getCreated_atDATETIME());
-            pstm.setBytes(4, object.getFile());
-            pstm.setObject(5, object.getStatus());
-            pstm.setLong(6, object.getUser_id().getId());
-            pstm.setObject(7, object.getCategories().getId());
-//            pstm.setLong(8, object.getStory_id()); // Asegúrate de reemplazar getStoryId() con el método correcto que obtiene el ID de la historia.
-            return pstm.executeUpdate() > 0;
+            conn.setAutoCommit(false); // Preparar la transaccion
+            String query = "update images set image=?,file_name=? where id=?;";
+            pstm=conn.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
+            pstm.setBytes(1,stories.getFile());
+            pstm.setString(2,stories.getFile_name());
+            pstm.setLong(3,stories.getImg_id());
+            pstm.execute();
+            rs=pstm.getGeneratedKeys();
+            if (pstm.executeUpdate()==1) {
+                String query1 = "UPDATE stories SET tile=?, content=?, created_at=?, image_id=?, status_id=?, user_id=?, category_id=? WHERE story_id=?";
+                pstm = conn.prepareStatement(query1);
+                pstm.setString(1, stories.getTitle());
+                pstm.setString(2, stories.getContent());
+                pstm.setString(3, stories.getCreated_atDATETIME());
+                pstm.setBytes(4, stories.getFile());
+                pstm.setObject(5, stories.getStatus());
+                pstm.setLong(6, stories.getUser_id().getId());
+                pstm.setObject(7, stories.getCategories().getId());
+            }
+            conn.commit();
+            return true;
         } catch (SQLException e) {
             Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE, "ERROR update" + e.getMessage());
         } finally {

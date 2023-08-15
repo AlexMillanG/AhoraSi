@@ -7,6 +7,8 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -24,6 +26,9 @@
         <input name="id" hidden value="${Stories.id}">
         <button type="submit" >Eliminar Mi historia</button>
       </form>
+      <button data-bs-toggle="modal" data-bs-target="#updateStory" type="button" class="btn btn-outline-warning"  id="editar1"
+              onclick="prueba2('${Stories.title}|${Stories.content}|${Stories.id}|${Stories.categories.category}')" name="editar"
+      ><i data-feather="edit-3"></i></button>
     </c:forEach>
 <c:forEach var="Shared" items="${Shared}">
   <h4><c:out value="${Shared.getStories().getTitle()}"/></h4>
@@ -190,6 +195,71 @@
 </div>
 
 
+<div class="modal fade" id="updateStory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p style="font-family: PT serif; text-align: center; font-size: 30px;">Actualizar Categoria</p>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formUpdate" action="/api/user/update-story" method="post" class="needs-validation"
+              novalidate method="post"  enctype="multipart/form-data" novalidate>
+          <input   id="id1" name="id1" class="form-control">
+          <input hidden id="idImg" name="idImg">
+
+          <div class="row">
+            <div class="col">
+              <div class="form-floating mb-3">
+
+                <label for="titulo"></label>
+                <input type="text" name="titulo" id="titulo"
+                       required class="form-control">
+
+                <div class="invalid-feedback text-start">
+                  Campo obligatorio
+                </div>
+                <br>
+                <label for="contenido"></label>
+                <input type="text" name="contenido" id="contenido"
+                       required class="form-control">
+
+                <div class="invalid-feedback text-start">
+                  Campo obligatorio
+                </div>
+                <br>
+                <select name="categories" id="Categories" class="form-select" required>
+                <option value="">Seleccione ...</option>
+                <s:forEach var="category" items="${categories}">
+                  <option value="${category.id}"><s:out value="${category.category}"/></option>
+                </s:forEach>
+                </select>
+                <label for="img1">Imagen</label>
+                <input type="file" class="form-control" id="img1"
+                       name="fileCategory" accept="image/*" onchange="handleFileChange2()">
+                <div class="col-12 mt-5" id="previewUp"></div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" id="updatestories" onclick="upSendForm2()"
+                  class="btn btn-outline-success btn-sm">
+            <i data-feather="check"></i> Aceptar
+          </button>
+
+          <button class="btn btn-outline-danger btn-sm"type="button" data-bs-dismiss="modal">
+            <i data-feather="x"></i>
+            Cancelar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 <!-- Enlace a Bootstrap JS y Popper.js -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -211,6 +281,8 @@
   const  form=document.getElementById("form")
   const btn=document.getElementById("updateUserbtn")
   var id=document.getElementById("id");
+  const form2=document.getElementById("formUpdate");
+  const btn2=document.getElementById("updatestories");
 
 
   function prueba(user){
@@ -235,6 +307,20 @@
     document.getElementById("birthday").value= birthday;
     document.getElementsByTagName("sex").value=sex;
   }
+  function prueba2(Stories){
+    var valores = Stories.split("|");
+    var tile=valores[0];
+    var content = valores[1];
+    var  id= valores[2];
+    var categoria =valores[3];
+
+    console.log("hola "+Stories);
+    console.log("hola1 "+valores);
+    console.log("hola2 "+id);
+    document.getElementById("id1").value=id;
+    document.getElementById("titulo").value = tile;
+    document.getElementById("contenido").value= content;
+  }
 
   (function () {
     btn.addEventListener("click",function (event){
@@ -249,6 +335,45 @@
     }, false);
 
   })();
+
+  (function () {
+    btn2.addEventListener("click",function (event){
+      console.log(form2.checkValidity());
+
+      if(!form2.checkValidity()){
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      form2.classList.add("was-validated")
+    }, false);
+
+  })();
+
+  function upSendForm2() {
+    if(form2.checkValidity()){
+      var id = document.getElementById("id1");
+      console.log("aa "+id.value);
+      var nombre = document.getElementById("name");
+      console.log(form.checkValidity());
+      form2.submit();
+    }
+  }
+
+  const handleFileChange2 = () => {
+    const inputFile = document.getElementById("img1").files;
+    let preview = document.getElementById("previewUp");
+    preview.innerHTML = "";
+    for (let i = 0; i < inputFile.length; i++) {
+      let reader = new FileReader();
+      reader.onloadend = (result) => {
+        preview.innerHTML = "<img src='" + result.target.result
+                + "' style='height: 200px;width: auto;'/>";
+      }
+      reader.readAsDataURL(inputFile[i]);
+    }
+  }
+
   function upSendForm() {
     if(form.checkValidity()){
       console.log("a "+document.getElementById("name").value);

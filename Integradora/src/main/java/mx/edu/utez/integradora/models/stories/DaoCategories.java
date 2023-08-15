@@ -42,7 +42,7 @@ public class DaoCategories {
         Categories categories = null;
         try {
             conn = new MySQLConnection().connect();
-            String query = "SELECT * FROM images WHERE id = ?;";
+            String query = "SELECT * FRom  images WHERE id = ?;";
             pstm = conn.prepareStatement(query);
             pstm.setLong(1, id);
             rs = pstm.executeQuery();
@@ -121,16 +121,15 @@ public class DaoCategories {
             pstm=conn.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
             pstm.setBytes(1,categories.getFile());
             pstm.setString(2,categories.getFileName());
-            pstm.setLong(3,categories.getId());
+            pstm.setLong(3,categories.getImg_id());
             pstm.execute();
             rs=pstm.getGeneratedKeys();
-            if (rs.next()){
-                long id= rs.getLong(1);//id Image
-                System.out.println(id);
+            if (pstm.executeUpdate()==1){
                 String query1="update categories set category=?,img_id=? where id=?;";
                 pstm=conn.prepareStatement(query1);
                 pstm.setString(1, categories.getCategory());
-                pstm.setLong(2,id);
+                pstm.setLong(2,categories.getImg_id());
+                pstm.setLong(3,categories.getId());
                 pstm.execute();
             }
             conn.commit();

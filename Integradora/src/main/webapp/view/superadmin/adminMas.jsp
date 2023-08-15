@@ -79,9 +79,9 @@
                                             <button type="submit" class="btn btn-outline-danger"><i data-feather="trash-2"></i></button>
                                         </form>
 
-<%--     No pude actualizar IMAGENES                           <button data-bs-toggle="modal" data-bs-target="#updateCategory" type="button" class="btn btn-outline-warning"  id="editar"--%>
-<%--                                                                                onclick="prueba('${category.id}|${category.category}|${category.img_id}')" name="editar"--%>
-<%--                                       ><i data-feather="edit-3"></i></button>--%>
+                                      <button data-bs-toggle="modal" data-bs-target="#updateCategory" type="button" class="btn btn-outline-warning"  id="editar"
+                                                                                onclick="prueba('${category.id}|${category.category}|${category.img_id}')" name="editar"
+                                       ><i data-feather="edit-3"></i></button>
 
                                     </div>
                                 </div>
@@ -156,7 +156,7 @@
                                         style="     margin: 0; padding: 0;background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px;"
                                         data-bs-dismiss="modal">Cerrar
                                 </button>
-                                <button type="submit"
+                                <button type="button" id="btnCatg" onclick="upSendForm2()"
                                         style="margin: 0; padding: 0;background-color: #8081B7 ;color: white; border-radius: 10px; height:35px ; width: 90px;">
                                     Agregar
                                 </button>
@@ -220,8 +220,8 @@
             <div class="modal-body">
                 <form id="formUpdate" action="/api/actoresDeDoblaje/update" method="post" class="needs-validation"
                       novalidate method="post"  enctype="multipart/form-data" novalidate>
-                    <input hidden id="id" name="id" class="form-control">
-                    <input hidden id="idImg" value="${cate}">
+                    <input  hidden id="id" name="id" class="form-control">
+                    <input hidden id="idImg" name="idImg">
 
                     <div class="row">
                         <div class="col">
@@ -350,7 +350,9 @@
     const formRegistro=document.getElementById("formAdmin");
     const botonRegistro=document.getElementById("buttonAdmin");
     const  form=document.getElementById("formUpdate");
-    const btn=document.getElementById("updateUserbtn");
+    const btn=document.getElementById("updateUserbtn")
+    const form2=document.getElementById("categ-form")
+    const btn2=document.getElementById("btnCatg")
 console.log(form.value);
 
     function prueba(category) {
@@ -361,9 +363,10 @@ console.log(form.value);
         console.log("hola " + category);
         console.log("hola1 " + valores);
         console.log("hola2 " + categories);
+        console.log((img))
         document.getElementById("id").value = id;
         document.getElementById("categoria1").value = categories;
-        document.getElementById("img").value = img;
+        document.getElementById("idImg").value = img;
     }
 
     (function () {
@@ -380,6 +383,20 @@ console.log(form.value);
 
     })();
 
+    (function () {
+        btn2.addEventListener("click",function (event){
+            console.log(form2.checkValidity());
+
+            if(!form2.checkValidity()){
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            form2.classList.add("was-validated")
+        }, false);
+
+    })();
+
     function upSendForm() {
         if(form.checkValidity()){
             var id = document.getElementById("id");
@@ -391,6 +408,15 @@ console.log(form.value);
         }
     }
 
+    function upSendForm2() {
+        if(form2.checkValidity()){
+            var id = document.getElementById("id");
+            var nombre = document.getElementById("categoria1");
+            console.log(document.getElementById("formUpdate").value);
+            console.log(form2.checkValidity());
+            form2.submit();
+        }
+    }
     const handleFileChange = () => {
         const inputFile = document.getElementById("img").files;
         let preview = document.getElementById("preview");

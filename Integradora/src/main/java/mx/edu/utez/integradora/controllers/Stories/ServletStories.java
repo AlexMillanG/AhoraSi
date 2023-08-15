@@ -21,7 +21,8 @@ import java.util.UUID;
 @WebServlet(name = "story",urlPatterns ={
         "/api/auth2",
         "/api/story/save",
-        "/api/categories/all"
+        "/api/categories/all",
+        "/api/user/update-story"
 
 
 })
@@ -113,15 +114,59 @@ public class ServletStories extends HttpServlet {
                         redirect = "/api/user/home?result= " + result + "&message=" + URLEncoder.encode("¡Error! Acción no realizada correctamente.",
                                 StandardCharsets.UTF_8);
                     }
-                          // story.setCategories(Categories categories);
-
-
-
-                    /*id, title content, created_atDATETIME, file
-                     * status, user, categories*/
-
                 }catch (Exception e){
                     redirect = "/api/user/home?result= " + URLEncoder.encode("Historia no publicada correctamente", StandardCharsets.UTF_8);
+                }
+                break;
+            case"/api/user/update-story":
+                try {
+                    story = new Stories();
+                    for (Part part: req.getParts()){
+                        filename=part.getSubmittedFileName();
+                        System.out.println(part.getSubmittedFileName());
+                        System.out.println(filename);
+                        if (filename!=null){
+                            mime =part.getContentType().split("/")[1];
+                            System.out.println(mime);
+                            String uid= UUID.randomUUID().toString();
+                            story.setFile_name(uid+"."+mime);
+                            InputStream stream=part.getInputStream();
+                            byte[] arr=stream.readAllBytes();
+                            story.setFile(arr);
+                        }
+                    }
+
+                    title = req.getParameter("titulo");
+                    content = req.getParameter("contenido");
+                    user_id = req.getParameter("id1");
+                    status=new Status();
+                    status.setId(Long.parseLong("3"));
+
+                    category_id = req.getParameter("categories");
+//                    story.setId(0L);
+                    categories = new Categories();
+                    categories.setId(Long.parseLong(category_id));
+                    story.setTitle(title);
+                    story.setContent(content);
+                    story.setStatus(status);
+                    story.setCategories(categories);
+                    User user = new User();
+                    user.setId(Long.parseLong(user_id));
+                    story.setUser_id(user);
+                    boolean result = new DaoStories().updateStory(story);
+
+                    if (result) {
+
+                        redirect = "/api/user/perfil?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Actualizacion hecha correctamente.",
+                                StandardCharsets.UTF_8);
+
+                    } else {
+
+                        redirect = "/api/user/perfil?result= " + result + "&message=" + URLEncoder.encode("¡Error! Acción no realizada correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+                }catch (Exception e){
+                    redirect = "/api/user/perfim?result= " + URLEncoder.encode("Historia Actualizada correctamente", StandardCharsets.UTF_8);
                 }
                 break;
 

@@ -37,7 +37,6 @@ import java.util.UUID;
         "/api/user/update",
         "/api/user/delete",
         "/api/admin/home",
-
         "/api/superadmin/home",
 
         "/api/admin/superadminhome",
@@ -76,7 +75,7 @@ public class ServletUser extends HttpServlet {
     Categories categories;
     HttpSession  session,getSession;
     Images images;
-    String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category, user_id, story_id,filename,mime;
+    String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category, user_id, story_id,filename,mime,idImg;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -101,20 +100,18 @@ public class ServletUser extends HttpServlet {
             List<Objects> users= new ArrayList<>();
             req.setAttribute("users",users);
             req.setAttribute("categories",new DaoStories().findAllCategories());
-            redirect = "/home.jsp";
-           req.setAttribute("categories",new DaoStories().findAllCategories());
             redirect="/view/user/home.jsp";
             break;
 
             case "/api/user/perfil":
 
-                System.out.println("Perfil "+getSession.getAttribute("id"));
                 id= getSession.getAttribute("id").toString();
-                System.out.println(id);
                 List<Objects> Shared = new ArrayList<>();
                 req.setAttribute("Shared",new DaoShared().FindAllSharedStories(id != null ? Long.parseLong(id):0));
 
                 List<Objects> Stories = new ArrayList<>();
+
+                req.setAttribute("categories",new DaoStories().findAllCategories());
                 req.setAttribute("Stories",new DaoStories().findAllUserStories(id != null ? Long.parseLong(id):0));
                 req.setAttribute("user1",new DaoUser().findOne(  id != null ? Long.parseLong(id):0));
                 redirect="/view/user/perfil.jsp";
@@ -501,7 +498,7 @@ public class ServletUser extends HttpServlet {
 
                     Rols rols = new Rols();
                     rol = "2";
-
+                    status1 =new Status();
                     status = "1";
                     status1.setId(Long.parseLong(status));
                     rols.setId(Long.parseLong(rol));
@@ -542,7 +539,7 @@ public class ServletUser extends HttpServlet {
                                 ("¡Exito!Historia Eliminado correctamente.", StandardCharsets.UTF_8);
 
                 }catch (Exception e) {
-                    redirect = "/api/user/perfil?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+                    redirect = "/api/user/perfil?result=false&message=" + URLEncoder.encode("Ocurrio un error al borrar la historia", StandardCharsets.UTF_8);
                 }
                 break;
 
@@ -569,14 +566,14 @@ public class ServletUser extends HttpServlet {
                     System.out.println(categories.getFileName());
                     boolean result = new DaoCategories().save(categories);
                     if (result) {
-                        redirect = "/api/superadmin/mas?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado correctamente.",
+                        redirect = "/api/superadmin/mas?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! categorgia añadida con exito.",
                                 StandardCharsets.UTF_8);
                     } else {
-                        redirect = "/api/superadmin/mas?result= " + result + "&message=" + URLEncoder.encode("¡Error! Actualizacion no realizada correctamente.",
+                        redirect = "/api/superadmin/mas?result= " + result + "&message=" + URLEncoder.encode("¡Error! no se pudo agregar la categoria.",
                                 StandardCharsets.UTF_8);
                     }
                 } catch (Exception e) {
-            redirect = "/api/superadmin/mas?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+            redirect = "/api/superadmin/mas?result=false&message=" + URLEncoder.encode("Ocurrio un error al agregar la categoria", StandardCharsets.UTF_8);
                 }
                 break;
 
@@ -602,6 +599,7 @@ public class ServletUser extends HttpServlet {
                 try {
 
                     categories=new Categories();
+                    images=new Images();
                     for (Part part: req.getParts()){
                         filename=part.getSubmittedFileName();
                         System.out.println(part.getSubmittedFileName());
@@ -618,7 +616,9 @@ public class ServletUser extends HttpServlet {
                     }
                     id = req.getParameter("id");
                     category = req.getParameter("categoria1");
+                    idImg = req.getParameter("idImg");
 
+                    categories.setImg_id(Long.parseLong(idImg));
                     System.out.println(id);
                     System.out.println(category);
                         categories.setId(Long.parseLong(id));
