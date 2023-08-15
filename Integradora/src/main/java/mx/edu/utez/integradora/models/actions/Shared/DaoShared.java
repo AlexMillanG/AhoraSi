@@ -49,15 +49,15 @@ public class DaoShared {
             while (rs.next()) {
             Shared shared = new Shared();
                 User user = new User();
-                user.setId(rs.getLong("id"));
+                user.setId(rs.getLong("user_id"));
                 user.setName(rs.getString("name_"));
                 user.setLastname(rs.getString("lastname"));
                 user.setSurname(rs.getString("surname"));
                 Stories stories = new Stories();
-                stories.setId(rs.getLong("id"));
+                stories.setId(rs.getLong("story_id"));
                 stories.setTitle(rs.getString("title"));
                 stories.setContent(rs.getString("content"));
-                
+
                 shared.setStories(stories);
                 shared.setUser(user);
             shareds.add(shared);
@@ -79,7 +79,7 @@ public class DaoShared {
             pstm = conn.prepareStatement(query);
             pstm.setLong(1, user_id);
             pstm.setLong(2, story_id);
-            return pstm.executeUpdate() > 1;
+            return pstm.executeUpdate() >= 1;
         } catch (SQLException e) {
             Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE, "ERROR delete shared" + e.getMessage());
         } finally {

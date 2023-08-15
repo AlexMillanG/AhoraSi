@@ -748,9 +748,11 @@ public class ServletUser extends HttpServlet {
                 try{
                     story_id = req.getParameter("story_id");
                     user_id = req.getParameter("user_id");
+                    System.out.println("id del compartido a borrar");
+
 
                     System.out.println("ID de la compartida borrar" + story_id);
-                    if (new DaoShared().delete(Long.parseLong(story_id),Long.parseLong(user_id))){
+                    if (new DaoShared().delete(Long.parseLong(user_id),Long.parseLong(story_id))){
                         redirect = "/api/user/perfil?result=" + true + "&message" + URLEncoder.encode
                                 ("¡Exito!Compartir Eliminado correctamente.", StandardCharsets.UTF_8);}else{
 
