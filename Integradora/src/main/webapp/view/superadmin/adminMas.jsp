@@ -79,9 +79,9 @@
                                             <button type="submit" class="btn btn-outline-danger"><i data-feather="trash-2"></i></button>
                                         </form>
 
-                                        <button data-bs-toggle="modal" data-bs-target="#updateCategory" type="button" class="btn btn-outline-warning"  id="editar"
-                                                onclick="prueba('${category.id}|${category.category}')" name="editar"
-                                        ><i data-feather="edit-3"></i></button>
+<%--     No pude actualizar IMAGENES                           <button data-bs-toggle="modal" data-bs-target="#updateCategory" type="button" class="btn btn-outline-warning"  id="editar"--%>
+<%--                                                                                onclick="prueba('${category.id}|${category.category}|${category.img_id}')" name="editar"--%>
+<%--                                       ><i data-feather="edit-3"></i></button>--%>
 
                                     </div>
                                 </div>
@@ -208,9 +208,10 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="updateCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"> >
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <p style="font-family: PT serif; text-align: center; font-size: 30px;">Actualizar Categoria</p>
@@ -218,8 +219,9 @@
             </div>
             <div class="modal-body">
                 <form id="formUpdate" action="/api/actoresDeDoblaje/update" method="post" class="needs-validation"
-                      novalidate method="post">
+                      novalidate method="post"  enctype="multipart/form-data" novalidate>
                     <input hidden id="id" name="id" class="form-control">
+                    <input hidden id="idImg" value="${cate}">
 
                     <div class="row">
                         <div class="col">
@@ -232,6 +234,10 @@
                                 <div class="invalid-feedback text-start">
                                     Campo obligatorio
                                 </div>
+                                <label for="img">Imagen</label>
+                                <input type="file" class="form-control" id="imgUp"
+                                       name="fileCategory" accept="image/*" onchange="handleFileChange2()">
+                                <div class="col-12 mt-5" id="previewUp"></div>
                             </div>
                         </div>
                     </div>
@@ -351,11 +357,13 @@ console.log(form.value);
         var valores = category.split("|");
         var id = valores[0];
         const categories = valores[1];
+        var img=valores[2];
         console.log("hola " + category);
         console.log("hola1 " + valores);
         console.log("hola2 " + categories);
         document.getElementById("id").value = id;
         document.getElementById("categoria1").value = categories;
+        document.getElementById("img").value = img;
     }
 
     (function () {
@@ -399,6 +407,20 @@ console.log(form.value);
     const handleFileChange1 = () => {
         const inputFile = document.getElementById("img1").files;
         let preview = document.getElementById("preview1");
+        preview.innerHTML = "";
+        for (let i = 0; i < inputFile.length; i++) {
+            let reader = new FileReader();
+            reader.onloadend = (result) => {
+                preview.innerHTML = "<img src='" + result.target.result
+                    + "' style='height: 200px;width: auto;'/>";
+            }
+            reader.readAsDataURL(inputFile[i]);
+        }
+    }
+
+    const handleFileChange2 = () => {
+        const inputFile = document.getElementById("imgUp").files;
+        let preview = document.getElementById("previewUp");
         preview.innerHTML = "";
         for (let i = 0; i < inputFile.length; i++) {
             let reader = new FileReader();

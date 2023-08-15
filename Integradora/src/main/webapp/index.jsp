@@ -27,8 +27,7 @@
             <div class="container-fluid"style="font-family: PT serif ;
                   display: inline;
                   text-align: center;
-                  margin-top: 0;"
-            >
+                  margin-top: 0;">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 30px 30px 0px 0px;
                 background: var(--neutro, radial-gradient(481.07% 191.27% at 111.16% 113.45%, #8081B7 4.19%, #75BEF3 45.31%, #57F3C4 81.99%));
                 box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.15);">

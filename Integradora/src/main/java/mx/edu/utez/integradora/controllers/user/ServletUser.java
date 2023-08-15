@@ -62,7 +62,8 @@ import java.util.UUID;
         "/api/user/like",
         "/api/admin/admins-save",
         "/api/user/shared",
-        "/api/user/delete-shared"
+        "/api/user/delete-shared",
+        "/api/user/update-plus"
 
 
 
@@ -244,7 +245,7 @@ public class ServletUser extends HttpServlet {
 
                     if (result) {
 
-                        redirect = "/api/user/home?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Te has registrado correctamente.",
+                        redirect = "/api/auth?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Te has registrado correctamente.",
                                 StandardCharsets.UTF_8);
 
                     } else {
@@ -392,6 +393,53 @@ public class ServletUser extends HttpServlet {
                     redirect = "/api/superadmin/home?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
                 }
                     break;
+
+            case "/api/user/update-plus":
+                try {
+                    id = req.getParameter("id");
+                    name = req.getParameter("name");
+                    lastname = req.getParameter("lastname");
+                    surname = req.getParameter("surname");
+                    birthday = req.getParameter("birthday");
+                    sex = req.getParameter("sex");
+                    email = req.getParameter("emailRegistro");
+                    pass = req.getParameter("pass");
+
+                    Rols rols = new Rols();
+                    rol = "3";
+
+                    Status status1 = new Status();
+                    status = "1";
+                    status1.setId(Long.parseLong(status));
+                    rols.setId(Long.parseLong(rol));
+                    user = new User();
+                    user.setId(Long.parseLong(id));
+                    user.setName(name);
+                    user.setLastname(lastname);
+                    user.setSurname(surname);
+                    user.setBirthday(birthday);
+                    user.setEmail(email);
+                    user.setSex(sex);
+                    user.setPass(pass);
+                    user.setRols(rols);
+                    user.setStatus(status1);
+                    boolean result = new DaoUser().update(user);
+
+                    if (result) {
+
+                        redirect = "/api/user/perfil?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado correctamente.",
+                                StandardCharsets.UTF_8);
+
+                    } else {
+
+                        redirect = "//api/user/perfil?result= " + result + "&message=" + URLEncoder.encode("¡Error! Actualizacion no realizada correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+
+                } catch (Exception e) {
+                    redirect = "/api/user/perfil?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+                }
+                break;
 
             case "/api/admin/update-user":
                 try {
@@ -552,15 +600,29 @@ public class ServletUser extends HttpServlet {
 
             case "/api/actoresDeDoblaje/update": //actualizar categorias
                 try {
-                    System.out.println("en el caso");
+
+                    categories=new Categories();
+                    for (Part part: req.getParts()){
+                        filename=part.getSubmittedFileName();
+                        System.out.println(part.getSubmittedFileName());
+                        System.out.println(filename);
+                        if (filename!=null){
+                            mime =part.getContentType().split("/")[1];
+                            System.out.println(mime);
+                            String uid= UUID.randomUUID().toString();
+                            categories.setFileName(uid+"."+mime);
+                            InputStream stream=part.getInputStream();
+                            byte[] arr=stream.readAllBytes();
+                            categories.setFile(arr);
+                        }
+                    }
                     id = req.getParameter("id");
                     category = req.getParameter("categoria1");
 
                     System.out.println(id);
                     System.out.println(category);
-               Categories categories=new Categories();
-               categories.setId(Long.parseLong(id));
-               categories.setCategory(category);
+                        categories.setId(Long.parseLong(id));
+                  categories.setCategory(category);
 
                     boolean result = new DaoCategories().update(categories);
                     if (result) {

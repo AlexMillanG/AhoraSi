@@ -116,13 +116,25 @@ public class DaoCategories {
     public boolean update(Categories categories) throws SQLException {
         try {
             conn = new MySQLConnection().connect();
-            String query = "update categories c  set c.category=? where id=?;";
-            pstm = conn.prepareStatement(query);
-            pstm.setString(1, categories.getCategory());
-            pstm.setLong(2, categories.getId());
-            System.out.println(categories.getCategory());
-            System.out.println(categories.getId());
-            return pstm.executeUpdate()>0;
+            conn.setAutoCommit(false); // Preparar la transaccion
+            String query = "update images set image=?,file_name=? where id=?;";
+            pstm=conn.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
+            pstm.setBytes(1,categories.getFile());
+            pstm.setString(2,categories.getFileName());
+            pstm.setLong(3,categories.getId());
+            pstm.execute();
+            rs=pstm.getGeneratedKeys();
+            if (rs.next()){
+                long id= rs.getLong(1);//id Image
+                System.out.println(id);
+                String query1="update categories set category=?,img_id=? where id=?;";
+                pstm=conn.prepareStatement(query1);
+                pstm.setString(1, categories.getCategory());
+                pstm.setLong(2,id);
+                pstm.execute();
+            }
+            conn.commit();
+            return true;
         } catch (SQLException e) {
             Logger.getLogger(DaoCategories.class.getName())
                     .log(Level.SEVERE, "ERROR save " + e.getMessage());

@@ -222,7 +222,6 @@ public class DaoUser implements DaoRepository<User> {
     }
     public Images findFile(long id) {
         Images images = null;
-        System.out.println("Dentro del FindFile avatar"+id);
         try {
             conn = new MySQLConnection().connect();
             String query = "SELECT * FROM images WHERE id = ?;";

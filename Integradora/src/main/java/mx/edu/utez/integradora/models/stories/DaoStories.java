@@ -273,7 +273,6 @@ public class DaoStories {
     }
     public Stories findFile(long id) {
         Stories stories = null;
-        System.out.println("Dentro del FindFile de historias"+id);
         try {
             conn = new MySQLConnection().connect();
             String query = "SELECT * FROM images WHERE id = ?;";
