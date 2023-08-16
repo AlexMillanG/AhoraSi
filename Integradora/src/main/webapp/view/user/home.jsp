@@ -89,6 +89,16 @@
                                                   <button type="submit">compartir en el perfil</button>
                                               </form>
 
+                                              <form action="/api/user/save-comment" method="post">
+                                                  <label for="comment"></label>
+                                                  <br>
+                                                  <br>
+                                                  <input type="text" name="comment" id="comment" placeholder="Comentario">
+                                                  <br>
+                                                  <br>
+                                                  <button type="submit">Enviar comentario</button>
+                                              </form>
+
                                         <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
                                               <br>
                                               <br>
