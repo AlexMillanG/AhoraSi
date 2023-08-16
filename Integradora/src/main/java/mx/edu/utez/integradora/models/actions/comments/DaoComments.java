@@ -35,8 +35,8 @@ public class DaoComments {
         }
         return false;
     }
-    public List<Comments> findAllComments (Long id){
-        List <Comments> Comments = new ArrayList<>();
+    public List<Comments> findAllComments(Long id){
+        List <Comments> comments1 = new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
             String query ="SELECT * from Comments where story_id = ?;";
@@ -45,21 +45,24 @@ public class DaoComments {
             rs = pstm.executeQuery();
             while (rs.next()){
                 Comments comments = new Comments();
+
                 comments.setId(rs.getLong("id"));
                 comments.setContent(rs.getString("content"));
                 User user = new User();
                 user.setId(rs.getLong("id"));
                 comments.setUser(user);
-                if (rs.next()){
-                    
-                }
+                Stories stories=new Stories();
+                stories.setId(rs.getLong("story_id"));
+                comments.setStories(stories);
+                comments1.add(comments);
             }
+        return comments1;
         }catch (SQLException e){
             Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FIANDALL stories"+e.getMessage());
         }finally {
             close();
         }
-        return Comments;
+        return null;
     }
 
     public void close(){

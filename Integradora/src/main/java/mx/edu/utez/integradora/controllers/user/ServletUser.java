@@ -7,6 +7,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import mx.edu.utez.integradora.models.actions.Shared.DaoShared;
 import mx.edu.utez.integradora.models.actions.Shared.Shared;
+import mx.edu.utez.integradora.models.actions.comments.Comments;
+import mx.edu.utez.integradora.models.actions.comments.DaoComments;
 import mx.edu.utez.integradora.models.actions.likes.DaoLikes;
 import mx.edu.utez.integradora.models.actions.likes.Likes;
 import mx.edu.utez.integradora.models.stories.Categories;
@@ -62,7 +64,9 @@ import java.util.UUID;
         "/api/admin/admins-save",
         "/api/user/shared",
         "/api/user/delete-shared",
-        "/api/user/update-plus"
+        "/api/user/update-plus",
+        "/api/user/save-comment",
+        "/api/user/comment"
 
 
 
@@ -73,97 +77,111 @@ public class ServletUser extends HttpServlet {
     User user;
     Status status1;
     Categories categories;
-    HttpSession  session,getSession;
+    Stories stories;
+    HttpSession  session,getSession,httpSession;
     Images images;
-    String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category, user_id, story_id,filename,mime,idImg;
+    String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category, user_id, story_id,filename,mime,idImg,content;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        action=req.getServletPath();
-        switch (action){
+        action = req.getServletPath();
+        switch (action) {
             //Pantalla de Inicio
             case "/api/auth":
-                redirect="/index.jsp";
+                redirect = "/index.jsp";
                 break;
             //End Points para usuarios
             case "/api/user/home":
-            List<Objects> likes = new ArrayList<>();
-        //    req.setAttribute("likes",new DaoLikes().findAllLikes());
+                List<Objects> likes = new ArrayList<>();
 
-            List<Objects> stories = new ArrayList<>();
-            req.setAttribute("stories", new DaoStories().findAllStories());
+                List<Stories> stories = new DaoStories().findAllStories();
+                req.setAttribute("stories", stories);
+                //  req.setAttribute("stories", new DaoStories().findAllStories());
 
-            List<Objects> articles = new ArrayList<>();
-            req.setAttribute("articles", new DaoStories().findAllPublishedArticles());
+                List<Comments> comments = new ArrayList();
+                for(Stories story : stories){
+                    List temp = new DaoComments().findAllComments(story.getId());
+                    comments.addAll(temp);
+                }
+                req.setAttribute("comment_list", comments);
 
-            List<Objects> users= new ArrayList<>();
-            req.setAttribute("users",users);
-            req.setAttribute("categories",new DaoStories().findAllCategories());
-            redirect="/view/user/home.jsp";
-            break;
+                List<Objects> articles = new ArrayList<>();
+                req.setAttribute("articles", new DaoStories().findAllPublishedArticles());
+
+                List<Objects> users = new ArrayList<>();
+                req.setAttribute("users", users);
+                req.setAttribute("categories", new DaoStories().findAllCategories());
+
+
+                //       List<Objects> comments = new ArrayList<>();
+                //       req.setAttribute("comments",new DaoComments().findAllComments(Long.parseLong(story_id)));
+                redirect = "/view/user/home.jsp";
+                break;
 
             case "/api/user/perfil":
 
-                id= getSession.getAttribute("id").toString();
+                id = getSession.getAttribute("id").toString();
                 List<Objects> Shared = new ArrayList<>();
-                req.setAttribute("Shared",new DaoShared().FindAllSharedStories(id != null ? Long.parseLong(id):0));
+                req.setAttribute("Shared", new DaoShared().FindAllSharedStories(id != null ? Long.parseLong(id) : 0));
 
                 List<Objects> Stories = new ArrayList<>();
 
-                req.setAttribute("categories",new DaoStories().findAllCategories());
-                req.setAttribute("Stories",new DaoStories().findAllUserStories(id != null ? Long.parseLong(id):0));
-                req.setAttribute("user1",new DaoUser().findOne(  id != null ? Long.parseLong(id):0));
-                redirect="/view/user/perfil.jsp";
-            break;
-                //End points para Admin
+                req.setAttribute("categories", new DaoStories().findAllCategories());
+                req.setAttribute("Stories", new DaoStories().findAllUserStories(id != null ? Long.parseLong(id) : 0));
+                req.setAttribute("user1", new DaoUser().findOne(id != null ? Long.parseLong(id) : 0));
+                redirect = "/view/user/perfil.jsp";
+                break;
+            //End points para Admin
             case "/api/admin/admin-historias":
-                redirect="/view/admin/adminHistorias.jsp";
+                redirect = "/view/admin/adminHistorias.jsp";
                 break;
 
             case "/api/admin/admin-user":
-                List<Objects> users2=new ArrayList<>();
+                List<Objects> users2 = new ArrayList<>();
                 req.setAttribute("users2", new DaoUser().fiandAll());
-                redirect="/view/admin/superAdminHome.jsp";
+                redirect = "/view/admin/superAdminHome.jsp";
                 break;
 
-            case"/api/admin/home":
-                redirect="/view/admin/adminIndex.jsp";
+            case "/api/admin/home":
+                redirect = "/view/admin/adminIndex.jsp";
                 break;
 
-                //EndPonits  superAdmin
-            case"/api/superadmin/home":
+            //EndPonits  superAdmin
+            case "/api/superadmin/home":
                 List<Objects> waitingArticles = new ArrayList<>();
                 req.setAttribute("waitingArticles", new DaoStories().findAllWaitingArticles());
-                redirect="/view/superadmin/adminIndex.jsp";
+                redirect = "/view/superadmin/adminIndex.jsp";
                 break;
 
             case "/api/superadmin/admins-view":
-                List<Objects> admin=new ArrayList<>();
+                List<Objects> admin = new ArrayList<>();
                 req.setAttribute("admin", new DaoUser().findAllAdmin());
-                redirect="/view/superadmin/adminForos.jsp";
+                redirect = "/view/superadmin/adminForos.jsp";
                 break;
 
             case "/api/superadmin/admin-historias":
-                redirect="/view/superadmin/adminHistorias.jsp";
+                redirect = "/view/superadmin/adminHistorias.jsp";
                 break;
 
             case "/api/superadmin/mas":
-                req.setAttribute("categories",new DaoCategories().fiandAll());
-                req.setAttribute("image",new DaoUser().imagesList());
-                redirect="/view/superadmin/adminMas.jsp";
+                req.setAttribute("categories", new DaoCategories().fiandAll());
+                req.setAttribute("image", new DaoUser().imagesList());
+                redirect = "/view/superadmin/adminMas.jsp";
                 break;
 
             case "/api/superadmin/admin-user":
-                List<Objects> users1=new ArrayList<>();
-                id=req.getParameter("id");
+                List<Objects> users1 = new ArrayList<>();
+                id = req.getParameter("id");
                 System.out.println(id);
-                req.setAttribute("users2",new DaoUser().findOne(id!= null ? Long.parseLong(id):0));
+                req.setAttribute("users2", new DaoUser().findOne(id != null ? Long.parseLong(id) : 0));
                 req.setAttribute("users1", new DaoUser().fiandAll());
-                redirect="/view/superadmin/superAdminHome.jsp";
+                redirect = "/view/superadmin/superAdminHome.jsp";
                 break;
+
         }
-        req.getRequestDispatcher(redirect).forward(req,resp);
+        req.getRequestDispatcher(redirect).forward(req, resp);
+
     }
 
     @Override
@@ -765,8 +783,38 @@ public class ServletUser extends HttpServlet {
                     redirect = "/api/user/perfil?result=false&message=" + URLEncoder.encode("Ocurrio un error", StandardCharsets.UTF_8);
                 }
 
-
                 break;
+            case "/api/user/save-comment":
+                try {
+                    User user2 =new User();
+                    Stories story=new Stories();
+                    content = req.getParameter("content");
+                    user_id = req.getParameter("user_id");
+                    story_id = req.getParameter("story_id");
+                    Comments comments = new Comments();
+                    comments.setContent(content);
+                    user2.setId(Long.parseLong(user_id));
+                    story.setId(Long.parseLong(story_id));
+                    comments.setStories(story);
+                    comments.setUser(user2);
+                    System.out.println("user id comment "+user_id);
+                    System.out.println("story id comment "+story_id);
+                    System.out.println("content comment :"+content);
+
+                    boolean result1 = new DaoComments().saveComment(comments);
+                    if (result1) {
+                        redirect = "/api/user/home?result= " + result1 + "&message=" + URLEncoder.encode("¡Éxito! comentario publicado correctamente.",
+                                StandardCharsets.UTF_8);
+                    }else{
+                        redirect = "/api/user/home?result= " + result1 + "&message=" + URLEncoder.encode("¡Error! comentario no publicado.",
+                                StandardCharsets.UTF_8);
+                    }
+                }catch (Exception e){
+                    redirect = "/api/user/home?result= " + URLEncoder.encode("Comentario no publicadd correctamente", StandardCharsets.UTF_8);
+
+                }
+                break;
+
 
 
             default:

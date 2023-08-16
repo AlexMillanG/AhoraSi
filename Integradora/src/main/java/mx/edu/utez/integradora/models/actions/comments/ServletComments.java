@@ -9,17 +9,21 @@ import mx.edu.utez.integradora.models.stories.Stories;
 import mx.edu.utez.integradora.models.user.User;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @WebServlet(name = "comment", urlPatterns = {
-        "/api/user/save-comment"
+        "/api/auth3",
+        "/api/user/save-commentyano"
 }
 )
 public class ServletComments extends HttpServlet {
-    String action, redirect;
-    String id,content, story_id;
+    String action, redirect="/api/auth2";
+    String id,content, story_id, user_id;
     Stories story;
     User user;
     Comments comment;
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,10 +38,7 @@ public class ServletComments extends HttpServlet {
         resp.setContentType("text/html");
         action = req.getServletPath();
         switch (action){
-            case "/api/user/save-comment":
-                content = req.getParameter("content");
-                
-                break;
+
         }
     }
 }
