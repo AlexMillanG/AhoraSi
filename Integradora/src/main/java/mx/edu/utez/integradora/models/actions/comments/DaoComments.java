@@ -35,6 +35,25 @@ public class DaoComments {
         }
         return false;
     }
+
+
+    public boolean saveResponse (Comments object){
+        try{
+            conn = new MySQLConnection().connect();
+            String query="insert into comments (content, story_id, user_id, comment_id) values (?,?,?,?);";
+            pstm= conn.prepareStatement(query);
+            pstm.setString(1,object.getContent());
+            pstm.setLong(2,object.getStories().getId());
+            pstm.setLong(3,object.getUser().getId());
+            pstm.setLong(4,object.getComments().getId());
+            return pstm.executeUpdate()>0;
+        }catch (SQLException e){
+            Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR save response dao"+e.getMessage());
+        }finally {
+            close();
+        }
+        return false;
+    }
     public List<Comments> findAllComments(Long id){
         List <Comments> comments1 = new ArrayList<>();
         try {

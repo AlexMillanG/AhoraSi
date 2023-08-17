@@ -80,7 +80,7 @@ public class ServletUser extends HttpServlet {
     Stories stories;
     HttpSession  session,getSession,httpSession;
     Images images;
-    String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category, user_id, story_id,filename,mime,idImg,content;
+    String id,name,lastname,surname,birthday,sex,email,pass,status,rol,category, user_id, story_id,filename,mime,idImg,content, comment_id;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -814,9 +814,40 @@ public class ServletUser extends HttpServlet {
 
                 }
                 break;
+            case "/api/user/save-response":
+                try {
+                    User user2 = new User();
+                    Stories stories1 = new Stories();
+                    Comments comments = new Comments();
 
+                    content = req.getParameter("content");
+                    user_id = req.getParameter("user_id");
+                    story_id = req.getParameter("story_id");
+                    comment_id = req.getParameter("comment_id");
 
+                    user2.setId(Long.parseLong(user_id));
+                    stories1.setId(Long.parseLong(story_id));
+                    comments.setId(Long.parseLong(comment_id));
 
+                    Comments response = new Comments();
+
+                    response.setUser(user2);
+                    response.setStories(stories1);
+                    response.setContent(content);
+                    response.setComments(comments);
+                    boolean result1 = new DaoComments().saveResponse(response);
+                    if (result1) {
+                        redirect = "/api/user/home?result= " + result1 + "&message=" + URLEncoder.encode("¡Éxito! respuesta publicado correctamente.",
+                                StandardCharsets.UTF_8);
+                    }else{
+                        redirect = "/api/user/home?result= " + result1 + "&message=" + URLEncoder.encode("¡Error! respuesta no publicado.",
+                                StandardCharsets.UTF_8);
+                    }
+                }catch (Exception e){
+                    redirect = "/api/user/home?result= " + URLEncoder.encode("Respuesta no publicado correctamente", StandardCharsets.UTF_8);
+
+                }
+                break;
             default:
                 redirect="/api/user/home";
     }
