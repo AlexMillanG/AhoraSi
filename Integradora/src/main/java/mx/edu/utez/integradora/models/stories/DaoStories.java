@@ -30,6 +30,7 @@ public class DaoStories {
                 stories1.setContent(rs.getString("content"));
                 stories1.setCreated_atDATETIME(rs.getString("created_atDATETIME"));
                 stories1.setImg_id(rs.getLong("image_id"));
+                stories1.setFile_name(rs.getString("file_name"));
                 Status status= new Status();
                 status.setType_status(rs.getString("status_id"));
                 stories1.setStatus(status);
@@ -43,9 +44,7 @@ public class DaoStories {
             }
             DaoLikes daoLikes = new DaoLikes();
             for (Stories storyLike : stories) {
-                System.out.println("story like: " +storyLike.getLikes() + " id: " +storyLike.getId());
                 storyLike.setLikes(daoLikes.findAllLikes((int)storyLike.getId() ));
-                System.out.println("story like: " +storyLike.getLikes() + " id: " +storyLike.getId());
             }
 
         }catch (SQLException e){
@@ -135,32 +134,30 @@ public class DaoStories {
             String query= "SELECT * from showStoriesByUser where user_id = ?;";
             pstm= conn.prepareStatement(query);
             pstm.setLong(1,id);
-            System.out.println("id en el dao "+id);
-
             rs= pstm.executeQuery();
             System.out.println(rs.next());
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Stories stories1=new Stories();
                 stories1.setId(rs.getLong("id"));
                 stories1.setTitle(rs.getString("title"));
                 stories1.setContent(rs.getString("content"));
-             //   stories1.setFile(rs.getBytes("image_id"));//Aqui aun no funciona
+                stories1.setImg_id(rs.getLong("image_id"));
+                stories1.setFile_name(rs.getString("file_name"));
                 User user = new User();
                 user.setName(rs.getString("name_"));
                 user.setLastname(rs.getString("lastname"));
 
                 user.setSurname(rs.getString("surname"));
-            //    user.setId(rs.getLong("id"));
+//                user.setId(rs.getLong("user_id"));
                 stories1.setUser_id(user);
-                System.out.println(stories1.getTitle());
-                System.out.println(stories1.getContent());
 
                 Categories categories=new Categories();
                 categories.setCategory(rs.getString("category"));
                 stories1.setCategories(categories);
                 Stories.add(stories1);
-
+            } DaoLikes daoLikes = new DaoLikes();
+            for (Stories storyLike : Stories) {
+                storyLike.setLikes(daoLikes.findAllLikes((int)storyLike.getId() ));
             }
 
         }catch (SQLException e){
@@ -306,15 +303,16 @@ public class DaoStories {
             pstm.execute();
             rs=pstm.getGeneratedKeys();
             if (pstm.executeUpdate()==1) {
-                String query1 = "UPDATE stories SET tile=?, content=?, created_at=?, image_id=?, status_id=?, user_id=?, category_id=? WHERE story_id=?";
+                String query1 = "UPDATE stories SET title=?, content=?, created_atDATETIME=curdate(), image_id=?, status_id=?, user_id=?, category_id=? WHERE id=?";
                 pstm = conn.prepareStatement(query1);
                 pstm.setString(1, stories.getTitle());
                 pstm.setString(2, stories.getContent());
-                pstm.setString(3, stories.getCreated_atDATETIME());
-                pstm.setBytes(4, stories.getFile());
-                pstm.setObject(5, stories.getStatus());
-                pstm.setLong(6, stories.getUser_id().getId());
-                pstm.setObject(7, stories.getCategories().getId());
+                pstm.setLong(3, stories.getImg_id());
+                pstm.setObject(4, stories.getStatus().getId());
+                pstm.setLong(5, stories.getUser_id().getId());
+                pstm.setObject(6, stories.getCategories().getId());
+                pstm.setLong(7,stories.getId());
+                pstm.executeUpdate();
             }
             conn.commit();
             return true;

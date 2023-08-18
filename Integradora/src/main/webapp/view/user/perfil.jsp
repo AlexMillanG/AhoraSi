@@ -19,7 +19,15 @@
 
 <div class="container mt-5">
   <div class="col-md-6 p-4 ps-md-0">
+    <div class="col-md-6 mb-md-0 p-md-4">
+
     <c:forEach var="Stories" items="${Stories}">
+      <c:if test="${not Stories.file_name.contains('.octet-stream')}">
+        <img src="/api/stories/loadFiles?id=${Stories.img_id}" alt="" class="w-100">
+
+      </c:if>
+
+        </div>
       <h4 class="mt-0"><c:out value="${Stories.title}"/></h4>
       <p><c:out value="${Stories.content}"/></p>
       <form action="/api/user/delete-story" method="post">
@@ -27,10 +35,41 @@
         <button type="submit" >Eliminar Mi historia</button>
       </form>
       <button data-bs-toggle="modal" data-bs-target="#updateStory" type="button" class="btn btn-outline-warning"  id="editar1"
-              onclick="prueba2('${Stories.title}|${Stories.content}|${Stories.id}|${Stories.categories.category}')" name="editar"
+              onclick="prueba2('${Stories.title}|${Stories.content}|${Stories.id}|${Stories.img_id}|${user1.id}')" name="editar"
       ><i data-feather="edit-3"></i></button>
+    <form action="/api/user/like-perfil" method="post">
+      <input hidden value="${user1.id}" name="user_id">
+      <input hidden value="${Stories.id}" name="story_id">
+      <button type="submit"><i data-feather="star"></i></button>
+    </form>
+
+    <form action="/api/user/save-comment-perfil" method="post">
+      <label for="comment"></label>
+      <br>
+      <input type="text" name="content" id="comment" placeholder="Comentario">
+      <input hidden value="${Stories.id}" name="story_id">
+      <input hidden value="${user1.id}" name="user_id">
+      <br>
+      <br>
+      <button type="submit">Enviar comentario</button>
+    </form>
+    <p><c:out value="${Stories.likes}"></c:out></p>
+
+
+    <c:forEach var="comment" items="${comment_list}">
+      <c:if test="${Stories.id == comment.stories.id}">
+      <p><c:out value="${comment.content}"/></p>
+      </c:if>
     </c:forEach>
+
+    </c:forEach>
+
 <c:forEach var="Shared" items="${Shared}">
+  <c:if test="${not Shared.getStories().getFile_name().contains('.octet-stream')}">
+
+  <img src="/api/stories/loadFiles?id=${Shared.getStories().getImg_id()}" alt="" class="w-100">
+  </c:if>
+
   <h4><c:out value="${Shared.getStories().getTitle()}"/></h4>
   <h5>Por: <c:out value="${Shared.getUser().getName()}"/> <c:out value="${Shared.getUser().getLastname()}"/> <c:out value="${Shared.getUser().getSurname()}"/></h5>
   <p><c:out value="${Shared.getStories().getContent()}" /></p>
@@ -206,8 +245,9 @@
       <div class="modal-body">
         <form id="formUpdate" action="/api/user/update-story" method="post" class="needs-validation"
               novalidate method="post"  enctype="multipart/form-data" novalidate>
+          <input id="idUserStory" name="idUserStory">
           <input   id="id1" name="id1" class="form-control">
-          <input hidden id="idImg" name="idImg">
+          <input  id="idImg" name="idImg">
 
           <div class="row">
             <div class="col">
@@ -215,14 +255,14 @@
 
                 <label for="titulo"></label>
                 <input type="text" name="titulo" id="titulo"
-                       required class="form-control">
+                       required class="form-control" placeholder="Titulo">
 
                 <div class="invalid-feedback text-start">
                   Campo obligatorio
                 </div>
                 <br>
                 <label for="contenido"></label>
-                <input type="text" name="contenido" id="contenido"
+                <input type="text" name="contenido" id="contenido" placeholder="Contenido"
                        required class="form-control">
 
                 <div class="invalid-feedback text-start">
@@ -311,15 +351,18 @@
     var valores = Stories.split("|");
     var tile=valores[0];
     var content = valores[1];
-    var  id= valores[2];
-    var categoria =valores[3];
-
+    var  idStory= valores[2];
+    var img=valores[3];
+    var idUSer=valores[4];
     console.log("hola "+Stories);
     console.log("hola1 "+valores);
     console.log("hola2 "+id);
-    document.getElementById("id1").value=id;
+    console.log("idUser"+idUSer);
+    document.getElementById("id1").value=idStory;
     document.getElementById("titulo").value = tile;
     document.getElementById("contenido").value= content;
+    document.getElementById("idImg").value=img;
+    document.getElementById("idUserStory").value=idUSer
   }
 
   (function () {

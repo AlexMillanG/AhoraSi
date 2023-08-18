@@ -61,11 +61,13 @@ import java.util.UUID;
         "/api/superadmin/aprove",
         "/api/superadmin/delete-story",
         "/api/user/like",
+        "/api/user/like-perfil",
         "/api/admin/admins-save",
         "/api/user/shared",
         "/api/user/delete-shared",
         "/api/user/update-plus",
         "/api/user/save-comment",
+        "/api/user/save-comment-perfil",
         "/api/user/comment"
 
 
@@ -125,11 +127,21 @@ public class ServletUser extends HttpServlet {
                 List<Objects> Shared = new ArrayList<>();
                 req.setAttribute("Shared", new DaoShared().FindAllSharedStories(id != null ? Long.parseLong(id) : 0));
 
-                List<Objects> Stories = new ArrayList<>();
+                List<Stories> Stories = new DaoStories().findAllUserStories(id != null ? Long.parseLong(id) : 0);
+                req.setAttribute("Stories", Stories);
+                //  req.setAttribute("stories", new DaoStories().findAllStories());
 
+                List<Comments> comments1 = new ArrayList();
+                for(Stories story : Stories){
+                    List temp = new DaoComments().findAllComments(story.getId());
+                    comments1.addAll(temp);
+                }
+                req.setAttribute("comment_list", comments1);
                 req.setAttribute("categories", new DaoStories().findAllCategories());
-                req.setAttribute("Stories", new DaoStories().findAllUserStories(id != null ? Long.parseLong(id) : 0));
+//                req.setAttribute("Stories", new DaoStories().findAllUserStories(id != null ? Long.parseLong(id) : 0));
                 req.setAttribute("user1", new DaoUser().findOne(id != null ? Long.parseLong(id) : 0));
+
+
                 redirect = "/view/user/perfil.jsp";
                 break;
             //End points para Admin
@@ -703,6 +715,40 @@ public class ServletUser extends HttpServlet {
 
                 }
                 break;
+            case "/api/user/like-perfil":
+                try {
+                    user_id = req.getParameter("user_id");
+                    story_id = req.getParameter("story_id");
+                    Likes like = new Likes();
+                    User user1 = new User();
+                    user1.setId(Long.parseLong(user_id));
+                    Stories stories = new Stories();
+                    stories.setId(Long.parseLong(story_id));
+                    like.setUser(user1);
+                    like.setStories(stories);
+
+                    boolean result = new DaoLikes().save(like);
+                    if (result == false){
+                        boolean result2 = new DaoLikes().delete(Long.parseLong(user_id),Long.parseLong(story_id));
+                        redirect = "/api/user/perfil?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! Te has registrado correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+
+                    if (result) {
+
+                        redirect = "/api/user/perfil?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! se ha registrado el like registrado correctamente.",
+                                StandardCharsets.UTF_8);
+
+                    } else {
+
+                        redirect = "/api/user/perfil?result= " + result + "&message=" + URLEncoder.encode("¡Éxito!, se ha eliminado el like correctamente.",
+                                StandardCharsets.UTF_8);
+                    }
+                }catch (Exception e){
+                    redirect = "/api/user/perfil?result= " + URLEncoder.encode("Historia no publicada correctamente", StandardCharsets.UTF_8);
+
+                }
+                break;
 
             case "/api/superadmin/add-avatar":
                 try {
@@ -811,6 +857,34 @@ public class ServletUser extends HttpServlet {
                     }
                 }catch (Exception e){
                     redirect = "/api/user/home?result= " + URLEncoder.encode("Comentario no publicadd correctamente", StandardCharsets.UTF_8);
+
+                }
+                break;
+            case "/api/user/save-comment-perfil":
+                try {
+                    User user2 =new User();
+                    Stories story=new Stories();
+                    content = req.getParameter("content1");
+                    user_id = req.getParameter("user_id");
+                    story_id = req.getParameter("story_id");
+                    Comments comments = new Comments();
+                    comments.setContent(content);
+                    user2.setId(Long.parseLong(user_id));
+                    story.setId(Long.parseLong(story_id));
+                    comments.setStories(story);
+                    comments.setUser(user2);
+
+
+                    boolean result1 = new DaoComments().saveComment(comments);
+                    if (result1) {
+                        redirect = "/api/user/perfil?result= " + result1 + "&message=" + URLEncoder.encode("¡Éxito! comentario publicado correctamente.",
+                                StandardCharsets.UTF_8);
+                    }else{
+                        redirect = "/api/user/perfil?result= " + result1 + "&message=" + URLEncoder.encode("¡Error! comentario no publicado.",
+                                StandardCharsets.UTF_8);
+                    }
+                }catch (Exception e){
+                    redirect = "/api/user/perfil?result= " + URLEncoder.encode("Comentario no publicadd correctamente", StandardCharsets.UTF_8);
 
                 }
                 break;

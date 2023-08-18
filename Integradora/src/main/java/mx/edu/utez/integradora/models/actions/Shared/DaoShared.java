@@ -1,5 +1,6 @@
 package mx.edu.utez.integradora.models.actions.Shared;
 
+import mx.edu.utez.integradora.models.actions.likes.DaoLikes;
 import mx.edu.utez.integradora.models.actions.likes.Likes;
 import mx.edu.utez.integradora.models.stories.DaoStories;
 import mx.edu.utez.integradora.models.stories.Stories;
@@ -40,6 +41,7 @@ public class DaoShared {
 
     public List<Shared> FindAllSharedStories(Long user_id) {
         List<Shared> shareds = new ArrayList<>();
+        List<Stories>Stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
             String query = "SELECT * from SharedStories where user_id = ?;";
@@ -57,10 +59,14 @@ public class DaoShared {
                 stories.setId(rs.getLong("story_id"));
                 stories.setTitle(rs.getString("title"));
                 stories.setContent(rs.getString("content"));
-
+                stories.setImg_id(rs.getLong("image_id_de_Stories"));
+                Stories.add(stories);
                 shared.setStories(stories);
                 shared.setUser(user);
             shareds.add(shared);
+            } DaoLikes daoLikes = new DaoLikes();
+            for (Stories storyLike : Stories) {
+                storyLike.setLikes(daoLikes.findAllLikes((int)storyLike.getId() ));
             }
         } catch (SQLException e) {
             Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE, "ERROR FINDALL shared" + e.getMessage());

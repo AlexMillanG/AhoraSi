@@ -54,6 +54,8 @@ public class ServletFiles extends HttpServlet {
         default:
             if (action=="/api/stories/loadFiles"){
                 req.getRequestDispatcher("/api/user/home").forward(req,resp);
+                req.getRequestDispatcher("/api/user/perfil").forward(req,resp);
+
             }
             if (action=="/api/categories/loadFiles"){
                 req.getRequestDispatcher("/api/superadmin/mas").forward(req,resp);

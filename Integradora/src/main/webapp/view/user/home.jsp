@@ -74,16 +74,18 @@
                             <div class="container-fluid"
                                  style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
                                 <div class="row g-0 bg-body-secondary position-relative">
+
                                     <div class="col-md-6 mb-md-0 p-md-4">
-                                        <img src="../../assets/img/3.jpg" class="w-100" alt="...">
+                                        <c:forEach var="Story" items="${stories}">
+                                            <c:if test="${not Story.file_name.contains('.octet-stream')}">
+                                                <img src="/api/stories/loadFiles?id=${Story.img_id}" alt="" class="w-100">
+                                            </c:if>
                                     </div>
                                     <div class="col-md-6 p-4 ps-md-0">
-                                        <c:forEach var="Story" items="${stories}">
                                             <h4 class="mt-0"><c:out value="${Story.title}"/></h4>
 
                                             <h5 class="mt-0"><c:out value="${Story.categories.category}"/></h5>
                                             <p><c:out value="${Story.content}"/></p>
-                                            <img src="/api/stories/loadFiles?id=${Story.img_id}" alt="">
                                             <input hidden value="${Story.img_id}">
                                             <form action="/api/user/like" method="post">
                                                 <input hidden value="${user.id}" name="user_id">
@@ -92,28 +94,15 @@
 
                                             </form>
 
-                                            <%-- <c:forEach var="like" items="${likes}">
-
-                                                 <p><c:out value="${like}"/> </p>
-                                             </c:forEach> --%>
-
-                                            <%--    <% Long StoryID = Story.id;%>
-                                                <% DaoLikes daoLikes = new DaoLikes(); %>
-                                                <% daoLikes.findAllLikes(); %> --%>
                                             <p><c:out value="${Story.likes}"></c:out></p>
                                             <form action="/api/user/shared" method="post">
-                                                <input value="${Story.id}" name="story_id">
+                                                <input hidden value="${Story.id}" name="story_id">
                                                 <button type="submit">compartir en el perfil</button>
                                             </form>
 
                                             <form action="/api/user/save-comment" method="post">
                                                 <label for="comment"></label>
                                                 <br>
-                                                <br>
-                                                <c:forEach var="comments" items="${comments}">
-                                                </c:forEach>
-
-
                                                 <input type="text" name="content" id="comment" placeholder="Comentario">
                                                 <input hidden value="${Story.id}" name="story_id">
                                                 <input hidden value="${user.id}" name="user_id">
@@ -122,11 +111,7 @@
                                                 <button type="submit">Enviar comentario</button>
                                             </form>
 
-                                            <form action="/api/user/comment" method="get">
-                                                <div class="accordion accordion-flush rounded-5"
-                                                     id="accordionFlushExample_${loop.index}">
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header">
+
                                                             <input hidden value="${Story.id}" name="story_id1">
                                                         </h2>
 
@@ -145,7 +130,6 @@
                                                     </div>
                                                 </div>
 
-                                            </form>
 
 
                                             <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button"
@@ -230,7 +214,9 @@
                                 </div>
                             </div>
                         </div>
-
+            </th>
+        </tr>
+    </table>
                     </div>
 
                 </div>
