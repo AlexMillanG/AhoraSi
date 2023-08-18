@@ -130,7 +130,7 @@ public class DaoCategories {
             pstm.execute();
             rs=pstm.getGeneratedKeys();
             if (pstm.executeUpdate()==1){
-                String query1="update categories set category=?,img_id=? where id=?;"; 
+                String query1="update categories set category=?,img_id=? where id=?;"; //CALL UpdateCategory('<new_category_name>', <new_img_id>, <category_id>);
                 pstm=conn.prepareStatement(query1);
                 pstm.setString(1, categories.getCategory());
                 pstm.setLong(2,categories.getImg_id());
@@ -151,7 +151,7 @@ public class DaoCategories {
     public boolean delete(Long id) {
         try {
             conn = new MySQLConnection().connect();
-            String query = "delete from categories where id=?";
+            String query = "delete from categories where id=?"; //CALL DeleteCategory(1);
             pstm = conn.prepareStatement(query);
             System.out.println("Adentro del delete");
             pstm.setLong(1, id);
