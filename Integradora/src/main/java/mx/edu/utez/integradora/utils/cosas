@@ -18,6 +18,25 @@ create view showStoriesByUser as
     inner join stories on users.id = stories.user_id;
 
 
+create view showStoriesByUser as
+
+    select users.name_,
+           stories.user_id,
+           stories.id,
+           stories.title,
+           stories.created_atDATETIME,
+           stories.image_id,
+           stories.content,
+            users.lastname,
+           users.surname,
+        images.file_name,
+            stories.status_id,
+    stories.category_id,
+    categories.category
+      from users
+    inner join stories on users.id = stories.user_id
+inner  join images on stories.image_id = images.id
+inner join categories  on stories.category_id = categories.id;
 
 //vista del Share
 

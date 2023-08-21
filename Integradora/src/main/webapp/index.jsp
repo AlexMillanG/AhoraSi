@@ -289,7 +289,7 @@
 </div>
 
 
-<jsp:include page="layouts/footer.jsp"/>
+<jsp:include page="/layouts/footer.jsp"/>
 <script>
     const agregar = document.getElementById("login");
     const form = document.getElementById("loginForm");

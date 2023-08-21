@@ -20,7 +20,7 @@ public class DaoStories {
         List<Stories> stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query= "SELECT * from showStoriesByUser where status_id <4  ;";
+            String query= "SELECT * from showStoriesByUser where status_id < 4  ;";
             pstm= conn.prepareStatement(query);
             rs= pstm.executeQuery();
             while (rs.next()){
@@ -79,7 +79,6 @@ public class DaoStories {
                 categories.setId(rs.getLong("category_id"));
                 stories1.setCategories(categories);
                 stories.add(stories1);
-
             }
 
         }catch (SQLException e){

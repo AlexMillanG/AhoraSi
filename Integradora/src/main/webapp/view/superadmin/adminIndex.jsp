@@ -102,7 +102,7 @@
                              tabindex="0">
                             <div class="container-fluid"
                                  style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  margin-bottom: 15px;">
-                                <c:forEach var="Article" items="${articlesView1}">
+                                <c:forEach var="Article" items="${waitingArticles}">
 
                                 <div class="row g-0 bg-body-secondary position-relative">
                                     <div class="col-md-6 mb-md-0 p-md-4">
