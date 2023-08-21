@@ -64,7 +64,7 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="aventura-tab" data-bs-toggle="tab"
                                     data-bs-target="#aventura-tab-pane" type="button" role="tab"
-                                    aria-controls="aventura-tab-pane" aria-selected="false">Foros
+                                    aria-controls="aventura-tab-pane" aria-selected="false">Articulos
                             </button>
                         </li>
                     </ul>
@@ -95,42 +95,36 @@
                         </div>
 
 
+
+                    </div>
+                    <div class="tab-content" id="myTabContent1">
                         <div class="tab-pane fade" id="aventura-tab-pane" role="tabpanel" aria-labelledby="aventura-tab"
                              tabindex="0">
                             <div class="container-fluid"
                                  style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  margin-bottom: 15px;">
+                                <c:forEach var="Article" items="${articlesView1}">
+
                                 <div class="row g-0 bg-body-secondary position-relative">
                                     <div class="col-md-6 mb-md-0 p-md-4">
-                                        <img src="/assets/img/3.jpg" class="w-100" alt="..." style="border-radius: 100%">
+                                        <c:if test="${not Article.file_name.contains('.octet-stream')}">
+                                            <img src="/api/stories/loadFiles?id=${Article.img_id}" alt="" class="w-100">
+                                        </c:if>
                                     </div>
                                     <div class="col-md-6 p-4 ps-md-0">
-                                        <c:forEach var="Article" items="${waitingArticles}">
                                         <h4 class="mt-0"><c:out value="${Article.title}"/></h4>
-                                        <h5 class="mt-0">Usuario</h5>
+                                        <h4>Una prueba</h4>
+
+                                        <h5 class="mt-0"><c:out value="${Article.categories.category}"/></h5>
                                         <p><c:out value="${Article.content}"/></p>
+                                        <br>
+                                        <br>
 
-                                            <form action="/api/superadmin/aprove" method="post">
-                                                <input hidden value="${Article.id}" name="articleId" id="articleIdAprove">
-                                                <button type="submit" class="btn" style="float: right; width: 50%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;"> Aprobar </button>
-                                            </form>
-
-                                            <form action="/api/superadmin/delete-story" method="post">
-                                                <input hidden value="${Article.id}" name="articleId" id="articleIdDelete">
-                                                <button type="submit" class="btn" style="float: right; width: 50%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;"> Eliminar </button>
-                                            </form>
-
-                                            <br>
-                                            <br>
-                                            <br>
                                         </c:forEach>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </th>
         </tr>

@@ -46,14 +46,14 @@
     <form action="/api/user/save-comment-perfil" method="post">
       <label for="comment"></label>
       <br>
-      <input type="text" name="content" id="comment" placeholder="Comentario">
+      <input type="text" name="content1" id="comment" placeholder="Comentario">
       <input hidden value="${Stories.id}" name="story_id">
       <input hidden value="${user1.id}" name="user_id">
       <br>
       <br>
       <button type="submit">Enviar comentario</button>
     </form>
-    <p><c:out value="${Stories.likes}"></c:out></p>
+<%--    <p><c:out value="${Stories.likes}"></c:out></p>--%>
 
 
     <c:forEach var="comment" items="${comment_list}">

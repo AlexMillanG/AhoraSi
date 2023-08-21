@@ -5,6 +5,8 @@
   Time: 05:56 p. m.
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,7 +14,7 @@
   <title>admin Historias</title>
   <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link type="text/css" rel="stylesheet" href="../../assets/css/style.css">
-  <jsp:include page="../../layouts/head.jsp"/>
+  <jsp:include page="/layouts/head.jsp"/>
 </head>
 <body>
 <div class="container-fluid" id='cont'>
@@ -53,16 +55,10 @@
               <button class="nav-link active" id="accion-tab" data-bs-toggle="tab" data-bs-target="#accion-tab-pane" type="button" role="tab" aria-controls="accion-tab-pane" aria-selected="true">Accion</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="aventura-tab" data-bs-toggle="tab" data-bs-target="#aventura-tab-pane" type="button" role="tab" aria-controls="aventura-tab-pane" aria-selected="false">Aventura</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="cienciaf-tab" data-bs-toggle="tab" data-bs-target="#cienciaf-tab-pane" type="button" role="tab" aria-controls="cienciaf-tab-pane" aria-selected="false">Ciencia Ficción</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="fantasia-tab" data-bs-toggle="tab" data-bs-target="#fantasia-tab-pane" type="button" role="tab" aria-controls="fantasia-tab-pane" aria-selected="false">Fantasía</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="romance-tab" data-bs-toggle="tab" data-bs-target="#romance-tab-pane" type="button" role="tab" aria-controls="romance-tab-pane" aria-selected="false">Romance</button>
+              <button class="nav-link" id="aventura-tab" data-bs-toggle="tab"
+                      data-bs-target="#aventura-tab-pane" type="button" role="tab"
+                      aria-controls="aventura-tab-pane" aria-selected="false">Articulos
+              </button>
             </li>
           </ul>
           <div class="tab-content" id="myTabContent">
@@ -70,81 +66,80 @@
               <div class="container-fluid" style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
                 <div class="row g-0 bg-body-secondary position-relative">
                   <div class="col-md-6 mb-md-0 p-md-4">
-                    <img src="/assets/img/3.jpg" class="w-100" alt="...">
-                  </div>
-                  <div class="col-md-6 p-4 ps-md-0">
-                    <h4 class="mt-0">Columns with stretched link</h4>
-                    <h5 class="mt-0">Usuario Accion</h5>
-                    <p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-                    <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="aventura-tab-pane" role="tabpanel" aria-labelledby="aventura-tab" tabindex="0">
-              <div class="container-fluid" style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
-                <div class="row g-0 bg-body-secondary position-relative">
-                  <div class="col-md-6 mb-md-0 p-md-4">
-                    <img src="/assets/img/3.jpg" class="w-100" alt="...">
-                  </div>
-                  <div class="col-md-6 p-4 ps-md-0">
-                    <h4 class="mt-0">Columns with stretched link</h4>
-                    <h5 class="mt-0">Usuario Aventura</h5>
-                    <p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-                    <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="cienciaf-tab-pane" role="tabpanel" aria-labelledby="cienciaf-tab" tabindex="0"><div class="container-fluid" style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
-              <div class="row g-0 bg-body-secondary position-relative">
-                <div class="col-md-6 mb-md-0 p-md-4">
-                  <img src="/assets/img/3.jpg" class="w-100" alt="...">
-                </div>
-                <div class="col-md-6 p-4 ps-md-0">
-                  <h4 class="mt-0">Columns with stretched link</h4>
-                  <h5 class="mt-0">Usuario Ciencia</h5>
-                  <p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-                  <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
-                </div>
-              </div>
-            </div>
-            </div>
-            <div class="tab-pane fade" id="fantasia-tab-pane" role="tabpanel" aria-labelledby="fantasia-tab" tabindex="0"><div class="container-fluid" style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
-              <div class="row g-0 bg-body-secondary position-relative">
-                <div class="col-md-6 mb-md-0 p-md-4">
-                  <img src="/assets/img/2.jpg" class="w-100" alt="...">
-                </div>
-                <div class="col-md-6 p-4 ps-md-0">
-                  <h4 class="mt-0">Columns with stretched link</h4>
-                  <h5 class="mt-0">Usuario Fantasia</h5>
-                    <p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-                    <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
-                </div>
-              </div>
-            </div>
-            </div>
 
-            <div class="tab-pane fade" id="romance-tab-pane" role="tabpanel" aria-labelledby="romance-tab" tabindex="0"><div class="container-fluid" style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
-              <div class="row g-0 bg-body-secondary position-relative">
-                <div class="col-md-6 mb-md-0 p-md-4">
-                  <img src="/assets/img/3.jpg" class="w-100" alt="...">
+                <c:forEach var="Story" items="${storiesView1}">
+                 <c:if test="${not Story.file_name.contains('.octet-stream')}">
+                    <img src="/api/stories/loadFiles?id=${Story.img_id}" alt="" class="w-100">
+                  </c:if>
+                  </div>
+                  <div class="col-md-6 p-4 ps-md-0">
+                    <h4 class="mt-0"><c:out value="${Story.title}"/></h4>
+
+                    <h5 class="mt-0"><c:out value="${Story.categories.category}"/></h5>
+                    <p><c:out value="${Story.content}"/></p>
+                    <input hidden value="${Story.img_id}">
+
+                      <button type="button"><i data-feather="star"></i></button>
+                    <p><c:out value="${Story.likes}"></c:out></p>
+
+
+
+
+                    <div>
+                      <div class="accordion-body">
+                        <p class="card-text">
+                          <c:forEach var="comment" items="${comment_list}">
+                            <c:if test="${Story.id == comment.stories.id}">
+                              <c:out value="${comment.content}"/>
+                            </c:if>
+                          </c:forEach>
+                        </p>
+
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-md-6 p-4 ps-md-0">
-                  <h4 class="mt-0">Columns with stretched link</h4>
-                  <h5 class="mt-0">Usuario</h5><h5 class="mt-0">Romance</h5>
-                  <p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-                  <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
+
+
+                <br>
+                <br>
+                </c:forEach>
+              </div>
+                  </div>
                 </div>
               </div>
-            </div></div>
+
+        <div class="tab-pane fade" id="aventura-tab-pane" role="tabpanel" aria-labelledby="aventura-tab"
+             tabindex="0">
+          <div class="container-fluid"
+               style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  margin-bottom: 15px;">
+            <div class="row g-0 bg-body-secondary position-relative">
+
+              <div class="col-md-6 mb-md-0 p-md-4">
+                <c:forEach var="Article" items="${articlesView2}">
+                <c:if test="${not Article.file_name.contains('.octet-stream')}">
+                  <img src="/api/stories/loadFiles?id=${Article.img_id}" alt="" class="w-100">
+                </c:if>
+              </div>
+              <div class="col-md-6 p-4 ps-md-0">
+                  <h4 class="mt-0"><c:out value="${Article.title}"/></h4>
+                <h2>Creo que no jala</h2>
+                  <h5 class="mt-0"><c:out value="${Article.categories.category}"/></h5>
+                  <p><c:out value="${Article.content}"/></p>
+                  <br>
+                  <br>
+
+                </c:forEach>
+              </div>
+            </div>
           </div>
-        </div>---
+        </div>
+
       </th>
     </tr>
     </thead>
   </table>
 </div>
-<jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
+<jsp:include page="/layouts/footer.jsp"/>
 </body>
 </html>

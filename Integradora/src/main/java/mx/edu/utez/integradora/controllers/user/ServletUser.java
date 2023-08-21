@@ -108,8 +108,15 @@ public class ServletUser extends HttpServlet {
                 }
                 req.setAttribute("comment_list", comments);
 
-                List<Objects> articles = new ArrayList<>();
-                req.setAttribute("articles", new DaoStories().findAllPublishedArticles());
+                List<Stories> articles = new DaoStories().findAllPublishedArticles();
+                req.setAttribute("articles",articles);
+                List<Comments> commentsViewArticles3 = new ArrayList();
+                for(Stories story : articles){
+                    List temp = new DaoComments().findAllComments(story.getId());
+                    commentsViewArticles3.addAll(temp);
+                }
+                req.setAttribute("comment_listArticles", commentsViewArticles3);
+//                req.setAttribute("articles", new DaoStories().findAllPublishedArticles());
 
                 List<Objects> users = new ArrayList<>();
                 req.setAttribute("users", users);
@@ -122,14 +129,12 @@ public class ServletUser extends HttpServlet {
                 break;
 
             case "/api/user/perfil":
-
-                id = getSession.getAttribute("id").toString();
                 List<Objects> Shared = new ArrayList<>();
+                id = getSession.getAttribute("id").toString();
                 req.setAttribute("Shared", new DaoShared().FindAllSharedStories(id != null ? Long.parseLong(id) : 0));
 
                 List<Stories> Stories = new DaoStories().findAllUserStories(id != null ? Long.parseLong(id) : 0);
                 req.setAttribute("Stories", Stories);
-                //  req.setAttribute("stories", new DaoStories().findAllStories());
 
                 List<Comments> comments1 = new ArrayList();
                 for(Stories story : Stories){
@@ -138,14 +143,38 @@ public class ServletUser extends HttpServlet {
                 }
                 req.setAttribute("comment_list", comments1);
                 req.setAttribute("categories", new DaoStories().findAllCategories());
-//                req.setAttribute("Stories", new DaoStories().findAllUserStories(id != null ? Long.parseLong(id) : 0));
                 req.setAttribute("user1", new DaoUser().findOne(id != null ? Long.parseLong(id) : 0));
-
 
                 redirect = "/view/user/perfil.jsp";
                 break;
             //End points para Admin
             case "/api/admin/admin-historias":
+                List<Objects> likesView = new ArrayList<>();
+
+                List<Stories> storiesView = new DaoStories().findAllStories();
+                req.setAttribute("stories", storiesView);
+
+                List<Comments> commentsView = new ArrayList();
+                for(Stories story : storiesView){
+                    List temp = new DaoComments().findAllComments(story.getId());
+                    commentsView.addAll(temp);
+                }
+                req.setAttribute("comment_list", commentsView);
+
+                List<Stories> articlesView2 = new DaoStories().findAllPublishedArticles();
+                req.setAttribute("articlesView2",articlesView2);
+                List<Comments> commentsViewArticles1 = new ArrayList();
+                for(Stories story : articlesView2){
+                    List temp = new DaoComments().findAllComments(story.getId());
+                    commentsViewArticles1.addAll(temp);
+                }
+                req.setAttribute("comment_list1", commentsViewArticles1);
+//                req.setAttribute("articles", new DaoStories().findAllPublishedArticles());
+
+                List<Objects> users3 = new ArrayList<>();
+                req.setAttribute("users", users3);
+                req.setAttribute("categories", new DaoStories().findAllCategories());
+
                 redirect = "/view/admin/adminHistorias.jsp";
                 break;
 
@@ -173,6 +202,31 @@ public class ServletUser extends HttpServlet {
                 break;
 
             case "/api/superadmin/admin-historias":
+                List<Objects> likesView1 = new ArrayList<>();
+
+                List<Stories> storiesView1 = new DaoStories().findAllStories();
+                req.setAttribute("storiesView1", storiesView1);
+
+                List<Comments> commentsView1 = new ArrayList();
+                for(Stories story : storiesView1){
+                    List temp = new DaoComments().findAllComments(story.getId());
+                    commentsView1.addAll(temp);
+                }
+                req.setAttribute("comment_list", commentsView1);
+
+                List<Stories> articlesView1 = new DaoStories().findAllPublishedArticles();
+                req.setAttribute("articlesView1",articlesView1);
+                List<Comments> commentsViewArticles = new ArrayList();
+                for(Stories story : storiesView1){
+                    List temp = new DaoComments().findAllComments(story.getId());
+                    commentsViewArticles.addAll(temp);
+                }
+                req.setAttribute("comment_list2", commentsViewArticles);
+//                req.setAttribute("articles", new DaoStories().findAllPublishedArticles());
+
+                List<Objects> users4 = new ArrayList<>();
+                req.setAttribute("users", users4);
+                req.setAttribute("categories", new DaoStories().findAllCategories());
                 redirect = "/view/superadmin/adminHistorias.jsp";
                 break;
 

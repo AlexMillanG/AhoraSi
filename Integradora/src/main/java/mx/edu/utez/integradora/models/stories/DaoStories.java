@@ -20,7 +20,7 @@ public class DaoStories {
         List<Stories> stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query= "SELECT * from showStoriesByUser ;";
+            String query= "SELECT * from showStoriesByUser where status_id <4  ;";
             pstm= conn.prepareStatement(query);
             rs= pstm.executeQuery();
             while (rs.next()){
@@ -68,7 +68,8 @@ public class DaoStories {
                 stories1.setTitle(rs.getString("title"));
                 stories1.setContent(rs.getString("content"));
                 stories1.setCreated_atDATETIME(rs.getString("created_atDATETIME"));
-                stories1.setFile(rs.getBytes("image_id"));//Aqui aun no funciona
+                stories1.setImg_id(rs.getLong("image_id"));//Aqui aun no funciona
+                stories1.setFile_name(rs.getString("file_name"));
                 Status status= new Status();
                 status.setType_status(rs.getString("status_id"));
                 stories1.setStatus(status);
@@ -103,7 +104,8 @@ public class DaoStories {
                 stories1.setTitle(rs.getString("title"));
                 stories1.setContent(rs.getString("content"));
                 stories1.setCreated_atDATETIME(rs.getString("created_atDATETIME"));
-                stories1.setFile(rs.getBytes("image_id"));//Aqui aun no funciona
+                stories1.setImg_id(rs.getLong("image_id"));//Aqui aun no funciona
+                stories1.setFile_name(rs.getString("file_name"));
                 Status status= new Status();
                 status.setType_status(rs.getString("status_id"));
                 stories1.setStatus(status);
@@ -248,15 +250,16 @@ public class DaoStories {
             rs=pstm.getGeneratedKeys();
             if (rs.next()){
                 long id= rs.getLong(1);
-                String query = "insert into stories(title,content,created_atDATETIME,status_id,user_id,category_id,image_id) values (?,?,curdate(),3,?,?,?);";
+                String query = "insert into stories(title,content,created_atDATETIME,status_id,user_id,category_id,image_id) values (?,?,curdate(),?,?,?,?);";
                 pstm=conn.prepareStatement(query);
                 pstm.setString(1,object.getTitle());
                 pstm.setString(2,object.getContent());
-                pstm.setLong(3,object.getUser_id().getId());
+                pstm.setLong(3,object.getStatus().getId());
+                pstm.setLong(4,object.getUser_id().getId());
                 System.out.println(object.getUser_id().getId());
-                pstm.setLong(4,object.getCategories().getId());
+                pstm.setLong(5,object.getCategories().getId());
                 System.out.println(object.getCategories().getId());
-                pstm.setLong(5,id);
+                pstm.setLong(6,id);
                 pstm.execute();
             }
             conn.commit();
