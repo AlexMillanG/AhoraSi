@@ -116,6 +116,10 @@ public class DaoStories {
                 stories.add(stories1);
 
             }
+            DaoLikes daoLikes = new DaoLikes();
+            for (Stories storyLike : stories) {
+                storyLike.setLikes(daoLikes.findAllLikes((int)storyLike.getId() ));
+            }
 
         }catch (SQLException e){
             Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR FIANDALL stories"+e.getMessage());

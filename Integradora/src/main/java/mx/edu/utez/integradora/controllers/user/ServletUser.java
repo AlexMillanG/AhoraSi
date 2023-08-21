@@ -112,8 +112,8 @@ public class ServletUser extends HttpServlet {
                 List<Stories> articles = new DaoStories().findAllPublishedArticles();
                 req.setAttribute("articles",articles);
                 List<Comments> commentsViewArticles3 = new ArrayList();
-                for(Stories story : articles){
-                    List temp = new DaoComments().findAllComments(story.getId());
+                for(Stories articles1 : articles){
+                    List temp = new DaoComments().findAllComments(articles1.getId());
                     commentsViewArticles3.addAll(temp);
                 }
                 req.setAttribute("comment_listArticles", commentsViewArticles3);

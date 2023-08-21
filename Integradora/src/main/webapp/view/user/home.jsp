@@ -8,7 +8,7 @@
 <html>
 <head>
     <title>Home - Hitu</title>
-    <jsp:include page="../../layouts/head.jsp"/>
+    <jsp:include page="/layouts/head.jsp"/>
 </head>
 <body>
 <%-- chingadera de crear foro --%>
@@ -21,7 +21,7 @@
             <th scope="col">
                 <div class="container-fluid" id='cont-2'>
 
-                    <jsp:include page="../../layouts/navbar.jsp"/>
+                    <jsp:include page="/layouts/navbar.jsp"/>
                     <div id="carrusel" class="container-fluid">
                         <h1 style="margin-top: 20px; font-family: PT serif ;">Bienvenido </h1>
                         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
@@ -102,7 +102,6 @@
 
                                             <form action="/api/user/save-comment" method="post">
                                                 <label for="comment"></label>
-                                                <br>
                                                 <input type="text" name="content" id="comment" placeholder="Comentario">
                                                 <input hidden value="${Story.id}" name="story_id">
                                                 <input hidden value="${user.id}" name="user_id">
@@ -181,7 +180,6 @@
                         <div class="container-fluid"
                              style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  margin-bottom: 15px;">
                             <c:forEach var="Article" items="${articles}">
-
                             <div class="row g-0 bg-body-secondary position-relative">
                                 <div class="col-md-6 mb-md-0 p-md-4">
                                     <c:if test="${not Article.file_name.contains('.octet-stream')}">
@@ -190,15 +188,47 @@
                                 </div>
                                 <div class="col-md-6 p-4 ps-md-0">
                                         <h4 class="mt-0"><c:out value="${Article.title}"/></h4>
-
                                         <h5 class="mt-0"><c:out value="${Article.categories.category}"/></h5>
                                         <p><c:out value="${Article.content}"/></p>
-                                        <br>
-                                        <br>
+                                    <form action="/api/user/like" method="post">
+                                        <input hidden value="${user.id}" name="user_id">
+                                        <input hidden value="${Article.id}" name="story_id">
+                                        <button type="submit"><i data-feather="star"></i></button>
+                                    </form>
 
-                                    </c:forEach>
+                                    <p><c:out value="${Article.likes}"></c:out></p>
+                                    <form action="/api/user/shared" method="post">
+                                        <input hidden value="${Article.id}" name="story_id">
+                                        <button type="submit">compartir en el perfil</button>
+                                    </form>
+
+                                    <form action="/api/user/save-comment" method="post">
+                                        <label for="comment"></label>
+                                        <input type="text" name="content" id="comment1" placeholder="Comentario">
+                                        <input hidden value="${Article.id}" name="story_id">
+                                        <input hidden value="${user.id}" name="user_id">
+                                        <br>
+                                        <br>
+                                        <button type="submit">Enviar comentario</button>
+                                    </form>
+
+
+                                    <div class="accordion-body">
+                                        <p class="card-text">
+                                            <c:forEach var="comment" items="${comment_listArticles}">
+                                                <c:if test="${Article.id == comment.stories.id}">
+                                                    <c:out value="${comment.content}"/>
+                                                </c:if>
+                                            </c:forEach>
+                                        </p>
+
+                                    </div>
+
                                 </div>
-                            </div>
+
+                            </div>  
+                            </c:forEach>
+
                         </div>
                     </div>
                         </div>
