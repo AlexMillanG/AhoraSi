@@ -99,12 +99,14 @@
                              tabindex="0">
                             <div class="container-fluid"
                                  style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  margin-bottom: 15px;">
+                                <c:forEach var="Article" items="${waitingArticles}">
                                 <div class="row g-0 bg-body-secondary position-relative">
                                     <div class="col-md-6 mb-md-0 p-md-4">
-                                        <img src="/assets/img/3.jpg" class="w-100" alt="..." style="border-radius: 100%">
+                                        <c:if test="${not Article.file_name.contains('.octet-stream')}">
+                                            <img src="/api/stories/loadFiles?id=${Article.img_id}" alt="" class="w-100">
+                                        </c:if>
                                     </div>
                                     <div class="col-md-6 p-4 ps-md-0">
-                                        <c:forEach var="Article" items="${waitingArticles}">
                                             <h4 class="mt-0"><c:out value="${Article.title}"/></h4>
                                         <h5 class="mt-0">Usuario</h5>
                                             <p><c:out value="${Article.content}"/></p>
@@ -185,6 +187,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="../../layouts/footer.jsp"/>
+<jsp:include page="/layouts/footer.jsp"/>
 </body>
 </html>
