@@ -21,7 +21,8 @@ public class DaoCategories {
         List<Categories> categories = new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query = "SELECT * FROM categories;";
+            String query = "SELECT * FROM categories;";  // CALL ShowCategories();
+
             pstm = conn.prepareStatement(query);
             rs = pstm.executeQuery();
             while (rs.next()) {
@@ -42,7 +43,8 @@ public class DaoCategories {
         Categories categories = null;
         try {
             conn = new MySQLConnection().connect();
-            String query = "SELECT * FRom  images WHERE id = ?;";
+            String query = "SELECT * FRom  images WHERE id = ?;"; //CALL SelectImageById(1);
+
             pstm = conn.prepareStatement(query);
             pstm.setLong(1, id);
             rs = pstm.executeQuery();
@@ -63,7 +65,7 @@ public class DaoCategories {
     public Categories findOne(Long id) {
         try {
             conn = new MySQLConnection().connect();
-            String query = "select * from categories where id=?";
+            String query = "select * from categories where id=?"; // CALL SelectCategoryById(1);
             pstm = conn.prepareStatement(query);
             pstm.setLong(1, id);
             rs = pstm.executeQuery();
@@ -86,7 +88,8 @@ public class DaoCategories {
         try {
             conn = new MySQLConnection().connect();
             conn.setAutoCommit(false); // Preparar la transaccion
-            String query = "insert into images (image,file_name)values(?,?);";
+            String query = "insert into images (image,file_name)values(?,?);";  //CALL InsertImage(<image_data>, '<file_name>');
+
             pstm=conn.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
             pstm.setBytes(1,categories.getFile());
             pstm.setString(2,categories.getFileName());
@@ -95,7 +98,8 @@ public class DaoCategories {
             if (rs.next()){
                 long id= rs.getLong(1);//id Image
                 System.out.println(id);
-                String querySaveImg="insert into categories (category,img_id)values(?,?);";
+                String querySaveImg="insert into categories (category,img_id)values(?,?);"; //CALL InsertCategoryWithImage('<category_name>', <img_id>);
+
                 pstm=conn.prepareStatement(querySaveImg);
                 pstm.setString(1, categories.getCategory());
                 pstm.setLong(2,id);
@@ -117,7 +121,8 @@ public class DaoCategories {
         try {
             conn = new MySQLConnection().connect();
             conn.setAutoCommit(false); // Preparar la transaccion
-            String query = "update images set image=?,file_name=? where id=?;";
+            String query = "update images set image=?,file_name=? where id=?;"; // CALL UpdateImage(<image_data>, '<file_name>', <image_id>);
+
             pstm=conn.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
             pstm.setBytes(1,categories.getFile());
             pstm.setString(2,categories.getFileName());
@@ -125,7 +130,7 @@ public class DaoCategories {
             pstm.execute();
             rs=pstm.getGeneratedKeys();
             if (pstm.executeUpdate()==1){
-                String query1="update categories set category=?,img_id=? where id=?;";
+                String query1="update categories set category=?,img_id=? where id=?;"; //CALL UpdateCategory('<new_category_name>', <new_img_id>, <category_id>);
                 pstm=conn.prepareStatement(query1);
                 pstm.setString(1, categories.getCategory());
                 pstm.setLong(2,categories.getImg_id());
@@ -146,7 +151,7 @@ public class DaoCategories {
     public boolean delete(Long id) {
         try {
             conn = new MySQLConnection().connect();
-            String query = "delete from categories where id=?";
+            String query = "delete from categories where id=?"; //CALL DeleteCategory(1);
             pstm = conn.prepareStatement(query);
             System.out.println("Adentro del delete");
             pstm.setLong(1, id);
@@ -169,5 +174,7 @@ public class DaoCategories {
         }
     }
 }
+
+
 
 

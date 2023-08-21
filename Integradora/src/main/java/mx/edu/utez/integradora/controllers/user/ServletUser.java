@@ -185,6 +185,8 @@ public class ServletUser extends HttpServlet {
                 break;
 
             case "/api/admin/home":
+                req.setAttribute("waitingArticles", new DaoStories().findAllWaitingArticles());
+
                 redirect = "/view/admin/adminIndex.jsp";
                 break;
 

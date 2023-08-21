@@ -21,20 +21,25 @@ create view showStoriesByUser as
 
 //vista del Share
 
-create view sharedstories as
-select  stories.category_id   AS category_id,
-       stories.created_atDATETIME,
-       stories.id                 AS `id_de_stories`,
-       stories.image_id          AS `image_id_de_Stories`,
-       shared.story_id           AS `story_id_de_shared`,
-       stories.title             AS `title`,
-       stories.content            AS `content`,
-       shared.user_id             AS `user_id_de_shared`,
-       u.name_                          AS `name_`,
-       u.lastname                        AS `lastname`,
-       u.surname                      AS `surname`,
-       categories.category        AS `category`
-from stories join shared
-        on stories.id = shared.story_id join users u
-       on stories.user_id = u.id join categories
-      on stories.category_id = categories.id;
+CREATE VIEW sharedstories AS
+SELECT
+    stories.category_id,
+    stories.created_at AS created_atDATETIME,
+    stories.id,
+    stories.image_id,
+    shared.story_id,
+    stories.title,
+    stories.content,
+    shared.user_id,
+    u.name_,
+    u.lastname,
+    u.surname,
+    categories.category,
+    images.image,
+    images.file_name
+FROM
+    stories
+JOIN shared ON stories.id = shared.story_id
+JOIN users u ON stories.user_id = u.id
+JOIN categories ON stories.category_id = categories.id
+JOIN images ON stories.image_id = images.id;
