@@ -59,6 +59,7 @@ import java.util.UUID;
         "/api/superadmin/add-avatar",
         "/api/user/delete-story",
         "/api/superadmin/aprove",
+        "/api/superadmin/aproveAdmin",
         "/api/superadmin/delete-story",
         "/api/user/like",
         "/api/user/like-perfil",
@@ -730,6 +731,12 @@ public class ServletUser extends HttpServlet {
                 System.out.println(id);
                 req.setAttribute(id,new DaoStories().AproveArticle(Long.parseLong(id)));
                 redirect= "/api/superadmin/home";
+                break;
+            case "/api/superadmin/aproveAdmin":
+                id = req.getParameter("articleId");
+                System.out.println(id);
+                req.setAttribute(id,new DaoStories().AproveArticle(Long.parseLong(id)));
+                redirect= "/api/admin/home";
                 break;
             case "/api/superadmin/delete-story":
                 id = req.getParameter("articleId");
