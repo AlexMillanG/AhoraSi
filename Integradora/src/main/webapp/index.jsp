@@ -274,6 +274,11 @@
                             </label>
                         </div>
                     </div>
+                    <label for="img1">Imagen</label>
+                    <input type="file" class="form-control" id="img1"
+                           name="fileCategory" accept="image/*" onchange="handleFileChange1()">
+                    <div class="col-12 mt-5" id="preview1"></div>
+
 
 
                 </form>
@@ -333,7 +338,19 @@
 
     })();
 
-
+    const handleFileChange1 = () => {
+        const inputFile = document.getElementById("img1").files;
+        let preview = document.getElementById("preview1");
+        preview.innerHTML = "";
+        for (let i = 0; i < inputFile.length; i++) {
+            let reader = new FileReader();
+            reader.onloadend = (result) => {
+                preview.innerHTML = "<img src='" + result.target.result
+                    + "' style='height: 200px;width: auto;'/>";
+            }
+            reader.readAsDataURL(inputFile[i]);
+        }
+    }
     function registro(){
         if(formRegistro.checkValidity()){
             console.log("a"+formRegistro.value)

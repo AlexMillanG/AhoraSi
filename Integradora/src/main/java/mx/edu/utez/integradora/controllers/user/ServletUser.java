@@ -303,6 +303,21 @@ public class ServletUser extends HttpServlet {
 
             case "/api/user/save":
                 try {
+                    user=new User();
+                    for (Part part: req.getParts()){
+                        filename=part.getSubmittedFileName();
+                        System.out.println(part.getSubmittedFileName());
+                        System.out.println(filename);
+                        if (filename!=null){
+                            mime =part.getContentType().split("/")[1];
+                            System.out.println(mime);
+                            String uid= UUID.randomUUID().toString();
+                            user.setFile_name(uid+"."+mime);
+                            InputStream stream=part.getInputStream();
+                            byte[] arr=stream.readAllBytes();
+                            user.setImage(arr);
+                        }
+                    }
                     name = req.getParameter("name");
                     lastname = req.getParameter("lastname");
                     surname = req.getParameter("surname");
