@@ -176,6 +176,9 @@ public class ServletUser extends HttpServlet {
                 req.setAttribute("users", users3);
                 req.setAttribute("categories", new DaoStories().findAllCategories());
 
+                List<Categories> categories1 = new DaoCategories().fiandAll();
+                req.setAttribute("categorias",categories1);
+
                 redirect = "/view/admin/adminHistorias.jsp";
                 break;
 
@@ -194,6 +197,8 @@ public class ServletUser extends HttpServlet {
             //EndPonits  superAdmin
             case "/api/superadmin/home":
                 List<Objects> waitingArticles = new ArrayList<>();
+                List<Status> status = new ArrayList<>();
+              //  req.setAttribute("status",new DaoSta;
                 req.setAttribute("waitingArticles", new DaoStories().findAllWaitingArticles());
                 redirect = "/view/superadmin/adminIndex.jsp";
                 break;
