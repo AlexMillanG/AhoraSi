@@ -59,7 +59,7 @@ public class DaoShared {
                 stories.setId(rs.getLong("story_id"));
                 stories.setTitle(rs.getString("title"));
                 stories.setContent(rs.getString("content"));
-                stories.setImg_id(rs.getLong("image_id_de_Stories"));
+                stories.setImg_id(rs.getLong("image_id"));
                 Stories.add(stories);
                 shared.setStories(stories);
                 shared.setUser(user);
