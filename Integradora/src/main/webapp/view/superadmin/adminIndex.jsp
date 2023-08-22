@@ -129,11 +129,6 @@
                                             <button type="submit" class="btn" style="float: right; width: 50%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;"> Eliminar </button>
                                         </form>
 
-                                        <form action="/api/superadmin/change-status" method="post">
-                                            <select name="status" id="statis"></select>
-                                            
-                                        </form>
-
                                     </div>
                                 </div>
                                 </c:forEach>

@@ -86,6 +86,18 @@
 
 
                     <div>
+                      <form action="/api/superadmin/change-status" method="post">
+                            
+
+                        <label for="status">Actualizar status</label>
+                        <br>
+                        <select name="status" id="status">
+                          <option value="3">publicado</option>
+                          <option value="4">en espera</option>
+                          <option value="5">aprovado</option>
+                        </select>
+
+                      </form>
                       <div class="accordion-body">
                         <p class="card-text">
                           <c:forEach var="comment" items="${comment_list}">
