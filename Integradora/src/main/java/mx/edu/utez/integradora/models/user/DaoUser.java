@@ -170,7 +170,7 @@ public class DaoUser implements DaoRepository<User> {
     }
 
     @Override
-   public boolean save(User object) {
+   public boolean save(User object)throws SQLException {
         try {
             conn= new MySQLConnection().connect();
             conn.setAutoCommit(false);
@@ -181,7 +181,8 @@ public class DaoUser implements DaoRepository<User> {
             pstm.execute();
             rs=pstm.getGeneratedKeys();
             if (rs.next()){
-                String query="insert into users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id) values(?,?,?,?,?,?,?,3,1);";
+                String query="insert into users(name_,lastname,surname,birthday,sex,email,pass,rol_id,status_id,image_id) values(?,?,?,?,?,?,?,3,1,?);";
+                long id=rs.getLong(1);
                 pstm= conn.prepareStatement(query);
                 pstm.setString(1,object.getName());
                 pstm.setString(2,object.getLastname());
@@ -190,12 +191,15 @@ public class DaoUser implements DaoRepository<User> {
                 pstm.setString(5,object.getSex());
                 pstm.setString(6,object.getEmail());
                 pstm.setString(7,object.getPass());
+                pstm.setLong(8,id);
+                pstm.execute();
             }
-
-            return pstm.executeUpdate()>0;
-        }catch (SQLException e){
-            Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"ERROR save"+e.getMessage());
-        }finally {
+            conn.commit();
+            return true;
+        } catch (SQLException e) {
+            Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE, "ERROR save " + e.getMessage());
+            conn.rollback();
+        } finally {
             close();
         }
         return false;

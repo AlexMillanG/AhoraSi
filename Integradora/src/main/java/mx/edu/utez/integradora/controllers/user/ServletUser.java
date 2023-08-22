@@ -303,7 +303,7 @@ public class ServletUser extends HttpServlet {
 
             case "/api/user/save":
                 try {
-                    user=new User();
+                   User user1=new User();
                     for (Part part: req.getParts()){
                         filename=part.getSubmittedFileName();
                         System.out.println(part.getSubmittedFileName());
@@ -312,12 +312,13 @@ public class ServletUser extends HttpServlet {
                             mime =part.getContentType().split("/")[1];
                             System.out.println(mime);
                             String uid= UUID.randomUUID().toString();
-                            user.setFile_name(uid+"."+mime);
+                            user1.setFile_name(uid+"."+mime);
                             InputStream stream=part.getInputStream();
                             byte[] arr=stream.readAllBytes();
-                            user.setImage(arr);
+                            user1.setImage(arr);
                         }
                     }
+
                     name = req.getParameter("name");
                     lastname = req.getParameter("lastname");
                     surname = req.getParameter("surname");
@@ -334,18 +335,18 @@ public class ServletUser extends HttpServlet {
                     status1.setType_status(status);
                     rols.setRol(rol);
                     user = new User();
-                    user.setId(0L);
-                    user.setName(name);
-                    user.setLastname(lastname);
-                    user.setSurname(surname);
-                    user.setBirthday(birthday);
-                    user.setEmail(email);
-                    user.setSex(sex);
-                    user.setPass(pass);
-                    user.setRols(rols);
-                    user.setStatus(status1);
+                    user1.setId(0L);
+                    user1.setName(name);
+                    user1.setLastname(lastname);
+                    user1.setSurname(surname);
+                    user1.setBirthday(birthday);
+                    user1.setEmail(email);
+                    user1.setSex(sex);
+                    user1.setPass(pass);
+                    user1.setRols(rols);
+                    user1.setStatus(status1);
 
-                    boolean result = new DaoUser().save(user);
+                    boolean result = new DaoUser().save(user1);
 
                     if (result) {
 
