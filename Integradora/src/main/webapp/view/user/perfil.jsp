@@ -112,12 +112,12 @@
       <input type="text" class="form-control" value="${user1.sex}">
     </div>
     <div class="form-group">
-      <label for="fotoPerfil">Foto de Perfil:</label>
-      <input type="file" class="form-control-file" id="fotoPerfil">
-      <img id="preview" class="mt-2" style="max-width: 200px;" src="#" alt="Vista previa de la imagen">
+      <c:if test="${not user1.file_name.contains('.octet-stream')}">
+        <img src="/api/user/loadFiles?id=${user1.idImg}" alt="" class="w-100" style="border-radius: 50%">
+      </c:if>
     </div>
     <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editar"
-            onclick="prueba('${user1.id}|${user1.name}|${user1.email}|${user1.pass}|${user1.lastname}|${user1.surname}|${user1.birthday}|${user1.sex}')" name="editar"
+            onclick="prueba('${user1.id}|${user1.name}|${user1.email}|${user1.pass}|${user1.lastname}|${user1.surname}|${user1.birthday}|${user1.sex}|${user1.idImg}')" name="editar"
     ><i data-feather="edit-3"></i>Editar</button>    <button type="button" class="btn btn-secondary">Cancelar</button>
   </form>
 </div>
@@ -129,10 +129,12 @@
         <p  style="font-family: PT serif; text-align: center; font-size: 30px;">Actualizar informacion</p><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="form" action="/api/user/update-plus" method="post" class="needs-validation" novalidate method="post">
+        <form id="form" action="/api/user/update-plus" method="post" class="needs-validation" novalidate method="post"
+              novalidate method="post" enctype="multipart/form-data" novalidate>
           <div class="row">
             <div class="col">
               <div class="form-floating mb-3">
+                <input id="idImg1" hidden name="idImg1">
                 <input id="id" name="id" class="form-control" >
                 <label for="id"> id</label>
                 <input type="text"   name="name" id="name"
@@ -217,6 +219,12 @@
               </label>
             </div>
           </div>
+
+          <label for="img2">Imagen</label>
+          <input type="file" class="form-control" id="img2"
+                 name="fileCategory" accept="image/*" onchange="handleFileChange1()">
+          <div class="col-12 mt-5" id="preview1"></div>
+
           <button type="button" id="updateUserbtn" onclick="upSendForm()"
                   class="btn btn-outline-success btn-sm">
             <i data-feather="check"></i> Aceptar
@@ -325,19 +333,21 @@
   const btn2=document.getElementById("updatestories");
 
 
-  function prueba(user){
+  function prueba(user) {
     var valores = user.split("|");
-    var id=valores[0];
+    var id = valores[0];
     var name = valores[1];
     var correo = valores[2];
-    var password =valores[3];
-    var surname=valores[4];
-    var lastname=valores[5];
-    var birthday=valores[6];
-    var sex=valores[7];
-    console.log("hola "+user);
-    console.log("hola1 "+valores);
-    console.log("hola2 "+name);
+    var password = valores[3];
+    var surname = valores[4];
+    var lastname = valores[5];
+    var birthday = valores[6];
+    var sex = valores[7];
+    var idImg1 = valores[8];
+    console.log("hola " + user);
+    console.log("hola1 " + valores);
+    console.log("hola2 " + name);
+  console.log("Id img "+idImg1);
     document.getElementById("id").value=id;
     document.getElementById("name").value = name;
     document.getElementById("emailRegistro").value= correo;
@@ -346,6 +356,7 @@
     document.getElementById("lastname").value= lastname;
     document.getElementById("birthday").value= birthday;
     document.getElementsByTagName("sex").value=sex;
+    document.getElementById("idImg1").value=idImg1;
   }
   function prueba2(Stories){
     var valores = Stories.split("|");
@@ -406,6 +417,20 @@
   const handleFileChange2 = () => {
     const inputFile = document.getElementById("img1").files;
     let preview = document.getElementById("previewUp");
+    preview.innerHTML = "";
+    for (let i = 0; i < inputFile.length; i++) {
+      let reader = new FileReader();
+      reader.onloadend = (result) => {
+        preview.innerHTML = "<img src='" + result.target.result
+                + "' style='height: 200px;width: auto;'/>";
+      }
+      reader.readAsDataURL(inputFile[i]);
+    }
+  }
+
+  const handleFileChange1 = () => {
+    const inputFile = document.getElementById("img2").files;
+    let preview = document.getElementById("preview1");
     preview.innerHTML = "";
     for (let i = 0; i < inputFile.length; i++) {
       let reader = new FileReader();

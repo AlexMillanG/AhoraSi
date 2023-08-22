@@ -11,6 +11,7 @@ import mx.edu.utez.integradora.models.stories.DaoStories;
 import mx.edu.utez.integradora.models.stories.Stories;
 import mx.edu.utez.integradora.models.user.DaoUser;
 import mx.edu.utez.integradora.models.user.Images;
+import mx.edu.utez.integradora.models.user.User;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -18,7 +19,8 @@ import java.io.OutputStream;
 @WebServlet(name="Files",urlPatterns = {
         "/api/stories/loadFiles",
         "/api/avatar/loadFiles",
-        "/api/categories/loadFiles"
+        "/api/categories/loadFiles",
+        "/api/user/loadFiles"
 })
 
 public class ServletFiles extends HttpServlet {
@@ -27,6 +29,7 @@ public class ServletFiles extends HttpServlet {
     private Categories categories;
     private Images images;
     private DaoStories stories1;
+    private User user;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -51,6 +54,13 @@ public class ServletFiles extends HttpServlet {
             OutputStream outputStream1=resp.getOutputStream();
             outputStream1.write(categories.getFile(),0,categories.getFile().length);
             break;
+        case"/api/user/loadFiles":
+            int id3= Integer.parseInt(req.getParameter("id") != null ? req.getParameter("id") : "0");
+            user=new DaoUser().findFile2(id3);
+            OutputStream outputStream2=resp.getOutputStream();
+            outputStream2.write(user.getImage(),0,user.getImage().length);
+
+            break;
         default:
             if (action=="/api/stories/loadFiles"){
                 req.getRequestDispatcher("/api/user/home").forward(req,resp);
@@ -62,6 +72,11 @@ public class ServletFiles extends HttpServlet {
             }
             if (action=="api/avatar/loadFiles"){
                 req.getRequestDispatcher("/api/superadmin/mas").forward(req,resp);
+            }
+            if (action=="/api/user/loadFiles"){
+                req.getRequestDispatcher("/api/user/home").forward(req,resp);
+                req.getRequestDispatcher("/api/user/perfil").forward(req,resp);
+
             }
 
     }

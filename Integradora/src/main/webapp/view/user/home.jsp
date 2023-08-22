@@ -174,6 +174,13 @@
                                 </div>
                             </div>
 
+<%--                        <div class="form-group">--%>
+<%--                            <c:if test="${not user1.file_name.contains('.octet-stream')}">--%>
+<%--                                <img src="/api/user/loadFiles?id=${user1.idImg}" alt="" class="w-100" style="border-radius: 50%">--%>
+<%--                            </c:if>--%>
+<%--                        </div>--%>
+
+
                         <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade" id="aventura-tab-pane" role="tabpanel" aria-labelledby="aventura-tab"
                          tabindex="0">

@@ -39,6 +39,7 @@ public class DaoUser implements DaoRepository<User> {
                 user.setSex(rs.getString("sex"));
                 user.setEmail(rs.getString("email"));
                 user.setPass(rs.getString("pass"));
+                user.setIdImg(rs.getLong("image_id"));
                 Rols role= new Rols();
                 role.setRol(rs.getString("rol"));
                 user.setRols(role);
@@ -124,9 +125,7 @@ public class DaoUser implements DaoRepository<User> {
                 user.setSex(rs.getString("sex"));
                 user.setEmail(rs.getString("email"));
                 user.setPass(rs.getString("pass"));
-           /*     Rols role= new Rols();
-                role.setRol(rs.getString("rol"));
-                user.setRols(role);*/
+
                 users.add(user);
             }
         }catch (SQLException e){
@@ -155,9 +154,7 @@ public class DaoUser implements DaoRepository<User> {
                 user.setSex(rs.getString("sex"));
                 user.setEmail(rs.getString("email"));
                 user.setPass(rs.getString("pass"));
-//                Rols role= new Rols();
-//                role.setRol(rs.getString("rols"));
-//                user.setRols(role);
+                user.setIdImg(rs.getLong("image_id"));
             }
             return user;
         }catch (SQLException e){
@@ -206,29 +203,37 @@ public class DaoUser implements DaoRepository<User> {
    }
 
     @Override
-    public boolean update(User object) {
+    public boolean update(User object) throws SQLException {
         try {
             conn= new MySQLConnection().connect();
-            String query="UPDATE users SET name_=?, lastname=?, surname=?, birthday=?, sex=?, email=?, pass=?, rol_id=?, status_id=? WHERE id=?;";
-            pstm= conn.prepareStatement(query);
-            pstm.setString(1,object.getName());
-            System.out.println(object.getName());
-            pstm.setString(2,object.getLastname());
-            pstm.setString(3,object.getSurname());
-            pstm.setString(4,object.getBirthday());
-            pstm.setString(5,object.getSex());
-            pstm.setString(6,object.getEmail());
-            pstm.setString(7,object.getPass());
-            System.out.println(object.getRols().getId());
-            pstm.setLong(8,object.getRols().getId());
-            pstm.setLong(9,object.getStatus().getId());
-            pstm.setLong(10,object.getId());
-            System.out.println("rolID"+object.getRols().getId());
-            System.out.println("Status"+object.getStatus().getId());
-            return pstm.executeUpdate()>0;
+            conn.setAutoCommit(false);
+            String queryImg = "update images set image=?,file_name=? where id=?;";
+            pstm=conn.prepareStatement(queryImg,PreparedStatement.RETURN_GENERATED_KEYS);
+            pstm.setBytes(1,object.getImage());
+            pstm.setString(2,object.getFile_name());
+            pstm.setLong(3,object.getIdImg());
+            pstm.execute();
+            rs= pstm.getGeneratedKeys();
+            if (pstm.executeUpdate()==1){
+                String query="UPDATE users SET name_=?, lastname=?, surname=?, birthday=?, sex=?, email=?, pass=?, rol_id=?, status_id=? WHERE id=?;";
+                pstm= conn.prepareStatement(query);
+                pstm.setString(1,object.getName());
+                pstm.setString(2,object.getLastname());
+                pstm.setString(3,object.getSurname());
+                pstm.setString(4,object.getBirthday());
+                pstm.setString(5,object.getSex());
+                pstm.setString(6,object.getEmail());
+                pstm.setString(7,object.getPass());
+                pstm.setLong(8,object.getRols().getId());
+                pstm.setLong(9,object.getStatus().getId());
+                pstm.setLong(10,object.getId());
+                pstm.executeUpdate();
+             }
+            conn.commit();
+            return true;
         }catch (SQLException e){
             Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"ERROR Update"+e.getMessage());
-
+        conn.rollback();
         }
         return false;
     }
@@ -252,6 +257,28 @@ public class DaoUser implements DaoRepository<User> {
             close();
         }
         return images;
+    }
+
+    public User findFile2(long id) {
+      User user = null;
+        try {
+            conn = new MySQLConnection().connect();
+            String query = "SELECT * FROM images WHERE id = ?;";
+            pstm = conn.prepareStatement(query);
+            pstm.setLong(1, id);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                user = new User();
+                user.setFile_name(rs.getString("file_name"));
+                user.setImage(rs.getBytes("image"));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DaoCategories.class.getName())
+                    .log(Level.SEVERE, "ERROR findFile" + e.getMessage());
+        } finally {
+            close();
+        }
+        return user;
     }
 
     public List<Images> imagesList() {

@@ -96,6 +96,7 @@ public class ServletUser extends HttpServlet {
                 break;
             //End Points para usuarios
             case "/api/user/home":
+                id = getSession.getAttribute("id").toString();
                 List<Objects> likes = new ArrayList<>();
 
                 List<Stories> stories = new DaoStories().findAllStories();
@@ -122,6 +123,7 @@ public class ServletUser extends HttpServlet {
                 List<Objects> users = new ArrayList<>();
                 req.setAttribute("users", users);
                 req.setAttribute("categories", new DaoStories().findAllCategories());
+                req.setAttribute("user1", new DaoUser().findOne(id != null ? Long.parseLong(id) : 0));
 
 
                 //       List<Objects> comments = new ArrayList<>();
@@ -275,6 +277,7 @@ public class ServletUser extends HttpServlet {
                     user = new DaoUser().loadUserByUsernameAndPassword(email, pass);
                     if (user != null) {
                         System.out.println(user.getRols().getRol());
+                        System.out.println(user.getIdImg());
                         session = req.getSession();
                         session.setAttribute("user", user);
                         getSession=req.getSession();
@@ -360,7 +363,7 @@ public class ServletUser extends HttpServlet {
                     }
 
                 } catch (Exception e) {
-                    redirect = "/api/user/auth?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
+                    redirect = "/auth?result=false&message=" + URLEncoder.encode("Ocurrio un eror", StandardCharsets.UTF_8);
                 }
                 break;
 
@@ -454,12 +457,28 @@ public class ServletUser extends HttpServlet {
                 break;
             case "/api/user/update":
                 try {
+                    user =new User();
+                    for (Part part: req.getParts()){
+                        filename=part.getSubmittedFileName();
+                        System.out.println(part.getSubmittedFileName());
+                        System.out.println(filename);
+                        if (filename!=null){
+                            mime =part.getContentType().split("/")[1];
+                            System.out.println(mime);
+                            String uid= UUID.randomUUID().toString();
+                            user.setFile_name(uid+"."+mime);
+                            InputStream stream=part.getInputStream();
+                            byte[] arr=stream.readAllBytes();
+                            user.setImage(arr);
+                        }
+                    }
                     id = req.getParameter("id");
                     name = req.getParameter("name");
                     lastname = req.getParameter("lastname");
                     surname = req.getParameter("surname");
                     birthday = req.getParameter("birthday");
                     sex = req.getParameter("sex");
+                    idImg=req.getParameter("idImg1");
                     email = req.getParameter("emailRegistro");
                     pass = req.getParameter("pass");
 
@@ -470,7 +489,7 @@ public class ServletUser extends HttpServlet {
                     status = "1";
                     status1.setId(Long.parseLong(status));
                     rols.setId(Long.parseLong(rol));
-                    user = new User();
+
                     user.setId(Long.parseLong(id));
                     user.setName(name);
                     user.setLastname(lastname);
@@ -501,12 +520,29 @@ public class ServletUser extends HttpServlet {
 
             case "/api/user/update-plus":
                 try {
+                 User user1 =new User();
+                    for (Part part: req.getParts()){
+                        filename=part.getSubmittedFileName();
+                        System.out.println(part.getSubmittedFileName());
+                        System.out.println(filename);
+                        if (filename!=null){
+                            mime =part.getContentType().split("/")[1];
+                            System.out.println(mime);
+                            String uid= UUID.randomUUID().toString();
+                            user1.setFile_name(uid+"."+mime);
+                            InputStream stream=part.getInputStream();
+                            byte[] arr=stream.readAllBytes();
+                            user1.setImage(arr);
+                        }
+                    }
                     id = req.getParameter("id");
                     name = req.getParameter("name");
                     lastname = req.getParameter("lastname");
                     surname = req.getParameter("surname");
                     birthday = req.getParameter("birthday");
                     sex = req.getParameter("sex");
+                    idImg=req.getParameter("idImg1");
+
                     email = req.getParameter("emailRegistro");
                     pass = req.getParameter("pass");
 
@@ -517,18 +553,18 @@ public class ServletUser extends HttpServlet {
                     status = "1";
                     status1.setId(Long.parseLong(status));
                     rols.setId(Long.parseLong(rol));
-                    user = new User();
-                    user.setId(Long.parseLong(id));
-                    user.setName(name);
-                    user.setLastname(lastname);
-                    user.setSurname(surname);
-                    user.setBirthday(birthday);
-                    user.setEmail(email);
-                    user.setSex(sex);
-                    user.setPass(pass);
-                    user.setRols(rols);
-                    user.setStatus(status1);
-                    boolean result = new DaoUser().update(user);
+                    user1.setId(Long.parseLong(id));
+                    user1.setName(name);
+                    user1.setLastname(lastname);
+                    user1.setSurname(surname);
+                    user1.setBirthday(birthday);
+                    user1.setEmail(email);
+                    user1.setSex(sex);
+                    user1.setIdImg(Long.parseLong(idImg));
+                    user1.setPass(pass);
+                    user1.setRols(rols);
+                    user1.setStatus(status1);
+                    boolean result = new DaoUser().update(user1);
 
                     if (result) {
 
