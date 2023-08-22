@@ -108,8 +108,7 @@ public class DaoCategories {
             conn.commit();
             return true;
         } catch (SQLException e) {
-            Logger.getLogger(DaoCategories.class.getName())
-                    .log(Level.SEVERE, "ERROR save " + e.getMessage());
+            Logger.getLogger(DaoCategories.class.getName()).log(Level.SEVERE, "ERROR save " + e.getMessage());
             conn.rollback();
         } finally {
             close();

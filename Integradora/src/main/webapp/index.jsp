@@ -181,7 +181,7 @@
                 </div>
 
                 <form id="formregistrer" action="/api/user/save" method="post" class="needs-validation"
-                      novalidate method="post" enctype="multipart/form-data" novalidate>>
+                      novalidate method="post" enctype="multipart/form-data" novalidate>
                   <div class="row">
                       <div class="col">
                           <div class="form-floating mb-3">
