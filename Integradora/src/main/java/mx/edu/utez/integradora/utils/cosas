@@ -1,9 +1,15 @@
 ROLS
 1.superAdmin
-2 admin
-3 users
+2.admin
+3.users
 
 STATUS
+1.activo
+2.inactivo
+3.publicado
+4.en espera
+5.aprobado
+
 
  // vista para mostrar las historias del usuario
 create view showStoriesByUser as
