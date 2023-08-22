@@ -113,7 +113,7 @@
     </div>
     <div class="form-group">
       <c:if test="${not user1.file_name.contains('.octet-stream')}">
-        <img src="/api/user/loadFiles?id=${user1.idImg}" alt="" class="w-100" style="border-radius: 50%">
+        <img src="/api/user/loadFiles?id=${user1.idImg}" alt="" class="w-100" style="max-width:25%; border-radius: 50%;">
       </c:if>
     </div>
     <button data-bs-toggle="modal" data-bs-target="#updateUsers" type="button" class="btn btn-outline-warning"  id="editar"
