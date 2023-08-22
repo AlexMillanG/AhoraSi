@@ -9,5 +9,7 @@ public class DaoStatus {
     private PreparedStatement pstm;
     private ResultSet rs;
 
-    public boolean update
+    public boolean update;
+
+
 }
