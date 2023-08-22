@@ -69,7 +69,8 @@ import java.util.UUID;
         "/api/user/update-plus",
         "/api/user/save-comment",
         "/api/user/save-comment-perfil",
-        "/api/user/comment"
+        "/api/user/comment",
+        "/api/superadmin/change-status"
 
 
 
