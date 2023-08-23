@@ -75,6 +75,22 @@
                   <div class="col-md-6 p-4 ps-md-0">
                     <h4 class="mt-0">Columns with stretched link</h4>
                     <h5 class="mt-0">Usuario Accion</h5>
+                    <form action="/api/admin/change-story-status" method="post">
+
+                      <h5>status actual: ${Story.status.type_status}</h5>
+
+                      <br>
+                      <input hidden value="${Story.id}" name="story_id">
+                      <label for="status">Actualizar status</label>
+                      <select name="status" id="status">
+                        <option value="3">publicado</option>
+                        <option value="4">en espera</option>
+                        <option value="5">aprobado</option>
+                      </select>
+                      <br>
+                      <button type="submit">actualizar estado</button>
+
+                    </form>
                     <p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
                     <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
                   </div>
