@@ -370,13 +370,14 @@ public class DaoStories {
         return list;
     }
 
-    public boolean updateStatus(Long status_id){
+    public boolean updateStatus(Long status_id, Long story_id){
         try{
             conn = new MySQLConnection().connect();
-            String query ="update stories set status_id = 5 where id=?";
+            String query ="update stories set status_id = ? where id=?";
             pstm= conn.prepareStatement(query);
             pstm.setLong(1, status_id);
-            return pstm.executeUpdate()==1;
+            pstm.setLong(2,story_id);
+            return pstm.executeUpdate()>=1;
         }catch (SQLException e){
             Logger.getLogger(DaoStories.class.getName()).log(Level.SEVERE,"ERROR actualizar status"+e.getMessage());
         }finally {

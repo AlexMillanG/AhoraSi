@@ -70,8 +70,7 @@ import java.util.UUID;
         "/api/user/save-comment",
         "/api/user/save-comment-perfil",
         "/api/user/comment",
-        "/api/superadmin/change-status"
-
+        "/api/superadmin/change-story-status"
 
 
 
@@ -1041,6 +1040,22 @@ public class ServletUser extends HttpServlet {
                 }catch (Exception e){
                     redirect = "/api/user/home?result= " + URLEncoder.encode("Respuesta no publicado correctamente", StandardCharsets.UTF_8);
 
+                }
+                break;
+            case "/api/superadmin/change-story-status":
+                id= req.getParameter("story_id");
+                status = req.getParameter("status");
+                System.out.println("id de historia"+id);
+                System.out.println("status de historia" +status);
+
+                boolean result2 = new DaoStories().updateStatus(Long.parseLong(status),Long.parseLong(id));
+                if (result2){
+                    redirect = "/api/superadmin/admin-historias?result= " + result2 + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado  el status correctamente.",
+                            StandardCharsets.UTF_8);
+                } else {
+
+                    redirect = "/api/superadmin/admin-historias?result= " + result2 + "&message=" + URLEncoder.encode("¡Error! Actualizacion de status no realizada correctamente.",
+                            StandardCharsets.UTF_8);
                 }
                 break;
             default:

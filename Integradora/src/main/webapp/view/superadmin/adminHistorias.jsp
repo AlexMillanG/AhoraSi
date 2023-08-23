@@ -86,16 +86,20 @@
 
 
                     <div>
-                      <form action="/api/superadmin/change-status" method="post">
+                      <form action="/api/superadmin/change-story-status" method="post">
                             
+                        <h5>status actual: ${Story.status.type_status}</h5>
 
-                        <label for="status">Actualizar status</label>
                         <br>
+                        <input hidden value="${Story.id}" name="story_id">
+                        <label for="status">Actualizar status</label>
                         <select name="status" id="status">
                           <option value="3">publicado</option>
                           <option value="4">en espera</option>
-                          <option value="5">aprovado</option>
+                          <option value="5">aprobado</option>
                         </select>
+                        <br>
+                        <button type="submit">actualizar estado</button>
 
                       </form>
                       <div class="accordion-body">
