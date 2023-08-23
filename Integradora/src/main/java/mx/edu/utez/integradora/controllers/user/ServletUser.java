@@ -253,6 +253,7 @@ public class ServletUser extends HttpServlet {
                 System.out.println(id);
                 req.setAttribute("users2", new DaoUser().findOne(id != null ? Long.parseLong(id) : 0));
                 req.setAttribute("users1", new DaoUser().fiandAll());
+
                 redirect = "/view/superadmin/superAdminHome.jsp";
                 break;
 
@@ -612,7 +613,7 @@ public class ServletUser extends HttpServlet {
                     user.setPass(pass);
                     user.setRols(rols);
                     user.setStatus(status1);
-                    boolean result = new DaoUser().update(user);
+                    boolean result = new DaoUser().updateAdmin(user);
 
                     if (result) {
 
