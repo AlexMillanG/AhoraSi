@@ -20,7 +20,7 @@ public class DaoStories {
         List<Stories> stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query= "SELECT * from showStoriesByUser where status_id < 4  ;";
+            String query= "SELECT * from showStoriesByUser where status_id < 4 order by created_atDATETIME;";
             pstm= conn.prepareStatement(query);
             rs= pstm.executeQuery();
             while (rs.next()){
@@ -59,7 +59,7 @@ public class DaoStories {
         List<Stories> stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query= "SELECT * from showStoriesByUser where status_id = 4;";
+            String query= "SELECT * from showStoriesByUser where status_id = 4 order by created_atDATETIME;";
             pstm= conn.prepareStatement(query);
             rs= pstm.executeQuery();
             while (rs.next()){
@@ -94,7 +94,7 @@ public class DaoStories {
         List<Stories> stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query= "SELECT * from showStoriesByUser where status_id = 5;";
+            String query= "SELECT * from showStoriesByUser where status_id = 5 order by created_atDATETIME;";
             pstm= conn.prepareStatement(query);
             rs= pstm.executeQuery();
             while (rs.next()){
@@ -136,7 +136,7 @@ public class DaoStories {
         List<Stories> Stories=new ArrayList<>();
         try {
             conn = new MySQLConnection().connect();
-            String query= "SELECT * from showStoriesByUser where user_id = ?;";
+            String query= "SELECT * from showStoriesByUser where user_id = ? order by created_atDATETIME;";
             pstm= conn.prepareStatement(query);
             pstm.setLong(1,id);
             rs= pstm.executeQuery();
@@ -148,6 +148,7 @@ public class DaoStories {
                 stories1.setContent(rs.getString("content"));
                 stories1.setImg_id(rs.getLong("image_id"));
                 stories1.setFile_name(rs.getString("file_name"));
+                stories1.setCreated_atDATETIME("created_atDATETIME");
                 User user = new User();
                 user.setName(rs.getString("name_"));
                 user.setLastname(rs.getString("lastname"));
@@ -176,7 +177,7 @@ public class DaoStories {
     public  boolean AproveArticle(Long id){
         try {
             conn=new MySQLConnection().connect();
-            String query="update stories set status_id = 5 where id =?";
+            String query="update stories set status_id = 5 where id =? ";
             pstm= conn.prepareStatement(query);
             pstm.setLong(1,id);
             return pstm.executeUpdate()==1;
@@ -213,7 +214,7 @@ public class DaoStories {
     public  Stories findOne(Long id){
         try {
             conn = new MySQLConnection().connect();
-            String query="select * from stories where id= ?";
+            String query="select * from stories where id= ? order by created_atDATETIME";
             pstm= conn.prepareStatement(query);
             pstm.setLong(1,id);
             rs= pstm.executeQuery();
@@ -222,7 +223,7 @@ public class DaoStories {
                 stories.setId(rs.getLong("id"));
                 stories.setTitle(rs.getString("title"));
                 stories.setContent(rs.getString("content"));
-                stories.setCreated_atDATETIME(rs.getString("created_ad"));
+                stories.setCreated_atDATETIME(rs.getString("created_atDATETIME"));
                 stories.setFile(rs.getBytes("file"));//Aqui aun no funciona
                 Status status= new Status();
                 status.setType_status(rs.getString("type_status"));
