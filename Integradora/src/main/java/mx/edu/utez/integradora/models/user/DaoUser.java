@@ -326,10 +326,11 @@ public class DaoUser implements DaoRepository<User> {
         return false;
 
     }
+
     public boolean updateAdmin(User object) {
         try {
             conn= new MySQLConnection().connect();
-            String query="update   users set name_ =? ,lastname = ? ,surname = ?,birthday = ?,sex = ?,email = ?,pass = ?,rol_id = ?,status_id = ? where rol_id =2;";
+            String query="update users set name_ =? ,lastname = ? ,surname = ?,birthday = ?,sex = ?,email = ?,pass = ?,status_id = ? where id=?";
             pstm= conn.prepareStatement(query);
             pstm.setString(1,object.getName());
             pstm.setString(2,object.getLastname());
@@ -338,12 +339,11 @@ public class DaoUser implements DaoRepository<User> {
             pstm.setString(5,object.getSex());
             pstm.setString(6,object.getEmail());
             pstm.setString(7,object.getPass());
-            pstm.setLong(8,object.getRols().getId());
-            pstm.setLong(9,object.getStatus().getId());
+            pstm.setLong(8,object.getStatus().getId());
+            pstm.setLong(9,object.getId());
             return pstm.executeUpdate()>0;
         }catch (SQLException e){
             Logger.getLogger(DaoUser.class.getName()).log(Level.SEVERE,"ERROR Update"+e.getMessage());
-
         }
         return false;
     }

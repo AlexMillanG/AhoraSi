@@ -140,7 +140,6 @@ public class DaoStories {
             pstm= conn.prepareStatement(query);
             pstm.setLong(1,id);
             rs= pstm.executeQuery();
-            System.out.println(rs.next());
             while (rs.next()) {
                 Stories stories1=new Stories();
                 stories1.setId(rs.getLong("id"));

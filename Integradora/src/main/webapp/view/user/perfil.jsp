@@ -54,12 +54,13 @@
               <div style="float: right;margin-top: 2%;">
                 <button data-bs-toggle="modal" data-bs-target="#updateUser" type="button" class="btn"
                         id="editar"
-                        onclick="prueba('${user1.id}|${user1.name}|${user1.email}|${user1.pass}|${user1.lastname}|${user1.surname}|${user1.birthday}|${user1.sex}')"
+                        onclick="prueba('${user1.id}|${user1.name}|${user1.email}|${user1.pass}|${user1.lastname}|${user1.surname}|${user1.birthday}|${user1.sex}|${user1.idImg}')"
                         name="editar"
                 ><i class="fa-solid fa-pen"></i>
                 </button>
               </div>
             </div>
+
           </div>
           <div class="input-group mb-3" style="display: flex; flex-direction: row;" data-bs-toggle="modal"
                data-bs-target="#CreateStory">
@@ -383,7 +384,7 @@
                   </div>
                   <div class="container-fluid" id="campo" style="margin-bottom: 5px;">
                     <label for="categories">Categoria</label>
-                    <select name="categories" id="categories" class="form-select" required>
+                    <select name="categories" id="categories1" class="form-select" required>
                       <option value="">Seleccione</option>
                       <s:forEach var="category" items="${categories}">
                         <option
@@ -509,6 +510,7 @@
     </div>
   </div>
 </div>
+
 <%--Modal ADmin User--%>
 <div class="modal fade" id="updateUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -520,7 +522,8 @@
         <strong>Actualizar Información</strong></p>
       <div class="modal-body">
         <form id="form" action="/api/user/update-plus" method="post" class="needs-validation" novalidate
-              method="post">
+              method="post" enctype="multipart/form-data">
+          <input hidden id="idImg1" name="idImg1">
           <div class="card mb-3" style="border: none">
             <div class="row g-0">
               <div class="col-md-4">
@@ -675,8 +678,8 @@
                   </tr>
                   <tr>
                     <th colspan="2">
-                      <button class="container-fluid" type="button" id="updatestories"
-                              onclick="upSendForm2()"
+                      <button class="container-fluid" type="button" id="updateUserbtn"
+                              onclick="upSendForm()"
                               style="height: 50px; background-color: black; font-family: PT serif; width: 100% ;color: #FFF; border-radius: 15px;">
                         Aceptar
                       </button>

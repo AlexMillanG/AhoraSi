@@ -11,7 +11,7 @@
 <head>
     <title>Administrador home</title>
     <link href="../../assets/css/style.css" rel="stylesheet" type="text/css">
-    <jsp:include page="../../layouts/head.jsp"/>
+    <jsp:include page="/layouts/head.jsp"/>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
     <table class="table" style="font-family: PT Serif">
         <tr>
             <th scope="col" class="logo1">
-                <img src= "../../assets/img/logo.png"  class="logo">
+                <img src= "/assets/img/logo.png"  class="logo">
             </th>
             <th scope="col">
                 <div  class="container-fluid" id="cont-1">

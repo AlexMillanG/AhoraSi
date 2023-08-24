@@ -458,22 +458,10 @@ public class ServletUser extends HttpServlet {
                 }
                 break;
             case "/api/user/update":
+                //desde el perfil de usuario
                 try {
                     user =new User();
-                    for (Part part: req.getParts()){
-                        filename=part.getSubmittedFileName();
-                        System.out.println(part.getSubmittedFileName());
-                        System.out.println(filename);
-                        if (filename!=null){
-                            mime =part.getContentType().split("/")[1];
-                            System.out.println(mime);
-                            String uid= UUID.randomUUID().toString();
-                            user.setFile_name(uid+"."+mime);
-                            InputStream stream=part.getInputStream();
-                            byte[] arr=stream.readAllBytes();
-                            user.setImage(arr);
-                        }
-                    }
+
                     id = req.getParameter("id");
                     name = req.getParameter("name");
                     lastname = req.getParameter("lastname");
@@ -502,7 +490,7 @@ public class ServletUser extends HttpServlet {
                     user.setPass(pass);
                     user.setRols(rols);
                     user.setStatus(status1);
-                    boolean result = new DaoUser().update(user);
+                    boolean result = new DaoUser().updateAdmin(user);
 
                     if (result) {
 
@@ -544,6 +532,7 @@ public class ServletUser extends HttpServlet {
                     birthday = req.getParameter("birthday");
                     sex = req.getParameter("sex");
                     idImg=req.getParameter("idImg1");
+                    System.out.println(idImg);
 
                     email = req.getParameter("emailRegistro");
                     pass = req.getParameter("pass");
@@ -569,10 +558,8 @@ public class ServletUser extends HttpServlet {
                     boolean result = new DaoUser().update(user1);
 
                     if (result) {
-
                         redirect = "/api/user/perfil?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado correctamente.",
                                 StandardCharsets.UTF_8);
-
                     } else {
 
                         redirect = "//api/user/perfil?result= " + result + "&message=" + URLEncoder.encode("¡Error! Actualizacion no realizada correctamente.",
@@ -659,7 +646,7 @@ public class ServletUser extends HttpServlet {
                     user.setPass(pass);
                     user.setRols(rols);
                     user.setStatus(status1);
-                    boolean result = new DaoUser().update(user);
+                    boolean result = new DaoUser().updateAdmin(user);
                     if (result) {
 
                         redirect = "/api/superadmin/admins-view?result= " + result + "&message=" + URLEncoder.encode("¡Éxito! has Actualizado correctamente.",

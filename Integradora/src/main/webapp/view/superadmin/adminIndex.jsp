@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>SuperAdmin index</title>
-    <jsp:include page="../../layouts/head.jsp"/>
+    <jsp:include page="/layouts/head.jsp"/>
 </head>
 <body>
 <jsp:include page="/layouts/navbarSupeadmin.jsp"/>
@@ -33,8 +33,11 @@
                              style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 30px;margin-bottom: 10px;margin-top: 10px">
                             <div class="row g-0">
                                 <div class="col-md-4" style="background-color: #0dcaf0;border-radius: 30px 0px 0px 30px;padding: 0">
-                                    <img src="../../assets/img/1.jpg" class="img-fluid"
+                                    <c:if test="${not Article.file_name.contains('.octet-stream')}">
+                                    <img src="/api/stories/loadFiles?id=${Article.img_id}"class="img-fluid"
                                          style="border-radius: 30px 0px 0px 30px;height: 100%">
+                                    </c:if>
+
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">

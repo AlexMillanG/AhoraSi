@@ -11,11 +11,11 @@
 <html>
 <head>
     <title>SuperAdmin Usuarios</title>
-    <jsp:include page="../../layouts/head.jsp"/>
+    <jsp:include page="/layouts/head.jsp"/>
 </head>
 <body>
 <body>
-<jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
+<jsp:include page="/layouts/navbarSupeadmin.jsp"/>
 <div class="container-fluid" id='cont'>
     <table class="table">
         <thead>
@@ -178,7 +178,7 @@
                     border-radius: 15px;
                     margin-left: 3px;
                     font-family: PT serif;">
-                                    <label for="name">Correo Electrónico:</label>
+                                    <label for="emailRegistro">Correo Electrónico:</label>
                                     <input type="email" class="form-control" name="emailRegistro" id="emailRegistro"
                                            placeholder="matricula@utez.edu.mx" required
                                            style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
@@ -227,7 +227,7 @@
                     border-radius: 15px;
                     margin-left: 3px;
                     font-family: PT serif;">
-                                    <label for="name">Contraseña:</label>
+                                    <label for="pass">Contraseña:</label>
                                     <input type="password" name="pass" class="form-control" id="pass"
                                            placeholder="name" placeholder="Contraseña" required
                                            style="border: none; outline: none;padding: 10px; border-radius: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
