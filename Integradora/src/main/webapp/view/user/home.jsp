@@ -8,295 +8,480 @@
 <html>
 <head>
     <title>Home - Hitu</title>
-    <jsp:include page="/layouts/head.jsp"/>
+    <jsp:include page="../../layouts/head.jsp"/>
 </head>
 <body>
 <%-- chingadera de crear foro --%>
 <div class="container-fluid" id='cont'>
     <table class="table">
         <tr>
-            <th scope="col" class="logo1">
-                <img src="../../assets/img/logo.png" class="logo">
-            </th>
             <th scope="col">
                 <div class="container-fluid" id='cont-2'>
+                    <jsp:include page="../../layouts/navbar.jsp"/>
 
-                    <jsp:include page="/layouts/navbar.jsp"/>
-                    <div id="carrusel" class="container-fluid">
-                        <h1 style="margin-top: 20px; font-family: PT serif ;">Bienvenido </h1>
-                        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active" data-bs-interval="10000" style="margin-bottom: 30px;"
-                                     style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                                    <img src="../../assets/img/1.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item" data-bs-interval="2000" style="margin-bottom: 30px;"
-                                     style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                                    <img src="../../assets/img/2.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="../../assets/img/3.jpg" class="d-block w-100" alt="..."
-                                         style="margin-bottom: 30px;" style="margin-left: 30px;"
-                                         style="margin-right: 30px;" style="border-radius: 15%;">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+                    <!--crear-->
+                    <div class="input-group mb-3" style="display: flex; flex-direction: row;" data-bs-toggle="modal"
+                         data-bs-target="#CreateStory">
+                        <div class="input-group-text" style="background-color: #FFF; border: none; padding-top: 5px;">
+                            <img src="assets/img/logo1.png" style="width: 50px; border-radius: 100%;">
+                        </div>
+                        <div class="container-fluid" style="font-size: 16px; font-family: PT serif;font-weight: 100; padding: 10px; width: 85%; height: 50px;border-radius: 15px;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                            ">
+                            ¿HITU que cuentas? <i style="float: right; padding: 5px;"
+                                                  class="fa-regular fa-paper-plane"></i>
                         </div>
                     </div>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist"
-                        style="float: right; font-family: PT serif; color: #8081B7;">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="accion-tab" data-bs-toggle="tab"
-                                    data-bs-target="#accion-tab-pane" type="button" role="tab"
-                                    aria-controls="accion-tab-pane" aria-selected="true">Historias
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="aventura-tab" data-bs-toggle="tab"
-                                    data-bs-target="#aventura-tab-pane" type="button" role="tab"
-                                    aria-controls="aventura-tab-pane" aria-selected="false">Articulos
-                            </button>
-                        </li>
-                    </ul>
+                    <c:forEach var="Story" items="${stories}" varStatus="status">
+                    <div class="card mb-3"
+                         style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 30px;margin-bottom: 30px;margin-top: 10px">
+                        <div class="row g-0">
+                            <c:if test="${not Story.file_name.contains('.octet-stream')}">
+                                <div class="col-md-4" style="border-radius: 30px 0px 0px 30px;padding: 0">
+                                    <img src="/api/stories/loadFiles?id=${Story.img_id}" alt="" class="img-fluid"
+                                         style="border-radius: 30px 0px 0px 30px;height: 100%;">
+                                </div>
+                            </c:if>
+                            <style>
+                                #cont-story {
+                                    width: 100%;
+                                    border-radius: 15px;
+                                    height: 200px;
+                                    overflow-y: scroll;
+                                    padding: 5px;
+                                    font-family: Serif;
+                                    white-space: pre-line;
+                                    border-radius: 10px;
+                                    border: none;
+                                }
 
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="accion-tab-pane" role="tabpanel"
-                             aria-labelledby="accion-tab" tabindex="0">
-                            <div class="container-fluid"
-                                 style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  border-radius: 15px; margin-bottom: 15px;">
-                                <div class="row g-0 bg-body-secondary position-relative">
+                                #cont-story::-webkit-scrollbar-thumb {
+                                    background-color: #8081B7;
+                                    width: 2px;
+                                    border-radius: 3px;
+                                }
 
-                                    <div class="col-md-6 mb-md-0 p-md-4">
-                                        <c:forEach var="Story" items="${stories}">
-                                            <c:if test="${not Story.file_name.contains('.octet-stream')}">
-                                                <img src="/api/stories/loadFiles?id=${Story.img_id}" alt="" class="w-100">
-                                            </c:if>
+                                #cont-story::-webkit-scrollbar {
+                                    width: 8px;
+                                    background-color: #ffffff;
+                                }
+                            </style>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h4 class="mt-0" style=" margin-top: 5px;margin-bottom: 5px;
+                                        font-family: PT serif;font-size: 24px;font-weight: bolder;">
+                                        <c:out value="${Story.title}"/></h4>
+                                    <h5 style=" margin-top: 5px;margin-bottom: 5px;
+                                        font-family: PT serif;font-size: 20px;font-weight: bolder;">Historia <c:out value="${Story.categories.category}"/></h5>
+                                    <div class="container-fluid" id="cont-story" style="padding: 2%;">
+                                        <h6 style="font-family: PT Serif;font-weight: lighter;"><c:out
+                                                value="${Story.content}"/></h6>
                                     </div>
-                                    <div class="col-md-6 p-4 ps-md-0">
-                                            <h4 class="mt-0"><c:out value="${Story.title}"/></h4>
-
-                                            <h5 class="mt-0"><c:out value="${Story.categories.category}"/></h5>
-                                            <p><c:out value="${Story.content}"/></p>
-                                            <input hidden value="${Story.img_id}">
-                                            <form action="/api/user/like" method="post">
-                                                <input hidden value="${user.id}" name="user_id">
-                                                <input hidden value="${Story.id}" name="story_id">
-                                                <button type="submit"><i data-feather="star"></i></button>
-
-                                            </form>
-
-                                            <p><c:out value="${Story.likes}"></c:out></p>
-                                            <form action="/api/user/shared" method="post">
-                                                <input hidden value="${Story.id}" name="story_id">
-                                                <button type="submit">compartir en el perfil</button>
-                                            </form>
-
-                                            <form action="/api/user/save-comment" method="post">
-                                                <label for="comment"></label>
-                                                <input type="text" name="content" id="comment" placeholder="Comentario">
-                                                <input hidden value="${Story.id}" name="story_id">
-                                                <input hidden value="${user.id}" name="user_id">
-                                                <br>
-                                                <br>
-                                                <button type="submit">Enviar comentario</button>
-                                            </form>
-
-
-                                                            <input hidden value="${Story.id}" name="story_id1">
-                                                        </h2>
-
-                                                        <div>
-                                                            <div class="accordion-body">
-                                                                <p class="card-text">
-                                                                    <c:forEach var="comment" items="${comment_list}">
-                                                                        <c:if test="${Story.id == comment.stories.id}">
-                                                                            <c:out value="${comment.content}"/>
-                                                                        </c:if>
-                                                                    </c:forEach>
-                                                                </p>
-
+                                    <div class="img-fluid">
+                                        <table>
+                                            <tr>
+                                                <th class="reaccion">
+                                                    <form action="/api/user/like" method="post">
+                                                        <input hidden value="${user.id}" name="user_id">
+                                                        <input hidden value="${Story.id}" name="story_id">
+                                                        <button type="submit" class="btn"
+                                                                style=" width: 50px;height: 50px;">
+                                                            <i class="fa-solid fa-heart" style="font-size: 25px;"></i>
+                                                        </button>
+                                                        <c:out value="${Story.likes}"></c:out>
+                                                    </form>
+                                                </th>
+                                                <th>
+                                                    <button
+                                                            type="submit" onclick="ShowComment()"
+                                                            class="btn" style="width: 50px;height: 50px;;">
+                                                        <i class="fa-solid fa-comments" style="font-size: 25px;"></i>
+                                                    </button>
+                                                </th>
+                                                <th>
+                                                    <form action="/api/user/shared" method="post">
+                                                        <input hidden value="${Story.id}" name="story_id">
+                                                        <button type="submit" class="btn"
+                                                                style="width: 50px; margin-top: 1%;">
+                                                            <i class="fa-solid fa-paper-plane"
+                                                               style="font-size: 25px;"></i>
+                                                        </button>
+                                                    </form>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div id="comments-Story">
+                                        <div id="commentNormal" style="">
+                                            <div class="container-fluid"
+                                                 style=" margin-left: 20px; width: 100%; display: flex; flex-direction: row;">
+                                                <form action="/api/user/save-comment" method="post"
+                                                      style="width:100%;">
+                                                    <table style="width: 100%;">
+                                                        <tr>
+                                                            <th style="width: 85%;">
+                                                                <input hidden value="${Story.id}" name="story_id">
+                                                                <input hidden value="${user.id}" name="user_id">
+                                                                <textarea name="content" id="comment"
+                                                                          type="text"
+                                                                          placeholder="Escribe un comentario"
+                                                                          onclick="ShowComment()"></textarea>
+                                                            </th>
+                                                            <th style="width: 15%;">
+                                                                <button class="btn" type="submit"><i
+                                                                        class="fa-regular fa-paper-plane"
+                                                                        style="font-size: 20px"></i></button>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        #comments {
+                            height:100px;
+                            font-size: 14px;
+                            width: 100%;
+                            border-radius: 15px;
+                            overflow-y: scroll;
+                        }
+                        #comments::-webkit-scrollbar {
+                            width: 8px;
+                        }
+                        #comments::-webkit-scrollbar-thumb {
+                            background-color: #8081B7;
+                            width: 2px;
+                            border-radius: 3px;
+                        }
+                    </style>
+                    <div style="background-color: black" id="comments">
+                        <div class="card mb-3" style="width: 100%;border: none">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <c:forEach var="comment" items="${comment_list}">
+                                            <c:if test="${Story.id == comment.stories.id}">
+                                                <div class="col"
+                                                     style=" display:flex; flex-direction: row;margin-bottom: 30px;">
+                                                    <div class="container-fluid"
+                                                         style="background-color: #ffffff;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 15px; padding-top: 10px; padding-left: 10px; padding-right: 10px;">
+                                                        <div style="display: flex; flex-direction: row; font-family: PT serif;">
+                                                            <h5 style="font-size:16px;">
+                                                                Nombre</h5>
+                                                            <h6 style="font-size: 10px;">Fecha</h6>
+                                                        </div>
+                                                        <div class="container-fluid" id="comments2">
+                                                            <p id="text-story">
+                                                                <c:out value="${comment.content}"/>
+                                                            </p>
+                                                        </div>
+                                                        <div style="display: flex; flex-direction: row;">
+                                                            <div style="font-size: 12px; font-family: PT serif; margin-left: 5px;"
+                                                                 onclick="ShowCommentR()">Responder
+                                                            </div>
+                                                            <div style="font-size: 12px; font-family: PT serif;"
+                                                                 onclick="ShowCommentM()">Más
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            <br>
-                                            <br>
-                                            <br>
-                                            <br>
+                                            </c:if>
                                         </c:forEach>
                                     </div>
-
-
-                                    <form id="formHistorias" action="/api/story/save" method="post"
-                                          enctype="multipart/form-data" novalidate>
-                                        <input name="user_id" hidden value="${user.id}">
-                                        <label for="title">titulo</label>
-                                        <br>
-
-                                        <input type="text" name="title" id="title" placeholder="titulo" required>
-                                        <br>
-                                        <label for="content">contenido</label>
-                                        <br>
-                                        <input type="text" name="content" id="content" placeholder="contenido" required>
-
-                                        <br>
-                                        <label for="img1">Imagen</label>
-                                        <input type="file" class="form-control" id="img1"
-                                               name="fileCategory" accept="image/*" onchange="handleFileChange1()">
-                                        <div class="col-12 mt-5" id="preview1"></div>
-                                        <br>
-
-
-                                        <select name="categories" id="Categories" class="form-select" required>
-                                            <option value="">Seleccione ...</option>
-                                            <s:forEach var="category" items="${categories}">
-                                                <option value="${category.id}"><s:out
-                                                        value="${category.category}"/></option>
-                                            </s:forEach>
-                                        </select>
-                                        <select name="status" id="status" class="form-select" required>
-                                            <option value="3">Como historia</option>
-                                            <option value="4">Como articulo</option>
-                                        </select>
-                                        <%--id, title content, created_atDATETIME, file
-                                         status, user, categories--%>
-                                        <button type="submit">enviar</button>
-                                    </form>
                                 </div>
                             </div>
-
-<%--                        <div class="form-group">--%>
-<%--                            <c:if test="${not user1.file_name.contains('.octet-stream')}">--%>
-<%--                                <img src="/api/user/loadFiles?id=${user1.idImg}" alt="" class="w-100" style="border-radius: 50%">--%>
-<%--                            </c:if>--%>
-<%--                        </div>--%>
-
-
-                        <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade" id="aventura-tab-pane" role="tabpanel" aria-labelledby="aventura-tab"
-                         tabindex="0">
-                        <div class="container-fluid"
-                             style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  margin-bottom: 15px;">
-                            <c:forEach var="Article" items="${articles}">
-                            <div class="row g-0 bg-body-secondary position-relative">
-                                <div class="col-md-6 mb-md-0 p-md-4">
-                                    <c:if test="${not Article.file_name.contains('.octet-stream')}">
-                                        <img src="/api/stories/loadFiles?id=${Article.img_id}" alt="" class="w-100">
-                                    </c:if>
+                        </div>
+                    </div>
+                    </c:forEach>
+                    <c:forEach var="Article" items="${articles}">
+                    <div class="card mb-3"
+                         style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 30px;margin-bottom: 30px;margin-top: 10px">
+                        <div class="row g-0">
+                            <c:if test="${not Article.file_name.contains('.octet-stream')}">
+                                <div class="col-md-4" style="border-radius: 30px 0px 0px 30px;padding: 0">
+                                    <img src="/api/stories/loadFiles?id=${Article.img_id}"
+                                         alt="" class="img-fluid"
+                                         style="border-radius: 30px 0px 0px 30px;height: 100%;">
                                 </div>
-                                <div class="col-md-6 p-4 ps-md-0">
-                                        <h4 class="mt-0"><c:out value="${Article.title}"/></h4>
-                                        <h5 class="mt-0"><c:out value="${Article.categories.category}"/></h5>
-                                        <p><c:out value="${Article.content}"/></p>
-                                    <form action="/api/user/like" method="post">
-                                        <input hidden value="${user.id}" name="user_id">
-                                        <input hidden value="${Article.id}" name="story_id">
-                                        <button type="submit"><i data-feather="star"></i></button>
-                                    </form>
+                            </c:if>
+                            <style>
+                                #cont-story1 {
+                                    width: 100%;
+                                    border-radius: 15px;
+                                    height: 200px;
+                                    overflow-y: scroll;
+                                    padding: 5px;
+                                    font-family: Serif;
+                                    white-space: pre-line;
+                                    border-radius: 10px;
+                                    border: none;
+                                }
+                                #cont-story1::-webkit-scrollbar-thumb {
+                                    background-color: #0dcaf0;
+                                    width: 2px;
+                                    border-radius: 3px;
+                                }
 
-                                    <p><c:out value="${Article.likes}"></c:out></p>
-                                    <form action="/api/user/shared" method="post">
-                                        <input hidden value="${Article.id}" name="story_id">
-                                        <button type="submit">compartir en el perfil</button>
-                                    </form>
-
-                                    <form action="/api/user/save-comment" method="post">
-                                        <label for="comment"></label>
-                                        <input type="text" name="content" id="comment1" placeholder="Comentario">
-                                        <input hidden value="${Article.id}" name="story_id">
-                                        <input hidden value="${user.id}" name="user_id">
-                                        <br>
-                                        <br>
-                                        <button type="submit">Enviar comentario</button>
-                                    </form>
-
-
-                                    <div class="accordion-body">
-                                        <p class="card-text">
-                                            <c:forEach var="comment" items="${comment_listArticles}">
-                                                <c:if test="${Article.id == comment.stories.id}">
-                                                    <c:out value="${comment.content}"/>
-                                                </c:if>
-                                            </c:forEach>
-                                        </p>
-
+                                #cont-story1::-webkit-scrollbar {
+                                    width: 8px;
+                                    background-color: #ffffff;
+                                }
+                            </style>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h4 class="mt-0" style=" margin-top: 5px;margin-bottom: 5px;
+                                        font-family: PT serif;font-size: 24px;font-weight: bolder;">
+                                        <c:out value="${Article.title}"/></h4>
+                                    <h5 style=" margin-top: 5px;margin-bottom: 5px;
+                                        font-family: PT serif;font-size: 20px;font-weight: bolder;">Articulo  <c:out value="${Story.categories.category}"/></h5>
+                                    <div class="container-fluid" id="cont-story1" style="padding: 2%;">
+                                        <h6 style="font-family: PT Serif;font-weight: lighter;"><c:out value="${Article.content}"/></h6>
                                     </div>
-
+                                    <div class="img-fluid-">
+                                        <table>
+                                            <tr>
+                                                <th class="reaccion">
+                                                    <form action="/api/user/like" method="post">
+                                                        <input hidden value="${user.id}" name="user_id">
+                                                        <input hidden value="${Story.id}" name="story_id">
+                                                        <button type="submit" class="btn"
+                                                                style=" width: 50px;height: 50px;">
+                                                            <i class="fa-solid fa-heart" style="font-size: 25px;"></i>
+                                                        </button>
+                                                        <c:out value="${Story.likes}"></c:out>
+                                                    </form>
+                                                </th>
+                                                <th>
+                                                    <button
+                                                            type="submit" onclick="ShowComment()"
+                                                            class="btn" style="width: 50px;height: 50px;;">
+                                                        <i class="fa-solid fa-comments" style="font-size: 25px;"></i>
+                                                    </button>
+                                                </th>
+                                                <th>
+                                                    <form action="/api/user/shared" method="post">
+                                                        <input hidden value="${Story.id}" name="story_id">
+                                                        <button type="submit" class="btn"
+                                                                style="width: 50px; margin-top: 1%;">
+                                                            <i class="fa-solid fa-paper-plane"
+                                                               style="font-size: 25px;"></i>
+                                                        </button>
+                                                    </form>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div id="comments-Story">
+                                        <div id="commentNormal" style="">
+                                            <div class="container-fluid"
+                                                 style=" margin-left: 20px; width: 100%; display: flex; flex-direction: row;">
+                                                <form action="/api/user/save-comment" method="post"
+                                                      style="width:100%;">
+                                                    <table style="width: 100%;">
+                                                        <tr>
+                                                            <th style="width: 85%;">
+                                                                <input hidden value="${Story.id}" name="story_id">
+                                                                <input hidden value="${user.id}" name="user_id">
+                                                                <textarea name="content" id="comment"
+                                                                          type="text"
+                                                                          placeholder="Escribe un comentario"
+                                                                          onclick="ShowComment()"></textarea>
+                                                            </th>
+                                                            <th style="width: 15%;">
+                                                                <button class="btn" type="submit"><i
+                                                                        class="fa-regular fa-paper-plane"
+                                                                        style="font-size: 20px"></i></button>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
-                            </c:forEach>
-
                         </div>
                     </div>
+                    <style>
+                        #comments {
+                            height: 50px;
+                            font-size: 14px;
+                            width: 100%;
+                            border-radius: 15px;
+                            overflow-y: scroll;
+                        }
+
+                        #comments:hover {
+                            width: 100%; /* medida aumentada */
+                            height: 250px; /* medida aumentada */
+                            background-color: #5A6AA9;
+                        }
+
+                        #comments::-webkit-scrollbar {
+                            width: 8px;
+                        }
+
+                        #comments::-webkit-scrollbar-thumb {
+                            background-color: #8081B7;
+                            width: 2px;
+                            border-radius: 3px;
+                        }
+                    </style>
+                    <div style="display: block" id="comments-${status.index}">
+                        <div class="card mb-3" style="width: 100%;border: none">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <c:forEach var="comment" items="${comment_list}">
+                                            <c:if test="${Story.id == comment.stories.id}">
+                                                <div class="col"
+                                                     style=" display:flex; flex-direction: row;margin-bottom: 30px;">
+                                                    <div class="container-fluid"
+                                                         style="background-color: #ffffff;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 15px; padding-top: 10px; padding-left: 10px; padding-right: 10px;">
+                                                        <div style="display: flex; flex-direction: row; font-family: PT serif;">
+                                                            <h5 style="font-size:16px;">
+                                                                Nombre</h5>
+                                                            <h6 style="font-size: 10px;">Fecha</h6>
+                                                        </div>
+                                                        <div class="container-fluid" id="comments2">
+                                                            <p id="text-story">
+                                                                <c:out value="${comment.content}"/>
+                                                            </p>
+                                                        </div>
+                                                        <div style="display: flex; flex-direction: row;">
+                                                            <div style="font-size: 12px; font-family: PT serif; margin-left: 5px;"
+                                                                 onclick="ShowCommentR()">Responder
+                                                            </div>
+                                                            <div style="font-size: 12px; font-family: PT serif;"
+                                                                 onclick="ShowCommentM()">Más
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </c:if>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-
+                    </div>
+                    </c:forEach>
 
             </th>
         </tr>
-    </table>
-                    </div>
-
-                </div>
-            </th>
-        </tr>
-        </thead>
     </table>
 </div>
 
-<div class="modal fade" id="verHistoria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+</div>
+</th>
+</tr>
+</thead>
+</table>
+</div>
+<div class="modal fade" id="CreateStory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-
-                </p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row g-0 bg-body-secondary position-relative" style="height: 25%">
-                    <div class="col-md-6 mb-md-0 p-md-4" style="height: 25%">
-                        <img src="../../assets/img/3.jpg" class="w-100" alt="...">
-                    </div>
-                    <div class="col-md-6 p-4 ps-md-0" style="height: 25%">
-                        <h4 class="mt-0">Columns with stretched link</h4>
-                        <h5 class="mt-0">Usuario</h5>
-                        <div style="	overflow-y: scroll; height: 300px;">
-                            <div style="font-family: PT serif; margin-top: 5%; margin-bottom: 5%; margin-left: 5%; margin-right: 5%;">
-                                <p> Contrary to popular belief, Lorem Ipsum is not simply random text.
-                                    It has roots in a piece of classical Latin literature from 45 BC,
-                                    making it over 2000 years old. Richard McClintock, a Latin professor
-                                    at Hampden-Sydney College in Virginia, looked up one of the more obscure
-                                    Latin words, consectetur, from a Lorem Ipsum passage, and going through
-                                    the cites of the word in classical literature, discovered the undoubtable
-                                    source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus
-                                    Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in
-                                    45 BC. This book is a treatise on the theory of ethics, very popular during the
-                                    Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes
-                                    from a line in section 1.10.32.
-                                    Another instance of placeholder content for this other custom component.
-                                    It is intended to mimic what some real-world content would look like, and we're
-                                    using it here to give the component a bit of body and size.</p>
+    <div class="modal-dialog ">
+        <div class="modal-content" style="padding: 10px; border-radius: 30px ;font-family: PT serif;">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    style="margin-left: 95%;"></button>
+            <h5 style="font-family: PT serif; font-size: 30px;text-align: center;">Crear Historia</h5>
+            <form id="formHistorias" action="/api/story/save" method="post"
+                  enctype="multipart/form-data" novalidate>
+                <div class="card mb-3" style="width: 100%; border: none; box-shadow: none;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div class="col-32">
+                                <label for="img1">Imagen</label>
+                                <input type="file" class="form-control" id="img1"
+                                       name="fileCategory" accept="image/*" onchange="handleFileChange1()">
+                                <div class="img-fluid" id="preview1"></div>
                             </div>
                         </div>
+                        <div class="col-md-8">
+                            <div class="container-fluid" style="width: 100%; padding: 15px;">
+                                <div class="container-fluid" style="width: 100%; padding: 1px;">
+                                    <input name="user_id" hidden value="${user.id}">
+                                    <div class="container-fluid " style="width: 100%; margin-bottom:5px">
+                                        <label for="title">Titulo</label>
+                                        <input type="text" name="title" id="title" required
+                                               style=" box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-bottom: 5px;width: 100%;border: none;">
+                                        <div class="invalid-feedback is-invalid" style="float: right;">
+                                            Campo obligatorio
+                                        </div>
+                                    </div>
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <th style="width: 50%;">
+                                                <div class="container-fluid" style="margin-bottom: 5px;">
+                                                    <label>Categoria</label>
+                                                    <select name="categories" id="Categories" class="form-select"
+                                                            required
+                                                            style="width: 100%; height: 35px;  border: none;
+                        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);border-radius: 30px;">
+                                                        <option value="">Seleccione</option>
+                                                        <s:forEach var="category" items="${categories}">
+                                                            <option value="${category.id}"><s:out
+                                                                    value="${category.category}"/></option>
+                                                        </s:forEach>
+                                                    </select>
+                                                    <div class="invalid-feedback is-invalid" style="float: right;">
+                                                        Campo obligatorio
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th style="width: 50%;">
+                                                <div class="container-fluid" style="margin-bottom: 5px;">
+                                                    <label for="status">Tipo</label>
+                                                    <select name="status" id="status" class="form-select" required
+                                                            style="width: 100%; height: 35px;  border: none;
+                        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);border-radius: 30px;">
+                                                        <option value="">Seleccione</option>
+                                                        <option value="3">Historia</option>
+                                                        <option value="4">Articulo</option>
+                                                    </select>
+                                                    <div class="invalid-feedback is-invalid" style="float: right;">
+                                                        Campo obligatorio
+                                                    </div>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </table>
+                                    <div class="container-fluid " style="margin-bottom: 5px;">
+                                        <label for="content">Contenido</label>
+                                        <textarea type="text" name="content" id="content" required></textarea>
+                                        <div class="invalid-feedback is-invalid" style="float: right;">
+                                            Campo obligatorio
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button type="submit" class="btn"
+                                style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px; ">
+                            Publicar
+                        </button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
+
+</div>
+</div>
 <jsp:include page="../../layouts/footer.jsp"/>
+
 <script>
+
     // const agregarB = document.getElementById("agregar");
     // const form = document.getElementById("pokemon-form");
     // (function () {
@@ -311,7 +496,6 @@
     //     }, false);
     //
     // })();
-
     const handleFileChange1 = () => {
         const inputFile = document.getElementById("img1").files;
         let preview = document.getElementById("preview1");
@@ -320,12 +504,42 @@
             let reader = new FileReader();
             reader.onloadend = (result) => {
                 preview.innerHTML = "<img src='" + result.target.result
-                    + "' style='height: 200px;width: auto;'/>";
+                    + "' style='height:auto;width: 150px;'/>";
             }
             reader.readAsDataURL(inputFile[i]);
         }
     }
 </script>
 
+<script>
+    function CloseComment() {
+        document.getElementById('comments').style.display = 'none';
+        ;
+    }
+
+    function ShowComment() {
+        document.getElementById('comments').style.display = '';
+    }
+
+    function ShowCommentR() {
+        document.getElementById('commentNormal').style.display = 'none';
+        document.getElementById('commentResp').style.display = '';
+    }
+
+    function ShowCommentN() {
+        document.getElementById('commentNormal').style.display = '';
+        document.getElementById('commentResp').style.display = 'none';
+    }
+
+    function ShowCommentM() {
+        document.getElementById('CommmentMore').style.display = '';
+    }
+
+    function CloseMoreComment() {
+        document.getElementById('CommmentMore').style.display = 'none';
+    }
+</script>
+
+</script>
 </body>
 </html>

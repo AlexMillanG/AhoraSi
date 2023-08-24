@@ -21,7 +21,7 @@
     }
 </style>
 <body>
-<jsp:include page="../../layouts/navbar.jsp"/>
+<jsp:include page="/layouts/navbarAdmin.jsp"/>
 
 <div class="container-fluid" id='cont'>
     <table class="table">
@@ -98,8 +98,8 @@
                                 <button data-bs-toggle="modal" data-bs-target="#verHistoria" type="button" class="btn" style="float: right; width: 100%; height: 35px; background-color: #8081B7; color: #FFF; border-radius: 20px;" >Leer Historia</button>
                             </div>
                         </div>
-                        </div>
                     </div>
+                </div>
         </tr>
         </th>
         </thead>

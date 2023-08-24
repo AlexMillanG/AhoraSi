@@ -11,40 +11,33 @@
 <head>
     <title>Usuarios Admin</title>
 </head>
-    <body>
-    <div class="container-fluid">
 
-        <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: PT Serif; margin-bottom:5%;">
-            <div class="container-fluid" >
-                <a class="navbar-brand" href="/api/admin/home">HITU</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/api/admin/home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/api/admin/admin-user">Usuario</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/api/admin/admin-historias">Historias</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="/api/auth" class="nav-link"> Cerrar Sesión</a>
-                        </li>
-                        <li>
-                            <form class="d-flex" role="search" style="float: right">
-                                <input class="form-control me-2" type="search" placeholder="¿Que vas a buscar hoy?" aria-label="Search">
-                                <button class="btn" type="submit">Buscar</button>
-                            </form>
-                        </li>
-                    </ul>
+<body>
+<div class="container-fluid">
+    <nav id="nav" class="navbar navbar-expand-lg  navbar-static fixed-top">
+        <div class="container-fluid" >
+            <a class="navbar-brand" href="/api/admin/home"><img src="/assets/img/logo1.png" alt="" width="50px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/api/admin/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api/admin/admin-user">Usuario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api/admin/admin-historias">Historias</a>
+                    </li>
+                </ul>
+                <div  style="background-color:#8081B7; margin-left: 50%;padding: 10px;border-radius: 15px;color: white;font-family: PT serif;font-size: 16px;">
+                    <a href="/api/auth" class="nav-link"> Cerrar Sesión</a>
                 </div>
             </div>
-        </nav>
-    </div>
-    </body>
+        </div>
+    </nav>
+</div>
+</body>
 </html>

@@ -23,7 +23,7 @@ import java.io.OutputStream;
         "/api/user/loadFiles"
 })
 
-public class ServletFiles extends HttpServlet {
+public class    ServletFiles extends HttpServlet {
     private String action;
     private Stories stories;
     private Categories categories;
