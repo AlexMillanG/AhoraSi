@@ -199,6 +199,7 @@
                         </div>
                     </div>
                     </c:forEach>
+
                     <c:forEach var="Article" items="${articles}">
                     <div class="card mb-3"
                          style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 30px;margin-bottom: 30px;margin-top: 10px">
@@ -249,12 +250,12 @@
                                                 <th class="reaccion">
                                                     <form action="/api/user/like" method="post">
                                                         <input hidden value="${user.id}" name="user_id">
-                                                        <input hidden value="${Story.id}" name="story_id">
+                                                        <input hidden value="${Article.id}" name="story_id">
                                                         <button type="submit" class="btn"
                                                                 style=" width: 50px;height: 50px;">
                                                             <i class="fa-solid fa-heart" style="font-size: 25px;"></i>
                                                         </button>
-                                                        <c:out value="${Story.likes}"></c:out>
+                                                        <c:out value="${Article.likes}"></c:out>
                                                     </form>
                                                 </th>
                                                 <th>
@@ -266,7 +267,7 @@
                                                 </th>
                                                 <th>
                                                     <form action="/api/user/shared" method="post">
-                                                        <input hidden value="${Story.id}" name="story_id">
+                                                        <input hidden value="${Article.id}" name="story_id">
                                                         <button type="submit" class="btn"
                                                                 style="width: 50px; margin-top: 1%;">
                                                             <i class="fa-solid fa-paper-plane"
@@ -286,7 +287,7 @@
                                                     <table style="width: 100%;">
                                                         <tr>
                                                             <th style="width: 85%;">
-                                                                <input hidden value="${Story.id}" name="story_id">
+                                                                <input hidden value="${Article.id}" name="story_id">
                                                                 <input hidden value="${user.id}" name="user_id">
                                                                 <textarea name="content" id="comment"
                                                                           type="text"
@@ -478,7 +479,7 @@
 
 </div>
 </div>
-<jsp:include page="../../layouts/footer.jsp"/>
+<jsp:include page="/layouts/footer.jsp"/>
 
 <script>
 

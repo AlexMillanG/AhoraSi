@@ -29,16 +29,7 @@
                  style="border-radius: 30px 30px 0px 0px;opacity: 0.50;">
             <div class="card-img-overlay">
               <div style="float: right;">
-                <table style="font-family: Pt serif;text-align: center;">
-                  <tr>
-                    <th><h5 style="font-size:25px; font-weight: 700;">13</h5></th>
-                    <th><h5 style="font-size:25px;font-weight: 700; ">14</h5></th>
-                  </tr>
-                  <tr>
-                    <th><h5 style="font-size: 15px; margin-right: 4px;">Me encantas</h5></th>
-                    <th><h5 style="font-size: 15px;">Historias</h5></th>
-                  </tr>
-                </table>
+
               </div>
               <div class="container-fluid" style="text-align: center; margin-top: 10%;">
                 <img src="/assets/img/logo1.png"
@@ -276,7 +267,7 @@
                       <button class="btn" type="submit"><i class="fa-solid fa-trash-can" style="float: right;"></i></button>
                     </form>
                   </div>
-                  <th><img src="../img/logo1.png" alt="" width="50px"></th>
+                  <th><img src="/assets/img/logo1.png" alt="" width="50px"></th>
                   <th>
                     <table>
                       <tr>

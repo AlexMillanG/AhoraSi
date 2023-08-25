@@ -60,6 +60,7 @@ public class DaoShared {
                 stories.setTitle(rs.getString("title"));
                 stories.setContent(rs.getString("content"));
                 stories.setImg_id(rs.getLong("image_id"));
+                stories.setFile_name(rs.getString("file_name"));
                 Stories.add(stories);
                 shared.setStories(stories);
                 shared.setUser(user);
