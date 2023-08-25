@@ -9,7 +9,7 @@
 <div class="container-fluid">
     <nav id="nav" class="navbar navbar-expand-lg  navbar-static fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/api/user/home"><img src="/assets/img/logo1.png" alt=""
+            <a class="navbar-brand" href="http:///34196.17.66/Integradora-1.0-SNAPSHOT/api/user/home"><img src="http:///34196.17.66/Integradora-1.0-SNAPSHOT/assets/img/logo1.png" alt=""
                                                                width="50px"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,10 +18,10 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/api/user/home">Home</a>
+                        <a class="nav-link active" aria-current="page" href="http:///34196.17.66/Integradora-1.0-SNAPSHOT/api/user/home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <form action="/api/user/perfil">
+                        <form action="http:///34196.17.66/Integradora-1.0-SNAPSHOT/api/user/perfil">
                             <input hidden value="${user.id}" name="id">
                             <button class="btn btn-link-dark" type="submit">
                                 Perfil
@@ -31,7 +31,7 @@
 
                 </ul>
                 <div style="background-color:#8081B7; margin-left: 50%;padding: 10px;border-radius: 15px;color: white;font-family: PT serif;font-size: 16px;">
-                    <a href="/api/auth" class="nav-link"> Cerrar Sesión</a>
+                    <a href="http:///34196.17.66/Integradora-1.0-SNAPSHOT/api/auth" class="nav-link"> Cerrar Sesión</a>
                 </div>
             </div>
         </div>

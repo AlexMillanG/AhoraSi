@@ -9,7 +9,7 @@
 <html>
 <head>
   <title>Admin foros</title>
-  <jsp:include page="../../layouts/head.jsp"/>
+  <jsp:include page="http://34196.17.66/Integradora-1.0-SNAPSHOT/layouts/head.jsp"/>
 </head>
 <body>
 
@@ -17,24 +17,24 @@
   <table class="table">
     <tr>
       <th scope="col" class="logo1">
-        <img src="../img/logo.png" class="logo">
+        <img src="http://34196.17.66/Integradora-1.0-SNAPSHOT/img/logo.png" class="logo">
       </th>
       <th scope="col">
         <div class="container-fluid" id='cont-2'>
-          <jsp:include page="/layouts/navbarSupeadmin.jsp"/>
+          <jsp:include page="http://34196.17.66/Integradora-1.0-SNAPSHOT/layouts/navbarSupeadmin.jsp"/>
           <div id="carrusel" class="container-fluid">
             <h1 style="margin-top: 20px; font-family: PT serif ;">Bienvenido
             </h1>
             <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="10000" style="border-radius: 15%;">
-                  <img src="../img/1.jpg" class="d-block w-100" alt="...">
+                  <img src="http://34196.17.66/Integradora-1.0-SNAPSHOT/img/1.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item" data-bs-interval="2000" style="border-radius: 15%;">
-                  <img src="../img/2.jpg" class="d-block w-100" alt="...">
+                  <img src="http://34196.17.66/Integradora-1.0-SNAPSHOT/img/2.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item" style="border-radius: 15%;">
-                  <img src="../img/3.jpg" class="d-block w-100" alt="...">
+                  <img src="http://34196.17.66/Integradora-1.0-SNAPSHOT/img/3.jpg" class="d-block w-100" alt="...">
                 </div>
               </div>
               <button class="carousel-control-prev" type="button"
@@ -118,7 +118,7 @@
                    style="font-family: PT serif; fill: #FFF; filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.15)) drop-shadow(-4px -4px 16px #FFF);background: white; position: relative; float: left;  margin-bottom: 15px;">
                 <div class="row g-0 bg-body-secondary position-relative">
                   <div class="col-md-6 mb-md-0 p-md-4">
-                    <img src="../img/3.jpg" class="w-100" alt="..." style="border-radius: 100%">
+                    <img src="http://34196.17.66/Integradora-1.0-SNAPSHOT/img/3.jpg" class="w-100" alt="..." style="border-radius: 100%">
                   </div>
                   <div class="col-md-6 p-4 ps-md-0">
                     <h4 class="mt-0">Columns with stretched link</h4>

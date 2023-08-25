@@ -10,8 +10,8 @@
 <html>
 <head>
     <title>Administrador home</title>
-    <link href="../../assets/css/style.css" rel="stylesheet" type="text/css">
-    <jsp:include page="../../layouts/head.jsp"/>
+    <link href="http:///34196.17.66/Integradora-1.0-SNAPSHOT/assets/css/style.css" rel="stylesheet" type="text/css">
+    <jsp:include page="http:///34196.17.66/Integradora-1.0-SNAPSHOT/layouts/head.jsp"/>
 </head>
 
 <body>
@@ -20,12 +20,12 @@
     <table class="table" style="font-family: PT Serif">
         <tr>
             <th scope="col" class="logo1">
-                <img src= "../../assets/img/logo.png"  class="logo">
+                <img src= "http:///34196.17.66/Integradora-1.0-SNAPSHOT/assets/img/logo.png"  class="logo">
             </th>
             <th scope="col">
                 <div  class="container-fluid" id="cont-1">
                     <div class="container-fluid" id="cont-2">
-                        <jsp:include page="/layouts/navbarAdmin.jsp"/>
+                        <jsp:include page="http:///34196.17.66/Integradora-1.0-SNAPSHOT/layouts/navbarAdmin.jsp"/>
                         <table class="table table-striped" style="font-family: PT Serif" >
                             <thead>
                             <tr>
@@ -51,7 +51,7 @@
                                         <p>${user.email}</p>
                                     </th>
                                     <th>
-                                        <form method="post" action="/user/delete">
+                                        <form method="post" action="http:///34196.17.66/Integradora-1.0-SNAPSHOT/user/delete">
                                             <input hidden value="${user.id}" name="id">
                                             <button class="btn" id="eliminarAdmin">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -76,6 +76,6 @@
         </tr>
     </table>
     </div>
-<jsp:include page="../../layouts/footer.jsp"/>
+<jsp:include page="http:///34196.17.66/Integradora-1.0-SNAPSHOT/layouts/footer.jsp"/>
 </body>
 </html>

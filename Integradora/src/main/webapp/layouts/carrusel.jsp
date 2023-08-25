@@ -9,7 +9,7 @@
 <html>
 
 <head>
-    <jsp:include page="head.jsp"/>
+    <jsp:include page="http://34.192.173.235/Integradora-1.0-SNAPSHOT/head.jsp"/>
     <title>Title</title>
 </head>
 <body>
@@ -18,14 +18,14 @@
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="10000" style="margin-top: 30px; margin-bottom: 30px;"
                  style="margin-left: 30px;margin-right: 30px;border-radius: 30px;">
-                <img src="/assets/img/1.jpg" class="d-block w-100" alt="..." style="border-radius: 30px">
+                <img src="http://34.192.173.235/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="d-block w-100" alt="..." style="border-radius: 30px">
             </div>
             <div class="carousel-item" data-bs-interval="2000" style="margin-bottom: 30px;"
                  style="margin-left: 30px;margin-right: 30px;border-radius: 30px;">
-                <img src="/assets/img/2.jpg" class="d-block w-100" alt="..." style="border-radius: 30px">
+                <img src="http://34.192.173.235/Integradora-1.0-SNAPSHOT/assets/img/2.jpg" class="d-block w-100" alt="..." style="border-radius: 30px">
             </div>
             <div class="carousel-item">
-                <img src="/assets/img/3.jpg" class="d-block w-100" alt="..." style="margin-bottom: 30px;"
+                <img src="http:///34196.17.66/Integradora-1.0-SNAPSHOT/assets/img/3.jpg" class="d-block w-100" alt="..." style="margin-bottom: 30px;"
                      style="margin-left: 30px;margin-right: 30px;border-radius: 30px">
             </div>
         </div>

@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<script src="/assets/js/bootstrap.bundle.min.js" ></script>
+<script src="http:///34196.17.66/Integradora-1.0-SNAPSHOT/assets/js/bootstrap.bundle.min.js" ></script>
 <script src="https://unpkg.com/feather-icons"></script>
 <script>
     feather.replace()

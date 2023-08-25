@@ -9,21 +9,21 @@
 <html>
 <head>
   <title>Admin Historias</title>
-  <jsp:include page="/layouts/head.jsp"/>
+  <jsp:include page="http:///34196.17.66/Integradora-1.0-SNAPSHOT/layouts/head.jsp"/>
 </head>
 <body>
-<jsp:include page="/layouts/navbarAdmin.jsp"/>
+<jsp:include page="http:///34196.17.66/Integradora-1.0-SNAPSHOT/layouts/navbarAdmin.jsp"/>
 <div class="container-fluid" id='cont'>
   <table class="table">
     <tr>
       <th scope="col">
         <div class="container-fluid" id='cont-2'>
-          <jsp:include page="/layouts/carrusel.jsp"/>
+          <jsp:include page="http:///34196.17.66/Integradora-1.0-SNAPSHOT/layouts/carrusel.jsp"/>
         </div>
       </th>
     </tr>
   </table>
 </div>
-<jsp:include page="/layouts/navbarSupeadmin.jsp"/>
+<jsp:include page="http:///34196.17.66/Integradora-1.0-SNAPSHOT/layouts/navbarSupeadmin.jsp"/>
 </body>
 </html>

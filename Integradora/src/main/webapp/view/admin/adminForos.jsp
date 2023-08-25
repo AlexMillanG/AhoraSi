@@ -10,10 +10,10 @@
 <html>
 <head>
     <title>Admin foros</title>
-<jsp:include page="../../layouts/head.jsp"/>
+<jsp:include page="http:///34196.17.66/Integradora-1.0-SNAPSHOT/layouts/head.jsp"/>
 </head>
 <body>
-<jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
+<jsp:include page="http:///34196.17.66/Integradora-1.0-SNAPSHOTlayouts/navbarSupeadmin.jsp"/>
 
 <div class="container-fluid" id='cont'>
 <div class="card">
@@ -77,7 +77,7 @@
                 <div class="row">
                 </div>
 
-                <form id="formAdmin" action="/api/admin/admins-save" method="post" class="needs-validation"
+                <form id="formAdmin" action="http:///34196.17.66/Integradora-1.0-SNAPSHOT/api/admin/admins-save" method="post" class="needs-validation"
                       novalidate method="post">
                     <div class="row">
                         <div class="col md-4 lg-3 sm-6">
@@ -188,7 +188,7 @@
 </div>
 </div>
 
-<jsp:include page="../../layouts/footer.jsp"/>
+<jsp:include page="http:///34196.17.66/Integradora-1.0-SNAPSHOT/layouts/footer.jsp"/>
 <script>
     const formRegistro=document.getElementById("formAdmin");
     const botonRegistro=document.getElementById("buttonAdmin");

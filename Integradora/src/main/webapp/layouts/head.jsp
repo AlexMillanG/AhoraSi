@@ -1,7 +1,7 @@
-<link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
-<link rel="stylesheet" href="/assets/css/styles.css " type= "text/css">
+<link href="http:///34196.17.66/Integradora-1.0-SNAPSHOT/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
+<link rel="stylesheet" href="http:///34196.17.66/Integradora-1.0-SNAPSHOT/assets/css/styles.css " type= "text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="shortcut icon" href="../assets/img/logo1.png">
+<link rel="shortcut icon" href="http:///34196.17.66/Integradora-1.0-SNAPSHOT/assets/img/logo1.png">
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v11.0" nonce="xxxxxxxx"></script>
 <style>
     #content{
