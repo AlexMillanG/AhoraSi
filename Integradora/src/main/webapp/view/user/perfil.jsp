@@ -13,10 +13,10 @@
 <html>
 <head>
   <title>Perfil-Hitu</title>
-  <jsp:include page="/layouts/head.jsp"/>
+  <jsp:include page="../../layouts/head.jsp"/>
 </head>
 <body>
-<jsp:include page="/layouts/navbar.jsp"/>
+<jsp:include page="../../layouts/navbar.jsp"/>
 <div class="container-fluid" id='cont'>
   <table class="table">
     <tr>
@@ -32,7 +32,7 @@
 
               </div>
               <div class="container-fluid" style="text-align: center; margin-top: 10%;">
-                <img src="/assets/img/logo1.png"
+                <img src="${pageContext.request.contextPath}/assets/img/logo1.png"
                      style="margin-bottom: 1%; width: 15%; border-radius: 100%; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); background-color: #FFF;">
                 <div class="container-fluid" style=" text-align: center;">
                   <h5 style="font-family: PT serif; font-size:150%; font-weight: bold;">
@@ -69,7 +69,7 @@
               <div class="row g-0">
                 <c:if test="${not Stories.file_name.contains('.octet-stream')}">
                   <div class="col-md-4" style="border-radius: 30px 0px 0px 30px;padding: 0">
-                    <img src="/api/stories/loadFiles?id=${Stories.img_id}" alt="" class="img-fluid"
+                    <img src="${pageContext.request.contextPath}/api/stories/loadFiles?id=${Stories.img_id}" alt="" class="img-fluid"
                          style="border-radius: 30px 0px 0px 30px;height: 100%;">
                   </div>
                 </c:if>
@@ -106,7 +106,7 @@
                               onclick="prueba2('${Stories.title}|${Stories.content}|${Stories.id}|${Stories.img_id}|${user1.id}')"
                               name="editar"
                       ><i class="fa-solid fa-pen" style="margin-bottom: 30px;"></i></button>
-                      <form action="/api/user/delete-story" method="post">
+                      <form action="${pageContext.request.contextPath}/api/user/delete-story" method="post">
                         <input name="id" hidden value="${Stories.id}">
                         <button type="submit" class="btn"><i class="fa-solid fa-trash-can"></i>
                         </button>
@@ -125,7 +125,7 @@
                       <table>
                         <tr>
                           <th class="reaccion">
-                            <form action="/api/user/like" method="post">
+                            <form action="${pageContext.request.contextPath}/api/user/like" method="post">
                               <input hidden value="${user.id}" name="user_id">
                               <input hidden value="${Story.id}" name="story_id">
                               <button type="submit" class="btn"
@@ -145,7 +145,7 @@
                             </button>
                           </th>
                           <th>
-                            <form action="/api/user/shared" method="post">
+                            <form action="${pageContext.request.contextPath}/api/user/shared" method="post">
                               <input hidden value="${Story.id}" name="story_id">
                               <button type="submit" class="btn"
                                       style="width: 50px; margin-top: 1%;">
@@ -161,7 +161,7 @@
                       <div id="commentNormal" style="">
                         <div class="container-fluid"
                              style=" margin-left: 20px; width: 100%; display: flex; flex-direction: row;">
-                          <form action="/api/user/save-comment" method="post"
+                          <form action="${pageContext.request.contextPath}/api/user/save-comment" method="post"
                                 style="width:100%;">
                             <table style="width: 100%;">
                               <tr>
@@ -261,7 +261,7 @@
               <table>
                 <tr>
                   <div class="container-fluid" style="color: #5A6AA9;margin-left: 90%;font-size: 30px;">
-                    <form action="/api/user/delete-shared" method="post">
+                    <form action="${pageContext.request.contextPath}/api/user/delete-shared" method="post">
                       <input hidden value="${Shared.getUser().getId()}" name="user_id">
                       <input hidden value="${Shared.getStories().getId()}" name="story_id">
                       <button class="btn" type="submit"><i class="fa-solid fa-trash-can" style="float: right;"></i></button>
@@ -317,7 +317,7 @@
                   </style>
                   <div class="col-md-4" style="border-radius: 30px 0px 0px 30px;height: 100%;">
                     <c:if test="${not Shared.getStories().getFile_name().contains('.octet-stream')}">
-                      <img src="/api/stories/loadFiles?id=${Shared.getStories().getImg_id()}" class="img-fluid" alt="..."
+                      <img src="${pageContext.request.contextPath}/api/stories/loadFiles?id=${Shared.getStories().getImg_id()}" class="img-fluid" alt="..."
                            style="border-radius: 30px 0px 0px 30px;height: 100%;">
                     </c:if>
                   </div>
@@ -347,7 +347,7 @@
               style="margin-left: 90%;"></button>
       <p style="font-family: PT serif; text-align: center; font-size: 30px;">Actualizar Historia</p>
       <div class="modal-body">
-        <form id="formUpdate" action="/api/user/update-story" method="post" class="needs-validation"
+        <form id="formUpdate" action="${pageContext.request.contextPath}/api/user/update-story" method="post" class="needs-validation"
               novalidate method="post" enctype="multipart/form-data" novalidate>
           <div class="card mb-3" style="width:100%;border: none">
             <div class="row g-0">
@@ -419,7 +419,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
               style="margin-left: 95%;"></button>
       <h5 style="font-family: PT serif; font-size: 30px;text-align: center;">Crear Historia</h5>
-      <form id="formHistorias" action="/api/story/save" method="post"
+      <form id="formHistorias" action="${pageContext.request.contextPath}/api/story/save" method="post"
             enctype="multipart/form-data" novalidate>
         <div class="card mb-3" style="width: 100%; border: none; box-shadow: none;">
           <div class="row g-0">
@@ -512,7 +512,7 @@
       <p style="font-family: PT serif; font-size: 35px; text-align: center; margin-top: 20px; font-style: normal;font-weight: 700;">
         <strong>Actualizar Información</strong></p>
       <div class="modal-body">
-        <form id="form" action="/api/user/update-plus" method="post" class="needs-validation" novalidate
+        <form id="form" action="${pageContext.request.contextPath}/api/user/update-plus" method="post" class="needs-validation" novalidate
               method="post" enctype="multipart/form-data">
           <input hidden id="idImg1" name="idImg1">
           <div class="card mb-3" style="border: none">
@@ -687,7 +687,7 @@
 </div>
 </div>
 
-
+<jsp:include page="../../layouts/footer.jsp"/>
 <!-- Enlace a Bootstrap JS y Popper.js -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -850,6 +850,6 @@
   }
 </script>
 
-<jsp:include page="/layouts/footer.jsp"/>
+
 </body>
 </html>

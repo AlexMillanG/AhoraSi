@@ -6,13 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
     <title>Admin Mas</title>
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link type="text/css" rel="stylesheet" href="../../assets/css/style.css">
-    <jsp:include page="../../layouts/head.jsp"/>
+    <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+    <jsp:include page="${pageContext.request.contextPath}/layouts/head.jsp"/>
 
 </head>
 <body>
@@ -20,25 +22,25 @@
     <table class="table">
         <tr>
             <th scope="col" class="logo1">
-                <img src="../img/logo.png" class="logo">
+                <img src="${pageContext.request.contextPath}/assets/img/logo.png" class="logo">
             </th>
             <th scope="col">
                 <div class="container-fluid" id='cont-2'>
-                    <jsp:include page="/layouts/navbarSupeadmin.jsp"/>
+                    <jsp:include page="${pageContext.request.contextPath}/layouts/navbarSupeadmin.jsp"/>
                     <div id="carrusel" class="container-fluid">
                         <h1 style="margin-top: 20px; font-family: PT serif ;">Bienvenido </h1>
                         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active" data-bs-interval="10000" style="margin-bottom: 30px;"
                                      style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                                    <img src="../img/1.jpg" class="d-block w-100" alt="...">
+                                    <img src="${pageContext.request.contextPath}/assets/img/1.jpg" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item" data-bs-interval="2000" style="margin-bottom: 30px;"
                                      style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                                    <img src="../img/2.jpg" class="d-block w-100" alt="...">
+                                    <img src="${pageContext.request.contextPath}/assets/img/2.jpg" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../img/3.jpg" class="d-block w-100" alt="..." style="margin-bottom: 30px;"
+                                    <img src="${pageContext.request.contextPath}/assets/img/3.jpg" class="d-block w-100" alt="..." style="margin-bottom: 30px;"
                                          style="margin-left: 30px;" style="margin-right: 30px;"
                                          style="border-radius: 15%;">
                                 </div>
@@ -89,7 +91,7 @@
                                         </li>
                                     </th>
                                     <th rowspan="2">
-                                        <img src="../img/photo-1608501078713-8e445a709b39.jpg" class="card-img-top"
+                                        <img src="${pageContext.request.contextPath}/assets/img/photo-1608501078713-8e445a709b39.jpg" class="card-img-top"
                                              alt="..." ; style="border-radius: 50%;">
                                     </th>
                                 </tr>
@@ -111,7 +113,7 @@
                                    style=" margin-left:2%; margin-right: 2%; margin-top: 2px; margin-bottom: 2%;">
                                 <tr style="height: 100px;">
                                     <th class="col">
-                                        <img src="../img/photo-1608501078713-8e445a709b39.jpg" class="card-img-top"
+                                        <img src="${pageContext.request.contextPath}/assets/img/photo-1608501078713-8e445a709b39.jpg" class="card-img-top"
                                              alt="..." ; style="border-radius: 50%;">
                                     </th>
                                 </tr>
@@ -132,7 +134,7 @@
                                    style=" margin-left:2%; margin-right: 2%; margin-top: 2px; margin-bottom: 2%;">
                                 <tr style="height: 100px;">
                                     <th class="col">
-                                        <img src="../img/photo-1608501078713-8e445a709b39.jpg" class="card-img-top"
+                                        <img src="${pageContext.request.contextPath}/assets/img/photo-1608501078713-8e445a709b39.jpg" class="card-img-top"
                                              alt="..." ; style="border-radius: 50%;">
                                     </th>
                                 </tr>
@@ -165,7 +167,7 @@
                 <div class="row">
                 </div>
 
-                <form id="formAdmin" action="/api/admin/admins-save" method="post" class="needs-validation"
+                <form id="formAdmin" action="${pageContext.request.contextPath}/api/admin/admins-save" method="post" class="needs-validation"
                       novalidate method="post">
                     <div class="row">
                         <div class="col md-4 lg-3 sm-6">
@@ -442,7 +444,7 @@
         </div>
     </div>
 </div>
-<jsp:include page="../../layouts/navbarSupeadmin.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/navbarSupeadmin.jsp"/>
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) { //Revisamos que el input tenga contenido
@@ -480,7 +482,7 @@
         readURL(this);
     });
 </script>
-<jsp:include page="../../layouts/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/footer.jsp"/>
 
 <script>
     const formRegistro=document.getElementById("formAdmin");

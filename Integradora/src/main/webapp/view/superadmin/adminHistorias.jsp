@@ -12,9 +12,9 @@
 <head>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
   <title>admin Historias</title>
-  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link type="text/css" rel="stylesheet" href="../../assets/css/style.css">
-  <jsp:include page="/layouts/head.jsp"/>
+  <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+  <jsp:include page="${pageContext.request.contextPath}/layouts/head.jsp"/>
   <style>
     #cont-storys {
       width: 100%;
@@ -46,7 +46,7 @@
     <tr>
       <th scope="col">
         <div class="container-fluid" id='cont-2'>
-          <jsp:include page="/layouts/navbarSupeadmin.jsp"/>
+          <jsp:include page="${pageContext.request.contextPath}/layouts/navbarSupeadmin.jsp"/>
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
@@ -68,7 +68,7 @@
                   <div class="row g-0">
                     <c:if test="${not Story.file_name.contains('.octet-stream')}">
                       <div class="col-md-4" style="height: 100%">
-                        <img src="/api/stories/loadFiles?id=${Story.img_id}" class="img-fluid"
+                        <img src="${pageContext.request.contextPath}/api/stories/loadFiles?id=${Story.img_id}" class="img-fluid"
                              alt="..." style="height: 100%;">
                       </div>
                     </c:if>
@@ -87,7 +87,7 @@
                                   value="${Story.content}"/></h6>
                         </div>
                         <div>
-                          <form action="/api/superadmin/change-story-status" method="post">
+                          <form action="${pageContext.request.contextPath}/api/superadmin/change-story-status" method="post">
                             <input hidden value="${Story.id}" name="story_id">
                             <label for="status">Actualizar status</label>
                             <select name="status" id="status">
@@ -113,6 +113,6 @@
     </tr>
   </table>
 </div>
-<jsp:include page="/layouts/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/footer.jsp"/>
 </body>
 </html>

@@ -2,10 +2,10 @@
 <head>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
     <title>HITU-SuperAdmin</title>
-    <link href="../css/style-index.css" rel="stylesheet" type="text/css">
-    <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <jsp:include page="../../layouts/head.jsp"/>
+    <link href="${pageContext.request.contextPath}/css/style-index.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
+    <jsp:include page="${pageContext.request.contextPath}/layouts/head.jsp"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -21,7 +21,7 @@
     }
 </style>
 <body>
-<jsp:include page="../../layouts/navbar.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/navbar.jsp"/>
 
 <div class="container-fluid" id='cont'>
     <table class="table">
@@ -115,7 +115,7 @@
             <div class="modal-body">
                 <div class="row g-0 bg-body-secondary position-relative" style="height: 25%">
                     <div class="col-md-6 mb-md-0 p-md-4" style="height: 25%">
-                        <img src="../img/3.jpg" class="w-100" alt="...">
+                        <img src="${pageContext.request.contextPath}/assets/img/3.jpg" class="w-100" alt="...">
                     </div>
                     <div class="col-md-6 p-4 ps-md-0" style="height: 25%">
                         <h4 class="mt-0">Columns with stretched link</h4>
@@ -134,8 +134,8 @@
         </div>
     </div>
 </div>
-<script src="../js/unpkg.com_sweetalert@2.1.2_dist_sweetalert.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/unpkg.com_sweetalert@2.1.2_dist_sweetalert.min.js"></script>
 <script src="sweetAlert.js"></script>
-<jsp:include page="../../layouts/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/footer.jsp"/>
 </body>
 </html>

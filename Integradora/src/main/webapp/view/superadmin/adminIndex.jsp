@@ -11,16 +11,16 @@
 <html>
 <head>
     <title>SuperAdmin index</title>
-    <jsp:include page="/layouts/head.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/layouts/head.jsp"/>
 </head>
 <body>
-<jsp:include page="/layouts/navbarSupeadmin.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/navbarSupeadmin.jsp"/>
 <div class="container-fluid" id='cont'>
     <table class="table">
         <tr>
             <th scope="col">
                 <div class="container-fluid" id='cont-2'>
-                    <jsp:include page="/layouts/carrusel.jsp"/>
+                    <jsp:include page="${pageContext.request.contextPath}/layouts/carrusel.jsp"/>
                     <s:if test="waitingArticles.isEmpty()">
                         <div class="row">
                             <div class="col">
@@ -34,7 +34,7 @@
                             <div class="row g-0">
                                 <div class="col-md-4" style="background-color: #0dcaf0;border-radius: 30px 0px 0px 30px;padding: 0">
                                     <c:if test="${not Article.file_name.contains('.octet-stream')}">
-                                    <img src="/api/stories/loadFiles?id=${Article.img_id}"class="img-fluid"
+                                    <img src="${pageContext.request.contextPath}/api/stories/loadFiles?id=${Article.img_id}"class="img-fluid"
                                          style="border-radius: 30px 0px 0px 30px;height: 100%">
                                     </c:if>
 
@@ -52,7 +52,7 @@
                                     <div class="row"
                                          style="font-family: PT serif; margin-left: 50%; width: 50%;display: flex;flex-direction: row;margin-bottom: 8px;">
                                         <div class="col">
-                                            <form action="/api/superadmin/aprove" method="post">
+                                            <form action="${pageContext.request.contextPath}/api/superadmin/aprove" method="post">
                                                 <input hidden value="${Article.id}" name="articleId"
                                                        id="articleIdAprove">
                                                 <button type="submit" class="btn"
@@ -62,7 +62,7 @@
                                             </form>
                                         </div>
                                         <div class="col" style="float: right">
-                                            <form action="/api/superadmin/delete-story" method="post">
+                                            <form action="${pageContext.request.contextPath}/api/superadmin/delete-story" method="post">
                                                 <input hidden value="${Article.id}" name="articleId"
                                                        id="articleIdDelete">
                                                 <button type="submit" class="btn"
@@ -81,6 +81,6 @@
         </tr>
     </table>
 </div>
-<jsp:include page="../../layouts/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/footer.jsp"/>
 </body>
 </html>

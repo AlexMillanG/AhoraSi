@@ -11,23 +11,22 @@
 <html>
 <head>
     <title>Admin index</title>
-    <jsp:include page="../../layouts/head.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/layouts/head.jsp"/>
 </head>
 <body>
-<jsp:include page="/layouts/navbarAdmin.jsp"/>
 <div class="container-fluid" id='cont'>
     <table class="table">
         <tr>
             <th scope="col">
                 <div class="container-fluid" id='cont-2'>
-                    <jsp:include page="/layouts/carrusel.jsp"/>
+                    <jsp:include page="${pageContext.request.contextPath}/layouts/carrusel.jsp"/>
                     <c:forEach var="Article" items="${waitingArticles}">
                         <div class="card mb-3"
                              style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 30px;margin-bottom: 10px;margin-top: 10px">
                             <div class="row g-0">
                                 <div class="col-md-4"
                                      style="background-color: #0dcaf0;border-radius: 30px 0px 0px 30px;padding: 0">
-                                    <img src="../../assets/img/1.jpg" class="img-fluid"
+                                    <img src="${pageContext.request.contextPath}/assets/img/1.jpg" class="img-fluid"
                                          style="border-radius: 30px 0px 0px 30px;height: 100%">
                                 </div>
                                 <div class="col-md-8">
@@ -43,7 +42,7 @@
                                     <div class="row"
                                          style="font-family: PT serif; margin-left: 50%; width: 50%;display: flex;flex-direction: row;margin-bottom: 8px;">
                                         <div class="col">
-                                            <form action="/api/superadmin/aprove" method="post">
+                                            <form action="${pageContext.request.contextPath}/api/superadmin/aprove" method="post">
                                                 <input hidden value="${Article.id}" name="articleId"
                                                        id="articleIdAprove">
                                                 <button type="submit" class="btn"
@@ -53,7 +52,7 @@
                                             </form>
                                         </div>
                                         <div class="col" style="float: right">
-                                            <form action="/api/superadmin/delete-story" method="post">
+                                            <form action="${pageContext.request.contextPath}/api/superadmin/delete-story" method="post">
                                                 <input hidden value="${Article.id}" name="articleId"
                                                        id="articleIdDelete">
                                                 <button type="submit" class="btn"
@@ -84,7 +83,7 @@
             <div class="modal-body">
                 <div class="row g-0 bg-body-secondary position-relative" style="height: 25%">
                     <div class="col-md-6 mb-md-0 p-md-4" style="height: 25%">
-                        <img src="/assets/img/2.jpg" class="w-100" alt="...">
+                        <img src="${pageContext.request.contextPath}/assets/img/2.jpg" class="w-100" alt="...">
                     </div>
                     <div class="col-md-6 p-4 ps-md-0" style="height: 25%">
                         <h4 class="mt-0">Columns with stretched link</h4>
@@ -120,6 +119,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="../../layouts/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/footer.jsp"/>
 </body>
 </html>

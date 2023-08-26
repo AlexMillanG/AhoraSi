@@ -2,10 +2,9 @@
 <head>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
     <title>HITU-SuperAdmin</title>
-    <link href="../css/style-index.css" rel="stylesheet" type="text/css">
-    <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <jsp:include page="../../layouts/head.jsp"/>
+    <link href="${pageContext.request.contextPath}/css/style-index.css" rel="stylesheet" type="text/css">
+    <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
+    <jsp:include page="${pageContext.request.contextPath}/layouts/head.jsp"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -21,13 +20,13 @@
     }
 </style>
 <body>
-<jsp:include page="/layouts/navbarAdmin.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/navbarAdmin.jsp"/>
 
 <div class="container-fluid" id='cont'>
     <table class="table">
         <tr>
             <th scope="col" class="logo1">
-                <img src= "../img/logo.png"  class="logo">
+                <img src= "${pageContext.request.contextPath}/assets/img/logo.png"  class="logo">
             </th>
             <th scope="col">
                 <div  class="container-fluid" id='cont-2'>
@@ -63,13 +62,13 @@
                         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active" data-bs-interval="10000" style="margin-bottom: 30px;" style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                                    <img src="../img/1.jpg" class="d-block w-100" alt="...">
+                                    <img src="${pageContext.request.contextPath}/assets/img/1.jpg" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item" data-bs-interval="2000" style="margin-bottom: 30px;" style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
-                                    <img src="../img/2.jpg"  class="d-block w-100" alt="...">
+                                    <img src="${pageContext.request.contextPath}/assets/img/2.jpg"  class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../img/3.jpg"  class="d-block w-100" alt="..."  style="margin-bottom: 30px;" style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
+                                    <img src="${pageContext.request.contextPath}/assets/img/3.jpg"  class="d-block w-100" alt="..."  style="margin-bottom: 30px;" style="margin-left: 30px;" style="margin-right: 30px;" style="border-radius: 15%;">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -134,8 +133,8 @@
         </div>
     </div>
 </div>
-<script src="../js/unpkg.com_sweetalert@2.1.2_dist_sweetalert.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/unpkg.com_sweetalert@2.1.2_dist_sweetalert.min.js"></script>
 <script src="sweetAlert.js"></script>
-<jsp:include page="../../layouts/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/footer.jsp"/>
 </body>
 </html>

@@ -11,11 +11,11 @@
 <html>
 <head>
     <title>SuperAdmin Usuarios</title>
-    <jsp:include page="/layouts/head.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/layouts/head.jsp"/>
 </head>
 <body>
 <body>
-<jsp:include page="/layouts/navbarSupeadmin.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/navbarSupeadmin.jsp"/>
 <div class="container-fluid" id='cont'>
     <table class="table">
         <thead>
@@ -73,7 +73,7 @@
                                                     onclick="prueba('${user.id}|${user.name}|${user.email}|${user.pass}|${user.lastname}|${user.surname}|${user.birthday}|${user.sex}')" name="editar">
                                                 <i class="fa-solid fa-pen-to-square" style="font-size: 16px;"></i>
                                             </button>
-                                            <form method="post" action="/api/user/super-delete">
+                                            <form method="post" action="${pageContext.request.contextPath}/api/user/super-delete">
                                                 <input hidden value="${user.id}" name="id">
                                                 <button type="submit" class="btn btn-outline-danger btn-sm" style="width: 30px; height:30px; padding:  5px;">
                                                     <i class="fa-solid fa-trash-can" style="font-size: 16px;"></i>
@@ -99,7 +99,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="mostrarAlerta()" style="margin-top: 20px; margin-left: 90%;"></button>
             <p  style="font-family: PT serif; font-size: 35px; text-align: center; margin-top: 20px; font-style: normal;font-weight: 700;"><strong>Actualizar Información</strong></p>
             <div class="modal-body">
-                <form  id="form" action="/api/user/update" method="post" class="needs-validation" novalidate method="post">
+                <form  id="form" action="${pageContext.request.contextPath}/api/user/update" method="post" class="needs-validation" novalidate method="post">
                     <table class="table" style="width: 100%">
                         <tr>
                             <th style="width: 50%">
@@ -249,7 +249,7 @@
     </div>
 </div>
 
-<jsp:include page="../../layouts/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/footer.jsp"/>
 
 <script>
     const  form=document.getElementById("form")

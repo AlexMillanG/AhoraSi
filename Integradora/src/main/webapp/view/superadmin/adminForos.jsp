@@ -12,10 +12,10 @@
 <html>
 <head>
     <title>Admin-Administradores</title>
-    <jsp:include page="/layouts/head.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/layouts/head.jsp"/>
 </head>
 <body>
-<jsp:include page="/layouts/navbarSupeadmin.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/navbarSupeadmin.jsp"/>
 <div class="container-fluid" id="cont">
     <table class="table" id="tabla">
         <tr>
@@ -43,7 +43,7 @@
                                     <table class="table" style=" margin-top: 25px; margin-bottom: 2%;">
                                         <tr style="height: 130px;">
                                             <th scope="col" style="float: left; margin-left: -15px; color: #5A6AA9">
-                                                <form method="post" action="/api/superadmin/delete-admin">
+                                                <form method="post" action="${pageContext.request.contextPath}/api/superadmin/delete-admin">
                                                     <input hidden value="${admin.id}" name="id">
                                                     <button data-bs-toggle="modal" data-bs-target="#updateUsers"
                                                             type="button" class="btn" id="editar"
@@ -60,7 +60,7 @@
                                                     </li>
                                                 </form>
                                             <th rowspan="2">
-                                                <img src="../../assets/img/logo1.png" class="card-img-top" alt="..." ;
+                                                <img src="${pageContext.request.contextPath}/assets/img/logo1.png" class="card-img-top" alt="..." ;
                                                      style="border-radius: 50%;">
                                             </th>
                                         </tr>
@@ -97,7 +97,7 @@
             <p style="font-family: PT serif; font-size: 35px; text-align: center; margin-top: 20px; font-style: normal;font-weight: 700;">
                 <strong>Agregar Administrador</strong></p>
             <div class="modal-body">
-                <form id="formAdmin" action="/api/admin/admins-save" method="post" class="needs-validation"
+                <form id="formAdmin" action="${pageContext.request.contextPath}/api/admin/admins-save" method="post" class="needs-validation"
                       novalidate>
                     <table class="table">
                         <tr>
@@ -251,7 +251,7 @@
             <p style="font-family: PT serif; font-size: 35px; text-align: center; margin-top: 20px; font-style: normal;font-weight: 700;">
                 <strong>Actualizar Información</strong></p>
             <div class="modal-body">
-                <form id="form" action="/api/superadmin/update-admin" method="post" class="needs-validation" novalidate>
+                <form id="form" action="${pageContext.request.contextPath}/api/superadmin/update-admin" method="post" class="needs-validation" novalidate>
                     <table class="table">
                         <tr>
                             <th>
@@ -409,7 +409,7 @@
     </div>
 </div>
 
-<jsp:include page="/layouts/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/footer.jsp"/>
 <script>
     const formRegistro = document.getElementById("formAdmin");
     const botonRegistro = document.getElementById("buttonAdmin");

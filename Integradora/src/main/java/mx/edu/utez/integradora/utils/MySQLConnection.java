@@ -6,13 +6,13 @@ import java.sql.SQLException;
 
 public class MySQLConnection {
     final String DBNAME = "BDHITUAlpha",
-            USER = "admin",
-            PASSWORD = "hitu1234567",
+            USER = "ec2-user",
+            PASSWORD = "B>T9pRffdybq",
             TIMEZONE = "America/Mexico_City",
             USESSL = "false",
             PUBLICKEY = "true",
             DDLAUTO = "true",
-            HOST = "hitu.cqx71kum6x8m.us-east-1.rds.amazonaws.com";
+            HOST = "34.196.17.66";
 
     public Connection connect() {
         String dataSource = String.format(

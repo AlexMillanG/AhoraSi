@@ -9,15 +9,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
     <title>SuperAdmin Mas</title>
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link type="text/css" rel="stylesheet" href="../../assets/css/style.css">
-    <jsp:include page="/layouts/head.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/layouts/head.jsp"/>
 
 </head>
 <body>
-<jsp:include page="/layouts/navbarSupeadmin.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/navbarSupeadmin.jsp"/>
 <div class="container-fluid" id='cont'>
     <table class="table">
         <tr>
@@ -44,7 +41,7 @@
                                                         onclick="prueba('${category.id}|${category.category}')"
                                                         name="editar"><i class="fa-solid fa-pen"></i>
                                                 </button>
-                                                <form action="/api/actoresDeDoblaje" method="post">
+                                                <form action="${pageContext.request.contextPath}/api/actoresDeDoblaje" method="post">
                                                     <input name="id" hidden value="${category.id}">
                                                     <button type="submit" class="btn"><i
                                                             class="fa-solid fa-trash-can"></i>
@@ -52,7 +49,7 @@
                                                 </form>
                                             </th>
                                             <th rowspan="2">
-                                                <img src="/api/categories/loadFiles?id=${category.img_id}"
+                                                <img src="${pageContext.request.contextPath}/api/categories/loadFiles?id=${category.img_id}"
                                                      class="card-img-top" alt="..." ; style="border-radius: 50%;">
                                             </th>
                                         </tr>
@@ -78,7 +75,7 @@
             <p style="font-family: PT serif; text-align: center; font-size: 30px; padding-top: 5px">Agregar
                 Categoria</p>
             <div class="modal-body">
-                <form id="categ-form" class="needs-validation" action="/api/superadmin/add-category"
+                <form id="categ-form" class="needs-validation" action="${pageContext.request.contextPath}/api/superadmin/add-category"
                       method="post" enctype="multipart/form-data" novalidate>
                     <table class="table">
                         <tr>
@@ -137,7 +134,7 @@
             <h6 style="font-family: PT serif; text-align: center; font-size: 30px; padding-top: 6px">Actualizar
                 Categoria</h6>
             <div class="modal-body" style="border-radius: 50px;">
-                <form id="formUpdate" action="/api/actoresDeDoblaje/update" method="post" class="needs-validation"
+                <form id="formUpdate" action="${pageContext.request.contextPath}/api/actoresDeDoblaje/update" method="post" class="needs-validation"
                       novalidate method="post">
                     <input hidden id="id" name="id" class="form-control">
                     <div class="container-fluid " style="fill: #FFF;
@@ -182,7 +179,7 @@
     </div>
 </div>
 
-<jsp:include page="/layouts/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/footer.jsp"/>
 
 <script>
     function readURL(input) {

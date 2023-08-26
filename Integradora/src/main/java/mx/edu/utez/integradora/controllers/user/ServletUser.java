@@ -72,9 +72,6 @@ import java.util.UUID;
         "/api/user/comment",
         "/api/superadmin/change-story-status",
         "/api/admin/change-story-status"
-
-
-
 })
 public class ServletUser extends HttpServlet {
     String action,redirect="/api/auth";

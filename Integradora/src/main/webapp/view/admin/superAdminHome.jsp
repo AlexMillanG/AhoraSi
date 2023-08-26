@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Admin Usuarios</title>
-    <jsp:include page="/layouts/head.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/layouts/head.jsp"/>
 </head>
 <body>
 <body>
@@ -28,7 +28,7 @@
                 border-radius: 15px;
                 max-height: 100%;">
                     <div class="container-fluid" id="cont-2">
-                        <jsp:include page="/layouts/navbarAdmin.jsp"/>
+                        <jsp:include page="${pageContext.request.contextPath}/layouts/navbarAdmin.jsp"/>
 
 
                         <div class="card-body">
@@ -77,7 +77,7 @@
                                                     name="editar"></buttondata-bs-toggle>
                                                 <i class="fa-solid fa-pen-to-square" style="font-size: 16px;"></i>
                                             </button>
-                                            <form method="post" action="/api/user/super-delete">
+                                            <form method="post" action="${pageContext.request.contextPath}/api/user/super-delete">
                                                 <input hidden value="${user.id}" name="id">
                                                 <button type="submit" class="btn btn-outline-danger btn-sm" style="width: 30px; height:30px; padding:  5px;">
                                                     <i class="fa-solid fa-trash-can" style="font-size: 16px;"></i>
@@ -103,7 +103,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="mostrarAlerta()" style="margin-top: 20px; margin-left: 90%;"></button>
             <p  style="font-family: PT serif; font-size: 35px; text-align: center; margin-top: 20px; font-style: normal;font-weight: 700;"><strong>Actualizar Información</strong></p>
             <div class="modal-body">
-                <form  id="form" action="/api/admin/update-user" method="post" class="needs-validation" novalidate method="post">
+                <form  id="form" action="${pageContext.request.contextPath}/api/admin/update-user" method="post" class="needs-validation" novalidate method="post">
                     <table class="table" style="width: 100%">
                         <tr>
                             <th style="width: 50%">
@@ -254,7 +254,7 @@
 </div>
 
 
-<jsp:include page="/layouts/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/footer.jsp"/>
 
 <script>
     const form = document.getElementById("form")

@@ -8,7 +8,7 @@
 <html>
 <head>
     <title>Home - Hitu</title>
-    <jsp:include page="../../layouts/head.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}/layouts/head.jsp"/>
 </head>
 <body>
 <%-- chingadera de crear foro --%>
@@ -17,13 +17,13 @@
         <tr>
             <th scope="col">
                 <div class="container-fluid" id='cont-2'>
-                    <jsp:include page="../../layouts/navbar.jsp"/>
+                    <jsp:include page="${pageContext.request.contextPath}/layouts/navbar.jsp"/>
 
                     <!--crear-->
                     <div class="input-group mb-3" style="display: flex; flex-direction: row;" data-bs-toggle="modal"
                          data-bs-target="#CreateStory">
                         <div class="input-group-text" style="background-color: #FFF; border: none; padding-top: 5px;">
-                            <img src="assets/img/logo1.png" style="width: 50px; border-radius: 100%;">
+                            <img src="${pageContext.request.contextPath}/assets/img/logo1.png" style="width: 50px; border-radius: 100%;">
                         </div>
                         <div class="container-fluid" style="font-size: 16px; font-family: PT serif;font-weight: 100; padding: 10px; width: 85%; height: 50px;border-radius: 15px;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
                             ">
@@ -37,7 +37,7 @@
                         <div class="row g-0">
                             <c:if test="${not Story.file_name.contains('.octet-stream')}">
                                 <div class="col-md-4" style="border-radius: 30px 0px 0px 30px;padding: 0">
-                                    <img src="/api/stories/loadFiles?id=${Story.img_id}" alt="" class="img-fluid"
+                                    <img src="${pageContext.request.contextPath}/api/stories/loadFiles?id=${Story.img_id}" alt="" class="img-fluid"
                                          style="border-radius: 30px 0px 0px 30px;height: 100%;">
                                 </div>
                             </c:if>
@@ -80,7 +80,7 @@
                                         <table>
                                             <tr>
                                                 <th class="reaccion">
-                                                    <form action="/api/user/like" method="post">
+                                                    <form action="${pageContext.request.contextPath}/api/user/like" method="post">
                                                         <input hidden value="${user.id}" name="user_id">
                                                         <input hidden value="${Story.id}" name="story_id">
                                                         <button type="submit" class="btn"
@@ -98,7 +98,7 @@
                                                     </button>
                                                 </th>
                                                 <th>
-                                                    <form action="/api/user/shared" method="post">
+                                                    <form action="${pageContext.request.contextPath}/api/user/shared" method="post">
                                                         <input hidden value="${Story.id}" name="story_id">
                                                         <button type="submit" class="btn"
                                                                 style="width: 50px; margin-top: 1%;">
@@ -114,7 +114,7 @@
                                         <div id="commentNormal" style="">
                                             <div class="container-fluid"
                                                  style=" margin-left: 20px; width: 100%; display: flex; flex-direction: row;">
-                                                <form action="/api/user/save-comment" method="post"
+                                                <form action="${pageContext.request.contextPath}/api/user/save-comment" method="post"
                                                       style="width:100%;">
                                                     <table style="width: 100%;">
                                                         <tr>
@@ -206,7 +206,7 @@
                         <div class="row g-0">
                             <c:if test="${not Article.file_name.contains('.octet-stream')}">
                                 <div class="col-md-4" style="border-radius: 30px 0px 0px 30px;padding: 0">
-                                    <img src="/api/stories/loadFiles?id=${Article.img_id}"
+                                    <img src="${pageContext.request.contextPath}/api/stories/loadFiles?id=${Article.img_id}"
                                          alt="" class="img-fluid"
                                          style="border-radius: 30px 0px 0px 30px;height: 100%;">
                                 </div>
@@ -248,7 +248,7 @@
                                         <table>
                                             <tr>
                                                 <th class="reaccion">
-                                                    <form action="/api/user/like" method="post">
+                                                    <form action="${pageContext.request.contextPath}/api/user/like" method="post">
                                                         <input hidden value="${user.id}" name="user_id">
                                                         <input hidden value="${Article.id}" name="story_id">
                                                         <button type="submit" class="btn"
@@ -266,7 +266,7 @@
                                                     </button>
                                                 </th>
                                                 <th>
-                                                    <form action="/api/user/shared" method="post">
+                                                    <form action="${pageContext.request.contextPath}/api/user/shared" method="post">
                                                         <input hidden value="${Article.id}" name="story_id">
                                                         <button type="submit" class="btn"
                                                                 style="width: 50px; margin-top: 1%;">
@@ -282,7 +282,7 @@
                                         <div id="commentNormal" style="">
                                             <div class="container-fluid"
                                                  style=" margin-left: 20px; width: 100%; display: flex; flex-direction: row;">
-                                                <form action="/api/user/save-comment" method="post"
+                                                <form action="${pageContext.request.contextPath}/api/user/save-comment" method="post"
                                                       style="width:100%;">
                                                     <table style="width: 100%;">
                                                         <tr>
@@ -394,7 +394,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                     style="margin-left: 95%;"></button>
             <h5 style="font-family: PT serif; font-size: 30px;text-align: center;">Crear Historia</h5>
-            <form id="formHistorias" action="/api/story/save" method="post"
+            <form id="formHistorias" action="${pageContext.request.contextPath}/api/story/save" method="post"
                   enctype="multipart/form-data" novalidate>
                 <div class="card mb-3" style="width: 100%; border: none; box-shadow: none;">
                     <div class="row g-0">
@@ -479,7 +479,7 @@
 
 </div>
 </div>
-<jsp:include page="/layouts/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/layouts/footer.jsp"/>
 
 <script>
 

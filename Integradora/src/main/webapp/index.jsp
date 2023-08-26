@@ -1,10 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>HistoriUtez</title>
-    <jsp:include page="layouts/head.jsp"/>
+    <jsp:include page="./layouts/head.jsp"/>
 </head>
 
 <body>
@@ -75,7 +76,7 @@
                                                     </p>
                                                 </th>
                                                 <th>
-                                                    <img src="/assets/img/logo1.png" alt=""
+                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/logo1.png" alt=""
                                                          class="img-fluid rounded-start"
                                                          width="250px">
                                                 </th>
@@ -84,7 +85,7 @@
                                     </div>
                                 </th>
                                 <th>
-                                    <img src="/assets/img/Imagen2.png" alt=""
+                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/Imagen2.png" alt=""
                                          style="height: 300px; width: 300px; float: right;">
                                 </th>
                         </table>
@@ -93,7 +94,7 @@
                             <table class="table" style="width: 100%; height: 200px;">
                                 <tr>
                                     <th style="width: 50%;">
-                                        <img src="/assets/img/leer.png" alt="" width="300px" height="300px">
+                                        <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/leer.png" alt="" width="300px" height="300px">
                                     </th>
                                     <th style="width: 50%; vertical-align: middle;">
                                         <p style="text-align: center;
@@ -113,37 +114,37 @@
                     <table class="container-fluid" id="acciones" style="width: 100%">
                         <tr>
                             <th style="margin-top: 15px;width: 15%">
-                                <img src="/assets/img/Imagen1.png" alt="" style="height: 200px; width: 200px;">
+                                <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/Imagen1.png" alt="" style="height: 200px; width: 200px;">
                             </th>
                             <th style=" margin-top: 15px;">
                                 <table style="width: 100%; height: 50px;border-bottom: 1px solid black; text-align: center; margin-top: 10px;">
                                     <tr style="width: 100%; height: 50px; font-family:  PT serif; font-size: 16px;font-weight: lighter;">
                                         <th style="width: 300px; ">
-                                            <img src="/assets/img/leerHistorias.png" alt="" height="50px" width="50px">
+                                            <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/leerHistorias.png" alt="" height="50px" width="50px">
                                             <h6>Leer Historias</h6>
                                         </th>
                                         <th style="width: 300px; ">
-                                            <img src="/assets/img/escribirHistorias.png" alt="" height="50px"
+                                            <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/escribirHistorias.png" alt="" height="50px"
                                                  width="50px">
                                             <h6>Escribir Historias</h6>
                                         </th>
                                         <th style="width: 300px; ">
-                                            <img src="/assets/img/compartir_1.png" alt="" height="50px" width="50px">
+                                            <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/compartir_1.png" alt="" height="50px" width="50px">
                                             <h6>Compartir Historias</h6>
                                         </th>
                                         <th style="width: 300px; ">
-                                            <img src="/assets/img/foross.png" alt="" height="50px" width="50px">
+                                            <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/foross.png" alt="" height="50px" width="50px">
                                             <h6>Comentar Historias</h6>
                                         </th>
                                         <th style="width: 300px; ">
-                                            <img src="/assets/img/reaccion_1.png" alt="" height="50px" width="50px">
+                                            <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/reaccion_1.png" alt="" height="50px" width="50px">
                                             <h6>Reaccionar a Historias</h6>
                                         </th>
                                     </tr>
                                 </table>
                             </th>
                             <th style="width: 15%;margin-left: 15%; margin-top: 15px;">
-                                <img src="/assets/img/Imagen2.png" alt=""
+                                <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/Imagen2.png" alt=""
                                      style="height: 300px; width: 300px;margin-bottom: 0%;">
                             </th>
                         </tr>
@@ -187,46 +188,21 @@
                                         <div class="carousel-item active">
                                             <div class="cards-wrapper" style="display: flex; flex-direction: row;">
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
                                                     </div>
                                                 </div>
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
                                                     </div>
                                                 </div>
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <p class="card-text">Some quick example text to build on the
-                                                            card title and make up the bulk of the card's content.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="cards-wrapper" style="display: flex; flex-direction: row;">
-                                                <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <p class="card-text">Some quick example text to build on the
-                                                            card title and make up the bulk of the card's content.</p>
-                                                    </div>
-                                                </div>
-                                                <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <p class="card-text">Some quick example text to build on the
-                                                            card title and make up the bulk of the card's content.</p>
-                                                    </div>
-                                                </div>
-                                                <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
@@ -237,21 +213,46 @@
                                         <div class="carousel-item">
                                             <div class="cards-wrapper" style="display: flex; flex-direction: row;">
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
                                                     </div>
                                                 </div>
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
                                                     </div>
                                                 </div>
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="../img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <p class="card-text">Some quick example text to build on the
+                                                            card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="cards-wrapper" style="display: flex; flex-direction: row;">
+                                                <div class="card" style="width: 18rem; margin-left: 10px;">
+                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <p class="card-text">Some quick example text to build on the
+                                                            card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" style="width: 18rem; margin-left: 10px;">
+                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <p class="card-text">Some quick example text to build on the
+                                                            card title and make up the bulk of the card's content.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" style="width: 18rem; margin-left: 10px;">
+                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
@@ -288,7 +289,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                     style="margin-top: 20px; margin-left: 90%;"></button>
             <div class="modal-body">
-                <form id="loginForm" action="/api/auth" class="needs-validation"
+                <form id="loginForm" action="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/api/auth" class="needs-validation"
                       novalidate method="post">
                     <div style="margin-left: 30%; border-radius: 100%; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);background: white;width:150px; height:150px; text-align: center; vertical-align: middle; padding: 10px;">
                         <i class="fa-solid fa-user" style="font-size: 100px; text-align: center "></i>
@@ -366,7 +367,7 @@
             <p style="font-family: PT serif; font-size: 35px; text-align: center; margin-top: 20px; font-style: normal;font-weight: 700;">
                 <strong>Registrarse</strong></p>
             <div class="modal-body">
-                <form id="formregistrer" action="/api/user/save" method="post" class="needs-validation"
+                <form id="formregistrer" action="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/api/user/save" method="post" class="needs-validation"
                       novalidate method="post" enctype="multipart/form-data" >
                     <div class="card mb-3" style="border: none;">
                         <div class="row g-0">
@@ -527,7 +528,7 @@
 </div>
 
 
-<jsp:include page="layouts/footer.jsp"/>
+<jsp:include page="./layouts/footer.jsp"/>
 <script>
     const agregar = document.getElementById("login");
     const form = document.getElementById("loginForm");
