@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class MySQLConnection {
     final String DBNAME = "BDHITUAlpha",
-            USER = "ec2-user",
+            USER = "root",
             PASSWORD = "B>T9pRffdybq",
             TIMEZONE = "America/Mexico_City",
             USESSL = "false",

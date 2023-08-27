@@ -18,7 +18,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/api//user/home">Home</a>
+                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/api/user/home">Home</a>
                     </li>
                     <li class="nav-item">
                         <form action="${pageContext.request.contextPath}/api/user/perfil">

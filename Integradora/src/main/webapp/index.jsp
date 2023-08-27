@@ -5,7 +5,137 @@
 <html>
 <head>
     <title>HistoriUtez</title>
-    <jsp:include page="./layouts/head.jsp"/>
+    <title>HistoriUtez</title>
+    <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.css "type= "text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/img/logo1.png">
+
+
+
+
+    <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.css " type= "text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/img/logo1.png">
+    <style>
+        #content{
+            padding: 5px;
+            overflow-y: scroll;
+            width: 100%;
+            height: 250px;
+            overflow-y: scroll;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+        #content::-webkit-scrollbar-thumb{
+            background-color: #8081B7;
+            width: 2px;
+            border-radius: 3px;
+        }
+        #content::-webkit-scrollbar{
+            width: 8px;
+            background-color: #ffffff;
+        }
+
+        #contenido{
+            padding: 5px;
+            overflow-y: scroll;
+            width: 100%;
+            height: 250px;
+            overflow-y: scroll;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+        #contenido::-webkit-scrollbar-thumb{
+            background-color: #8081B7;
+            width: 2px;
+            border-radius: 3px;
+        }
+        #contenido::-webkit-scrollbar{
+            width: 8px;
+            background-color: #ffffff;
+        }
+        .tittle{
+            font-family: PT serif;
+            font-size: 30px;
+            font-weight: 200;
+            margin-left: 20px;
+        }
+        #comments1{
+            width: 100%;
+            height: 100px;
+            border: none;
+            resize: none;
+            box-sizing: border-box;
+            font-family: PT serif;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        #comment{
+            width: 100%;
+            height: 50px;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+            border: none;
+            resize: none;
+            padding-left: 10px;
+            padding-right: 10px;
+            box-sizing: border-box;
+            font-family: PT serif;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        #comment::-webkit-scrollbar{
+            width: 8px;
+        }
+        #comment::-webkit-scrollbar-thumb{
+            background-color: #8081B7;
+            width: 2px;
+            border-radius: 3px;
+        }
+        #comments2{
+            width:100%;
+            border-radius: 15px;
+            max-height: 100px;
+            overflow-y: scroll;
+        }
+        #comments2::-webkit-scrollbar{
+            width: 8px;
+        }
+        #comments2::-webkit-scrollbar-thumb{
+            background-color: #3dd5f3;
+            width: 2px;
+            border-radius: 3px;
+        }
+        #comments1::-webkit-scrollbar{
+            width: 8px;
+        }
+        #comments1::-webkit-scrollbar-thumb{
+            background-color: #8081B7;
+            width: 2px;
+            border-radius: 3px;
+        }
+        #comments{
+            font-size: 14px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            width:100%;
+            border-radius: 15px;
+            overflow-y: scroll;
+        }
+        #comments::-webkit-scrollbar{
+            width: 8px;
+        }
+        #comments::-webkit-scrollbar-thumb{
+            background-color: #8081B7;
+            width: 2px;
+            border-radius: 3px;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -76,7 +206,7 @@
                                                     </p>
                                                 </th>
                                                 <th>
-                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/logo1.png" alt=""
+                                                    <img src="${pageContext.request.contextPath}/assets/img/logo1.png" alt=""
                                                          class="img-fluid rounded-start"
                                                          width="250px">
                                                 </th>
@@ -85,7 +215,7 @@
                                     </div>
                                 </th>
                                 <th>
-                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/Imagen2.png" alt=""
+                                    <img src="${pageContext.request.contextPath}/assets/img/Imagen2.png" alt=""
                                          style="height: 300px; width: 300px; float: right;">
                                 </th>
                         </table>
@@ -94,7 +224,7 @@
                             <table class="table" style="width: 100%; height: 200px;">
                                 <tr>
                                     <th style="width: 50%;">
-                                        <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/leer.png" alt="" width="300px" height="300px">
+                                        <img src="${pageContext.request.contextPath}/assets/img/leer.png" alt="" width="300px" height="300px">
                                     </th>
                                     <th style="width: 50%; vertical-align: middle;">
                                         <p style="text-align: center;
@@ -114,37 +244,37 @@
                     <table class="container-fluid" id="acciones" style="width: 100%">
                         <tr>
                             <th style="margin-top: 15px;width: 15%">
-                                <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/Imagen1.png" alt="" style="height: 200px; width: 200px;">
+                                <img src="${pageContext.request.contextPath}/assets/img/Imagen1.png" alt="" style="height: 200px; width: 200px;">
                             </th>
                             <th style=" margin-top: 15px;">
                                 <table style="width: 100%; height: 50px;border-bottom: 1px solid black; text-align: center; margin-top: 10px;">
                                     <tr style="width: 100%; height: 50px; font-family:  PT serif; font-size: 16px;font-weight: lighter;">
                                         <th style="width: 300px; ">
-                                            <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/leerHistorias.png" alt="" height="50px" width="50px">
+                                            <img src="${pageContext.request.contextPath}/assets/img/leerHistorias.png" alt="" height="50px" width="50px">
                                             <h6>Leer Historias</h6>
                                         </th>
                                         <th style="width: 300px; ">
-                                            <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/escribirHistorias.png" alt="" height="50px"
+                                            <img src="${pageContext.request.contextPath}/assets/img/escribirHistorias.png" alt="" height="50px"
                                                  width="50px">
                                             <h6>Escribir Historias</h6>
                                         </th>
                                         <th style="width: 300px; ">
-                                            <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/compartir_1.png" alt="" height="50px" width="50px">
+                                            <img src="${pageContext.request.contextPath}/assets/img/compartir_1.png" alt="" height="50px" width="50px">
                                             <h6>Compartir Historias</h6>
                                         </th>
                                         <th style="width: 300px; ">
-                                            <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/foross.png" alt="" height="50px" width="50px">
+                                            <img src="${pageContext.request.contextPath}/assets/img/foross.png" alt="" height="50px" width="50px">
                                             <h6>Comentar Historias</h6>
                                         </th>
                                         <th style="width: 300px; ">
-                                            <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/reaccion_1.png" alt="" height="50px" width="50px">
+                                            <img src="${pageContext.request.contextPath}/assets/img/reaccion_1.png" alt="" height="50px" width="50px">
                                             <h6>Reaccionar a Historias</h6>
                                         </th>
                                     </tr>
                                 </table>
                             </th>
                             <th style="width: 15%;margin-left: 15%; margin-top: 15px;">
-                                <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/Imagen2.png" alt=""
+                                <img src="${pageContext.request.contextPath}/assets/img/Imagen2.png" alt=""
                                      style="height: 300px; width: 300px;margin-bottom: 0%;">
                             </th>
                         </tr>
@@ -170,7 +300,7 @@
                                                 para la imaginación. Comparte tus creaciones y únete a una comunidad que
                                                 celebra la magia de la narrativa."
                                             </p>
-                                            <img src="/assets/img/historias.png" alt="" class="img-fluid rounded-start"
+                                            <img src="${pageContext.request.contextPath}/assets/img/historias.png" alt="" class="img-fluid rounded-start"
                                                  style="margin-left: 5%;" width="200px">
                                         </div>
                                     </th>
@@ -188,21 +318,21 @@
                                         <div class="carousel-item active">
                                             <div class="cards-wrapper" style="display: flex; flex-direction: row;">
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
                                                     </div>
                                                 </div>
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
                                                     </div>
                                                 </div>
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
@@ -220,14 +350,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
                                                     </div>
                                                 </div>
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
@@ -238,21 +368,21 @@
                                         <div class="carousel-item">
                                             <div class="cards-wrapper" style="display: flex; flex-direction: row;">
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
                                                     </div>
                                                 </div>
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
                                                     </div>
                                                 </div>
                                                 <div class="card" style="width: 18rem; margin-left: 10px;">
-                                                    <img src="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/img/1.jpg" class="card-img-top" alt="...">
+                                                    <img src="${pageContext.request.contextPath}/assets/img/1.jpg" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <p class="card-text">Some quick example text to build on the
                                                             card title and make up the bulk of the card's content.</p>
@@ -289,7 +419,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                     style="margin-top: 20px; margin-left: 90%;"></button>
             <div class="modal-body">
-                <form id="loginForm" action="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/api/auth" class="needs-validation"
+                <form id="loginForm" action="${pageContext.request.contextPath}/api/auth" class="needs-validation"
                       novalidate method="post">
                     <div style="margin-left: 30%; border-radius: 100%; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);background: white;width:150px; height:150px; text-align: center; vertical-align: middle; padding: 10px;">
                         <i class="fa-solid fa-user" style="font-size: 100px; text-align: center "></i>
@@ -367,7 +497,7 @@
             <p style="font-family: PT serif; font-size: 35px; text-align: center; margin-top: 20px; font-style: normal;font-weight: 700;">
                 <strong>Registrarse</strong></p>
             <div class="modal-body">
-                <form id="formregistrer" action="${pageContext.request.contextPath}/Integradora-1.0-SNAPSHOT/assets/api/user/save" method="post" class="needs-validation"
+                <form id="formregistrer" action="${pageContext.request.contextPath}/api/user/save" method="post" class="needs-validation"
                       novalidate method="post" enctype="multipart/form-data" >
                     <div class="card mb-3" style="border: none;">
                         <div class="row g-0">
@@ -528,7 +658,11 @@
 </div>
 
 
-<jsp:include page="./layouts/footer.jsp"/>
+<script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js" ></script>
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+    feather.replace()
+</script>
 <script>
     const agregar = document.getElementById("login");
     const form = document.getElementById("loginForm");

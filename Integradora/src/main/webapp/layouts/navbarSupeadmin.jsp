@@ -15,7 +15,7 @@
 <div class="container-fluid">
     <nav id="nav" class="navbar navbar-expand-lg navbar-static fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/api/superadmin/home"><img src="${pageContext.request.contextPath}//assets//img//logo1.png" alt=""
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/api/superadmin/home"><img src="${pageContext.request.contextPath}/assets/img/logo1.png" alt=""
                                                                      width="50px"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
