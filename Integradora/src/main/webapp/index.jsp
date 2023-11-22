@@ -432,7 +432,7 @@
                       margin-left: 3px;
                       font-family: PT serif;">
                                     <label for="name">Correo Electrónico</label>
-                                    <input type="email" class="form-control" name="email" id="email"
+                                    <input type="text" class="form-control" name="email" id="email"
                                            placeholder="Matricula@utez.edu.mx" required
                                            style="border: none; outline: none;
                          border-radius: 5px;

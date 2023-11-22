@@ -5,14 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MySQLConnection {
-    final String DBNAME = "BDHITUAlpha",
+    final String DBNAME = "HITUAlpha",
             USER = "root",
-            PASSWORD = "B>T9pRffdybq",
+            PASSWORD = "root",
             TIMEZONE = "America/Mexico_City",
             USESSL = "false",
             PUBLICKEY = "true",
             DDLAUTO = "true",
-            HOST = "34.196.17.66";
+            HOST = "localhost";
 
     public Connection connect() {
         String dataSource = String.format(
