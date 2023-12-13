@@ -287,7 +287,7 @@ public class ServletUser extends HttpServlet {
                             case "superAdmin":
                                 redirect = "/api/superadmin/home";
                                 break;
-                            case"user":
+                            case"users":
                                 redirect="/api/user/home";
                                 break;
                             case "admin":
